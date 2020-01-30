@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import displayOptions from './../functions/displayOptions';
 import Checkbox from './Checkbox';
 import SpinBox from './SpinBox';
+import ChildrenContainer from './ChildrenContainer';
 
 function displaySuboptions(option) {
-  if (option.options === undefined) return '';
+  if (option.individualChildren) return displayOptions(option.selected);
   return displayOptions(option.options);
 }
 
@@ -15,11 +16,12 @@ function displayControls(props) {
       if (props.option.max === 1) {
         return <Checkbox option={props.option}/>;
       }
-      else if (props.option.max > 1) {
-        return <SpinBox
-          option={props.option}
-        />;
+      else if (props.option.max > 1 || props.option.max === -1) {
+        return <SpinBox option={props.option}/>;
       }
+    }
+    else {
+      return <ChildrenContainer option={props.option}/>;
     }
   }
 }

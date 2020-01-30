@@ -1,6 +1,8 @@
-// function clone(object) {
-//   return JSON.parse(JSON.stringify(object));
-// }
+import prepareOptions from "./prepareOptions";
+
+function clone(object) {
+  return JSON.parse(JSON.stringify(object));
+}
 
 function getOption(path, options) {
   if (typeof path === 'object') {
@@ -29,25 +31,19 @@ function getOption(path, options) {
 export function buyOption(option, options) {
   // find selected option in the options object
   option = getOption(option, options);
-  // if (option.type === 'group') return false;
-  // if (option.individualChildren) {
-  //   if (option.selected === undefined) {
-  //     option.selected = [];
-  //   }
-  //   const child = {
-  //     type: 'child',
-  //     name: option.name + ' - ' + option.selected.length,
-  //     options: clone(option.individualOptions),
-  //   };
-  //   option.selected.push(child);
-  //   return child;
-  // }
-  // else {
-  //   if (option.selected === undefined) {
-  //     option.selected = 0;
-  //   }
+  if (option.type === 'group') return;
+  if (option.individualChildren) {
+    const child = {
+      type: 'group',
+      name: option.name + ' - ' + option.selected.length,
+      options: clone(option.individualOptions),
+    };
+    option.selected.push(child);
+    option.selected = prepareOptions(option.selected, option.path);
+  }
+  else {
     option.selected++;
-  // }
+  }
 }
 export function sellOption(option, options) {
   // find selected option in the options object
