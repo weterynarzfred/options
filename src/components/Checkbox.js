@@ -6,15 +6,14 @@ function Checkbox(props) {
     <div className="Checkbox">
       <input
         type="checkbox"
-        checked={props.selected}
-        onChange={props.handleSelect}
+        checked={props.option.selected > 0}
+        onChange={event => props.dispatch({
+          type: event.target.checked ? 'BUY_OPTION' : 'SELL_OPTION',
+          option: props.option,
+        })}
       />
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return {...state};
-}
-
-export default connect(mapStateToProps)(Checkbox);
+export default connect()(Checkbox);

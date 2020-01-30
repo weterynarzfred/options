@@ -82,6 +82,13 @@ const options = {
           essence: 1,
         },
       },
+      strength: {
+        name: 'Strength',
+        max: 10,
+        cost: {
+          essence: 1,
+        },
+      },
     }, 
   },
 };

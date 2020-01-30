@@ -2,28 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import displayOptions from './../functions/displayOptions';
 import Checkbox from './Checkbox';
+import SpinBox from './SpinBox';
 
 function displaySuboptions(option) {
   if (option.options === undefined) return '';
   return displayOptions(option.options);
 }
 
-function handleCheckboxSelect(event) {
-  if (event.target.checked) {
-    this.dispatch({type: 'BUY_OPTION', option: this.option});
-  }
-  else {
-    this.dispatch({type: 'SELL_OPTION', option: this.option});
-  }
-}
-
 function displayControls(props) {
   if (props.option.type === 'option') {
-    if (props.option.max === 1) {
-      return <Checkbox
-        selected={props.option.selected > 0}
-        handleSelect={handleCheckboxSelect.bind(props)}
-      />;
+    if (!props.option.individualChildren) {
+      if (props.option.max === 1) {
+        return <Checkbox option={props.option}/>;
+      }
+      else if (props.option.max > 1) {
+        return <SpinBox
+          option={props.option}
+        />;
+      }
     }
   }
 }
