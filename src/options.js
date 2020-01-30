@@ -75,9 +75,17 @@ const options = {
         cost: {
           essence: 5,
         },
-      }
+        selected: 0, // auto
+        path: 'general/immortality' // auto
+      },
+      keepMemories: {
+        name: 'Keep memories',
+        cost: {
+          essence: 1,
+        },
+      },
     }, 
-  }
+  },
 };
 
 export default options;

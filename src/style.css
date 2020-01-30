@@ -1,0 +1,10 @@
+body {
+  background-color: #ddd;
+  font-family: sans-serif;
+}
+
+.Option {
+  border: 1px solid #333;
+  padding: .5em;
+  margin: .5em;
+}

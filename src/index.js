@@ -5,6 +5,7 @@ import App from './App';
 import { createStore } from 'redux';
 import produce from 'immer';
 import options from './options';
+import { buyOption } from './functions/main';
 
 const initialState = {
   options,
@@ -12,8 +13,8 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   return produce(state, state => {
-    if (action.type === 'ADD_MONEY') {
-      state.money += action.amount;
+    if (action.type === 'BUY_OPTION') {
+      buyOption(action.option, state.options);
     }
     return state;
   });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import displayOptions from './functions/displayOptions';
+import './style.css';
 
 function App(props) {
   return (
