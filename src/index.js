@@ -5,16 +5,20 @@ import App from './App';
 import { createStore } from 'redux';
 import produce from 'immer';
 import options from './options';
-import { buyOption } from './functions/main';
+import { buyOption, sellOption } from './functions/main';
+import prepareOptions from './functions/prepareOptions';
 
 const initialState = {
-  options,
+  options: prepareOptions(options),
 };
 
 function rootReducer(state = initialState, action) {
   return produce(state, state => {
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, state.options);
+    }
+    if (action.type === 'SELL_OPTION') {
+      sellOption(action.option, state.options);
     }
     return state;
   });

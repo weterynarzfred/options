@@ -49,6 +49,11 @@ export function buyOption(option, options) {
     option.selected++;
   // }
 }
+export function sellOption(option, options) {
+  // find selected option in the options object
+  option = getOption(option, options);
+  option.selected--;
+}
 
 // function getSelected(options) {
 //   const selected = [];

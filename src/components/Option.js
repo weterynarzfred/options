@@ -12,12 +12,18 @@ function handleCheckboxSelect(event) {
   if (event.target.checked) {
     this.dispatch({type: 'BUY_OPTION', option: this.option});
   }
+  else {
+    this.dispatch({type: 'SELL_OPTION', option: this.option});
+  }
 }
 
 function displayControls(props) {
-  if (props.option.type === undefined || props.option.type === 'option') {
-    if (props.option.max === undefined || props.option.max === 1) {
-      return <Checkbox selected={props.option.selected} handleSelect={handleCheckboxSelect.bind(props)} />;
+  if (props.option.type === 'option') {
+    if (props.option.max === 1) {
+      return <Checkbox
+        selected={props.option.selected > 0}
+        handleSelect={handleCheckboxSelect.bind(props)}
+      />;
     }
   }
 }
