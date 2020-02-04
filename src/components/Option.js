@@ -4,6 +4,7 @@ import displayOptions from './../functions/displayOptions';
 import Checkbox from './Checkbox';
 import SpinBox from './SpinBox';
 import ChildrenContainer from './ChildrenContainer';
+import RemoveChild from './RemoveChild';
 
 function displaySuboptions(option) {
   if (option.individualChildren) return displayOptions(option.selected);
@@ -22,6 +23,11 @@ function displayControls(props) {
     }
     else {
       return <ChildrenContainer option={props.option}/>;
+    }
+  }
+  else if (props.option.type === 'group') {
+    if (props.option.isChild) {
+      return <RemoveChild option={props.option} />;
     }
   }
 }

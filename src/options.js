@@ -8,6 +8,7 @@
  * @property {Object} options - suboptions
  * @property {bool} [individualChildren = false] - only if (type === 'option')
  * @property {Object} individualOptions - suboptions only if (individualChildren)
+ * @property {bool} isChild
  * @property {Object} optionCurrency
  * @property {function} test
  * @property {function} onIncrease

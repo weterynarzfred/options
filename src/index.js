@@ -17,7 +17,7 @@ function rootReducer(state = initialState, action) {
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, state.options);
     }
-    if (action.type === 'SELL_OPTION') {
+    else if (action.type === 'SELL_OPTION') {
       sellOption(action.option, state.options);
     }
     return state;
