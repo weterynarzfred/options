@@ -5,7 +5,8 @@ import App from './App';
 import { createStore } from 'redux';
 import produce from 'immer';
 import options from './options';
-import { buyOption, sellOption } from './functions/main';
+import { sellOption } from "./functions/sellOption";
+import buyOption from "./functions/buyOption";
 import prepareOptions from './functions/prepareOptions';
 
 const initialState = {

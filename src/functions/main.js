@@ -1,31 +1,34 @@
-import prepareOptions from "./prepareOptions";
-
-function clone(object) {
+export function clone(object) {
   return JSON.parse(JSON.stringify(object));
 }
 
-function getOption(path, options) {
+export function getOption(path, options) {
   if (typeof path === 'object') {
     if (!Array.isArray(path)) {
       path = path.path.split('/').reverse();
+    }
+    else {
+      path.reverse();
     }
   }
   else {
     path = path.split('/').reverse();
   }
   let option = {options};
+  
   while (path.length) {
-    if (typeof option.selected === 'object' && option.selected[path[path.length - 1]] !== undefined) {
-      option = option.selected[path.pop()];
-    }
-    else {
+    if (option.options !== undefined) {
       option = option.options[path.pop()];
     }
+    else if (typeof option.selected === 'object' && option.selected[path[path.length - 1]] !== undefined) {
+      option = option.selected[path.pop()];
+    }
+    
   }
   return option;
 }
 
-function getParent(option, options) {
+export function getParent(option, options) {
   let pathArray = option.path.split('/');
   if (pathArray.length <= 1) return false;
   pathArray.pop();
@@ -39,48 +42,13 @@ function getParent(option, options) {
 //   return option.selected.length;
 // }
 
-export function buyOption(option, options) {
-  // find selected option in the options object
+export function getSelected(option, options) {
   option = getOption(option, options);
-  if (option.type === 'group') return;
-  if (option.individualChildren) {
-    const child = {
-      type: 'group',
-      name: option.name + ' - ' + option.selected.length,
-      options: clone(option.individualOptions),
-      isChild: true,
-    };
-    option.selected.push(child);
-    option.selected = prepareOptions(option.selected, option.path);
-  }
-  else {
-    option.selected++;
-  }
-}
-
-export function sellOption(option, options) {
-  // find selected option in the options object
-  option = getOption(option, options);
-  if (option.type === 'option') {
-    option.selected--;
-  }
-  else if (option.type === 'group') {
-    if (option.isChild) {
-      const parent = getParent(option, options);
-      if (parent) {
-        delete parent.selected[option.slug];
-      }
-    }
-  }
-}
-
-// function getSelected(options) {
-//   const selected = [];
-//   for (const slug in options) {
-//     console.log(slug);
-    
+  if (option.type === 'option') return option.selected;
+  const selected = [];
+//   for (const slug in option.options) {
 //     const option = options[slug];
-//     if (option.type !== 'group') {
+//     if (option.type === 'option') {
 //       if (option.selected !== undefined) {
 //         if (typeof option.selected === 'object') {
 //           for (const child of option.selected) {
@@ -93,14 +61,14 @@ export function sellOption(option, options) {
 //             selected.push(option);
 //           }
 //         }
-//       }
-//     }
+    //   }
+    // }
 //     if (option.options !== undefined) {
 //       selected.push(...getSelected(option.options));
 //     }
 //   }
-//   return selected;
-// }
+  return selected;
+}
 
 // buyOption('general/immortality');
 // const plane1 = buyOption('planes');
