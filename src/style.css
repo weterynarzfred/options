@@ -8,3 +8,7 @@ body {
   padding: .5em;
   margin: .5em;
 }
+
+.SpinBox {
+  display: flex;
+}

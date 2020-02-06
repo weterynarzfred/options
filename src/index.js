@@ -8,9 +8,12 @@ import options from './options';
 import { sellOption } from "./functions/sellOption";
 import buyOption from "./functions/buyOption";
 import prepareOptions from './functions/prepareOptions';
+import settings from './settings';
+import prepareSettings from './functions/prepareSettings';
 
 const initialState = {
   options: prepareOptions(options),
+  settings: prepareSettings(settings),
 };
 
 function rootReducer(state = initialState, action) {
