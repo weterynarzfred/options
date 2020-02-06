@@ -6,8 +6,8 @@
  * @property {number} [min = 0]
  * @property {number} [max = 1]
  * @property {Object} options - suboptions
- * @property {bool} [individualChildren = false] - only if (type === 'option')
- * @property {Object} individualOptions - suboptions only if (individualChildren)
+ * @property {bool} [hasIndividualChildren = false] - only if (type === 'option')
+ * @property {Object} individualOptions - suboptions only if (hasIndividualChildren)
  * @property {bool} isChild
  * @property {Object} optionCurrency
  * @property {function} test
@@ -21,7 +21,7 @@ const options = {
   planes: {
     name: 'Planes',
     max: -1,
-    individualChildren: true,
+    hasIndividualChildren: true,
     cost: {
       essence: 5,
     },
@@ -34,7 +34,7 @@ const options = {
         max: -1,
         cost: {
           essence: 1,
-          planetPoints: -1,
+          planePoints: -1,
         },
         discount: {
           // essence: function() {return - (getCount(this) ** 2 - 1);},
@@ -47,19 +47,19 @@ const options = {
           planet: {
             name: 'Planet',
             cost: {
-              planetPoints: 5,
+              planePoints: 5,
             },
           },
           continent: {
             name: 'Continent',
             cost: {
-              planetPoints: 4,
+              planePoints: 4,
             },
           },
           island: {
             name: 'Island',
             cost: {
-              planetPoints: 2,
+              planePoints: 2,
             },
           },
         },
@@ -91,6 +91,12 @@ const options = {
         },
       },
     }, 
+  },
+  simple: {
+    name: 'Simple Option',
+    cost: {
+      essence: 1,
+    },
   },
 };
 

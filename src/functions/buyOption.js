@@ -1,11 +1,11 @@
 import prepareOptions from "./prepareOptions";
-import { getOption, getParent, getSelected } from "./main";
+import { getOption, getParent, getSelected } from "./helpers";
 
 export default function buyOption(option, options) {
   option = getOption(option, options);
   if (option.type === 'group')
     return;
-  if (option.individualChildren) {
+  if (option.hasIndividualChildren) {
     const slug = option.selected.length;
     const child = {
       [slug]: {

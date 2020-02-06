@@ -1,4 +1,4 @@
-import { getOption, getParent } from "./main";
+import { getOption, getParent } from "./helpers";
 
 export function sellOption(option, options) {
   option = getOption(option, options);
@@ -9,7 +9,7 @@ export function sellOption(option, options) {
     if (option.isChild) {
       const parent = getParent(option, options);
       if (parent) {
-        delete parent.selected[option.slug];
+        parent.selected.splice(option.slug, 1);
       }
     }
   }

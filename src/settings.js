@@ -4,10 +4,6 @@ const settings = {
       name: 'Essence',
       value: 10,
     },
-    coins: {
-      name: 'Coins',
-      value: 500,
-    },
   },
 };
 

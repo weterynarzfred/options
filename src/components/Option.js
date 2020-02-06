@@ -7,13 +7,13 @@ import ChildrenContainer from './ChildrenContainer';
 import RemoveChild from './RemoveChild';
 
 function displaySuboptions(option) {
-  if (option.individualChildren) return displayOptions(option.selected);
+  if (option.hasIndividualChildren) return displayOptions(option.selected);
   return displayOptions(option.options);
 }
 
 function displayControls(props) {
   if (props.option.type === 'option') {
-    if (!props.option.individualChildren) {
+    if (!props.option.hasIndividualChildren) {
       if (props.option.max === 1) {
         return <Checkbox option={props.option}/>;
       }

@@ -7,7 +7,7 @@ export default function prepareOptions(options, path) {
     option.path = path === undefined ? slug : path + '/' + slug;
     option.options = prepareOptions(option.options, option.path);
     if (option.type === 'option') {
-      if (option.individualChildren) {
+      if (option.hasIndividualChildren) {
         option.selected = [];
       }
       else {
