@@ -20,7 +20,10 @@ export function getOption(path, options) {
     if (option.options !== undefined) {
       option = option.options[path.pop()];
     }
-    else if (typeof option.selected === 'object' && option.selected[path[path.length - 1]] !== undefined) {
+    else if (
+      typeof option.selected === 'object' &&
+      option.selected[path[path.length - 1]] !== undefined
+    ) {
       option = option.selected[path.pop()];
     }
     

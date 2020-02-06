@@ -6,34 +6,31 @@ function calculateCurrency(options, currentValues) {
   for (const slug in options) {
     const option = options[slug];
     if (option.type === 'option') {
-      const selectedCount = option.hasIndividualChildren ? option.selected.length : option.selected;
-      if (selectedCount > 0) {
-        if (option.cost !== undefined) {
-          for (const currencySlug in option.cost) {
-            const value = option.cost[currencySlug];
-            if (currentValues[currencySlug] !== undefined) {
-              currentValues[currencySlug].value -= value * selectedCount;
-            }
+      const selectedCount = option.hasIndividualChildren ?
+        option.selected.length :
+        option.selected;
+      if (selectedCount > 0 && option.cost !== undefined) {
+        for (const currencySlug in option.cost) {
+          if (currentValues[currencySlug] !== undefined) {
+            currentValues[currencySlug].value -=
+              option.cost[currencySlug] * selectedCount;
           }
         }
       }
     }
-    if (option.hasIndividualChildren) {
-      if (option.selected) {
-        currentValues = calculateCurrency(option.selected, currentValues);
-      }
-    }
-    else {
-      if (option.options) {
-        currentValues = calculateCurrency(option.options, currentValues);
-      }
-    }
+    currentValues = calculateCurrency(
+      option.hasIndividualChildren ? option.selected : option.options,
+      currentValues
+    );
   }
   return currentValues;
 }
 
 function displayCurrency(props) {
-  const currentValues = calculateCurrency(props.options, clone(props.settings.currency));
+  const currentValues = calculateCurrency(
+    props.options,
+    clone(props.settings.currency)
+  );
   const currencyArray = [];
   for (const slug in currentValues) {
     const currency = currentValues[slug];
