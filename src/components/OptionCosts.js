@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { getOption, clone } from '../functions/helpers';
 
+// get all currencies current option can have
 function getCurrencies(props, path) {
   const currencies = clone(props.settings.currency);
   path = path.split('/').reverse();
@@ -26,14 +28,31 @@ function OptionCosts(props) {
   for (const currencySlug in option.cost) {
     if (currencies[currencySlug] === undefined) continue;
     const currencyName = currencies[currencySlug].name;
-    const cost = option.cost[currencySlug];
+    let cost = 0;
+    if (typeof option.cost[currencySlug] === 'number') {
+      cost = option.cost[currencySlug];
+    }
+    else if (typeof option.cost[currencySlug] === 'function') {
+      const selectedCount = option.hasIndividualChildren ?
+        option.selected.length :
+        option.selected;
+      cost += option.cost[currencySlug]({
+        option,
+        options: props.options,
+        index: selectedCount
+      });
+    }
     costs.push(
       <div
-        className="Option-cost currency"
+        className={classNames(
+          'Option-cost',
+          'currency',
+          {positive: cost < 0}
+        )}
         key={`option-${option.path}-cost-${currencySlug}`}
       >
         <div className="currency-name">{currencyName}</div>
-        <div className="currency-value">{cost}</div>
+        <div className="currency-value">{(cost > 0 ? '' : '+') + (-cost)}</div>
       </div>
     );
   }

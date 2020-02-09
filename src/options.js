@@ -37,11 +37,8 @@ const options = {
         name: 'Essence',
         max: -1,
         cost: {
-          essence: 1,
+          essence: data => data.index + 1,
           planePoints: -1,
-        },
-        discount: {
-          // essence: function() {return - (getCount(this) ** 2 - 1);},
         },
       },
       scope: {
@@ -104,7 +101,7 @@ const options = {
   },
   simple2: {
     name: 'Simple Option 2',
-    test: options => options.simple.selected,
+    test: data => data.options.simple.selected,
     cost: {
       essence: 1,
     }
