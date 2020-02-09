@@ -2,6 +2,7 @@ export default function prepareOptions(options, path) {
   for (const slug in options) {
     const option = options[slug];
     option.type = option.type === undefined ? 'option' : option.type;
+    option.min = option.min === undefined ? 0 : option.min;
     option.max = option.max === undefined ? 1 : option.max;
     option.slug = slug;
     option.path = path === undefined ? slug : path + '/' + slug;

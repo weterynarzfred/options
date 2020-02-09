@@ -82,4 +82,12 @@ button {
   &:focus {
     outline: none;
   }
+
+  &.disabled {
+    background-color: $color-medium-2;
+
+    &:hover {
+      color: $color-medium-1;
+    }
+  }
 }
