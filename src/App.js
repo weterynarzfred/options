@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import displayOptions from './functions/displayOptions';
-import './style.css';
+import './style.scss';
 import Stats from './components/Stats';
 
 function App(props) {
