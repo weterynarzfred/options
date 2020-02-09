@@ -14,7 +14,7 @@ body {
 .Option {
   border: 1px solid $color-dark-1;
   padding: .5em;
-  margin: .5em;
+  margin: .25em .5em;
 
   .Option-name {
     font-weight: 700;
@@ -30,6 +30,7 @@ body {
 .Option-suboptions {
   display: flex;
   flex-wrap: wrap;
+  margin-top: .5em;
 }
 
 button {
@@ -42,5 +43,9 @@ button {
 
   &:hover {
     color: $color-main;
+  }
+
+  &:focus {
+    outline: none;
   }
 }

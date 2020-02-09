@@ -32,9 +32,33 @@ function displayControls(props) {
   }
 }
 
+function displayCost(props) {
+  const option = props.option;
+  if (option.type !== 'option') return;
+  if (option.cost === undefined) return;
+  const costs = [];
+  for (const currencySlug in option.cost) {
+    const cost = option.cost[currencySlug];
+    const currencyName = props.settings.currency[currencySlug].name;
+    costs.push(
+      <div
+        className="Option-cost"
+        key={`option-${option.path}-cost-${currencySlug}`}
+      >
+        <div className="Option-cost-currency">{currencyName}</div>
+        <div className="Option-cost-value">{cost}</div>
+      </div>
+    );
+  }
+  return <div className="Option-costs">
+    {costs}
+  </div>;
+}
+
 function Option(props) {
   return (
     <div className="Option">
+      {displayCost(props)}
       <div className="Option-name">
         {props.option.name}
       </div>
