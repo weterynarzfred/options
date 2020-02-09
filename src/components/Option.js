@@ -29,6 +29,9 @@ function Option(props) {
       <div className="Option-name">
         {props.option.name}
       </div>
+      <div className="Option-text">
+        {props.option.text}
+      </div>
       <OptionControls option={props.option} />
       <OptionsContainer
         options={

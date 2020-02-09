@@ -18,9 +18,17 @@
  * @property {number|function|Array|Object} discount
  */
 
+import React from 'react';
+
 const options = {
+  intro: {
+    type: 'story',
+    name: 'Intro',
+    text: <p>lorem ipsum</p>,
+  },
   planes: {
     name: 'Planes',
+    text: <p>Create some planes of existance.</p>,
     max: -1,
     hasIndividualChildren: true,
     cost: {
@@ -92,6 +100,11 @@ const options = {
         },
       },
     }, 
+  },
+  simpleOptions: {
+    type: 'story',
+    name: 'Simple Options',
+    text: <p>For testing purposes only.</p>,
   },
   simple: {
     name: 'Simple Option',
