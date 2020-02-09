@@ -1,4 +1,4 @@
-export default function isOptionDisabled(option, props) {
+export default function isOptionDisabled(option, options) {
   if (option.test === undefined) return false;
-  return !option.test.call(option, props.options);
+  return !option.test.call(option, options);
 }

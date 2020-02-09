@@ -1,27 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clone } from '../functions/helpers';
+import isOptionDisabled from '../functions/isOptionDisabled';
 
 function calculateCurrency(options, currentValues) {
   for (const slug in options) {
     const option = options[slug];
-    if (option.type === 'option') {
-      const selectedCount = option.hasIndividualChildren ?
-        option.selected.length :
-        option.selected;
-      if (selectedCount > 0 && option.cost !== undefined) {
-        for (const currencySlug in option.cost) {
-          if (currentValues[currencySlug] !== undefined) {
-            currentValues[currencySlug].value -=
-              option.cost[currencySlug] * selectedCount;
+    if (!isOptionDisabled(option, options)) {
+      if (option.type === 'option') {
+        const selectedCount = option.hasIndividualChildren ?
+          option.selected.length :
+          option.selected;
+        if (selectedCount > 0 && option.cost !== undefined) {
+          for (const currencySlug in option.cost) {
+            if (currentValues[currencySlug] !== undefined) {
+              currentValues[currencySlug].value -=
+                option.cost[currencySlug] * selectedCount;
+            }
           }
         }
       }
+      currentValues = calculateCurrency(
+        option.hasIndividualChildren ? option.selected : option.options,
+        currentValues
+      );
     }
-    currentValues = calculateCurrency(
-      option.hasIndividualChildren ? option.selected : option.options,
-      currentValues
-    );
   }
   return currentValues;
 }
