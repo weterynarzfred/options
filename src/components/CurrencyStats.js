@@ -10,7 +10,7 @@ function calculateCurrency(options, currentValues) {
     if (!isOptionDisabled(option, options)) {
       if (option.type === 'option') {
         const selectedCount = option.hasIndividualChildren ?
-          option.selected.length :
+          Object.getOwnPropertyNames(option.selected).length :
           option.selected;
         if (selectedCount > 0 && option.cost !== undefined) {
           for (const currencySlug in option.cost) {

@@ -34,7 +34,7 @@ function OptionCosts(props) {
     }
     else if (typeof option.cost[currencySlug] === 'function') {
       const selectedCount = option.hasIndividualChildren ?
-        option.selected.length :
+        Object.getOwnPropertyNames(option.selected).length :
         option.selected;
       cost += option.cost[currencySlug]({
         option,
