@@ -1,10 +1,10 @@
 import prepareOptions from "./prepareOptions";
-import { getOption, getParent, getSelected, clone } from "./helpers";
+import { getOption, getParent, clone } from "./helpers";
+import { getSelected } from "./getSelected";
 
 export default function buyOption(option, options) {
   option = getOption(option, options);
-  if (option.type === 'group')
-    return;
+  if (option.type === 'group') return;
   if (option.hasIndividualChildren) {
     const slug = option.selected.length;
     const child = {
@@ -21,7 +21,10 @@ export default function buyOption(option, options) {
   else {
     const parent = getParent(option, options);
     if (parent && parent.max === 1) {
-      console.log(getSelected(parent, options));
+      const selected = getSelected(parent, options);
+      for (const slug in selected) {
+        selected[slug].selected--;
+      }
     }
     option.selected++;
   }

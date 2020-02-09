@@ -1,6 +1,6 @@
 import { getOption, getParent } from "./helpers";
 
-export function sellOption(option, options) {
+export default function sellOption(option, options) {
   option = getOption(option, options);
   if (option.type === 'option') {
     option.selected--;
