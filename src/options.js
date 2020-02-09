@@ -10,6 +10,7 @@
  * @property {Object} individualOptions - suboptions only if (hasIndividualChildren)
  * @property {bool} isChild
  * @property {Object} optionCurrency
+ * @property {Object} childOptionCurrency
  * @property {function} test
  * @property {function} onIncrease
  * @property {function} onDecrease
@@ -25,8 +26,11 @@ const options = {
     cost: {
       essence: 5,
     },
-    optionCurrency: {
-      planePoints: 10,
+    childOptionCurrency: {
+      planePoints: {
+        name: 'Plane Points',
+        value: 10,
+      },
     },
     individualOptions: {
       essence: {

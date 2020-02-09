@@ -12,11 +12,11 @@ function OptionCosts(props) {
     const cost = option.cost[currencySlug];
     costs.push(
       <div
-        className="Option-cost"
+        className="Option-cost currency"
         key={`option-${option.path}-cost-${currencySlug}`}
       >
-        <div className="Option-cost-currency">{currencyName}</div>
-        <div className="Option-cost-value">{cost}</div>
+        <div className="currency-name">{currencyName}</div>
+        <div className="currency-value">{cost}</div>
       </div>
     );
   }

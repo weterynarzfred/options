@@ -1,5 +1,5 @@
 import prepareOptions from "./prepareOptions";
-import { getOption, getParent, getSelected } from "./helpers";
+import { getOption, getParent, getSelected, clone } from "./helpers";
 
 export default function buyOption(option, options) {
   option = getOption(option, options);
@@ -13,6 +13,7 @@ export default function buyOption(option, options) {
         name: option.name + ' - ' + slug,
         options: Object.create(option.individualOptions),
         isChild: true,
+        optionCurrency: clone(option.childOptionCurrency),
       }
     };
     option.selected.push(prepareOptions(child, option.path)[slug]);

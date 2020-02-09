@@ -4,6 +4,10 @@ const settings = {
       name: 'Essence',
       value: 10,
     },
+    time: {
+      name: 'Time',
+      value: 8,
+    },
   },
 };
 
