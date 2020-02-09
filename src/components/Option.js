@@ -1,14 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import displayOptions from './../functions/displayOptions';
 import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
 import CurrencyStats from './CurrencyStats';
-
-function displaySuboptions(option) {
-  if (option.hasIndividualChildren) return displayOptions(option.selected);
-  return displayOptions(option.options);
-}
+import OptionsContainer from './OptionsContainer';
 
 function displayOptionCurrency(props) {
   const option = props.option;
@@ -30,9 +25,13 @@ function Option(props) {
         {props.option.name}
       </div>
       <OptionControls option={props.option} />
-      <div className="Option-suboptions">
-        {displaySuboptions(props.option)}
-      </div>
+      <OptionsContainer
+        options={
+          props.option.hasIndividualChildren ?
+            props.option.selected :
+            props.option.options
+        }
+      />
     </div>
   );
 }

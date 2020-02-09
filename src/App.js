@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import displayOptions from './functions/displayOptions';
 import './style.scss';
 import Stats from './components/Stats';
+import OptionsContainer from './components/OptionsContainer';
 
 function App(props) {
   return (
     <div className="App">
       <Stats />
-      {displayOptions(props.options)}
+      <OptionsContainer options={props.options} />
     </div>
   );
 }
