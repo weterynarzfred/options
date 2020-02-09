@@ -26,13 +26,6 @@ function calculateCurrency(options, currentValues) {
             }
             currentValues[currencySlug].value -= change;
           }
-          if (option.costIncrease !== undefined) {
-            for (const currencySlug in option.costIncrease) {
-              if (currentValues[currencySlug] === undefined) continue;
-              currentValues[currencySlug].value -=
-                option.costIncrease[currencySlug](option, options);
-            }
-          }
         }
       }
       currentValues = calculateCurrency(
@@ -64,9 +57,5 @@ function CurrencyStats(props) {
     {currencyArray}
   </div>;
 }
-
-// function mapStateToProps(state) {
-//   return {settings: state.settings};
-// }
 
 export default connect()(CurrencyStats);
