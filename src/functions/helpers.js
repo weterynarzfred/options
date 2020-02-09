@@ -26,7 +26,9 @@ export function getOption(path, options) {
     ) {
       option = option.selected[path.pop()];
     }
-    
+    else {
+      break;
+    }
   }
   return option;
 }

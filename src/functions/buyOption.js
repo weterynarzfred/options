@@ -6,7 +6,7 @@ export default function buyOption(option, options) {
   option = getOption(option, options);
   if (option.type === 'group') return;
   if (option.hasIndividualChildren) {
-    const slug = option.selected.length;
+    const slug = option.nextChildId++;
     const child = {
       [slug]: {
         type: 'group',
@@ -16,7 +16,7 @@ export default function buyOption(option, options) {
         optionCurrency: clone(option.childOptionCurrency),
       }
     };
-    option.selected.push(prepareOptions(child, option.path)[slug]);
+    option.selected[slug] = prepareOptions(child, option.path)[slug];
   }
   else {
     const parent = getParent(option, options);
