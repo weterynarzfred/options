@@ -4,6 +4,8 @@ import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
 import CurrencyStats from './CurrencyStats';
 import OptionsContainer from './OptionsContainer';
+import classNames from 'classnames';
+import isOptionDisabled from './../functions/isOptionDisabled';
 
 function displayOptionCurrency(props) {
   const option = props.option;
@@ -16,7 +18,10 @@ function displayOptionCurrency(props) {
 
 function Option(props) {
   return (
-    <div className="Option">
+    <div className={classNames(
+      'Option',
+      {disabled: isOptionDisabled(props.option, props)}
+    )}>
       <div className="Option-stats">
         {displayOptionCurrency(props)}
         <OptionCosts option={props.option}/>

@@ -102,6 +102,13 @@ const options = {
       essence: 1,
     },
   },
+  simple2: {
+    name: 'Simple Option 2',
+    test: options => options.simple.selected,
+    cost: {
+      essence: 1,
+    }
+  },
 };
 
 export default options;

@@ -12,33 +12,38 @@ body {
   font-size: 12px;
 }
 
-.Option {
-  background-color: $color-main-1;
-  border: 1px solid $color-dark-1;
-  padding: .5em;
-  margin: .25em .5em;
-  border-radius: .5em;
-  transition: .3s;
+.OptionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: .5em;
 
-  &:hover {
-    background-color: $color-main-2;
-  }
+  .Option {
+    background-color: $color-main-1;
+    border: 1px solid $color-dark-1;
+    padding: .5em;
+    margin: .25em .5em;
+    border-radius: .5em;
+    transition: .3s;
 
-  .Option-name {
-    font-weight: 700;
-    margin-bottom: 1em;
-    color: $color-dark-2;
+    &.disabled {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      background-color: $color-main-2;
+    }
+
+    .Option-name {
+      font-weight: 700;
+      margin-bottom: 1em;
+      color: $color-dark-2;
+    }
   }
 }
 
 .SpinBox {
   display: flex;
-}
-
-.OptionsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: .5em;
 }
 
 .currency {
