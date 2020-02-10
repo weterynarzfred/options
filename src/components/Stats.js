@@ -7,7 +7,7 @@ function Stats(props) {
     <div className="Stats">
       <div className="currency-list">
       <CurrencyStats
-        options={props.options}
+        currentOptions={props.options}
         currency={props.settings.currency}
       />
       </div>

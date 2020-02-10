@@ -9,6 +9,7 @@
  * @property {bool} [hasIndividualChildren = false] - only if (type === 'option')
  * @property {Object} individualOptions - suboptions only if (hasIndividualChildren)
  * @property {bool} isChild
+ * @property {bool} isSynthetic
  * @property {Object} optionCurrency
  * @property {Object} childOptionCurrency
  * @property {function} test
@@ -28,7 +29,7 @@ const options = {
   },
   planes: {
     name: 'Planes',
-    text: <p>Create some planes of existance.</p>,
+    text: <p>Create some planes of existence.</p>,
     max: -1,
     hasIndividualChildren: true,
     cost: {
@@ -73,6 +74,58 @@ const options = {
           },
         },
       },
+      races: {
+        name: 'Races',
+        type: 'group',
+        max: -1,
+        options: {},
+        functionalChildren: {},
+        optionsFunction: data => {
+          const races = {};
+          for (const slug in data.options.races.selected) {
+            const race = data.options.races.selected[slug];
+            races[slug] = {
+              name: race.name,
+              cost: {
+                planePoints: 1,
+              },
+            };
+          }
+          return races;
+        },
+      },
+    },
+  },
+  races: {
+    name: 'Races',
+    // max: -1,
+    hasIndividualChildren: true,
+    cost: {
+      essence: 3,
+    },
+    individualOptions: {
+      simple: {
+        name: 'Simple Option',
+        cost: {
+          essence: 1,
+        },
+      },
+      face: {
+        name: 'Face',
+        type: 'group',
+        max: 1,
+        options: {
+          humanoid: {
+            name: 'Humanoid',
+          },
+          animal: {
+            name: 'Animal',
+          },
+          alien: {
+            name: 'Alien',
+          },
+        },
+      }
     },
   },
   general: {

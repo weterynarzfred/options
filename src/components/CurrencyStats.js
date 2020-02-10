@@ -2,16 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { clone } from '../functions/helpers';
 import isOptionDisabled from '../functions/isOptionDisabled';
+import getSyntheticOptions from '../functions/getSyntheticOptions';
 
 // calculate how much of each currency is left
-function calculateCurrency(options, currentValues) {
-  for (const slug in options) {
-    const option = options[slug];
-    if (!isOptionDisabled(option, options)) {
+function calculateCurrency(currentOptions, currentValues, options) {
+  for (const slug in currentOptions) {
+    const option = currentOptions[slug];
+    if (!isOptionDisabled(option, currentOptions)) {
       if (option.type === 'option') {
-        const selectedCount = option.hasIndividualChildren ?
-          Object.getOwnPropertyNames(option.selected).length :
-          option.selected;
+        let selectedCount = 0;
+        if (option.hasIndividualChildren) {
+          selectedCount = Object.getOwnPropertyNames(option.selected).length
+        }
+        else {
+          selectedCount = option.selected;
+        }
         if (selectedCount > 0 && option.cost !== undefined) {
           for (const currencySlug in option.cost) {
             if (currentValues[currencySlug] === undefined) continue;
@@ -21,17 +26,24 @@ function calculateCurrency(options, currentValues) {
             }
             else if (typeof option.cost[currencySlug] === 'function') {
               for (let index = 0; index < selectedCount; index++) {
-                change += option.cost[currencySlug]({option, options, index});
+                change += option.cost[currencySlug]({option, options: currentOptions, index});
               }
             }
             currentValues[currencySlug].value -= change;
           }
         }
       }
-      currentValues = calculateCurrency(
-        option.hasIndividualChildren ? option.selected : option.options,
-        currentValues
-      );
+
+      if (option.hasIndividualChildren) {
+        currentValues = calculateCurrency(option.selected, currentValues, options);
+      }
+      else if (option.optionsFunction !== undefined) {
+        const syntheticOptions = getSyntheticOptions(option, options);
+        currentValues = calculateCurrency(syntheticOptions, currentValues, options);
+      }
+      else {
+        currentValues = calculateCurrency(option.options, currentValues, options);
+      }
     }
   }
   return currentValues;
@@ -39,8 +51,9 @@ function calculateCurrency(options, currentValues) {
 
 function CurrencyStats(props) {
   const currentValues = calculateCurrency(
-    props.options,
-    clone(props.currency)
+    props.currentOptions,
+    clone(props.currency),
+    props.options
   );
   const currencyArray = [];
   for (const slug in currentValues) {
@@ -58,4 +71,8 @@ function CurrencyStats(props) {
   </div>;
 }
 
-export default connect()(CurrencyStats);
+function mapStateToProps(state) {
+  return {...state};
+}
+
+export default connect(mapStateToProps)(CurrencyStats);

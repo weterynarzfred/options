@@ -2,12 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Option from './Option';
 import Story from './Story';
+import { getOption } from '../functions/helpers';
+import getSyntheticOptions from '../functions/getSyntheticOptions';
 
 function OptionsContainer(props) {
-  if (props.options === undefined) return null;
+  if (props.containerOptions === undefined) return null;
   const result = [];
-  for (const slug in props.options) {
-    const option = props.options[slug];
+  let options = props.containerOptions;
+  const parentOption = getOption(props.path, props.options);
+  if (parentOption && parentOption.optionsFunction !== undefined) {
+    options = getSyntheticOptions(parentOption, props.options);
+  }
+  for (const slug in options) {
+    const option = options[slug];
     if (option.type === 'option' || option.type === 'group') {
       result.push(<Option option={option} key={`option-${option.path}`} />);
     }
@@ -18,4 +25,8 @@ function OptionsContainer(props) {
   return <div className="OptionsContainer">{result}</div>;
 }
 
-export default connect()(OptionsContainer);
+function mapStateToProps(state) {
+  return {...state};
+}
+
+export default connect(mapStateToProps)(OptionsContainer);

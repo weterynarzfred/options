@@ -1,8 +1,13 @@
 import { getOption, getParent } from "./helpers";
 
 export default function sellOption(option, options) {
-  option = getOption(option, options);
+  if (option.isSynthetic) {
+    const parent = getParent(option, options);
+    parent.functionalChildren[option.slug].selected--;
+    return;
+  }
 
+  option = getOption(option, options);
   if (option.type === 'option') {
     option.selected--;
   }

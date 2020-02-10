@@ -11,7 +11,7 @@ function displayOptionCurrency(props) {
   const option = props.option;
   if (option.optionCurrency === undefined) return null;
   return <CurrencyStats
-    options={option.hasIndividualChildren ? option.selected : option.options}
+    currentOptions={option.hasIndividualChildren ? option.selected : option.options}
     currency={option.optionCurrency}
   />
 }
@@ -34,11 +34,12 @@ function Option(props) {
       </div>
       <OptionControls option={props.option} />
       <OptionsContainer
-        options={
+        containerOptions={
           props.option.hasIndividualChildren ?
             props.option.selected :
             props.option.options
         }
+        path={props.option.path}
       />
     </div>
   );

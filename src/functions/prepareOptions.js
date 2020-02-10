@@ -9,11 +9,11 @@ export default function prepareOptions(options, path) {
     option.options = prepareOptions(option.options, option.path);
     if (option.type === 'option') {
       if (option.hasIndividualChildren) {
-        option.selected = {};
+        option.selected = option.selected === undefined ? {} : option.selected;
         option.nextChildId = 0;
       }
       else {
-        option.selected = 0;
+        option.selected = option.selected === undefined ? 0 : option.selected;
       }
     }
   }

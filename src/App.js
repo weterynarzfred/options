@@ -8,7 +8,11 @@ function App(props) {
   return (
     <div className="App">
       <Stats />
-      <OptionsContainer options={props.options} />
+      <OptionsContainer
+        containerOptions={props.options}
+        path = ""
+        functionalChildren={{}}
+      />
     </div>
   );
 }

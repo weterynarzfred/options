@@ -8,6 +8,7 @@ import isOptionDisabled from '../functions/isOptionDisabled';
 
 function OptionControls(props) {
   const option = props.option;
+  
   if (isOptionDisabled(option, props.options)) return null;
   if (option.type === 'option') {
     if (!option.hasIndividualChildren) {

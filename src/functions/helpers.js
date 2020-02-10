@@ -1,3 +1,5 @@
+import getSyntheticOptions from "./getSyntheticOptions";
+
 export function clone(object) {
   return JSON.parse(JSON.stringify(object));
 }
@@ -17,9 +19,15 @@ export function getOption(path, options) {
   let option = {options};
   
   while (path.length) {
-    if (option.options !== undefined) {
+    // if option has functional children
+    if (option.optionsFunction !== undefined) {
+      option = getSyntheticOptions(option, options)[path.pop()];
+    }
+    // if options has suboptions
+    else if (option.options !== undefined) {
       option = option.options[path.pop()];
     }
+    // if option has selected children
     else if (
       typeof option.selected === 'object' &&
       option.selected[path[path.length - 1]] !== undefined
@@ -30,6 +38,8 @@ export function getOption(path, options) {
       break;
     }
   }
+  // console.log(option ? clone(option) : '');
+  
   return option;
 }
 

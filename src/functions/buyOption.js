@@ -3,6 +3,17 @@ import { getOption, getParent, clone } from "./helpers";
 import { getSelected } from "./getSelected";
 
 export default function buyOption(option, options) {
+  if (option.isSynthetic) {
+    const parent = getParent(option, options);
+    if (parent.functionalChildren[option.slug] === undefined) {
+      parent.functionalChildren[option.slug] = {
+        selected: 0,
+      };
+    }
+    parent.functionalChildren[option.slug].selected++;
+    return;
+  }
+  
   option = getOption(option, options);
   if (option.type === 'group') return;
   if (option.hasIndividualChildren) {
@@ -13,7 +24,8 @@ export default function buyOption(option, options) {
         name: option.name + ' - ' + slug,
         options: Object.create(option.individualOptions),
         isChild: true,
-        optionCurrency: clone(option.childOptionCurrency),
+        optionCurrency: option.childOptionCurrency === undefined ?
+          false : clone(option.childOptionCurrency),
       }
     };
     option.selected[slug] = prepareOptions(child, option.path)[slug];
