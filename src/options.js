@@ -20,6 +20,8 @@
  */
 
 import React from 'react';
+import { getSelectedCount } from './functions/getSelected';
+import { getOption } from './functions/getOption';
 
 // const options = {
 //   intro: {
@@ -205,6 +207,39 @@ const options = {
     hasIndividualChildren: true,
     cost: {
       essence: 1,
+    },
+  },
+  traits: {
+    name: 'Traits',
+    type: 'group',
+    text: <p>Each trait increases the cost of the remaining ones.</p>,
+    max: -1,
+    options: {
+      fast: {
+        name: 'Fast',
+        cost: {
+          essence: data => {
+            const traits = getOption('traits', data.options);
+            const count = getSelectedCount(
+              traits,
+              data.options
+            );
+            return count;
+          },
+        },
+      },
+      strong: {
+        name: 'Strong',
+        cost: {
+          essence: 1,
+        },
+      },
+      smart: {
+        name: 'Smart',
+        cost: {
+          essence: 2,
+        },
+      },
     },
   },
 };

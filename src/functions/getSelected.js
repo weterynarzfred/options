@@ -2,7 +2,11 @@ import { getOption } from "./getOption";
 import getSyntheticOptions from "./getSyntheticOptions";
 
 export function getSelectedCount(option, options) {
-
+  if (option.type === 'option') {
+    return option.selected;
+  }
+  const selected = getSelected(option, options);
+  return selected.length;
 }
 
 // select all boolean options from a group

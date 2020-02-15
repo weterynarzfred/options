@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { getOption } from '../functions/getOption';
 import { clone } from '../functions/helpers';
+import { getSelectedCount } from '../functions/getSelected';
 
 // get all currencies current option can have
 function getCurrencies(props, path) {
@@ -34,13 +35,10 @@ function OptionCosts(props) {
       cost = option.cost[currencySlug];
     }
     else if (typeof option.cost[currencySlug] === 'function') {
-      const selectedCount = option.hasIndividualChildren ?
-        Object.getOwnPropertyNames(option.selected).length :
-        option.selected;
       cost += option.cost[currencySlug]({
         option,
         options: props.options,
-        index: selectedCount
+        index: getSelectedCount(option, props.options)
       });
     }
     costs.push(

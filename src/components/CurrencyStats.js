@@ -26,7 +26,11 @@ function calculateCurrency(currentOptions, currentValues, options) {
             }
             else if (typeof option.cost[currencySlug] === 'function') {
               for (let index = 0; index < selectedCount; index++) {
-                change += option.cost[currencySlug]({option, options: currentOptions, index});
+                change += option.cost[currencySlug]({
+                  option,
+                  options,
+                  index
+                });
               }
             }
             currentValues[currencySlug].value -= change;
