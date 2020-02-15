@@ -6,6 +6,7 @@ import CurrencyStats from './CurrencyStats';
 import OptionsContainer from './OptionsContainer';
 import classNames from 'classnames';
 import isOptionDisabled from '../functions/isOptionDisabled';
+import getSyntheticOptions from '../functions/getSyntheticOptions';
 
 function displayOptionCurrency(props) {
   const option = props.option;
@@ -14,6 +15,18 @@ function displayOptionCurrency(props) {
     currentOptions={option.hasIndividualChildren ? option.selected : option.options}
     currency={option.optionCurrency}
   />
+}
+
+function getChildOptions(option, options) {
+  if (option.hasIndividualChildren) {
+    return option.selected;
+  }
+  else if (option.optionsFunction !== undefined) {
+    return getSyntheticOptions(option, options)
+  }
+  else {
+    return option.options;
+  }
 }
 
 function Option(props) {
@@ -34,12 +47,8 @@ function Option(props) {
       </div>
       <OptionControls option={props.option} />
       <OptionsContainer
-        containerOptions={
-          props.option.hasIndividualChildren ?
-            props.option.selected :
-            props.option.options
-        }
-        path={props.option.path}
+        containerOptions={getChildOptions(props.option, props.options)}
+        path={props.path}
       />
     </div>
   );

@@ -6,8 +6,7 @@ export default function getSyntheticOptions(option, options) {
     const selected = option.functionalChildren[slug] === undefined ?
       0 : option.functionalChildren[slug].selected;
     syntheticOptions[slug] = {
-      name: syntheticOptions[slug].name,
-      cost: syntheticOptions[slug].cost,
+      ...syntheticOptions[slug],
       isSynthetic: true,
       selected,
     };

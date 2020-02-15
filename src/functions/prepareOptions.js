@@ -6,6 +6,10 @@ export default function prepareOptions(options, path) {
     option.max = option.max === undefined ? 1 : option.max;
     option.slug = slug;
     option.path = path === undefined ? slug : path + '/' + slug;
+    if (option.optionsFunction !== undefined) {
+      option.functionalChildren = option.functionalChildren === undefined ?
+        {} : option.functionalChildren;
+    }
     option.options = prepareOptions(option.options, option.path);
     if (option.type === 'option') {
       if (option.hasIndividualChildren) {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { getOption, clone } from '../functions/helpers';
+import { getOption } from '../functions/getOption';
+import { clone } from '../functions/helpers';
 
 // get all currencies current option can have
 function getCurrencies(props, path) {

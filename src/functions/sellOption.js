@@ -1,4 +1,5 @@
-import { getOption, getParent } from "./helpers";
+import { getOption } from "./getOption";
+import { getParent } from "./helpers";
 
 export default function sellOption(option, options) {
   if (option.isSynthetic) {
