@@ -55,6 +55,7 @@ const options = {
       scope: {
         name: 'Scope',
         type: 'group',
+        min: 1,
         options: {
           planet: {
             name: 'Planet',
@@ -116,15 +117,16 @@ const options = {
       },
     },
     individualOptions: {
-      simple: {
-        name: 'Simple Option',
+      cute: {
+        name: 'Cute',
         cost: {
-          raceCost: 1,
+          raceCost: 5,
         },
       },
       face: {
         name: 'Face',
         type: 'group',
+        min: 1,
         max: 1,
         options: {
           humanoid: {
