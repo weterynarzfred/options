@@ -1,4 +1,4 @@
-import getSyntheticOptions from "./getSyntheticOptions";
+import { getChildOptions } from "../components/Option";
 
 export function getOption(path, options) {
   if (typeof path === 'object') {
@@ -15,22 +15,7 @@ export function getOption(path, options) {
 
   let option = { options };
   while (path.length) {
-    // if option has functional children
-    if (option.optionsFunction !== undefined) {
-      option = getSyntheticOptions(option, options)[path.pop()];
-    }
-    // if options has suboptions
-    else if (option.options !== undefined) {
-      option = option.options[path.pop()];
-    }
-    // if option has selected children
-    else if (typeof option.selected === 'object' &&
-      option.selected[path[path.length - 1]] !== undefined) {
-      option = option.selected[path.pop()];
-    }
-    else {
-      break;
-    }
+    option = getChildOptions(option, options)[path.pop()];
   }
   return option;
 }

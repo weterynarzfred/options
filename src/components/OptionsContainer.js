@@ -18,9 +18,5 @@ function OptionsContainer(props) {
   return <div className="OptionsContainer">{result}</div>;
 }
 
-function mapStateToProps(state) {
-  return {...state};
-}
-
-export default connect(mapStateToProps)(OptionsContainer);
+export default connect()(OptionsContainer);
  

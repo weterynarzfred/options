@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { clone } from '../functions/helpers';
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getSyntheticOptions from '../functions/getSyntheticOptions';
+import { getChildOptions } from './Option.js';
+import { getSelectedCount } from '../functions/getSelected';
 
 // calculate how much of each currency is left
 export function calculateCurrency(currentOptions, currentValues, options) {
@@ -10,13 +11,7 @@ export function calculateCurrency(currentOptions, currentValues, options) {
     const option = currentOptions[slug];
     if (!isOptionDisabled(option, currentOptions)) {
       if (option.type === 'option') {
-        let selectedCount = 0;
-        if (option.hasIndividualChildren) {
-          selectedCount = Object.getOwnPropertyNames(option.selected).length
-        }
-        else {
-          selectedCount = option.selected;
-        }
+        const selectedCount = getSelectedCount(option, options);
         if (selectedCount > 0 && option.cost !== undefined) {
           for (const currencySlug in option.cost) {
             if (currentValues[currencySlug] === undefined) continue;
@@ -38,16 +33,11 @@ export function calculateCurrency(currentOptions, currentValues, options) {
         }
       }
 
-      if (option.hasIndividualChildren) {
-        currentValues = calculateCurrency(option.selected, currentValues, options);
-      }
-      else if (option.optionsFunction !== undefined) {
-        const syntheticOptions = getSyntheticOptions(option, options);
-        currentValues = calculateCurrency(syntheticOptions, currentValues, options);
-      }
-      else {
-        currentValues = calculateCurrency(option.options, currentValues, options);
-      }
+      currentValues = calculateCurrency(
+        getChildOptions(option, options),
+        currentValues,
+        options
+      );
     }
   }
   return currentValues;

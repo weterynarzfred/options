@@ -34,24 +34,28 @@ function buySimpleChild(option, options) {
   return option;
 }
 
+function buySyntheticOption(option, options) {
+  const parent = getParent(option, options);
+  if (parent.functionalChildren[option.slug] === undefined) {
+    parent.functionalChildren[option.slug] = {
+      selected: 0,
+    };
+  }
+  parent.functionalChildren[option.slug].selected++;
+}
+
 export default function buyOption(option, options) {
   if (option.isSynthetic) {
-    const parent = getParent(option, options);
-    if (parent.functionalChildren[option.slug] === undefined) {
-      parent.functionalChildren[option.slug] = {
-        selected: 0,
-      };
-    }
-    parent.functionalChildren[option.slug].selected++;
-    return;
-  }
-  
-  option = getOption(option, options);
-  if (option.type === 'group') return;
-  if (option.hasIndividualChildren) {
-    option = buyIndividualChild(option);
+    buySyntheticOption(option, options);
   }
   else {
-    option = buySimpleChild(option, options);
+    option = getOption(option, options);
+    if (option.type === 'group') return;
+    if (option.hasIndividualChildren) {
+      option = buyIndividualChild(option);
+    }
+    else {
+      option = buySimpleChild(option, options);
+    }
   }
 }
