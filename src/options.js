@@ -218,14 +218,7 @@ const options = {
       fast: {
         name: 'Fast',
         cost: {
-          essence: data => {
-            const traits = getOption('traits', data.options);
-            const count = getSelectedCount(
-              traits,
-              data.options
-            );
-            return count;
-          },
+          essence: 1,
         },
       },
       strong: {
@@ -243,5 +236,21 @@ const options = {
     },
   },
 };
+
+// function f1(data) {
+//   const cost = 2;
+//   const increase = 1;
+//   const selected = getSelectedCount(
+//     getOption('traits', data.options),
+//     data.options
+//   );
+//   if (data.next) {
+//     if (data.option.max === 1 && data.option.selected) {
+//       return (selected - 1) * increase + cost;
+//     }
+//     return selected * increase + cost;
+//   }
+//   return (selected - 1) * increase / 2 + cost;
+// }
 
 export default options;

@@ -2,7 +2,7 @@ const settings = {
   currency: {
     essence: {
       name: 'Essence',
-      value: 30,
+      value: 0,
     },
     time: {
       name: 'Time',

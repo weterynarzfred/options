@@ -38,7 +38,8 @@ function OptionCosts(props) {
       cost += option.cost[currencySlug]({
         option,
         options: props.options,
-        index: getSelectedCount(option, props.options)
+        index: getSelectedCount(option, props.options),
+        next: true,
       });
     }
     costs.push(

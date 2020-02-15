@@ -29,7 +29,7 @@ function calculateCurrency(currentOptions, currentValues, options) {
                 change += option.cost[currencySlug]({
                   option,
                   options,
-                  index
+                  index,
                 });
               }
             }
