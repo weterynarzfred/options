@@ -20,167 +20,62 @@
  */
 
 import React from 'react';
-import { getSelectedCount } from './functions/getSelected';
-import { getOption } from './functions/getOption';
-
-// const options = {
-//   intro: {
-//     type: 'story',
-//     name: 'Intro',
-//     text: <p>lorem ipsum</p>,
-//   },
-//   planes: {
-//     name: 'Planes',
-//     text: <p>Create some planes of existence.</p>,
-//     max: -1,
-//     hasIndividualChildren: true,
-//     cost: {
-//       essence: 5,
-//     },
-//     childOptionCurrency: {
-//       planePoints: {
-//         name: 'Plane Points',
-//         value: 10,
-//       },
-//     },
-//     individualOptions: {
-//       essence: {
-//         name: 'Essence',
-//         max: -1,
-//         cost: {
-//           essence: data => data.index + 1,
-//           planePoints: -1,
-//         },
-//       },
-//       scope: {
-//         name: 'Scope',
-//         type: 'group',
-//         options: {
-//           planet: {
-//             name: 'Planet',
-//             cost: {
-//               planePoints: 5,
-//             },
-//           },
-//           continent: {
-//             name: 'Continent',
-//             cost: {
-//               planePoints: 4,
-//             },
-//           },
-//           island: {
-//             name: 'Island',
-//             cost: {
-//               planePoints: 2,
-//             },
-//           },
-//         },
-//       },
-//       races: {
-//         name: 'Races',
-//         type: 'group',
-//         max: -1,
-//         options: {},
-//         functionalChildren: {},
-//         optionsFunction: data => {
-//           const races = {};
-//           for (const slug in data.options.races.selected) {
-//             const race = data.options.races.selected[slug];
-//             races[slug] = {
-//               name: race.name,
-//               cost: {
-//                 planePoints: 1,
-//               },
-//             };
-//           }
-//           return races;
-//         },
-//       },
-//     },
-//   },
-//   races: {
-//     name: 'Races',
-//     // max: -1,
-//     hasIndividualChildren: true,
-//     cost: {
-//       essence: 3,
-//     },
-//     individualOptions: {
-//       simple: {
-//         name: 'Simple Option',
-//         cost: {
-//           essence: 1,
-//         },
-//       },
-//       face: {
-//         name: 'Face',
-//         type: 'group',
-//         max: 1,
-//         options: {
-//           humanoid: {
-//             name: 'Humanoid',
-//           },
-//           animal: {
-//             name: 'Animal',
-//           },
-//           alien: {
-//             name: 'Alien',
-//           },
-//         },
-//       }
-//     },
-//   },
-//   general: {
-//     type: 'group',
-//     name: 'General',
-//     max: -1,
-//     options: {
-//       immortality: {
-//         name: 'Immortality',
-//         cost: {
-//           essence: 5,
-//         },
-//       },
-//       keepMemories: {
-//         name: 'Keep memories',
-//         cost: {
-//           essence: 1,
-//         },
-//       },
-//       strength: {
-//         name: 'Strength',
-//         max: 3,
-//         cost: {
-//           essence: 1,
-//         },
-//       },
-//     }, 
-//   },
-//   simpleOptions: {
-//     type: 'story',
-//     name: 'Simple Options',
-//     text: <p>For testing purposes only.</p>,
-//   },
-//   simple: {
-//     name: 'Simple Option',
-//     cost: {
-//       essence: 1,
-//     },
-//   },
-//   simple2: {
-//     name: 'Simple Option 2',
-//     test: data => data.options.simple.selected,
-//     cost: {
-//       essence: 1,
-//     }
-//   },
-// };
+import { calculateCurrency } from './components/CurrencyStats';
+import { clone } from './functions/helpers';
 
 const options = {
+  intro: {
+    type: 'story',
+    name: 'Intro',
+    text: <p>lorem ipsum</p>,
+  },
   planes: {
     name: 'Planes',
+    text: <p>Create some planes of existence.</p>,
+    max: -1,
     hasIndividualChildren: true,
+    cost: {
+      essence: 5,
+    },
+    childOptionCurrency: {
+      planePoints: {
+        name: 'Plane Points',
+        value: 10,
+      },
+    },
     individualOptions: {
+      essence: {
+        name: 'Essence',
+        max: -1,
+        cost: {
+          essence: data => data.index + 1,
+          planePoints: -1,
+        },
+      },
+      scope: {
+        name: 'Scope',
+        type: 'group',
+        options: {
+          planet: {
+            name: 'Planet',
+            cost: {
+              planePoints: 5,
+            },
+          },
+          continent: {
+            name: 'Continent',
+            cost: {
+              planePoints: 4,
+            },
+          },
+          island: {
+            name: 'Island',
+            cost: {
+              planePoints: 2,
+            },
+          },
+        },
+      },
       races: {
         name: 'Races',
         type: 'group',
@@ -191,9 +86,15 @@ const options = {
             const race = data.options.races.selected[slug];
             races[slug] = {
               name: race.name,
-              max: -1,
               cost: {
-                essence: data => data.index + 1,
+                planePoints: data => {
+                  const currency = calculateCurrency(
+                    race.options,
+                    clone(data.options.races.childOptionCurrency),
+                    data.options
+                  );
+                  return -currency.raceCost.value;
+                },
               },
             };
           }
@@ -206,51 +107,92 @@ const options = {
     name: 'Races',
     hasIndividualChildren: true,
     cost: {
+      essence: 3,
+    },
+    childOptionCurrency: {
+      raceCost: {
+        name: 'Race Cost',
+        value: 0,
+      },
+    },
+    individualOptions: {
+      simple: {
+        name: 'Simple Option',
+        cost: {
+          raceCost: 1,
+        },
+      },
+      face: {
+        name: 'Face',
+        type: 'group',
+        max: 1,
+        options: {
+          humanoid: {
+            name: 'Humanoid',
+            cost: {
+              raceCost: 2,
+            },
+          },
+          animal: {
+            name: 'Animal',
+            cost: {
+              raceCost: 1,
+            },
+          },
+          alien: {
+            name: 'Alien',
+            cost: {
+              raceCost: 1,
+            },
+          },
+        },
+      }
+    },
+  },
+  general: {
+    type: 'group',
+    name: 'General',
+    max: -1,
+    options: {
+      immortality: {
+        name: 'Immortality',
+        cost: {
+          essence: 5,
+        },
+      },
+      keepMemories: {
+        name: 'Keep memories',
+        cost: {
+          essence: 1,
+        },
+      },
+      strength: {
+        name: 'Strength',
+        max: 3,
+        cost: {
+          essence: 1,
+        },
+      },
+    }, 
+  },
+  simpleOptions: {
+    type: 'story',
+    name: 'Simple Options',
+    text: <p>For testing purposes only.</p>,
+  },
+  simple: {
+    name: 'Simple Option',
+    cost: {
       essence: 1,
     },
   },
-  traits: {
-    name: 'Traits',
-    type: 'group',
-    text: <p>Each trait increases the cost of the remaining ones.</p>,
-    max: -1,
-    options: {
-      fast: {
-        name: 'Fast',
-        cost: {
-          essence: 1,
-        },
-      },
-      strong: {
-        name: 'Strong',
-        cost: {
-          essence: 1,
-        },
-      },
-      smart: {
-        name: 'Smart',
-        cost: {
-          essence: 2,
-        },
-      },
-    },
+  simple2: {
+    name: 'Simple Option 2',
+    test: data => data.options.simple.selected,
+    cost: {
+      essence: 1,
+    }
   },
 };
-
-// function f1(data) {
-//   const cost = 2;
-//   const increase = 1;
-//   const selected = getSelectedCount(
-//     getOption('traits', data.options),
-//     data.options
-//   );
-//   if (data.next) {
-//     if (data.option.max === 1 && data.option.selected) {
-//       return (selected - 1) * increase + cost;
-//     }
-//     return selected * increase + cost;
-//   }
-//   return (selected - 1) * increase / 2 + cost;
-// }
 
 export default options;

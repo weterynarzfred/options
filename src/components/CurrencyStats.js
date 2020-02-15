@@ -5,7 +5,7 @@ import isOptionDisabled from '../functions/isOptionDisabled';
 import getSyntheticOptions from '../functions/getSyntheticOptions';
 
 // calculate how much of each currency is left
-function calculateCurrency(currentOptions, currentValues, options) {
+export function calculateCurrency(currentOptions, currentValues, options) {
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
     if (!isOptionDisabled(option, currentOptions)) {
