@@ -3,7 +3,10 @@ import getSyntheticOptions from "./getSyntheticOptions";
 
 export function getSelectedCount(option, options) {
   if (option.type === 'option') {
-    return option.selected;
+    if (typeof option.selected === 'number') {
+      return option.selected;
+    }
+    return Object.getOwnPropertyNames(option.selected).length;
   }
   const selected = getSelected(option, options);
   return selected.length;
