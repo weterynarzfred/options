@@ -1,15 +1,30 @@
-$color-main-1: #fbfbfb;
-$color-main-2: #ebebeb;
-$color-dark-1: #3b1615;
-$color-dark-2: #a0302d;
-$color-dark-3: #5a381b;
-$color-medium-1: #c09669;
-$color-medium-2: #818181;
+// $color-bg: #fff;
+// $color-bg-2: #eee;
+// $color-bg-disabled: #aaa;
+// $color-main: #000;
+// $color-main-2: #333;
+// $color-main-disabled: #555;
+// $color-accent: #933;
+// $color-accent-2: #f55;
+// $color-positive: #282;
+// $color-negative: #f55;
+
+$color-bg: #171b12;
+$color-bg-2: #232c19;
+$color-bg-disabled: #777a72;
+$color-main: #b9d695;
+$color-main-2: #dcf1c2;
+$color-main-disabled: #9fa599;
+$color-accent: #a5131d;
+$color-accent-2: #da0f1c;
+$color-positive: #282;
+$color-negative: #f55;
 
 body {
-  background-color: $color-main-1;
+  background-color: $color-bg;
   font-family: sans-serif;
   font-size: 12px;
+  color: $color-main;
 }
 
 .OptionsContainer {
@@ -20,25 +35,25 @@ body {
   margin-top: .5em;
 
   .Option {
-    background-color: $color-main-1;
-    border: 1px solid $color-dark-2;
+    background-color: $color-bg;
+    border: 1px solid $color-accent;
     padding: .5em;
     margin: .25em .5em;
     transition: .3s;
-    box-shadow: .25em .25em 0 0 $color-dark-2;
+    box-shadow: .25em .25em 0 0 $color-accent;
 
     &.disabled {
       opacity: 0.5;
     }
 
     &:hover {
-      background-color: $color-main-2;
+      background-color: $color-bg-2;
     }
 
     .Option-name {
       font-weight: 700;
       margin-bottom: 1em;
-      color: $color-dark-2;
+      color: $color-accent-2;
     }
   }
 
@@ -50,15 +65,15 @@ body {
       max-width: 40em;
       margin: 0 auto;
       padding: .5em 1em;
-      border: 1px solid $color-dark-2;
-      box-shadow: .25em .25em 0 0 $color-dark-2;
+      border: 1px solid $color-accent;
+      box-shadow: .25em .25em 0 0 $color-accent;
     }
 
     .Story-title {
       font-weight: 700;
       font-size: 2em;
       margin-bottom: 1em;
-      color: $color-dark-2;
+      color: $color-accent-2;
     }
 
     p {
@@ -87,10 +102,10 @@ body {
   }
 
   &.Option-cost {
-    color: #f55;
+    color: $color-negative;
 
     &.positive {
-      color: #282;
+      color: $color-positive;
     }
   }
 }
@@ -106,16 +121,17 @@ body {
 button {
   border: none;
   background: none;
-  background-color: $color-dark-3;
-  color: $color-medium-1;
+  background-color: $color-main;
+  color: $color-bg;
   cursor: pointer;
   margin: 0 .5em;
-  box-shadow: .15em .15em 0 0 $color-dark-2;
+  box-shadow: .15em .15em 0 0 $color-accent;
   transition: .3s;
 
   &:hover {
-    color: $color-main-1;
-    box-shadow: .25em .25em 0 0 $color-dark-2;
+    background-color: $color-main-2;
+    color: $color-bg-2;
+    box-shadow: .25em .25em 0 0 $color-accent;
   }
 
   &:focus {
@@ -123,11 +139,8 @@ button {
   }
 
   &.disabled {
-    background-color: $color-medium-2;
-
-    &:hover {
-      color: $color-medium-1;
-      box-shadow: .15em .15em 0 0 $color-dark-2;
-    }
+    background-color: $color-main-disabled;
+    color: $color-bg-disabled;
+    pointer-events: none;
   }
 }

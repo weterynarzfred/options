@@ -28,7 +28,7 @@ function checkMinSelected(option, options, errors) {
   const selectedCount = getSelectedCount(option, options);
   if (selectedCount < option.min) {
     errors.push({
-      text: `Option ${option.path} cannot have less than ${option.min} slected.`,
+      text: `Option ${option.path} cannot have less than ${option.min} selected.`,
     });
   }
 }

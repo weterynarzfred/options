@@ -29,11 +29,26 @@ export function getChildOptions(option, options) {
   }
 }
 
+function getContent(disabled, props) {
+  if (disabled) return null;
+  return <React.Fragment>
+    <div className="Option-text">
+      {props.option.text}
+    </div>
+    <OptionControls option={props.option} />
+    <OptionsContainer
+      containerOptions={getChildOptions(props.option, props.options)}
+    />
+  </React.Fragment>;
+}
+
 function Option(props) {
+  const disabled = isOptionDisabled(props.option, props.options);
+
   return (
     <div className={classNames(
       'Option',
-      {disabled: isOptionDisabled(props.option, props.options)}
+      {disabled}
     )}>
       <div className="Option-stats">
         {displayOptionCurrency(props)}
@@ -42,13 +57,7 @@ function Option(props) {
       <div className="Option-name">
         {props.option.name}
       </div>
-      <div className="Option-text">
-        {props.option.text}
-      </div>
-      <OptionControls option={props.option} />
-      <OptionsContainer
-        containerOptions={getChildOptions(props.option, props.options)}
-      />
+      {getContent(disabled, props)}
     </div>
   );
 }

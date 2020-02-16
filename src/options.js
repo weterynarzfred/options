@@ -23,7 +23,7 @@ import React from 'react';
 import { calculateCurrency } from './components/CurrencyStats';
 import { clone } from './functions/helpers';
 import { getSelectedCount } from './functions/getSelected';
-import { getOption } from './functions/getOption';
+import isPathActive from './functions/isPathActive';
 
 const options = {
   intro: {
@@ -200,14 +200,14 @@ const options = {
         options: {
           portals: {
             name: 'Portals',
-            test: data => getOption('planeTravel/portals', data.options).selected,
+            test: data => isPathActive('planeTravel/portals', data.options),
             cost: {
               essence: 1,
             },
           },
           fireball: {
             name: 'Fireball',
-            text: <p>It had to be here.</p>,
+            text: <p>It had to be here, didn't it.</p>,
             cost: {
               essence: 1,
             },
