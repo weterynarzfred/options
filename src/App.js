@@ -8,8 +8,8 @@ import Errors from './components/Errors';
 function App(props) {
   return (
     <div className="App">
-      <Stats />
       <Errors />
+      <Stats />
       <OptionsContainer
         containerOptions={props.options}
       />

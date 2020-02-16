@@ -114,6 +114,7 @@ const options = {
       raceCost: {
         name: 'Race Cost',
         value: 0,
+        min: false,
       },
     },
     individualOptions: {
