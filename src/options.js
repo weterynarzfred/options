@@ -22,12 +22,34 @@
 import React from 'react';
 import { calculateCurrency } from './components/CurrencyStats';
 import { clone } from './functions/helpers';
+import { getSelectedCount } from './functions/getSelected';
+import { getOption } from './functions/getOption';
 
 const options = {
   intro: {
     type: 'story',
     name: 'Intro',
     text: <p>lorem ipsum</p>,
+  },
+  planeTravel: {
+    name: 'Travel between planes',
+    type: 'group',
+    max: -1,
+    test: data => getSelectedCount(data.options.planes, data.options) >= 2,
+    options: {
+      portals: {
+        name: 'Portals',
+        cost: {
+          essence: 1,
+        },
+      },
+      teleportation: {
+        name: 'Teleportation',
+        cost: {
+          essence: 5,
+        },
+      },
+    },
   },
   planes: {
     name: 'Planes',
@@ -163,17 +185,33 @@ const options = {
           essence: 5,
         },
       },
-      keepMemories: {
-        name: 'Keep memories',
-        cost: {
-          essence: 1,
-        },
-      },
       strength: {
         name: 'Strength',
         max: 3,
         cost: {
           essence: 1,
+        },
+      },
+      magic: {
+        name: 'Magic',
+        cost: {
+          essence: 1,
+        },
+        options: {
+          portals: {
+            name: 'Portals',
+            test: data => getOption('planeTravel/portals', data.options).selected,
+            cost: {
+              essence: 1,
+            },
+          },
+          fireball: {
+            name: 'Fireball',
+            text: <p>It had to be here.</p>,
+            cost: {
+              essence: 1,
+            },
+          },
         },
       },
     }, 

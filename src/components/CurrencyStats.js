@@ -9,7 +9,7 @@ import { getSelectedCount } from '../functions/getSelected';
 export function calculateCurrency(currentOptions, currentValues, options) {
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
-    if (!isOptionDisabled(option, currentOptions)) {
+    if (!isOptionDisabled(option, options)) {
       if (option.type === 'option') {
         const selectedCount = getSelectedCount(option, options);
         if (selectedCount > 0 && option.cost !== undefined) {
