@@ -13,6 +13,8 @@ export function getOption(path, options) {
     path = path.split('/').reverse();
   }
 
+  path = path.filter(e => e !== '');
+
   let option = { options };
   while (path.length) {
     option = getChildOptions(option, options)[path.pop()];

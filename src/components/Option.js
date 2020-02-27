@@ -39,6 +39,10 @@ function getContent(disabled, props) {
     <OptionsContainer
       containerOptions={getChildOptions(props.option, props.options)}
     />
+    <button className="Option-open" onClick={() => props.dispatch({
+      type: 'CHANGE_PATH',
+      path: props.option.path.split('/'),
+    })}>open</button>
   </React.Fragment>;
 }
 

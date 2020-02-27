@@ -12,6 +12,7 @@ import settings from './settings';
 import prepareSettings from './functions/prepareSettings';
 
 const initialState = {
+  path: [],
   options: prepareOptions(options),
   settings: prepareSettings(settings),
 };
@@ -23,6 +24,9 @@ function rootReducer(state = initialState, action) {
     }
     else if (action.type === 'SELL_OPTION') {
       sellOption(action.option, state.options);
+    }
+    else if (action.type === 'CHANGE_PATH') {
+      state.path = action.path;
     }
     return state;
   });
