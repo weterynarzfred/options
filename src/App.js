@@ -13,6 +13,7 @@ function currentOption(path, options) {
 }
 
 function getBreadCrumbs(path) {
+  path = path.filter(e => e !== '');
   const breadCrumbs = [];
   while (path.length) {
     breadCrumbs.push(
