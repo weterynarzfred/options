@@ -7,9 +7,17 @@ import Errors from './components/Errors';
 import { getOption } from './functions/getOption';
 import PathLink from './components/PathLink';
 import { clone } from './functions/helpers';
+import Option from './components/Option';
 
-function currentOption(path, options) {
-  return getOption(path.join('/'), options);
+function getMainOption(path, options) {
+  const currentOption = getOption(path.join('/'), options);
+  if(currentOption.slug === undefined) {
+    return <OptionsContainer
+      openedOption={currentOption}
+      containerOptions={currentOption.options}
+    />;
+  }
+  return <Option option={currentOption} currentlySelected={true} />
 }
 
 function getBreadCrumbs(path) {
@@ -36,9 +44,7 @@ function App(props) {
       </div>
       <Errors />
       <Stats />
-      <OptionsContainer
-        containerOptions={currentOption(props.path, props.options).options}
-      />
+      {getMainOption(props.path, props.options)}
     </div>
   );
 }

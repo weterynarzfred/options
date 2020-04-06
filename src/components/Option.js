@@ -29,6 +29,14 @@ export function getChildOptions(option, options) {
   }
 }
 
+function getOpenButton(props) {
+  if (props.currentlySelected) return;
+  return <button className="Option-open" onClick={() => props.dispatch({
+    type: 'CHANGE_PATH',
+    path: props.option.path.split('/'),
+  })}>open</button>;
+}
+
 function getContent(disabled, props) {
   if (disabled) return null;
   return <React.Fragment>
@@ -39,10 +47,7 @@ function getContent(disabled, props) {
     <OptionsContainer
       containerOptions={getChildOptions(props.option, props.options)}
     />
-    <button className="Option-open" onClick={() => props.dispatch({
-      type: 'CHANGE_PATH',
-      path: props.option.path.split('/'),
-    })}>open</button>
+    {getOpenButton(props)}
   </React.Fragment>;
 }
 
