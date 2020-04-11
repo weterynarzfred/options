@@ -28,18 +28,19 @@ function getBreadCrumbs(path, options) {
   path = path.filter(e => e !== '');
   const breadCrumbs = [];
   for (let i = 0; i < path.length; i++) {
-    const optionName = getOption(path.slice(0, i + 1), options).name;
+    const currentPath = path.slice(0, i + 1);
+    const optionName = getOption(currentPath, options).name;
     breadCrumbs.push(
       <React.Fragment
-        key={`breadcrumb-${path.join('-')}`}
+        key={`breadcrumb-${currentPath.reverse().join('-')}`}
       >
         <PathLink
-          path={path.join('/')}
+          path={currentPath.join('/')}
           text={optionName}
         /> /&nbsp;
       </React.Fragment>);
   }
-  return breadCrumbs.reverse();
+  return breadCrumbs;
 }
 
 function App(props) {

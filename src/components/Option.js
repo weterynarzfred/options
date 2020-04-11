@@ -45,8 +45,8 @@ function getDisplayedChildOptions(props) {
   return displayedChildren;
 }
 
-function getOpenButton(props) {
-  if (props.currentlySelected) return;
+function getOpenButton(props, optionProps) {
+  if (props.currentlySelected || !optionProps.openable) return;
   return <button className="Option-open" onClick={event => {
     event.stopPropagation();
     props.dispatch({
@@ -79,7 +79,7 @@ function getErrors(props) {
     ));
 }
 
-function getContent(disabled, props) {
+function getContent(props, optionProps) {
   return <React.Fragment>
     <Hyphenated>
       <div className="Option-text text">
@@ -90,7 +90,7 @@ function getContent(disabled, props) {
     <OptionsContainer
       containerOptions={getChildOptions(props.option, props.options)}
     />
-    {getOpenButton(props)}
+    {getOpenButton(props, optionProps)}
     {getErrors(props)}
   </React.Fragment>;
 }
@@ -146,13 +146,13 @@ function Option(props) {
   if (!isOptionDisplayed(props.option, props)) {
     return false;
   }
-  const children = getDisplayedChildOptions(props);
+  const displayedChildren = getDisplayedChildOptions(props);
   const optionProps = {
     option: props.option,
-    children,
     isDisabled: isOptionDisabled(props.option, props.options),
-    hasChildren: children !== undefined &&
-      Object.keys(children).length > 0,
+    openable: props.option.options !== undefined || props.option.individualOptions !== undefined,
+    hasDisplayedChildren: displayedChildren !== undefined &&
+      Object.keys(displayedChildren).length > 0,
     hasCheckbox: checkHasCheckbox(props.option),
     isSelected: props.option.type === 'option' &&
       getSelectedCount(props.option, props.options),
@@ -166,7 +166,8 @@ function Option(props) {
     <div
       className={classNames(
         'Option',
-        {lastLevel: !optionProps.hasChildren},
+        {lastLevel: !optionProps.hasDisplayedChildren},
+        {openable: optionProps.openable},
         {disabled: optionProps.isDisabled},
         {hasCheckbox: optionProps.hasCheckbox},
         {selected: optionProps.isSelected},
@@ -191,7 +192,7 @@ function Option(props) {
         <div className="text">
           {getOptionName(props.option, props)}
         </div>
-        {getContent(optionProps.isDisabled, props)}
+        {getContent(props, optionProps)}
       </div>
     </div>
   );
