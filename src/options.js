@@ -2,12 +2,12 @@
  * @typedef {Object} Option
  * @property {string} [type = 'option'] || 'group'
  * @property {string} name - name of the option
- * @property {string|function} text - name of the option
+ * @property {string|function} text - text of the option
  * @property {number} [min = 0]
  * @property {number} [max = 1]
  * @property {Object} options - suboptions
  * @property {bool} [hasIndividualChildren = false] - only if (type === 'option')
- * @property {Object} individualOptions - suboptions only if (hasIndividualChildren)
+ * @property {Object} individualOptions - suboptions, only if (hasIndividualChildren)
  * @property {bool} isChild
  * @property {bool} isSynthetic
  * @property {Object} optionCurrency

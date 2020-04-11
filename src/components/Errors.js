@@ -24,16 +24,21 @@ function checkGlobalCurrencies(settings, options, errors) {
   }
 }
 
+/** Checks if an option is selected less than minimum or more than maximum times
+ * @param {object} option The option to be checked
+ * @param {object} options All options
+ * @param {array} errors Errors array to push errors into
+ */
 function checkMinMaxSelected(option, options, errors) {
   if (option.min === false && option.max === false) return;
   const selectedCount = getSelectedCount(option, options);
   if (option.min !== false) {
-  if (selectedCount < option.min) {
-    errors.push({
-      text: `Option ${option.path} cannot have less than ${option.min} selected.`,
-    });
+    if (selectedCount < option.min) {
+      errors.push({
+        text: `Option ${option.path} cannot have less than ${option.min} selected.`,
+      });
+    }
   }
-}
   if (option.max !== false) {
     if (selectedCount > option.max) {
       errors.push({

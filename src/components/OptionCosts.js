@@ -9,7 +9,7 @@ import { getSelectedCount } from '../functions/getSelected';
 function getCurrencies(props, path) {
   const currencies = clone(props.settings.currency);
   path = path.split('/').reverse();
-  let currentPath = path.pop();
+  let currentPath = '';
   while (path.length > 0) {
     currentPath += '/' + path.pop();
     const option = getOption(currentPath, props.options);
