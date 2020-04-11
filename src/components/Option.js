@@ -1,7 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
-import $ from "cash-dom";
 import { connect } from 'react-redux';
+import classNames from 'classnames';
+import Hyphenated from 'react-hyphen';
+import $ from "cash-dom";
 import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
 import CurrencyStats from './CurrencyStats';
@@ -130,8 +131,7 @@ function Option(props) {
   };
 
   if (props.settings.hideDisabledOptions && optionProps.isDisabled) return false;
-  console.log(props.option.image);
-  
+
   return (
     <div
       className={classNames(
@@ -162,7 +162,9 @@ function Option(props) {
             {props.option.name}
           </div>
         </div>
-        {getContent(optionProps.isDisabled, props)}
+        <Hyphenated>
+          {getContent(optionProps.isDisabled, props)}
+        </Hyphenated>
       </div>
     </div>
   );
