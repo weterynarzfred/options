@@ -54,6 +54,7 @@ const options = {
   planes: {
     name: 'Planes',
     text: <p>Create some planes of existence.</p>,
+    image: './media/endcard.jpg',
     max: false,
     hasIndividualChildren: true,
     cost: {

@@ -3,5 +3,7 @@ export default function prepareSettings(settings) {
     const currency = settings.currencies[slug];
     currency.slug = slug;
   }
+  settings.hideDisabledOptions = settings.hideDisabledOptions === undefined ?
+    false : settings.hideDisabledOptions
   return settings;
 }

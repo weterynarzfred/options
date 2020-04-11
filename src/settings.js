@@ -9,6 +9,7 @@ const settings = {
       value: 8,
     },
   },
+  hideDisabledOptions: true,
 };
 
 export default settings;

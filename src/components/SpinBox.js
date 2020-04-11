@@ -30,7 +30,11 @@ function SpinBox(props) {
         )}
         onClick={handleSellOption.bind(props)}
         disabled={isDisabed.sell}
-      >-</button>
+      >
+        <svg viewBox="0 0 100 100">
+          <path d="M15 50L85 50" />
+        </svg>
+      </button>
       <div className="SpinBox-value">{props.option.selected}</div>
       <button
       className={classNames(
@@ -39,7 +43,12 @@ function SpinBox(props) {
       )}
         onClick={handleBuyOption.bind(props)}
         disabled={isDisabed.buy}
-      >+</button>
+      >
+        <svg viewBox="0 0 100 100">
+          <path d="M15 50L85 50" />
+          <path d="M50 15L50 95" />
+        </svg>
+      </button>
     </div>
   );
 }

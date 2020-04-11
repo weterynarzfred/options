@@ -1,125 +1,86 @@
-// $color-bg: #fff;
-// $color-bg-2: #eee;
-// $color-bg-disabled: #aaa;
-// $color-main: #000;
-// $color-main-2: #333;
-// $color-main-disabled: #555;
-// $color-accent: #933;
-// $color-accent-2: #f55;
-// $color-positive: #282;
-// $color-negative: #f55;
+$color-bg: #ccc;
+$color-bg-2: #f2f2f2;
+$color-bg-3: #ddd;
+$color-bg-disabled: #ccc;
+$color-main: #333;
+$color-main-2: #777;
+$color-main-disabled: #777;
+$color-accent: #555;
+$color-positive: #280;
+$color-negative: #a00;
 
-$color-bg: #171b12;
-$color-bg-2: #232c19;
-$color-bg-disabled: #777a72;
-$color-main: #b9d695;
-$color-main-2: #dcf1c2;
-$color-main-disabled: #9fa599;
-$color-accent: #a5131d;
-$color-accent-2: #da0f1c;
-$color-positive: #282;
-$color-negative: #f55;
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: $color-bg;
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   color: $color-main;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.OptionsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin-top: .5em;
+.App {
+  max-width: 80em;
+  margin: 0 auto;
+}
 
-  .Option {
-    background-color: $color-bg;
-    border: 1px solid $color-accent;
-    padding: .5em;
-    margin: .25em .5em;
-    transition: .3s;
-    box-shadow: .25em .25em 0 0 $color-accent;
+.Breadcrumbs {
+  border-bottom: 1px solid $color-accent;
+  margin-bottom: .5em;
+}
 
-    &.disabled {
-      opacity: 0.5;
-    }
+.PathLink {
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
 
-    &:hover {
-      background-color: $color-bg-2;
-    }
-
-    .Option-name {
-      font-weight: 700;
-      margin-bottom: 1em;
-      color: $color-accent-2;
-    }
-
-    .Option-open {
-      margin-top: .5em;
-      margin-bottom: .5em;
-    }
-  }
-
-  .Story {
-    width: 100%;
-    margin: 2em .5em .25em .5em;
-
-    .Story-column {
-      max-width: 40em;
-      margin: 0 auto;
-      padding: .5em 1em;
-      border: 1px solid $color-accent;
-      box-shadow: .25em .25em 0 0 $color-accent;
-    }
-
-    .Story-title {
-      font-weight: 700;
-      font-size: 2em;
-      margin-bottom: 1em;
-      color: $color-accent-2;
-    }
-
-    p {
-      margin: 0;
-      text-indent: 2em;
-    }
+  &:hover {
+    color: $color-main-2;
   }
 }
 
-.SpinBox {
-  display: flex;
-  align-items: center;
-}
+.error {
+  font-size: .75em;
+  font-weight: 700;
+  color: $color-negative;
+  padding: .25em 1em;
 
-.currency {
-  display: flex;
-  align-items: center;
-
-  .currency-name {
+  &:before {
+    content: '!';
+    display: inline-flex;
+    background-color: $color-negative;
+    color: $color-bg;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
     margin-right: .5em;
-    font-size: .75em;
   }
+}
 
-  .currency-value {
-    font-weight: 700;
-  }
+.Stats {
+  .CurrencyStats {
+    margin-top: .5em;
+    display: flex;
 
-  &.Option-cost {
-    color: $color-negative;
-
-    &.positive {
-      color: $color-positive;
+    .currency {
+      margin: 0 .25em;
+      background-color: $color-bg-2;
+      padding: .25em 1em;
     }
   }
 }
 
-.Option-stats {
-  display: flex;
+svg {
+  display: block;
 
-  .OptionCosts {
-    margin-left: auto;
+  * {
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }
 
@@ -130,13 +91,12 @@ button {
   color: $color-bg;
   cursor: pointer;
   margin: 0 .5em;
-  box-shadow: .15em .15em 0 0 $color-accent;
   transition: .3s;
+  font-size: 1em;
 
   &:hover {
     background-color: $color-main-2;
     color: $color-bg-2;
-    box-shadow: .25em .25em 0 0 $color-accent;
   }
 
   &:focus {
@@ -147,5 +107,308 @@ button {
     background-color: $color-main-disabled;
     color: $color-bg-disabled;
     pointer-events: none;
+    opacity: .5;
   }
+}
+
+.text {
+  max-width: 40em;
+  margin: 0 auto;
+
+  p {
+    margin: 0;
+    text-indent: 2em;
+    padding: .25em 0;
+  }
+}
+
+.SpinBox {
+  width: 7em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .25em;
+
+  .SpinBox-value {
+    font-weight: 700;
+    font-size: 1.5em;
+    margin: 0 .25em;
+  }
+
+  .SpinBox-button {
+    width: .75em;
+    height: .75em;
+    font-weight: 700;
+    font-size: 2em;
+    line-height: .75;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    svg {
+      width: 75%;
+      height: 75%;
+
+      path {
+        stroke-width: 25;
+        stroke: $color-bg;
+      }
+    }
+  }
+}
+
+.CreateChild {
+  .CreateChild-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s;
+    padding: 0;
+
+    .CreateChild-button-text {
+      color: $color-main;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .75em;
+      font-weight: 700;
+      padding: 0 1em 0 1.5em;
+      transition: .2s;
+    }
+
+    svg {
+      flex-shrink: 0;
+      padding-right: .5em;
+      height: 75%;
+
+      path {
+        stroke-width: 25;
+        stroke: $color-main;
+        transition: .2s;
+      }
+    }
+
+    &:hover {
+      background-color: $color-main;
+
+      .CreateChild-button-text {
+        color: $color-bg;
+      }
+
+      svg path {
+        stroke: $color-bg;
+      }
+    }
+  }
+}
+
+.currency {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  .currency-name {
+    margin-right: .5em;
+    font-size: .75em;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: 700;
+  }
+
+  .currency-value {
+    font-weight: 700;
+    background-color: $color-main;
+    color: $color-bg;
+    padding: .25em .5em;
+    border-radius: 1em;
+    letter-spacing: .1em;
+  }
+
+  &.Option-cost {
+    color: $color-negative;
+
+    .currency-value {
+      background-color: $color-negative;
+    }
+
+    &.positive {
+      color: $color-positive;
+    
+      .currency-value {
+        background-color: $color-positive;
+      }
+    }
+  }
+}
+
+.OptionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.MainContainer {
+    margin-top: 3em;
+
+    > .Option, > .Story {
+      margin-bottom: 3em;
+    }
+  }
+
+  .Story {
+    width: 100%;
+    padding: .5em;
+    margin-bottom: .5em;
+
+    .Story-title {
+      font-weight: 700;
+      font-size: 2em;
+      margin-bottom: .5em;
+      color: $color-accent;
+      text-align: center;
+    }
+  }
+
+  .Option {
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: .5em;
+
+    &.lastLevel {
+      width: auto;
+      width: 33.3333%;
+
+      .Option-content {
+        margin-right: .5em;
+        margin-left: .5em;
+        height: 100%;
+
+        .Option-image {
+          padding-bottom: 56.25%;
+        }
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &.selected {
+      > .Option-content {
+        box-shadow: 0 0 0 2px $color-accent;
+        background-color: $color-bg-3;
+      }
+    }
+
+    &.hasCheckbox {
+      .Option-content {
+        cursor: pointer;
+      }
+
+      &.focused {
+        > .Option-content > .Checkbox {
+          background-color: $color-main;
+          color: $color-bg;
+        }
+      }
+
+      .Checkbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .2s;
+        width: 2em;
+
+        label {
+          cursor: inherit;
+        }
+
+        input {
+          display: none;
+        }
+
+        .option-checkbox-tick {
+          opacity: 0;
+          font-size: 1.5em;
+          font-weight: 700;
+          transition: opacity .2s;
+        }
+
+        input:checked + .option-checkbox-tick {
+          opacity: 1;
+        }
+      }
+    }
+
+    .Option-content {
+      position: relative;
+      box-shadow: 0 0 0 1px $color-accent;
+      background-color: $color-bg;
+      padding: .5em .5em 2em .5em;
+      transition: background .2s, box-shadow .2s;
+
+      .Option-image {
+        position: relative;
+        padding-bottom: 25%;
+        background-color: #999;
+        background-position: center;
+        background-size: cover;
+        margin: -.5em -.5em 0 -.5em;
+      }
+
+      .Option-name {
+        font-size: 1.25em;
+        font-weight: 700;
+        margin-top: .5em;
+        margin-bottom: 1em;
+        color: $color-accent;
+        text-align: center;
+      }
+  
+      .OptionCosts {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: $color-bg-2;
+        padding: .25em .5em;
+      }
+  
+      .Option-open {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        margin-top: .5em;
+        margin-bottom: .5em;
+
+        svg {
+          width: 100%;
+          height: 100%;
+
+          circle {
+            fill: $color-bg;
+            stroke-width: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.Checkbox, .CreateChild-button, .SpinBox {
+  position: absolute;
+  top: -1em;
+  right: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 1em;
+  height: 2em;
+  max-width: 80%;
+  background-color: $color-bg-2;
+  box-shadow: 0 0 0 2px $color-accent;
 }

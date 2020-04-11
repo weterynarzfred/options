@@ -7,7 +7,7 @@ function PathLink(props) {
       type: 'CHANGE_PATH',
       path: props.path.split('/'),
     })}>
-      {props.text}/
+      {props.text}
     </span>
   );
 }

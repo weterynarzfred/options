@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Option from './Option';
 import Story from './Story';
+import classNames from 'classnames';
 
 function OptionsContainer(props) {
   const result = [];
@@ -15,7 +16,12 @@ function OptionsContainer(props) {
       result.push(<Story option={option} key={`option-${option.path}`} />);
     }
   }
-  return <div className="OptionsContainer">{result}</div>;
+  return <div
+    className={classNames(
+      'OptionsContainer',
+      {MainContainer: props.isMainContainer},
+    )}
+  >{result}</div>;
 }
 
 export default connect()(OptionsContainer);

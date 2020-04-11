@@ -1,12 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
+import $ from "cash-dom";
 import { connect } from 'react-redux';
 import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
 import CurrencyStats from './CurrencyStats';
 import OptionsContainer from './OptionsContainer';
-import classNames from 'classnames';
-import isOptionDisabled from '../functions/isOptionDisabled';
+import isOptionDisabled, { isOptionDisplayed } from '../functions/isOptionDisabled';
 import getSyntheticOptions from '../functions/getSyntheticOptions';
+import { getSelectedCount } from '../functions/getSelected';
 
 function displayOptionCurrency(props) {
   const option = props.option;
@@ -29,12 +31,31 @@ export function getChildOptions(option, options) {
   }
 }
 
+function getDisplayedChildOptions(props) {
+  const children = getChildOptions(props.option, props.options);
+  if (!children) return undefined;
+  const displayedChildren = {};
+  for (const slug in children) {
+    const child = children[slug];
+    if (isOptionDisplayed(child, props.options, props.settings)) {
+      displayedChildren[slug] = child;
+    }
+  }
+  return displayedChildren;
+}
+
 function getOpenButton(props) {
   if (props.currentlySelected) return;
   return <button className="Option-open" onClick={() => props.dispatch({
     type: 'CHANGE_PATH',
     path: props.option.path.split('/'),
-  })}>open</button>;
+  })}>
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="10" r="15" />
+      <circle cx="50" cy="50" r="15" />
+      <circle cx="50" cy="90" r="15" />
+    </svg>
+  </button>;
 }
 
 function getOptionText(props) {
@@ -55,9 +76,8 @@ function getErrors(props) {
 }
 
 function getContent(disabled, props) {
-  if (disabled) return null;
   return <React.Fragment>
-    <div className="Option-text">
+    <div className="Option-text text">
       {getOptionText(props)}
     </div>
     <OptionControls option={props.option} />
@@ -69,22 +89,81 @@ function getContent(disabled, props) {
   </React.Fragment>;
 }
 
-function Option(props) {
-  const disabled = isOptionDisabled(props.option, props.options);
+function checkHasCheckbox(option) {
+  return option.type === 'option' &&
+    !option.hasIndividualChildren &&
+    option.max === 1;
+}
 
+function optionClick(event) {
+  event.stopPropagation();
+  if (this.hasCheckbox) {
+    $(event.currentTarget).find('.option-checkbox').eq(0).trigger('click');
+  }
+}
+
+function optionMouseEnter(event) {
+  event.stopPropagation();
+  const target = $(event.currentTarget);
+  target.addClass('focused');
+  target.parents('.focused').removeClass('focused');
+}
+
+function optionMouseLeave(event) {
+  event.stopPropagation();
+  const target = $(event.currentTarget);
+  target.removeClass('focused');
+  target.parents('.Option').eq(0).addClass('focused');
+}
+
+function Option(props) {
+  const children = getDisplayedChildOptions(props);
+  const optionProps = {
+    option: props.option,
+    children,
+    isDisabled: isOptionDisabled(props.option, props.options),
+    hasChildren: children !== undefined &&
+      Object.keys(children).length > 0,
+    hasCheckbox: checkHasCheckbox(props.option),
+    isSelected: props.option.type === 'option' &&
+      getSelectedCount(props.option, props.options),
+  };
+
+  if (props.settings.hideDisabledOptions && optionProps.isDisabled) return false;
+  console.log(props.option.image);
+  
   return (
-    <div className={classNames(
-      'Option',
-      {disabled}
-    )}>
-      <div className="Option-stats">
-        {displayOptionCurrency(props)}
-        <OptionCosts option={props.option}/>
+    <div
+      className={classNames(
+        'Option',
+        {lastLevel: !optionProps.hasChildren},
+        {disabled: optionProps.isDisabled},
+        {hasCheckbox: optionProps.hasCheckbox},
+        {selected: optionProps.isSelected}
+      )}
+      onClick={optionClick.bind(optionProps)}
+      onMouseEnter={optionMouseEnter.bind(optionProps)}
+      onMouseLeave={optionMouseLeave.bind(optionProps)}
+    >
+      <div className="Option-content">
+        <div
+          className="Option-image"
+          style={{
+            backgroundImage: `url(${props.option.image})`,
+          }}
+        >
+          <div className="Option-stats">
+            {displayOptionCurrency(props)}
+            <OptionCosts option={props.option}/>
+          </div>
+        </div>
+        <div className="text">
+          <div className="Option-name">
+            {props.option.name}
+          </div>
+        </div>
+        {getContent(optionProps.isDisabled, props)}
       </div>
-      <div className="Option-name">
-        {props.option.name}
-      </div>
-      {getContent(disabled, props)}
     </div>
   );
 }

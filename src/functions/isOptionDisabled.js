@@ -12,3 +12,10 @@ export default function isOptionDisabled(option, options) {
   if (option.test !== undefined) return !option.test({option, options});
   return false;
 }
+
+export function isOptionDisplayed(option, options, settings) {
+  if (settings.hideDisabledOptions) {
+    return !isOptionDisabled(option, options);
+  }
+  return true;
+}
