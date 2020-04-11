@@ -11,6 +11,7 @@ import prepareOptions from './functions/prepareOptions';
 import settings from './settings';
 import prepareSettings from './functions/prepareSettings';
 import findErrors from './functions/findErrors';
+import { getOption } from './functions/getOption';
 
 const initialState = {
   path: [],
@@ -31,6 +32,9 @@ function rootReducer(state = initialState, action) {
     }
     else if (action.type === 'CHANGE_PATH') {
       state.path = action.path;
+    }
+    else if (action.type === 'RENAME_CHILD') {
+      getOption(action.option, state.options).name = action.name;
     }
     
     findErrors(state);

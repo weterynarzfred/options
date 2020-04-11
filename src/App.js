@@ -24,22 +24,21 @@ function getMainOption(path, options) {
   />
 }
 
-function getBreadCrumbs(path) {
+function getBreadCrumbs(path, options) {
   path = path.filter(e => e !== '');
   const breadCrumbs = [];
-  while (path.length) {
+  for (let i = 0; i < path.length; i++) {
+    const optionName = getOption(path.slice(0, i + 1), options).name;
     breadCrumbs.push(
       <React.Fragment
         key={`breadcrumb-${path.join('-')}`}
       >
         <PathLink
           path={path.join('/')}
-          text={path.pop()}
+          text={optionName}
         /> /&nbsp;
-      </React.Fragment>
-    );
+      </React.Fragment>);
   }
-  
   return breadCrumbs.reverse();
 }
 
@@ -48,7 +47,7 @@ function App(props) {
     <div className="App">
       <div className="Breadcrumbs">
         <PathLink path="" text="home" /> /&nbsp;
-        {getBreadCrumbs(clone(props.path))}
+        {getBreadCrumbs(clone(props.path), props.options)}
       </div>
       <Errors errors={props.errors} />
       <Stats />

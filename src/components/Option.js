@@ -122,6 +122,26 @@ function optionMouseLeave(event) {
   target.parents('.Option').eq(0).addClass('focused');
 }
 
+function getOptionName(option, props) {
+  if (option.isChild) {
+    return <div className="Option-name">
+      <input
+        value={props.option.name}
+        onChange={event => {
+          props.dispatch({
+            type: 'RENAME_CHILD',
+            option,
+            name: event.target.value,
+          });
+        }}
+      />
+    </div>
+  }
+  return <div className="Option-name">
+    {props.option.name}
+  </div>;
+}
+
 function Option(props) {
   if (!isOptionDisplayed(props.option, props)) {
     return false;
@@ -169,9 +189,7 @@ function Option(props) {
           </div>
         </div>
         <div className="text">
-          <div className="Option-name">
-            {props.option.name}
-          </div>
+          {getOptionName(props.option, props)}
         </div>
         {getContent(optionProps.isDisabled, props)}
       </div>

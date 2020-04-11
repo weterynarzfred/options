@@ -107,7 +107,6 @@ button {
     background-color: $color-main-disabled;
     color: $color-bg-disabled;
     pointer-events: none;
-    // opacity: .5;
   }
 }
 
@@ -371,6 +370,21 @@ button {
       margin-bottom: 1em;
       color: $color-accent;
       text-align: center;
+
+      input {
+        background: none;
+        border: none;
+        font: inherit;
+        color: inherit;
+        text-align: inherit;
+        width: 100%;
+        transition: .2s;
+
+        &:focus, &:hover {
+          outline: none;
+          background-color: $color-bg-2;
+        }
+      }
     }
 
     .OptionCosts {
