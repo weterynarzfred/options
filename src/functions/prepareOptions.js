@@ -17,7 +17,7 @@ export default function prepareOptions(options, path) {
         option.nextChildId = 0;
       }
       else {
-        option.selected = option.selected === undefined ? 0 : option.selected;
+        option.selected = option.selected === undefined ? option.min : option.selected;
       }
     }
   }

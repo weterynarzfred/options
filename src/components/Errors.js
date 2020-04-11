@@ -23,13 +23,22 @@ function checkGlobalCurrencies(settings, options, errors) {
   }
 }
 
-function checkMinSelected(option, options, errors) {
-  if (option.min === undefined) return;
+function checkMinMaxSelected(option, options, errors) {
+  if (option.min === false && option.max === false) return;
   const selectedCount = getSelectedCount(option, options);
+  if (option.min !== false) {
   if (selectedCount < option.min) {
     errors.push({
       text: `Option ${option.path} cannot have less than ${option.min} selected.`,
     });
+  }
+}
+  if (option.max !== false) {
+    if (selectedCount > option.max) {
+      errors.push({
+        text: `Option ${option.path} cannot have more than ${option.max} selected.`,
+      });
+    }
   }
 }
 
@@ -58,7 +67,8 @@ function findErrors(currentOptions, options, settings) {
   }
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
-    checkMinSelected(option, options, errors);
+    if (isOptionDisabled(option, options)) continue;
+    checkMinMaxSelected(option, options, errors);
     checkOptionCurrencies(option, options, errors);
     errors.push(...findErrors(getChildOptions(option, options), options));
   }

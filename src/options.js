@@ -34,7 +34,7 @@ const options = {
   planeTravel: {
     name: 'Travel between planes',
     type: 'group',
-    max: -1,
+    max: false,
     test: data => getSelectedCount(data.options.planes, data.options) >= 2,
     options: {
       portals: {
@@ -54,7 +54,7 @@ const options = {
   planes: {
     name: 'Planes',
     text: <p>Create some planes of existence.</p>,
-    max: -1,
+    max: false,
     hasIndividualChildren: true,
     cost: {
       essence: 5,
@@ -66,9 +66,9 @@ const options = {
       },
     },
     individualOptions: {
-      essence: {
-        name: 'Essence',
-        max: -1,
+      planePoints: {
+        name: 'Plane Points',
+        max: false,
         cost: {
           essence: data => data.index + 1,
           planePoints: -1,
@@ -102,7 +102,7 @@ const options = {
       races: {
         name: 'Races',
         type: 'group',
-        max: -1,
+        max: false,
         optionsFunction: data => {
           const races = {};
           for (const slug in data.options.races.selected) {
@@ -129,6 +129,7 @@ const options = {
   races: {
     name: 'Races',
     hasIndividualChildren: true,
+    max: false,
     cost: {
       essence: 3,
     },
@@ -177,7 +178,7 @@ const options = {
   general: {
     type: 'group',
     name: 'General',
-    max: -1,
+    max: false,
     options: {
       immortality: {
         name: 'Immortality',

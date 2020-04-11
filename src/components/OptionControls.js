@@ -15,12 +15,12 @@ function OptionControls(props) {
       if (option.max === 1) {
         return <Checkbox option={option}/>;
       }
-      else if (props.option.max > 1 || option.max === -1) {
+      else if (props.option.max > 1 || option.max === false) {
         return <SpinBox option={option}/>;
       }
     }
     else {
-      return <ChildrenContainer option={option}/>;
+      return <ChildrenContainer option={option} options={props.options}/>;
     }
   }
   else if (option.type === 'group') {

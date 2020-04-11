@@ -138,7 +138,7 @@ button {
     outline: none;
   }
 
-  &.disabled {
+  &:disabled {
     background-color: $color-main-disabled;
     color: $color-bg-disabled;
     pointer-events: none;
