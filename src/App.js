@@ -42,7 +42,7 @@ function App(props) {
         <PathLink path="" text="home" />
         {getBreadCrumbs(clone(props.path))}
       </div>
-      <Errors />
+      <Errors errors={props.errors} />
       <Stats />
       {getMainOption(props.path, props.options)}
     </div>
@@ -52,7 +52,8 @@ function App(props) {
 function mapStateToProps(state) {
   return {
     path: state.path,
-    options: state.options
+    options: state.options,
+    errors: state.errors,
   };
 }
 

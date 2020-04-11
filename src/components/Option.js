@@ -45,6 +45,15 @@ function getOptionText(props) {
   return props.option.text;
 }
 
+function getErrors(props) {
+  return props.errors.filter(error => error.path === props.option.path)
+    .map((e, i) => (
+      <div className="error" key={`option-error-${i}`}>
+        {e.text}
+      </div>
+    ));
+}
+
 function getContent(disabled, props) {
   if (disabled) return null;
   return <React.Fragment>
@@ -56,6 +65,7 @@ function getContent(disabled, props) {
       containerOptions={getChildOptions(props.option, props.options)}
     />
     {getOpenButton(props)}
+    {getErrors(props)}
   </React.Fragment>;
 }
 
