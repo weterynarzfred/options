@@ -37,11 +37,19 @@ function getOpenButton(props) {
   })}>open</button>;
 }
 
+function getOptionText(props) {
+  if (typeof props.option.text === 'function') return props.option.text({
+    option: props.option,
+    options: props.options,
+  });
+  return props.option.text;
+}
+
 function getContent(disabled, props) {
   if (disabled) return null;
   return <React.Fragment>
     <div className="Option-text">
-      {props.option.text}
+      {getOptionText(props)}
     </div>
     <OptionControls option={props.option} />
     <OptionsContainer
