@@ -32,6 +32,8 @@ function rootReducer(state = initialState, action) {
     else if (action.type === 'CHANGE_PATH') {
       state.path = action.path;
     }
+    
+    findErrors(state);
     return state;
   });
 }

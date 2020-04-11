@@ -3,6 +3,16 @@ import isOptionDisabled from '../functions/isOptionDisabled';
 import { getChildOptions } from './../components/Option';
 import { getSelectedCount } from '../functions/getSelected';
 import { clone } from '../functions/helpers';
+import { getOption } from './getOption';
+
+function getReadablePath(path, options) {
+  const pathArray = path.split('/');
+  const readableArray = [];
+  for (let i = 0; i < pathArray.length; i++) {
+    readableArray.push(getOption(pathArray.slice(0, i + 1), options).name);
+  }
+  return readableArray.join(' / ');
+}
 
 function checkGlobalCurrencies(settings, options, errors) {
   if (settings.currency === undefined) return;
@@ -34,7 +44,7 @@ function checkMinMaxSelected(option, options, errors) {
     if (selectedCount < option.min) {
       errors.push({
         path: option.path,
-        text: `Option ${option.path} cannot have less than ${option.min} selected.`,
+        text: `Option ${getReadablePath(option.path, options)} cannot have less than ${option.min} selected.`,
       });
     }
   }
@@ -42,7 +52,7 @@ function checkMinMaxSelected(option, options, errors) {
     if (selectedCount > option.max) {
       errors.push({
         path: option.path,
-        text: `Option ${option.path} cannot have more than ${option.max} selected.`,
+        text: `Option ${getReadablePath(option.path, options)} cannot have more than ${option.max} selected.`,
       });
     }
   }
@@ -61,7 +71,7 @@ function checkOptionCurrencies(option, options, errors) {
     if (min !== false && currency.value < min) {
       errors.push({
         path: option.path,
-        text: `Currency ${currency.name} in ${option.path} cannot be below ${min}.`,
+        text: `Currency ${currency.name} in ${getReadablePath(option.path, options)} cannot be below ${min}.`,
       });
     }
   }

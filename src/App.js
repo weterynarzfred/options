@@ -18,7 +18,10 @@ function getMainOption(path, options) {
       isMainContainer={true}
     />;
   }
-  return <Option option={currentOption} currentlySelected={true} />
+  return <Option
+    option={currentOption}
+    currentlySelected={true}
+  />
 }
 
 function getBreadCrumbs(path) {
@@ -26,15 +29,17 @@ function getBreadCrumbs(path) {
   const breadCrumbs = [];
   while (path.length) {
     breadCrumbs.push(
-      <React.Fragment>
+      <React.Fragment
+        key={`breadcrumb-${path.join('-')}`}
+      >
         <PathLink
-          key={`breadcrumb-${path.join('-')}`}
           path={path.join('/')}
           text={path.pop()}
         /> /&nbsp;
       </React.Fragment>
     );
   }
+  
   return breadCrumbs.reverse();
 }
 

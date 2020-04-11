@@ -25,6 +25,7 @@ import { clone } from './functions/helpers';
 import { getSelectedCount } from './functions/getSelected';
 import isPathActive from './functions/isPathActive';
 
+
 const options = {
   intro: {
     type: 'story',

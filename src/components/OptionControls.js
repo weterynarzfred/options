@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Checkbox from './Checkbox';
 import SpinBox from './SpinBox';
-import CreateChild from './ChildrenContainer';
+import CreateChild from './CreateChild';
 import RemoveChild from './RemoveChild';
 
 function OptionControls(props) {

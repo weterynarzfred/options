@@ -10,6 +10,7 @@ const settings = {
     },
   },
   hideDisabledOptions: true,
+  maxDepth: 2,
 };
 
 export default settings;

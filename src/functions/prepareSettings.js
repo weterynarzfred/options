@@ -5,5 +5,6 @@ export default function prepareSettings(settings) {
   }
   settings.hideDisabledOptions = settings.hideDisabledOptions === undefined ?
     false : settings.hideDisabledOptions
+  settings.maxDepth = settings.maxDepth === undefined ? 2 : settings.maxDepth;
   return settings;
 }

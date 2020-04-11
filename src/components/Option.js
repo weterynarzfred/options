@@ -38,7 +38,7 @@ function getDisplayedChildOptions(props) {
   const displayedChildren = {};
   for (const slug in children) {
     const child = children[slug];
-    if (isOptionDisplayed(child, props.options, props.settings)) {
+    if (isOptionDisplayed(child, props)) {
       displayedChildren[slug] = child;
     }
   }
@@ -47,10 +47,13 @@ function getDisplayedChildOptions(props) {
 
 function getOpenButton(props) {
   if (props.currentlySelected) return;
-  return <button className="Option-open" onClick={() => props.dispatch({
-    type: 'CHANGE_PATH',
-    path: props.option.path.split('/'),
-  })}>
+  return <button className="Option-open" onClick={event => {
+    event.stopPropagation();
+    props.dispatch({
+      type: 'CHANGE_PATH',
+      path: props.option.path.split('/'),
+    });
+  }}>
     <svg viewBox="0 0 100 100">
       <circle cx="50" cy="10" r="15" />
       <circle cx="50" cy="50" r="15" />
@@ -78,9 +81,11 @@ function getErrors(props) {
 
 function getContent(disabled, props) {
   return <React.Fragment>
-    <div className="Option-text text">
-      {getOptionText(props)}
-    </div>
+    <Hyphenated>
+      <div className="Option-text text">
+        {getOptionText(props)}
+      </div>
+    </Hyphenated>
     <OptionControls option={props.option} />
     <OptionsContainer
       containerOptions={getChildOptions(props.option, props.options)}
@@ -118,6 +123,9 @@ function optionMouseLeave(event) {
 }
 
 function Option(props) {
+  if (!isOptionDisplayed(props.option, props)) {
+    return false;
+  }
   const children = getDisplayedChildOptions(props);
   const optionProps = {
     option: props.option,
@@ -130,7 +138,9 @@ function Option(props) {
       getSelectedCount(props.option, props.options),
   };
 
-  if (props.settings.hideDisabledOptions && optionProps.isDisabled) return false;
+  if (props.settings.hideDisabledOptions && optionProps.isDisabled) {
+    return false;
+  }
 
   return (
     <div
@@ -139,7 +149,8 @@ function Option(props) {
         {lastLevel: !optionProps.hasChildren},
         {disabled: optionProps.isDisabled},
         {hasCheckbox: optionProps.hasCheckbox},
-        {selected: optionProps.isSelected}
+        {selected: optionProps.isSelected},
+        {MainContainer: props.currentlySelected}
       )}
       onClick={optionClick.bind(optionProps)}
       onMouseEnter={optionMouseEnter.bind(optionProps)}
@@ -162,9 +173,7 @@ function Option(props) {
             {props.option.name}
           </div>
         </div>
-        <Hyphenated>
-          {getContent(optionProps.isDisabled, props)}
-        </Hyphenated>
+        {getContent(optionProps.isDisabled, props)}
       </div>
     </div>
   );
