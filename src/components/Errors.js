@@ -4,6 +4,7 @@ import { getSelectedCount } from '../functions/getSelected';
 import { getChildOptions } from './Option';
 import { calculateCurrency } from './CurrencyStats';
 import { clone } from '../functions/helpers';
+import isOptionDisabled from '../functions/isOptionDisabled';
 
 function checkGlobalCurrencies(settings, options, errors) {
   if (settings.currency === undefined) return;
