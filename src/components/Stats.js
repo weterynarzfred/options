@@ -16,7 +16,10 @@ function Stats(props) {
 }
 
 function mapStateToProps(state) {
-  return {...state};
+  return {
+    options: state.options,
+    settings: state.settings,
+  };
 }
 
 export default connect(mapStateToProps)(Stats);

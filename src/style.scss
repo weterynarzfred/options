@@ -29,13 +29,13 @@ body {
 
 .Breadcrumbs {
   border-bottom: 1px solid $color-accent;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .PathLink {
   font-weight: 700;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 
   &:hover {
     color: $color-main-2;
@@ -43,13 +43,13 @@ body {
 }
 
 .error {
-  font-size: .75em;
+  font-size: 0.75em;
   font-weight: 700;
   color: $color-negative;
-  padding: .25em 1em;
+  padding: 0.25em 1em;
 
   &:before {
-    content: '!';
+    content: "!";
     display: inline-flex;
     background-color: $color-negative;
     color: $color-bg;
@@ -58,19 +58,19 @@ body {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
 }
 
 .Stats {
   .CurrencyStats {
-    margin-top: .5em;
+    margin-top: 0.5em;
     display: flex;
 
     .currency {
-      margin: 0 .25em;
+      margin: 0 0.25em;
       background-color: $color-bg-2;
-      padding: .25em 1em;
+      padding: 0.25em 1em;
     }
   }
 }
@@ -90,8 +90,8 @@ button {
   background-color: $color-main;
   color: $color-bg;
   cursor: pointer;
-  margin: 0 .5em;
-  transition: .3s;
+  margin: 0 0.5em;
+  transition: 0.3s;
   font-size: 1em;
 
   &:hover {
@@ -117,7 +117,7 @@ button {
   p {
     margin: 0;
     text-indent: 2em;
-    padding: .25em 0;
+    padding: 0.25em 0;
     text-align: justify;
     hyphens: auto;
     -ms-hyphens: auto;
@@ -131,20 +131,20 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 .25em;
+  padding: 0 0.25em;
 
   .SpinBox-value {
     font-weight: 700;
     font-size: 1.5em;
-    margin: 0 .25em;
+    margin: 0 0.25em;
   }
 
   .SpinBox-button {
-    width: .75em;
-    height: .75em;
+    width: 0.75em;
+    height: 0.75em;
     font-weight: 700;
     font-size: 2em;
-    line-height: .75;
+    line-height: 0.75;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -169,29 +169,29 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .2s;
+    transition: 0.2s;
     padding: 0;
 
     .CreateChild-button-text {
       color: $color-main;
       width: 100%;
       text-transform: uppercase;
-      letter-spacing: .1em;
-      font-size: .75em;
+      letter-spacing: 0.1em;
+      font-size: 0.75em;
       font-weight: 700;
       padding: 0 1em 0 1.5em;
-      transition: .2s;
+      transition: 0.2s;
     }
 
     svg {
       flex-shrink: 0;
-      padding-right: .5em;
+      padding-right: 0.5em;
       height: 75%;
 
       path {
         stroke-width: 25;
         stroke: $color-main;
-        transition: .2s;
+        transition: 0.2s;
       }
     }
 
@@ -215,10 +215,10 @@ button {
   line-height: 1;
 
   .currency-name {
-    margin-right: .5em;
-    font-size: .75em;
+    margin-right: 0.5em;
+    font-size: 0.75em;
     text-transform: uppercase;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     font-weight: 700;
   }
 
@@ -226,9 +226,9 @@ button {
     font-weight: 700;
     background-color: $color-main;
     color: $color-bg;
-    padding: .25em .5em;
+    padding: 0.25em 0.5em;
     border-radius: 1em;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
   }
 
   &.Option-cost {
@@ -240,7 +240,7 @@ button {
 
     &.positive {
       color: $color-positive;
-    
+
       .currency-value {
         background-color: $color-positive;
       }
@@ -255,7 +255,8 @@ button {
   &.MainContainer {
     margin-top: 3em;
 
-    > .Option, > .Story {
+    > .Option,
+    > .Story {
       margin-bottom: 3em;
     }
   }
@@ -263,13 +264,13 @@ button {
 
 .Story {
   width: 100%;
-  padding: .5em;
-  margin-bottom: .5em;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
 
   .Story-title {
     font-weight: 700;
     font-size: 2em;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     color: $color-accent;
     text-align: center;
   }
@@ -278,15 +279,15 @@ button {
 .Option {
   width: 100%;
   margin-top: 2em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 
   &.lastLevel:not(.MainContainer) {
     width: auto;
     width: 33.3333%;
 
     .Option-content {
-      margin-right: .5em;
-      margin-left: .5em;
+      margin-right: 0.5em;
+      margin-left: 0.5em;
       height: 100%;
 
       .Option-image {
@@ -323,7 +324,7 @@ button {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: .2s;
+      transition: 0.2s;
       width: 2em;
 
       label {
@@ -338,7 +339,7 @@ button {
         opacity: 0;
         font-size: 1.5em;
         font-weight: 700;
-        transition: opacity .2s;
+        transition: opacity 0.2s;
       }
 
       input:checked + .option-checkbox-tick {
@@ -352,7 +353,7 @@ button {
     box-shadow: 0 0 0 1px $color-accent;
     background-color: $color-bg;
     padding: 1em 1em 2.5em 1em;
-    transition: background .2s, box-shadow .2s;
+    transition: background 0.2s, box-shadow 0.2s;
 
     .Option-image {
       position: relative;
@@ -366,7 +367,7 @@ button {
     .Option-name {
       font-size: 1.25em;
       font-weight: 700;
-      margin-top: .5em;
+      margin-top: 0.5em;
       margin-bottom: 1em;
       color: $color-accent;
       text-align: center;
@@ -378,9 +379,10 @@ button {
         color: inherit;
         text-align: inherit;
         width: 100%;
-        transition: .2s;
+        transition: 0.2s;
 
-        &:focus, &:hover {
+        &:focus,
+        &:hover {
           outline: none;
           background-color: $color-bg-2;
         }
@@ -392,7 +394,7 @@ button {
       bottom: 0;
       right: 0;
       background-color: $color-bg-2;
-      padding: .25em .5em;
+      padding: 0.25em 0.5em;
     }
 
     .Option-open {
@@ -402,8 +404,8 @@ button {
       width: 2em;
       height: 2em;
       border-radius: 50%;
-      margin-top: .5em;
-      margin-bottom: .5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
 
       svg {
         width: 100%;
@@ -418,7 +420,9 @@ button {
   }
 }
 
-.Checkbox, .CreateChild-button, .SpinBox {
+.Checkbox,
+.CreateChild-button,
+.SpinBox {
   position: absolute;
   top: -1em;
   right: 0;
