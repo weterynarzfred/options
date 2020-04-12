@@ -43,10 +43,9 @@ body {
 }
 
 .error {
-  font-size: 0.75em;
   font-weight: 700;
   color: $color-negative;
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
 
   &:before {
     content: "!";
@@ -301,6 +300,18 @@ button {
     pointer-events: none;
   }
 
+  &.selectable:not(.selected) {
+    .Option-content {
+      &:after {
+        background-color: #0003;
+      }
+    }
+
+    .Option-image {
+      opacity: 0.25 !important;
+    }
+  }
+
   &.selected {
     > .Option-content {
       box-shadow: 0 0 0 2px $color-accent;
@@ -351,17 +362,53 @@ button {
   .Option-content {
     position: relative;
     box-shadow: 0 0 0 1px $color-accent;
+    border-radius: 0.5em;
     background-color: $color-bg;
     padding: 1em 1em 2.5em 1em;
     transition: background 0.2s, box-shadow 0.2s;
+    margin: 0 .5em;
 
-    .Option-image {
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: .3s;
+    }
+
+    .Option-head {
       position: relative;
-      padding-bottom: 25%;
-      background-color: #999;
-      background-position: center;
-      background-size: cover;
       margin: -1em -1em 0 -1em;
+
+      .Option-image {
+        padding-bottom: 25%;
+        background-color: #999;
+        background-position: center;
+        background-size: cover;
+        border-radius: 0.5em 0.5em 0 0;
+        box-shadow: 0 0 10em 0 rgba(114, 96, 56, 0.6) inset;
+        opacity: 1;
+        transition: opacity 0.3s;
+
+        + .Option-stats .OptionCosts {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          border-radius: 0.5em 0 0 0;
+        }
+      }
+
+      .OptionCosts {
+        background-color: $color-bg-2;
+        padding: 0.25em 0.5em;
+        margin-left: auto;
+        border-radius: 0.5em 0.5em 0 0;
+      }
     }
 
     .Option-name {
@@ -387,14 +434,6 @@ button {
           background-color: $color-bg-2;
         }
       }
-    }
-
-    .OptionCosts {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      background-color: $color-bg-2;
-      padding: 0.25em 0.5em;
     }
 
     .Option-open {
@@ -434,4 +473,5 @@ button {
   max-width: 80%;
   background-color: $color-bg-2;
   box-shadow: 0 0 0 2px $color-accent;
+  z-index: 3;
 }

@@ -53,7 +53,13 @@ const options = {
   },
   planes: {
     name: 'Planes',
-    text: <p>Create some planes of existence.</p>,
+    text: data => {
+      const count = getSelectedCount(data.option, data.options);
+      const texts = [
+        `You have ${count} ${count === 1 ? 'plane' : 'planes'} created.`,
+      ];
+      return <p>Create some planes of existence. {texts[0]}</p>;
+    },
     image: './media/starting_point.jpg',
     max: false,
     hasIndividualChildren: true,
@@ -143,6 +149,7 @@ const options = {
       },
       tail: {
         name: 'Tail',
+        text: <p>They get a sexy tail.</p>,
         image: './media/tail.jpg',
         cost: {
           raceCost: 1,

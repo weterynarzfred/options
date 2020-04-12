@@ -10,7 +10,9 @@ function OptionText(props) {
       options: props.options,
     });
   }
-  text = props.option.text;
+  else {
+    text = props.option.text;
+  }
 
   return <Hyphenated>
     <div className="Option-text text">

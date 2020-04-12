@@ -13,6 +13,7 @@ import OpenButton from './OpenButton';
 import OptionErrors from './OptionErrors';
 import OptionName from './OptionName';
 import OptionText from './OptionText';
+import OptionImage from './OptionImage';
 
 export function getChildOptions(option, options) {
   if (option.hasIndividualChildren) {
@@ -78,7 +79,10 @@ function Option(props) {
     hasDisplayedChildren: displayedChildren !== undefined &&
       Object.keys(displayedChildren).length > 0,
     hasCheckbox: checkHasCheckbox(props.option),
+    selectable: props.option.type === 'option' &&
+      !props.option.hasIndividualChildren,
     isSelected: props.option.type === 'option' &&
+      !props.option.hasIndividualChildren &&
       getSelectedCount(props.option, props.options),
   };
 
@@ -94,6 +98,7 @@ function Option(props) {
         {openable: optionProps.openable},
         {disabled: optionProps.isDisabled},
         {hasCheckbox: optionProps.hasCheckbox},
+        {selectable: optionProps.selectable},
         {selected: optionProps.isSelected},
         {MainContainer: props.currentlySelected}
       )}
@@ -102,12 +107,8 @@ function Option(props) {
       onMouseLeave={handleMouseLeave.bind(optionProps)}
     >
       <div className="Option-content">
-        <div
-          className="Option-image"
-          style={{
-            backgroundImage: `url(${props.option.image})`,
-          }}
-        >
+        <div className="Option-head">
+          <OptionImage option={props.option} />
           <div className="Option-stats">
             <OptionCurrency option={props.option} />
             <OptionCosts option={props.option}/>
