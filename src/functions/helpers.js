@@ -1,4 +1,5 @@
 import { getOption } from "./getOption";
+import { getSelectedCount } from "./getSelected";
 
 export function clone(object) {
   return JSON.parse(JSON.stringify(object));
@@ -12,10 +13,10 @@ export function getParent(option, options) {
 }
 
 /**
- * Creates options from children of another option
- * @param {object} sourceOption Option to copy children from (with hasIndividualChildren)
- * @param {function} forEach function to pass each option through
- * @param {*} data data to pass to the forEach function
+ * Creates options from children of another option.
+ * @param {object} sourceOption Option to copy children from (with hasIndividualChildren).
+ * @param {function} forEach Function to pass each option through.
+ * @param {*} data Data to pass to the forEach function.
  */
 export function optionsFromChildren(sourceOption, forEach, data) {
   const result = {};
@@ -29,4 +30,13 @@ export function optionsFromChildren(sourceOption, forEach, data) {
     }
   }
   return result;
+}
+
+/**
+ * Checks if the option at the specified path is selected.
+ * @param {string} path Path to check.
+ * @param {object} options Global options.
+ */
+export function checkIfPathSelected(path, options) {
+  return getSelectedCount(getOption(path, options), options) > 0;
 }

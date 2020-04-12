@@ -1,7 +1,9 @@
 import { getOption } from "./getOption";
 import getSyntheticOptions from "./getSyntheticOptions";
+import isOptionDisabled from "./isOptionDisabled";
 
 export function getSelectedCount(option, options) {
+  if (isOptionDisabled(option, options)) return false;
   if (option.type === 'option') {
     if (typeof option.selected === 'number') {
       return option.selected;

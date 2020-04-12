@@ -21,9 +21,8 @@
 
 import React from 'react';
 import { calculateCurrency } from './components/CurrencyStats';
-import { optionsFromChildren } from './functions/helpers';
+import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
 import { getSelectedCount } from './functions/getSelected';
-import isPathActive from './functions/isPathActive';
 
 const options = {
   intro: {
@@ -76,6 +75,7 @@ const options = {
       planePoints: {
         name: 'Plane Points',
         max: false,
+        text: <p>Each point costs 1 essence more.</p>,
         cost: {
           essence: data => data.index + 1,
           planePoints: -1,
@@ -218,7 +218,7 @@ const options = {
         options: {
           portals: {
             name: 'Portals',
-            test: data => isPathActive('planeTravel/portals', data.options),
+            test: data => checkIfPathSelected('planeTravel/portals', data.options),
             cost: {
               essence: 1,
             },

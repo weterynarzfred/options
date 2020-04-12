@@ -8,6 +8,7 @@ $color-main-disabled: #777;
 $color-accent: #555;
 $color-positive: #280;
 $color-negative: #a00;
+$color-negative-2: #f55;
 
 * {
   box-sizing: border-box;
@@ -27,10 +28,89 @@ body {
   margin: 0 auto;
 }
 
-.Breadcrumbs {
-  border-bottom: 1px solid $color-accent;
-  margin-bottom: 0.5em;
+header {
+  position: fixed;
+  z-index: 21;
+  top: 0;
+  right: 0;
+  left: 0;
+  max-width: 80em;
+  margin: 0 auto;
+  pointer-events: none;
 }
+
+main {
+  margin-top: 5em;
+}
+
+.Breadcrumbs {
+  background-color: $color-bg;
+  border-bottom: 1px solid $color-accent;
+  pointer-events: auto;
+}
+
+
+.Stats {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .Stats-list {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .CurrencyStats {
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: auto;
+
+    .currency {
+      background-color: $color-bg-2;
+      padding: 0.25em 1em;
+    }
+  }
+}
+
+.Errors {
+  pointer-events: auto;
+
+  .Errors-container {
+    height: 0;
+    overflow: hidden;
+    transition: height .3s;
+    background-color: $color-bg-2;
+  }
+}
+
+.Errors-button {
+  background-color: $color-bg-2;
+  padding: .25em .5em;
+  cursor: pointer;
+  font-weight: 700;
+  pointer-events: auto;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-negative;
+    color: $color-bg-2;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    transition: background .2s;
+  }
+
+  &:hover {
+    span {
+      background-color: $color-negative-2;
+    }
+  }
+}
+
 
 .PathLink {
   font-weight: 700;
@@ -43,6 +123,7 @@ body {
 }
 
 .error {
+  font-size: .75em;
   font-weight: 700;
   color: $color-negative;
   padding: 0.5em 1em;
@@ -51,26 +132,13 @@ body {
     content: "!";
     display: inline-flex;
     background-color: $color-negative;
-    color: $color-bg;
+    color: $color-bg-2;
     width: 1.25em;
     height: 1.25em;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
     margin-right: 0.5em;
-  }
-}
-
-.Stats {
-  .CurrencyStats {
-    margin-top: 0.5em;
-    display: flex;
-
-    .currency {
-      margin: 0 0.25em;
-      background-color: $color-bg-2;
-      padding: 0.25em 1em;
-    }
   }
 }
 
@@ -225,13 +293,14 @@ button {
     font-weight: 700;
     background-color: $color-main;
     color: $color-bg;
-    padding: 0.25em 0.5em;
+    padding: 0.25em 0.5em 0.25em 0.6em;
     border-radius: 1em;
     letter-spacing: 0.1em;
   }
 
   &.Option-cost {
     color: $color-negative;
+    padding: 0.25em 0;
 
     .currency-value {
       background-color: $color-negative;
@@ -303,7 +372,7 @@ button {
   &.selectable:not(.selected) {
     .Option-content {
       &:after {
-        background-color: #0003;
+        background-color: #3333;
       }
     }
 
@@ -366,10 +435,10 @@ button {
     background-color: $color-bg;
     padding: 1em 1em 2.5em 1em;
     transition: background 0.2s, box-shadow 0.2s;
-    margin: 0 .5em;
+    margin: 0 0.5em;
 
     &:after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 0;
@@ -378,7 +447,8 @@ button {
       left: 0;
       z-index: 2;
       pointer-events: none;
-      transition: .3s;
+      transition: 0.3s;
+      border-radius: 0.5em;
     }
 
     .Option-head {
@@ -394,11 +464,12 @@ button {
         box-shadow: 0 0 10em 0 rgba(114, 96, 56, 0.6) inset;
         opacity: 1;
         transition: opacity 0.3s;
+        border-bottom: 1px solid $color-accent;
 
         + .Option-stats .OptionCosts {
           position: absolute;
           right: 0;
-          bottom: 0;
+          bottom: 1px;
           border-radius: 0.5em 0 0 0;
         }
       }
@@ -408,6 +479,9 @@ button {
         padding: 0.25em 0.5em;
         margin-left: auto;
         border-radius: 0.5em 0.5em 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
       }
     }
 
