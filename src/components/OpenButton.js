@@ -10,7 +10,11 @@ function handleClick(event) {
 }
 
 function OpenButton(props) {
-  if (props.currentlySelected || !props.openable) return false;
+  if (
+    props.currentlySelected ||
+    !props.openable ||
+    Object.getOwnPropertyNames(props.enabledChildren).length === 0
+  ) return false;
   return <button className="Option-open" onClick={handleClick.bind(props)}>
     <svg viewBox="0 0 100 100">
       <circle cx="50" cy="10" r="15" />

@@ -5,7 +5,7 @@ import Story from './Story';
 import classNames from 'classnames';
 
 function OptionsContainer(props) {
-  const result = [];
+  let result = [];
   let currentOptions = props.containerOptions;
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
@@ -24,5 +24,11 @@ function OptionsContainer(props) {
   >{result}</div>;
 }
 
-export default connect()(OptionsContainer);
+function mapStateToProps(state) {
+  return {
+    options: state.options,
+  };
+}
+
+export default connect(mapStateToProps)(OptionsContainer);
  

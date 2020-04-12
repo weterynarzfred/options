@@ -9,6 +9,8 @@ $color-accent: #555;
 $color-positive: #280;
 $color-negative: #a00;
 $color-negative-2: #f55;
+$color-warning: #c70;
+$radius: 0;
 
 * {
   box-sizing: border-box;
@@ -49,7 +51,6 @@ main {
   pointer-events: auto;
 }
 
-
 .Stats {
   display: flex;
   justify-content: flex-end;
@@ -61,17 +62,6 @@ main {
     justify-content: flex-end;
     width: 100%;
   }
-
-  .CurrencyStats {
-    display: flex;
-    justify-content: flex-end;
-    pointer-events: auto;
-
-    .currency {
-      background-color: $color-bg-2;
-      padding: 0.25em 1em;
-    }
-  }
 }
 
 .Errors {
@@ -80,14 +70,14 @@ main {
   .Errors-container {
     height: 0;
     overflow: hidden;
-    transition: height .3s;
+    transition: height 0.3s;
     background-color: $color-bg-2;
   }
 }
 
 .Errors-button {
   background-color: $color-bg-2;
-  padding: .25em .5em;
+  padding: 0.25em 0.5em;
   cursor: pointer;
   font-weight: 700;
   pointer-events: auto;
@@ -101,7 +91,7 @@ main {
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
-    transition: background .2s;
+    transition: background 0.2s;
   }
 
   &:hover {
@@ -111,6 +101,16 @@ main {
   }
 }
 
+.CurrencyStats {
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: auto;
+
+  .currency {
+    background-color: $color-bg-2;
+    padding: 0.25em 1em;
+  }
+}
 
 .PathLink {
   font-weight: 700;
@@ -123,7 +123,7 @@ main {
 }
 
 .error {
-  font-size: .75em;
+  font-size: 0.75em;
   font-weight: 700;
   color: $color-negative;
   padding: 0.5em 1em;
@@ -140,6 +140,12 @@ main {
     justify-content: center;
     margin-right: 0.5em;
   }
+}
+
+.warning {
+  color: $color-warning;
+  font-weight: 700;
+  font-size: 0.75em;
 }
 
 svg {
@@ -236,6 +242,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 8em;
     transition: 0.2s;
     padding: 0;
 
@@ -430,10 +437,13 @@ button {
 
   .Option-content {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     box-shadow: 0 0 0 1px $color-accent;
-    border-radius: 0.5em;
+    border-radius: $radius;
     background-color: $color-bg;
-    padding: 1em 1em 2.5em 1em;
+    padding: 1em 1em .5em 1em;
     transition: background 0.2s, box-shadow 0.2s;
     margin: 0 0.5em;
 
@@ -448,19 +458,22 @@ button {
       z-index: 2;
       pointer-events: none;
       transition: 0.3s;
-      border-radius: 0.5em;
+      border-radius: $radius;
     }
 
     .Option-head {
       position: relative;
       margin: -1em -1em 0 -1em;
 
+      .CurrencyStats .currency {
+        border-radius: 0 $radius 0 0;
+      }
+
       .Option-image {
         padding-bottom: 25%;
-        background-color: #999;
         background-position: center;
         background-size: cover;
-        border-radius: 0.5em 0.5em 0 0;
+        border-radius: $radius $radius 0 0;
         box-shadow: 0 0 10em 0 rgba(114, 96, 56, 0.6) inset;
         opacity: 1;
         transition: opacity 0.3s;
@@ -470,7 +483,7 @@ button {
           position: absolute;
           right: 0;
           bottom: 1px;
-          border-radius: 0.5em 0 0 0;
+          border-radius: $radius 0 0 0;
         }
       }
 
@@ -478,7 +491,7 @@ button {
         background-color: $color-bg-2;
         padding: 0.25em 0.5em;
         margin-left: auto;
-        border-radius: 0.5em 0.5em 0 0;
+        border-radius: $radius $radius 0 0;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -488,8 +501,7 @@ button {
     .Option-name {
       font-size: 1.25em;
       font-weight: 700;
-      margin-top: 0.5em;
-      margin-bottom: 1em;
+      margin: 0.5em 0;
       color: $color-accent;
       text-align: center;
 
@@ -510,23 +522,27 @@ button {
       }
     }
 
-    .Option-open {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 2em;
-      height: 2em;
-      border-radius: 50%;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
+    .Option-foot {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-top: auto;
 
-      svg {
-        width: 100%;
-        height: 100%;
-
-        circle {
-          fill: $color-bg;
-          stroke-width: 0;
+      .Option-open {
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+  
+        svg {
+          width: 100%;
+          height: 100%;
+  
+          circle {
+            fill: $color-bg;
+            stroke-width: 0;
+          }
         }
       }
     }

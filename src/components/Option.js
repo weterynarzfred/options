@@ -15,16 +15,30 @@ import OptionName from './OptionName';
 import OptionText from './OptionText';
 import OptionImage from './OptionImage';
 
-export function getChildOptions(option, options) {
+export function getChildOptions(option, options, skipDisabled = false) {
+  let currentOptions;
   if (option.hasIndividualChildren) {
-    return option.selected;
+    currentOptions = option.selected;
   }
   else if (option.optionsFunction !== undefined) {
-    return getSyntheticOptions(option, options)
+    currentOptions = getSyntheticOptions(option, options)
   }
   else {
-    return option.options;
+    currentOptions = option.options;
   }
+
+  if (!currentOptions) return {};
+
+  if (skipDisabled) {
+    const result = {};
+    for (const slug in currentOptions) {
+      if (isOptionDisabled(currentOptions[slug], options)) continue;
+      result[slug] = currentOptions[slug];
+    }
+    return result;
+  }
+
+  return currentOptions;
 }
 
 function getDisplayedChildOptions(props) {
@@ -44,6 +58,12 @@ function checkHasCheckbox(option) {
   return option.type === 'option' &&
     !option.hasIndividualChildren &&
     option.max === 1;
+}
+
+function checkOpenable(option) {
+  return option.options !== undefined ||
+    option.individualOptions !== undefined ||
+    option.optionsFunction !== undefined
 }
 
 function handleClick(event) {
@@ -75,9 +95,10 @@ function Option(props) {
   const optionProps = {
     option: props.option,
     isDisabled: isOptionDisabled(props.option, props.options),
-    openable: props.option.options !== undefined || props.option.individualOptions !== undefined,
+    openable: checkOpenable(props.option),
+    enabledChildren: getChildOptions(props.option, props.options, true),
     hasDisplayedChildren: displayedChildren !== undefined &&
-      Object.keys(displayedChildren).length > 0,
+      Object.getOwnPropertyNames(displayedChildren).length > 0,
     hasCheckbox: checkHasCheckbox(props.option),
     selectable: props.option.type === 'option' &&
       !props.option.hasIndividualChildren,
@@ -89,6 +110,10 @@ function Option(props) {
   if (props.settings.hideDisabledOptions && optionProps.isDisabled) {
     return false;
   }
+  
+  const suboptionsWarning = optionProps.openable &&
+    Object.getOwnPropertyNames(optionProps.enabledChildren).length === 0 ?
+    <div className="warning">No suboptions yet.</div> : false;
 
   return (
     <div
@@ -120,14 +145,19 @@ function Option(props) {
         <OptionText option={props.option} />
         <OptionControls option={props.option} />
         <OptionsContainer
-          containerOptions={getChildOptions(props.option, props.options)}
-        />
-        <OpenButton
           option={props.option}
-          currentlySelected={props.currentlySelected}
-          openable={optionProps.openable}
+          containerOptions={optionProps.enabledChildren}
         />
-        <OptionErrors option={props.option} />
+        <div className="Option-foot">
+          {suboptionsWarning}
+          <OpenButton
+            option={props.option}
+            currentlySelected={props.currentlySelected}
+            openable={optionProps.openable}
+            enabledChildren={optionProps.enabledChildren}
+          />
+          <OptionErrors option={props.option} />
+        </div>
       </div>
     </div>
   );
