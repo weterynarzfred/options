@@ -4,7 +4,10 @@ import CurrencyStats from './CurrencyStats';
 import { getChildOptions } from './Option';
 
 function OptionCurrency(props) {
-  if (props.option.optionCurrency === undefined) return false;
+  if (
+    props.option.optionCurrency === undefined ||
+    props.currentlySelected
+  ) return false;
   return <CurrencyStats
     currentOptions={getChildOptions(props.option, props.options)}
     currency={props.option.optionCurrency}

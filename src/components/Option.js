@@ -14,6 +14,7 @@ import OptionErrors from './OptionErrors';
 import OptionName from './OptionName';
 import OptionText from './OptionText';
 import OptionImage from './OptionImage';
+import OptionLink from './OptionLink';
 
 export function getChildOptions(option, options, skipDisabled = false) {
   let currentOptions;
@@ -135,13 +136,14 @@ function Option(props) {
         <div className="Option-head">
           <OptionImage option={props.option} />
           <div className="Option-stats">
-            <OptionCurrency option={props.option} />
+            <OptionCurrency
+              option={props.option}
+              currentlySelected={props.currentlySelected}
+            />
             <OptionCosts option={props.option}/>
           </div>
         </div>
-        <div className="text">
-          <OptionName option={props.option} />
-        </div>
+        <OptionName option={props.option} />
         <OptionText option={props.option} />
         <OptionControls option={props.option} />
         <OptionsContainer
@@ -149,6 +151,7 @@ function Option(props) {
           containerOptions={optionProps.enabledChildren}
         />
         <div className="Option-foot">
+          <OptionErrors option={props.option} />
           {suboptionsWarning}
           <OpenButton
             option={props.option}
@@ -156,7 +159,7 @@ function Option(props) {
             openable={optionProps.openable}
             enabledChildren={optionProps.enabledChildren}
           />
-          <OptionErrors option={props.option} />
+          <OptionLink option={props.option} />
         </div>
       </div>
     </div>

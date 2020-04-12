@@ -110,15 +110,17 @@ const options = {
         name: 'Races',
         image: './media/food_homemade.jpg',
         type: 'group',
+        link: 'races',
         max: false,
-        optionsFunction: data => optionsFromChildren(data.options.races, (result, child) => {
+        optionsFunction: data => optionsFromChildren(data.options.races, (result, source) => {
           result.cost = {
             planePoints: data => -calculateCurrency(
-              child.options,
+              source.options,
               data.options.races.childOptionCurrency,
               data.options
             ).raceCost.value,
           };
+          result.link = source.path;
           return result;
         }),
       },
@@ -196,6 +198,12 @@ const options = {
     type: 'group',
     image: './media/area_lakes.jpg',
     max: false,
+    optionCurrency: {
+      gold: {
+        name: 'Gold',
+        value: 5,
+      },
+    },
     options: {
       immortality: {
         name: 'Immortality',

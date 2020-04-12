@@ -61,6 +61,10 @@ main {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
+    .currencyFromOption {
+      background-color: $color-bg-3;
+    }
   }
 }
 
@@ -299,7 +303,7 @@ button {
   .currency-value {
     font-weight: 700;
     background-color: $color-main;
-    color: $color-bg;
+    color: $color-bg-2;
     padding: 0.25em 0.5em 0.25em 0.6em;
     border-radius: 1em;
     letter-spacing: 0.1em;
@@ -443,7 +447,7 @@ button {
     box-shadow: 0 0 0 1px $color-accent;
     border-radius: $radius;
     background-color: $color-bg;
-    padding: 1em 1em .5em 1em;
+    padding: 1em 1em 0.5em 1em;
     transition: background 0.2s, box-shadow 0.2s;
     margin: 0 0.5em;
 
@@ -481,7 +485,7 @@ button {
 
         + .Option-stats .OptionCosts {
           position: absolute;
-          right: 0;
+          left: 0;
           bottom: 1px;
           border-radius: $radius 0 0 0;
         }
@@ -494,16 +498,20 @@ button {
         border-radius: $radius $radius 0 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
       }
     }
 
     .Option-name {
       font-size: 1.25em;
       font-weight: 700;
-      margin: 0.5em 0;
+      width: 100%;
+      padding: 0.5em 0;
       color: $color-accent;
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      padding-left: .2em;
 
       input {
         background: none;
@@ -511,6 +519,8 @@ button {
         font: inherit;
         color: inherit;
         text-align: inherit;
+        text-transform: inherit;
+        letter-spacing: inherit;
         width: 100%;
         transition: 0.2s;
 
@@ -524,6 +534,7 @@ button {
 
     .Option-foot {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-end;
       align-items: flex-end;
       margin-top: auto;
@@ -534,16 +545,64 @@ button {
         border-radius: 50%;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
-  
+        flex-shrink: 0;
+
         svg {
           width: 100%;
           height: 100%;
-  
+
           circle {
             fill: $color-bg;
             stroke-width: 0;
           }
         }
+      }
+
+      .Option-link {
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        flex-shrink: 0;
+
+        svg {
+          width: 80%;
+          height: 80%;
+          margin: 10%;
+
+          path {
+            stroke: $color-bg;
+            stroke-width: 20;
+          }
+        }
+      }
+    }
+
+    .RemoveChild button {
+      position: absolute;
+      top: -1em;
+      right: -1em;
+      background-color: $color-negative;
+      width: 2em;
+      height: 2em;
+      margin: 0;
+      border-radius: 50%;
+      transition: 0.2s;
+
+      svg {
+        width: 80%;
+        height: 80%;
+        margin: 10%;
+
+        path {
+          stroke: $color-bg;
+          stroke-width: 30;
+        }
+      }
+
+      &:hover {
+        background-color: $color-negative-2;
       }
     }
   }

@@ -7,7 +7,12 @@ function RemoveChild(props) {
       <button onClick={event => props.dispatch({
         type: 'SELL_OPTION',
         option: props.option,
-      })}>delete</button>
+      })}>
+        <svg viewBox="0 0 100 100">
+          <path d="M15 15L85 85" />
+          <path d="M15 85L85 15" />
+        </svg>
+      </button>
     </div>
   );
 }

@@ -7,12 +7,13 @@ key                    |type      |default   |description
 `type`                 |`string`  |`'option'`|type of the option, `'option'`, `'group'` or `'story'`
 `text`                 |`string`  |`''`      |text that will be displayed
 ---                    |`function`|          |function returnig the text
+`link`                 |`string`  |          |path to another option to link to
 
 ### additional keys when `type == 'option' | 'group'`
 key                    |type      |default   |description
 ---                    |---       |---       |---
 `min`                  |`number`  |`0`       |minimum number of times an option can be selected, can be set to `false`
-`max`                  |`number`  |`1`       |maximum number of times an option can be selected
+`max`                  |`number`  |`1`       |maximum number of times an option can be selected, can be set to `false`
 `options`              |`object`  |`{}`      |suboptions of the option
 `optionCurrency`       |`object`  |`{}`      |currencies to be used in option's suboptions
 
@@ -35,5 +36,8 @@ A string containing the text to be displayed.
 
 
 # To do
-- [ ] finish documentation
-- [ ] add styles
+- documentation
+- styles
+- 'navigate back' button
+- tooltips
+- 'rename' icon

@@ -21,12 +21,12 @@ export function getParent(option, options) {
 export function optionsFromChildren(sourceOption, forEach, data) {
   const result = {};
   for (const slug in sourceOption.selected) {
-    const child = sourceOption.selected[slug];
+    const source = sourceOption.selected[slug];
     result[slug] = {
-      name: child.name,
+      name: source.name,
     };
     if (typeof forEach === 'function') {
-      result[slug] = forEach(result[slug], child, data);
+      result[slug] = forEach(result[slug], source, data);
     }
   }
   return result;

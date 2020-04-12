@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 function OptionName(props) {
   if (props.option.isChild) {
-    return <div className="Option-name">
+    return <div className="Option-name text">
       <input
         value={props.option.name}
         onChange={event => {
@@ -16,7 +16,7 @@ function OptionName(props) {
       />
     </div>
   }
-  return <div className="Option-name">
+  return <div className="Option-name text">
     {props.option.name}
   </div>;
 }
