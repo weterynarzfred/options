@@ -21,10 +21,9 @@
 
 import React from 'react';
 import { calculateCurrency } from './components/CurrencyStats';
-import { clone } from './functions/helpers';
+import { optionsFromChildren } from './functions/helpers';
 import { getSelectedCount } from './functions/getSelected';
 import isPathActive from './functions/isPathActive';
-
 
 const options = {
   intro: {
@@ -55,7 +54,7 @@ const options = {
   planes: {
     name: 'Planes',
     text: <p>Create some planes of existence.</p>,
-    image: './media/endcard.jpg',
+    image: './media/starting_point.jpg',
     max: false,
     hasIndividualChildren: true,
     cost: {
@@ -103,33 +102,25 @@ const options = {
       },
       races: {
         name: 'Races',
+        image: './media/food_homemade.jpg',
         type: 'group',
         max: false,
-        optionsFunction: data => {
-          const races = {};
-          for (const slug in data.options.races.selected) {
-            const race = data.options.races.selected[slug];
-            races[slug] = {
-              name: race.name,
-              cost: {
-                planePoints: data => {
-                  const currency = calculateCurrency(
-                    race.options,
-                    clone(data.options.races.childOptionCurrency),
-                    data.options
-                  );
-                  return -currency.raceCost.value;
-                },
-              },
-            };
-          }
-          return races;
-        },
+        optionsFunction: data => optionsFromChildren(data.options.races, (result, child) => {
+          result.cost = {
+            planePoints: data => -calculateCurrency(
+              child.options,
+              data.options.races.childOptionCurrency,
+              data.options
+            ).raceCost.value,
+          };
+          return result;
+        }),
       },
     },
   },
   races: {
     name: 'Races',
+    image: './media/food_homemade.jpg',
     hasIndividualChildren: true,
     max: false,
     cost: {
@@ -145,8 +136,23 @@ const options = {
     individualOptions: {
       cute: {
         name: 'Cute',
+        selected: 1,
         cost: {
           raceCost: 5,
+        },
+      },
+      tail: {
+        name: 'Tail',
+        image: './media/tail.jpg',
+        cost: {
+          raceCost: 1,
+        },
+      },
+      horns: {
+        name: 'horns',
+        image: './media/horns.jpg',
+        cost: {
+          raceCost: 1,
         },
       },
       face: {
@@ -163,6 +169,7 @@ const options = {
           },
           animal: {
             name: 'Animal',
+            image: './media/face_bestial.jpg',
             cost: {
               raceCost: 1,
             },
@@ -174,12 +181,13 @@ const options = {
             },
           },
         },
-      }
+      },
     },
   },
   general: {
-    type: 'group',
     name: 'General',
+    type: 'group',
+    image: './media/area_lakes.jpg',
     max: false,
     options: {
       immortality: {

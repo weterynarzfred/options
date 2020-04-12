@@ -7,6 +7,7 @@ import { getSelectedCount } from '../functions/getSelected';
 
 // calculate how much of each currency is left
 export function calculateCurrency(currentOptions, currentValues, options) {
+  let currentValuesClone = clone(currentValues);
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
     if (!isOptionDisabled(option, options)) {
@@ -14,7 +15,7 @@ export function calculateCurrency(currentOptions, currentValues, options) {
         const selectedCount = getSelectedCount(option, options);
         if (selectedCount > 0 && option.cost !== undefined) {
           for (const currencySlug in option.cost) {
-            if (currentValues[currencySlug] === undefined) continue;
+            if (currentValuesClone[currencySlug] === undefined) continue;
             let change = 0;
             if (typeof option.cost[currencySlug] === 'number') {
               change = option.cost[currencySlug] * selectedCount;
@@ -28,25 +29,25 @@ export function calculateCurrency(currentOptions, currentValues, options) {
                 });
               }
             }
-            currentValues[currencySlug].value -= change;
+            currentValuesClone[currencySlug].value -= change;
           }
         }
       }
 
-      currentValues = calculateCurrency(
+      currentValuesClone = calculateCurrency(
         getChildOptions(option, options),
-        currentValues,
+        currentValuesClone,
         options
       );
     }
   }
-  return currentValues;
+  return currentValuesClone;
 }
 
 function CurrencyStats(props) {
   const currentValues = calculateCurrency(
     props.currentOptions,
-    clone(props.currency),
+    props.currency,
     props.options
   );
   const currencyArray = [];

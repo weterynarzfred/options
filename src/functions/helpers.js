@@ -11,9 +11,22 @@ export function getParent(option, options) {
   return getOption(pathArray, options);
 }
 
-// function getCount(option) {
-//   option = getOption(option);
-//   if (option.selected === undefined) return 0;
-//   if (option.selected.length === undefined) return option.selected;
-//   return option.selected.length;
-// }
+/**
+ * Creates options from children of another option
+ * @param {object} sourceOption Option to copy children from (with hasIndividualChildren)
+ * @param {function} forEach function to pass each option through
+ * @param {*} data data to pass to the forEach function
+ */
+export function optionsFromChildren(sourceOption, forEach, data) {
+  const result = {};
+  for (const slug in sourceOption.selected) {
+    const child = sourceOption.selected[slug];
+    result[slug] = {
+      name: child.name,
+    };
+    if (typeof forEach === 'function') {
+      result[slug] = forEach(result[slug], child, data);
+    }
+  }
+  return result;
+}

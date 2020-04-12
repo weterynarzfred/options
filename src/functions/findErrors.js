@@ -18,7 +18,7 @@ function checkGlobalCurrencies(settings, options, errors) {
   if (settings.currency === undefined) return;
   const currentValues = calculateCurrency(
     options,
-    clone(settings.currency),
+    settings.currency,
     options
   );
   for (const currencySlug in currentValues) {
@@ -62,7 +62,7 @@ function checkOptionCurrencies(option, options, errors) {
   if (option.optionCurrency === undefined) return;
   const currentValues = calculateCurrency(
     getChildOptions(option, options),
-    clone(option.optionCurrency),
+    option.optionCurrency,
     options
   );
   for (const currencySlug in currentValues) {

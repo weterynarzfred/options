@@ -22,8 +22,8 @@ function getCurrencies(props, path) {
 
 function OptionCosts(props) {
   const option = props.option;
-  if (option.type !== 'option') return null;
-  if (option.cost === undefined) return null;
+  if (option.type !== 'option') return false;
+  if (option.cost === undefined) return false;
   const costs = [];
   const currencies = getCurrencies(props, option.path);
 

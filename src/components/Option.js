@@ -1,24 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import Hyphenated from 'react-hyphen';
 import $ from "cash-dom";
 import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
-import CurrencyStats from './CurrencyStats';
 import OptionsContainer from './OptionsContainer';
 import isOptionDisabled, { isOptionDisplayed } from '../functions/isOptionDisabled';
 import getSyntheticOptions from '../functions/getSyntheticOptions';
 import { getSelectedCount } from '../functions/getSelected';
-
-function displayOptionCurrency(props) {
-  const option = props.option;
-  if (option.optionCurrency === undefined) return null;
-  return <CurrencyStats
-    currentOptions={getChildOptions(option, props.options)}
-    currency={option.optionCurrency}
-  />
-}
+import OptionCurrency from './OptionCurrency';
+import OpenButton from './OpenButton';
+import OptionErrors from './OptionErrors';
+import OptionName from './OptionName';
+import OptionText from './OptionText';
 
 export function getChildOptions(option, options) {
   if (option.hasIndividualChildren) {
@@ -45,101 +39,31 @@ function getDisplayedChildOptions(props) {
   return displayedChildren;
 }
 
-function getOpenButton(props, optionProps) {
-  if (props.currentlySelected || !optionProps.openable) return;
-  return <button className="Option-open" onClick={event => {
-    event.stopPropagation();
-    props.dispatch({
-      type: 'CHANGE_PATH',
-      path: props.option.path.split('/'),
-    });
-  }}>
-    <svg viewBox="0 0 100 100">
-      <circle cx="50" cy="10" r="15" />
-      <circle cx="50" cy="50" r="15" />
-      <circle cx="50" cy="90" r="15" />
-    </svg>
-  </button>;
-}
-
-function getOptionText(props) {
-  if (typeof props.option.text === 'function') return props.option.text({
-    option: props.option,
-    options: props.options,
-  });
-  return props.option.text;
-}
-
-function getErrors(props) {
-  return props.errors.filter(error => error.path === props.option.path)
-    .map((e, i) => (
-      <div className="error" key={`option-error-${i}`}>
-        {e.text}
-      </div>
-    ));
-}
-
-function getContent(props, optionProps) {
-  return <React.Fragment>
-    <Hyphenated>
-      <div className="Option-text text">
-        {getOptionText(props)}
-      </div>
-    </Hyphenated>
-    <OptionControls option={props.option} />
-    <OptionsContainer
-      containerOptions={getChildOptions(props.option, props.options)}
-    />
-    {getOpenButton(props, optionProps)}
-    {getErrors(props)}
-  </React.Fragment>;
-}
-
 function checkHasCheckbox(option) {
   return option.type === 'option' &&
     !option.hasIndividualChildren &&
     option.max === 1;
 }
 
-function optionClick(event) {
+function handleClick(event) {
   event.stopPropagation();
   if (this.hasCheckbox) {
     $(event.currentTarget).find('.option-checkbox').eq(0).trigger('click');
   }
 }
 
-function optionMouseEnter(event) {
+function handleMouseEnter(event) {
   event.stopPropagation();
   const target = $(event.currentTarget);
   target.addClass('focused');
   target.parents('.focused').removeClass('focused');
 }
 
-function optionMouseLeave(event) {
+function handleMouseLeave(event) {
   event.stopPropagation();
   const target = $(event.currentTarget);
   target.removeClass('focused');
   target.parents('.Option').eq(0).addClass('focused');
-}
-
-function getOptionName(option, props) {
-  if (option.isChild) {
-    return <div className="Option-name">
-      <input
-        value={props.option.name}
-        onChange={event => {
-          props.dispatch({
-            type: 'RENAME_CHILD',
-            option,
-            name: event.target.value,
-          });
-        }}
-      />
-    </div>
-  }
-  return <div className="Option-name">
-    {props.option.name}
-  </div>;
 }
 
 function Option(props) {
@@ -173,9 +97,9 @@ function Option(props) {
         {selected: optionProps.isSelected},
         {MainContainer: props.currentlySelected}
       )}
-      onClick={optionClick.bind(optionProps)}
-      onMouseEnter={optionMouseEnter.bind(optionProps)}
-      onMouseLeave={optionMouseLeave.bind(optionProps)}
+      onClick={handleClick.bind(optionProps)}
+      onMouseEnter={handleMouseEnter.bind(optionProps)}
+      onMouseLeave={handleMouseLeave.bind(optionProps)}
     >
       <div className="Option-content">
         <div
@@ -185,14 +109,24 @@ function Option(props) {
           }}
         >
           <div className="Option-stats">
-            {displayOptionCurrency(props)}
+            <OptionCurrency option={props.option} />
             <OptionCosts option={props.option}/>
           </div>
         </div>
         <div className="text">
-          {getOptionName(props.option, props)}
+          <OptionName option={props.option} />
         </div>
-        {getContent(props, optionProps)}
+        <OptionText option={props.option} />
+        <OptionControls option={props.option} />
+        <OptionsContainer
+          containerOptions={getChildOptions(props.option, props.options)}
+        />
+        <OpenButton
+          option={props.option}
+          currentlySelected={props.currentlySelected}
+          openable={optionProps.openable}
+        />
+        <OptionErrors option={props.option} />
       </div>
     </div>
   );

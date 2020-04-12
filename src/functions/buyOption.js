@@ -15,6 +15,7 @@ function buyIndividualChild(option) {
       name: option.name + ' - ' + slug,
       options: childOptions,
       isChild: true,
+      max: false,
       optionCurrency: childCurrency,
     }
   };
