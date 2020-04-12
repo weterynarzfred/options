@@ -7,6 +7,7 @@ $color-main-2: #777;
 $color-main-disabled: #777;
 $color-accent: #555;
 $color-positive: #280;
+$color-positive-2: #5b0;
 $color-negative: #a00;
 $color-negative-2: #f55;
 $color-warning: #c70;
@@ -49,6 +50,7 @@ main {
   background-color: $color-bg;
   border-bottom: 1px solid $color-accent;
   pointer-events: auto;
+  padding-top: 0.25em;
 }
 
 .Stats {
@@ -170,6 +172,7 @@ button {
   margin: 0 0.5em;
   transition: 0.3s;
   font-size: 1em;
+  box-shadow: .1em .1em .2em #333;
 
   &:hover {
     background-color: $color-main-2;
@@ -184,10 +187,12 @@ button {
     background-color: $color-main-disabled;
     color: $color-bg-disabled;
     pointer-events: none;
+    box-shadow: 0 0 0 #3330;
   }
 }
 
 .text {
+  width: 100%;
   max-width: 40em;
   margin: 0 auto;
 
@@ -217,11 +222,9 @@ button {
   }
 
   .SpinBox-button {
-    width: 0.75em;
-    height: 0.75em;
+    width: 1.5em;
+    height: 1.5em;
     font-weight: 700;
-    font-size: 2em;
-    line-height: 0.75;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -246,7 +249,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8em;
+    width: 9em;
     transition: 0.2s;
     padding: 0;
 
@@ -308,23 +311,6 @@ button {
     border-radius: 1em;
     letter-spacing: 0.1em;
   }
-
-  &.Option-cost {
-    color: $color-negative;
-    padding: 0.25em 0;
-
-    .currency-value {
-      background-color: $color-negative;
-    }
-
-    &.positive {
-      color: $color-positive;
-
-      .currency-value {
-        background-color: $color-positive;
-      }
-    }
-  }
 }
 
 .OptionsContainer {
@@ -380,34 +366,46 @@ button {
     pointer-events: none;
   }
 
-  &.selectable:not(.selected) {
-    .Option-content {
-      &:after {
-        background-color: #3333;
+  &.selectable {
+    > .Option-content {
+      cursor: pointer;
+      
+      &:hover {
+        box-shadow: 0 0 0 2px $color-accent, .2em .2em .3em #333;
       }
     }
+  
+    &:not(.selected) {
+      .Option-content {
+        &:after {
+          background-color: #3333;
+        }
 
-    .Option-image {
-      opacity: 0.25 !important;
+        &:hover {
+          box-shadow: 0 0 0 1px $color-accent, .3em .3em .5em #333;
+        }
+      }
+
+      .Option-image {
+        opacity: 0.25 !important;
+      }
     }
   }
 
   &.selected {
     > .Option-content {
-      box-shadow: 0 0 0 2px $color-accent;
+      box-shadow: 0 0 0 2px $color-accent, .1em .1em .3em #333;
       background-color: $color-bg-3;
     }
   }
 
   &.hasCheckbox {
-    .Option-content {
-      cursor: pointer;
-    }
-
-    &.focused {
-      > .Option-content > .Checkbox {
-        background-color: $color-main;
-        color: $color-bg;
+    &:not(.MainContainer) {
+      > .Option-content {
+        &:hover > .Checkbox {
+          background-color: $color-main;
+          color: $color-bg;
+        }
       }
     }
 
@@ -417,6 +415,12 @@ button {
       justify-content: center;
       transition: 0.2s;
       width: 2em;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-main;
+        color: $color-bg;
+      }
 
       label {
         cursor: inherit;
@@ -444,7 +448,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: 0 0 0 1px $color-accent;
+    box-shadow: 0 0 0 1px $color-accent, .2em .2em .5em #333;
     border-radius: $radius;
     background-color: $color-bg;
     padding: 1em 1em 0.5em 1em;
@@ -469,10 +473,6 @@ button {
       position: relative;
       margin: -1em -1em 0 -1em;
 
-      .CurrencyStats .currency {
-        border-radius: 0 $radius 0 0;
-      }
-
       .Option-image {
         padding-bottom: 25%;
         background-position: center;
@@ -483,22 +483,63 @@ button {
         transition: opacity 0.3s;
         border-bottom: 1px solid $color-accent;
 
-        + .Option-stats .OptionCosts {
-          position: absolute;
-          left: 0;
-          bottom: 1px;
-          border-radius: $radius 0 0 0;
+        + .Option-stats {
+          .OptionCosts {
+            position: absolute;
+            left: 0;
+            bottom: 1px;
+            border-radius: $radius 0 0 0;
+          }
+
+          .CurrencyStats {
+            position: absolute;
+            right: 0;
+            bottom: 1px;
+            border-radius: $radius 0 0 0;
+          }
         }
       }
 
       .OptionCosts {
+        padding: 0;
+        border-radius: $radius $radius 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .currency {
+          background-color: $color-negative;
+          color: $color-bg-2;
+          padding: 0 0 0 .5em;
+      
+          .currency-value {
+            border-radius: 0;
+            color: $color-negative-2;
+          }
+      
+          &.positive {
+            background-color: $color-positive;
+      
+            .currency-value {
+              color: $color-positive-2;
+            }
+          }
+        }
+      }
+
+      .CurrencyStats {
         background-color: $color-bg-2;
         padding: 0.25em 0.5em;
         margin-left: auto;
         border-radius: $radius $radius 0 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
+
+        .currency {
+          border-radius: 0 $radius 0 0;
+          padding-right: 0.5em;
+        }
       }
     }
 
@@ -510,8 +551,8 @@ button {
       color: $color-accent;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: .2em;
-      padding-left: .2em;
+      letter-spacing: 0.2em;
+      padding-left: 0.2em;
 
       input {
         background: none;
@@ -621,6 +662,6 @@ button {
   height: 2em;
   max-width: 80%;
   background-color: $color-bg-2;
-  box-shadow: 0 0 0 2px $color-accent;
+  border: 2px solid $color-accent;
   z-index: 3;
 }

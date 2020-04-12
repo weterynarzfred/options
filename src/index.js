@@ -27,7 +27,7 @@ function rootReducer(state = initialState, action) {
       findErrors(state);
     }
     else if (action.type === 'SELL_OPTION') {
-      sellOption(action.option, state.options);
+      sellOption(action.option, state.options, state.path);
       findErrors(state);
     }
     else if (action.type === 'CHANGE_PATH') {
@@ -36,8 +36,9 @@ function rootReducer(state = initialState, action) {
     else if (action.type === 'RENAME_CHILD') {
       getOption(action.option, state.options).name = action.name;
     }
-    
-    findErrors(state);
+    else {
+      findErrors(state);
+    }
     return state;
   });
 }

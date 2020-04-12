@@ -64,6 +64,7 @@ const options = {
     hasIndividualChildren: true,
     cost: {
       essence: 5,
+      time: -1,
     },
     childOptionCurrency: {
       planePoints: {
@@ -216,6 +217,7 @@ const options = {
         max: 3,
         cost: {
           essence: 1,
+          gold: 1,
         },
       },
       magic: {

@@ -61,6 +61,12 @@ function checkHasCheckbox(option) {
     option.max === 1;
 }
 
+function checkHasSpinBox(option) {
+  return option.type === 'option' &&
+    !option.hasIndividualChildren &&
+    option.max > 1;
+}
+
 function checkOpenable(option) {
   return option.options !== undefined ||
     option.individualOptions !== undefined ||
@@ -69,23 +75,12 @@ function checkOpenable(option) {
 
 function handleClick(event) {
   event.stopPropagation();
-  if (this.hasCheckbox) {
+  if (this.hasCheckbox && !this.isMainContainer) {
     $(event.currentTarget).find('.option-checkbox').eq(0).trigger('click');
   }
-}
-
-function handleMouseEnter(event) {
-  event.stopPropagation();
-  const target = $(event.currentTarget);
-  target.addClass('focused');
-  target.parents('.focused').removeClass('focused');
-}
-
-function handleMouseLeave(event) {
-  event.stopPropagation();
-  const target = $(event.currentTarget);
-  target.removeClass('focused');
-  target.parents('.Option').eq(0).addClass('focused');
+  if (this.hasSpinBox && !this.isMainContainer) {
+    $(event.currentTarget).find('.SpinBox-increase').eq(0).trigger('click');
+  }
 }
 
 function Option(props) {
@@ -101,20 +96,20 @@ function Option(props) {
     hasDisplayedChildren: displayedChildren !== undefined &&
       Object.getOwnPropertyNames(displayedChildren).length > 0,
     hasCheckbox: checkHasCheckbox(props.option),
+    hasSpinBox: checkHasSpinBox(props.option),
     selectable: props.option.type === 'option' &&
       !props.option.hasIndividualChildren,
     isSelected: props.option.type === 'option' &&
       !props.option.hasIndividualChildren &&
       getSelectedCount(props.option, props.options),
+    isMainContainer: props.currentlySelected,
   };
+  optionProps.suboptionsDisabled = optionProps.openable &&
+    Object.getOwnPropertyNames(optionProps.enabledChildren).length === 0;
 
   if (props.settings.hideDisabledOptions && optionProps.isDisabled) {
     return false;
   }
-  
-  const suboptionsWarning = optionProps.openable &&
-    Object.getOwnPropertyNames(optionProps.enabledChildren).length === 0 ?
-    <div className="warning">No suboptions yet.</div> : false;
 
   return (
     <div
@@ -124,13 +119,12 @@ function Option(props) {
         {openable: optionProps.openable},
         {disabled: optionProps.isDisabled},
         {hasCheckbox: optionProps.hasCheckbox},
+        {hasSpinBox: optionProps.hasSpinBox},
         {selectable: optionProps.selectable},
         {selected: optionProps.isSelected},
-        {MainContainer: props.currentlySelected}
+        {MainContainer: optionProps.isMainContainer}
       )}
       onClick={handleClick.bind(optionProps)}
-      onMouseEnter={handleMouseEnter.bind(optionProps)}
-      onMouseLeave={handleMouseLeave.bind(optionProps)}
     >
       <div className="Option-content">
         <div className="Option-head">
@@ -152,12 +146,11 @@ function Option(props) {
         />
         <div className="Option-foot">
           <OptionErrors option={props.option} />
-          {suboptionsWarning}
           <OpenButton
             option={props.option}
             currentlySelected={props.currentlySelected}
             openable={optionProps.openable}
-            enabledChildren={optionProps.enabledChildren}
+            suboptionsDisabled={optionProps.suboptionsDisabled}
           />
           <OptionLink option={props.option} />
         </div>

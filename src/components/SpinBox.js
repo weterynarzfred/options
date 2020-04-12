@@ -22,7 +22,7 @@ function SpinBox(props) {
     buy: props.option.max !== false && props.option.selected >= props.option.max,
   };
   return (
-    <div className="SpinBox">
+    <div className="SpinBox" onClick={event => event.stopPropagation()}>
       <button
         className={classNames(
           'SpinBox-button',
@@ -46,7 +46,7 @@ function SpinBox(props) {
       >
         <svg viewBox="0 0 100 100">
           <path d="M15 50L85 50" />
-          <path d="M50 15L50 95" />
+          <path d="M50 15L50 85" />
         </svg>
       </button>
     </div>
