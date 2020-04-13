@@ -60,7 +60,6 @@ const options = {
           essence: data => data.index + 1,
           planePoints: -1,
         },
-        test: data => checkIfPathSelected('test', data.options),
       },
       scope: {
         name: 'Scope',

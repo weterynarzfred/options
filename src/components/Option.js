@@ -64,7 +64,7 @@ function checkHasCheckbox(option) {
 function checkHasSpinBox(option) {
   return option.type === 'option' &&
     !option.hasIndividualChildren &&
-    option.max > 1;
+    (option.max > 1 || option.max === false);
 }
 
 function checkOpenable(option) {
