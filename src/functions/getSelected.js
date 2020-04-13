@@ -29,7 +29,7 @@ export function getSelected(option, options) {
   }
   else {
     option = getOption(option, options);
-    if (option.type === 'option') return false;
+    if (option.options === undefined) return false;
     for (const slug in option.options) {
       const subOption = option.options[slug];
       if (

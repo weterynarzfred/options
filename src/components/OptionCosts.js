@@ -20,6 +20,10 @@ function getCurrencies(props, path) {
   return currencies;
 }
 
+/**
+ * Calculates and displays cost of an option
+ * @param {object} props Global props.
+ */
 function OptionCosts(props) {
   const option = props.option;
   if (option.type !== 'option') return false;
@@ -39,7 +43,6 @@ function OptionCosts(props) {
         option,
         options: props.options,
         index: getSelectedCount(option, props.options),
-        next: true,
       });
     }
     costs.push(

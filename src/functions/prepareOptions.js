@@ -2,8 +2,10 @@ export default function prepareOptions(options, path) {
   for (const slug in options) {
     const option = options[slug];
     option.type = option.type === undefined ? 'option' : option.type;
-    option.min = option.min === undefined ? 0 : option.min;
-    option.max = option.max === undefined ? 1 : option.max;
+    option.min = option.min === undefined ? 0 : Math.max(option.min, 0);
+    if (option.max !== false) {
+      option.max = option.max === undefined ? 1 : Math.max(option.max, 0);
+    }
     option.slug = slug;
     option.path = path === undefined ? slug : path + '/' + slug;
     if (option.optionsFunction !== undefined) {

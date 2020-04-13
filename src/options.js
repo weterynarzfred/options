@@ -1,24 +1,3 @@
-/**
- * @typedef {Object} Option
- * @property {string} [type = 'option'] || 'group'
- * @property {string} name - name of the option
- * @property {string|function} text - text of the option
- * @property {number} [min = 0]
- * @property {number} [max = 1]
- * @property {Object} options - suboptions
- * @property {bool} [hasIndividualChildren = false] - only if (type === 'option')
- * @property {Object} individualOptions - suboptions, only if (hasIndividualChildren)
- * @property {bool} isChild
- * @property {bool} isSynthetic
- * @property {Object} optionCurrency
- * @property {Object} childOptionCurrency
- * @property {function} test
- * @property {function} onIncrease
- * @property {function} onDecrease
- * @property {number|Object} cost
- * @property {number|function|Array|Object} discount
- */
-
 import React from 'react';
 import { calculateCurrency } from './components/CurrencyStats';
 import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
@@ -81,6 +60,7 @@ const options = {
           essence: data => data.index + 1,
           planePoints: -1,
         },
+        test: data => checkIfPathSelected('test', data.options),
       },
       scope: {
         name: 'Scope',

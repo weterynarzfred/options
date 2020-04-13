@@ -69,7 +69,7 @@ function checkHasSpinBox(option) {
 
 function checkOpenable(option) {
   return option.options !== undefined ||
-    option.individualOptions !== undefined ||
+    option.hasIndividualChildren !== undefined ||
     option.optionsFunction !== undefined
 }
 
@@ -160,7 +160,11 @@ function Option(props) {
 }
 
 function mapStateToProps(state) {
-  return {...state};
+  return {
+    options: state.options,
+    settings: state.settings,
+    path: state.path,
+  };
 }
 
 export default connect(mapStateToProps)(Option);
