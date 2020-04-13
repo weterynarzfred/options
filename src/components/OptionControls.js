@@ -30,7 +30,9 @@ function OptionControls(props) {
 }
 
 function mapStateToProps(state) {
-  return {...state};
+  return {
+    options: state.options,
+  };
 }
 
 export default connect(mapStateToProps)(OptionControls);

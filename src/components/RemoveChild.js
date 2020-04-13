@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 function RemoveChild(props) {
   return (
     <div className="RemoveChild">
-      <button onClick={event => props.dispatch({
+      <button onClick={() => props.dispatch({
         type: 'SELL_OPTION',
         option: props.option,
       })}>

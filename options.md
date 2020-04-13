@@ -1,6 +1,6 @@
 # Options
 
-All options should be objects placed in the `options` object inside `options.js`. Each option on the sae level has to have an unique key. Example:
+All options should be objects placed in the `options` object inside `options.js`. Each option on the same level has to have an unique key. Example:
 ```js
 const options = {
   testOption: {
@@ -244,3 +244,4 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - editable text in child options
 - display regular suboptions alongside option's children
 - allow more complex options to be created using the `optionsFunction`
+- display option's currencies in all of its children.

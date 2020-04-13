@@ -1,8 +1,8 @@
-import { calculateCurrency } from './../components/CurrencyStats';
+import calculateCurrency from './calculateCurrency';
 import isOptionDisabled from '../functions/isOptionDisabled';
-import { getChildOptions } from './../components/Option';
-import { getSelectedCount } from '../functions/getSelected';
-import { getOption } from './getOption';
+import getChildOptions from './getChildOptions';
+import getSelectedCount from '../functions/getSelectedCount';
+import getOption from './getOption';
 
 /**
  * Transforms path into a nice readable form.

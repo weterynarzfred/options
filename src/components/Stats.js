@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CurrencyStats from './CurrencyStats';
 import Errors from './Errors';
-import { getErrorButton } from './Errors';
-import { getOption } from '../functions/getOption';
+import getOption from '../functions/getOption';
 import { clone } from '../functions/helpers';
+import ErrorsButton from './ErrorsButton';
 
 function Stats(props) {
   return (
@@ -15,7 +15,7 @@ function Stats(props) {
           currentOptions={props.options}
           currency={props.settings.currency}
         />
-        {getErrorButton(props.errors)}
+        {ErrorsButton(props.errors)}
       </div>
       <Errors />
     </div>

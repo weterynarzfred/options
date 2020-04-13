@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from "react-redux";
 
 function OptionImage(props) {
   if (props.option.image === undefined) return false;
@@ -11,4 +10,4 @@ function OptionImage(props) {
   ></div>
 }
 
-export default connect()(OptionImage);
+export default OptionImage;

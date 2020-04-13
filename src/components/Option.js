@@ -5,9 +5,9 @@ import $ from "cash-dom";
 import OptionCosts from './OptionCosts';
 import OptionControls from './OptionControls';
 import OptionsContainer from './OptionsContainer';
-import isOptionDisabled, { isOptionDisplayed } from '../functions/isOptionDisabled';
-import getSyntheticOptions from '../functions/getSyntheticOptions';
-import { getSelectedCount } from '../functions/getSelected';
+import isOptionDisabled from '../functions/isOptionDisabled';
+import isOptionDisplayed from '../functions/isOptionDisplayed';
+import getSelectedCount from '../functions/getSelectedCount';
 import OptionCurrency from './OptionCurrency';
 import OpenButton from './OpenButton';
 import OptionErrors from './OptionErrors';
@@ -15,32 +15,7 @@ import OptionName from './OptionName';
 import OptionText from './OptionText';
 import OptionImage from './OptionImage';
 import OptionLink from './OptionLink';
-
-export function getChildOptions(option, options, skipDisabled = false) {
-  let currentOptions;
-  if (option.hasIndividualChildren) {
-    currentOptions = option.selected;
-  }
-  else if (option.optionsFunction !== undefined) {
-    currentOptions = getSyntheticOptions(option, options)
-  }
-  else {
-    currentOptions = option.options;
-  }
-
-  if (!currentOptions) return {};
-
-  if (skipDisabled) {
-    const result = {};
-    for (const slug in currentOptions) {
-      if (isOptionDisabled(currentOptions[slug], options)) continue;
-      result[slug] = currentOptions[slug];
-    }
-    return result;
-  }
-
-  return currentOptions;
-}
+import getChildOptions from '../functions/getChildOptions';
 
 function getDisplayedChildOptions(props) {
   const children = getChildOptions(props.option, props.options);
@@ -55,22 +30,44 @@ function getDisplayedChildOptions(props) {
   return displayedChildren;
 }
 
-function checkHasCheckbox(option) {
-  return option.type === 'option' &&
-    !option.hasIndividualChildren &&
-    option.max === 1;
-}
+function createOptionsProps(props) {
+  const displayedChildren = getDisplayedChildOptions(props);
+  const optionProps = {}
 
-function checkHasSpinBox(option) {
-  return option.type === 'option' &&
-    !option.hasIndividualChildren &&
-    (option.max > 1 || option.max === false);
-}
+  optionProps.option = props.option;
 
-function checkOpenable(option) {
-  return option.options !== undefined ||
-    option.hasIndividualChildren !== undefined ||
-    option.optionsFunction !== undefined
+  optionProps.isDisabled = isOptionDisabled(props.option, props.options);
+
+  optionProps.openable = props.option.options !== undefined ||
+    props.option.hasIndividualChildren !== undefined ||
+    props.option.optionsFunction !== undefined;
+
+  optionProps.enabledChildren = getChildOptions(props.option, props.options, true);
+
+  optionProps.hasDisplayedChildren = displayedChildren !== undefined &&
+    Object.getOwnPropertyNames(displayedChildren).length > 0
+
+  optionProps.hasCheckbox = props.option.type === 'option' &&
+    !props.option.hasIndividualChildren &&
+    props.option.max === 1;
+
+  optionProps.hasSpinBox = props.option.type === 'option' &&
+    !props.option.hasIndividualChildren &&
+    (props.option.max > 1 || props.option.max === false);
+
+  optionProps.selectable = props.option.type === 'option' &&
+    !props.option.hasIndividualChildren;
+
+  optionProps.isSelected = props.option.type === 'option' &&
+    !props.option.hasIndividualChildren &&
+    getSelectedCount(props.option, props.options);
+
+  optionProps.isMainContainer = props.currentlySelected;
+  
+  optionProps.suboptionsDisabled = optionProps.openable &&
+    Object.getOwnPropertyNames(optionProps.enabledChildren).length === 0;
+
+  return optionProps;
 }
 
 function handleClick(event) {
@@ -87,25 +84,8 @@ function Option(props) {
   if (!isOptionDisplayed(props.option, props)) {
     return false;
   }
-  const displayedChildren = getDisplayedChildOptions(props);
-  const optionProps = {
-    option: props.option,
-    isDisabled: isOptionDisabled(props.option, props.options),
-    openable: checkOpenable(props.option),
-    enabledChildren: getChildOptions(props.option, props.options, true),
-    hasDisplayedChildren: displayedChildren !== undefined &&
-      Object.getOwnPropertyNames(displayedChildren).length > 0,
-    hasCheckbox: checkHasCheckbox(props.option),
-    hasSpinBox: checkHasSpinBox(props.option),
-    selectable: props.option.type === 'option' &&
-      !props.option.hasIndividualChildren,
-    isSelected: props.option.type === 'option' &&
-      !props.option.hasIndividualChildren &&
-      getSelectedCount(props.option, props.options),
-    isMainContainer: props.currentlySelected,
-  };
-  optionProps.suboptionsDisabled = optionProps.openable &&
-    Object.getOwnPropertyNames(optionProps.enabledChildren).length === 0;
+
+  const optionProps = createOptionsProps(props);
 
   if (props.settings.hideDisabledOptions && optionProps.isDisabled) {
     return false;

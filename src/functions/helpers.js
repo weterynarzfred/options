@@ -1,5 +1,5 @@
-import { getOption } from "./getOption";
-import { getSelectedCount } from "./getSelected";
+import getOption from "./getOption";
+import getSelectedCount from "./getSelectedCount";
 
 export function clone(object) {
   return JSON.parse(JSON.stringify(object));

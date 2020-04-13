@@ -12,8 +12,4 @@ function PathLink(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
-export default connect(mapStateToProps)(PathLink);
+export default connect()(PathLink);

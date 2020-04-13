@@ -1,21 +1,7 @@
-import { getOption } from "./getOption";
+import getOption from "./getOption";
 import getSyntheticOptions from "./getSyntheticOptions";
-import isOptionDisabled from "./isOptionDisabled";
 
-export function getSelectedCount(option, options) {
-  if (isOptionDisabled(option, options)) return false;
-  if (option.type === 'option') {
-    if (typeof option.selected === 'number') {
-      return option.selected;
-    }
-    return Object.getOwnPropertyNames(option.selected).length;
-  }
-  const selected = getSelected(option, options);
-  return selected.length;
-}
-
-// select all boolean options from a group
-export function getSelected(option, options) {
+export default function getSelected(option, options) {
   const selected = [];
   if (option.optionsFunction !== undefined) {
     const syntheticOptions = getSyntheticOptions(option, options);

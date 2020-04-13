@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getOption } from '../functions/getOption';
+import getOption from '../functions/getOption';
 import OptionsContainer from './OptionsContainer';
 import Option from './Option';
 

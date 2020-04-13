@@ -11,7 +11,7 @@ import prepareOptions from './functions/prepareOptions';
 import settings from './settings';
 import prepareSettings from './functions/prepareSettings';
 import findErrors from './functions/findErrors';
-import { getOption } from './functions/getOption';
+import getOption from './functions/getOption';
 
 const initialState = {
   path: [],

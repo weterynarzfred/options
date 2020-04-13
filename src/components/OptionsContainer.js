@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Option from './Option';
 import Story from './Story';
 import classNames from 'classnames';
@@ -24,11 +23,6 @@ function OptionsContainer(props) {
   >{result}</div>;
 }
 
-function mapStateToProps(state) {
-  return {
-    options: state.options,
-  };
-}
 
-export default connect(mapStateToProps)(OptionsContainer);
+export default OptionsContainer;
  

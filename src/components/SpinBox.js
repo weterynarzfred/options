@@ -18,7 +18,7 @@ function handleSellOption() {
 
 function SpinBox(props) {
   const isDisabed = {
-    sell: props.option.min !== false && props.option.selected <= props.option.min,
+    sell: props.option.selected <= props.option.min,
     buy: props.option.max !== false && props.option.selected >= props.option.max,
   };
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import { calculateCurrency } from './components/CurrencyStats';
+import calculateCurrency from './functions/calculateCurrency';
 import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
-import { getSelectedCount } from './functions/getSelected';
+import getSelectedCount from './functions/getSelectedCount';
 
 const options = {
   intro: {

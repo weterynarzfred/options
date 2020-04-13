@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { getOption } from '../functions/getOption';
+import getOption from '../functions/getOption';
 import { clone } from '../functions/helpers';
-import { getSelectedCount } from '../functions/getSelected';
+import getSelectedCount from '../functions/getSelectedCount';
 
-// get all currencies current option can have
+/**
+ * Get all currencies current option can have.
+ * @param {object} props Global props.
+ * @param {string} path Path of the option being checked.
+ */
 function getCurrencies(props, path) {
   const currencies = clone(props.settings.currency);
   path = path.split('/').reverse();
@@ -64,7 +68,10 @@ function OptionCosts(props) {
 }
 
 function mapStateToProps(state) {
-  return {...state};
+  return {
+    options: state.options,
+    settings: state.settings,
+  };
 }
 
 export default connect(mapStateToProps)(OptionCosts);

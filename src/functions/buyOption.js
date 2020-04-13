@@ -1,7 +1,7 @@
 import prepareOptions from "./prepareOptions";
 import { getParent, clone } from "./helpers";
-import { getOption } from "./getOption";
-import { getSelected } from "./getSelected";
+import getOption from "./getOption";
+import getSelected from "./getSelected";
 
 function buyIndividualChild(option) {
   const slug = option.nextChildId++;
@@ -25,7 +25,7 @@ function buyIndividualChild(option) {
 
 function buySimpleChild(option, options) {
   const parent = getParent(option, options);
-  if (parent && parent.max === 1) {
+  if (parent && parent.type === 'group' && parent.max === 1) {
     const selected = getSelected(parent, options);
     for (const slug in selected) {
       selected[slug].selected--;

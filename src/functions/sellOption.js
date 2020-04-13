@@ -1,4 +1,4 @@
-import { getOption } from "./getOption";
+import getOption from "./getOption";
 import { getParent } from "./helpers";
 
 export default function sellOption(option, options, path) {

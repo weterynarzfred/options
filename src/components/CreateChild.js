@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSelectedCount } from '../functions/getSelected';
+import getSelectedCount from '../functions/getSelectedCount';
 
 function CreateChild(props) {
   let isDisabled = false;

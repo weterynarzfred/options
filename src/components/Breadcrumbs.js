@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getOption } from '../functions/getOption';
+import getOption from '../functions/getOption';
 import PathLink from './PathLink';
 
-export function Breadcrumbs(props) {
+function Breadcrumbs(props) {
   const path = props.path.filter(e => e !== '');
   const breadCrumbs = [];
   for (let i = 0; i < path.length; i++) {

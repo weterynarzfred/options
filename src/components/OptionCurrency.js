@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CurrencyStats from './CurrencyStats';
-import { getChildOptions } from './Option';
+import getChildOptions from "../functions/getChildOptions";
 
 function OptionCurrency(props) {
   if (
