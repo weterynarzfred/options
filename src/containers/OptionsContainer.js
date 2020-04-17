@@ -9,7 +9,7 @@ import isOptionDisabled from '../functions/isOptionDisabled';
 
 function getOptionInfo(option, options) {
   if (option.path === undefined) return {suboptions: options};
-  const optionInfo =  {
+  const optionInfo = {
     controlType: getControlType(option),
     suboptions: getSubptions(option, options, true),
     isSelected: getSelectedCount(option, options) > 0,

@@ -1,3 +1,40 @@
+import { clone } from "./helpers";
+import getSubptions from "./getSubptions";
+import settings from "./../settings";
+
+function getCurrencyName(searchedSlug, option, options) {
+  if (settings.currency !== undefined) {
+    for (const currencySlug in settings.currency) {
+      if (currencySlug === searchedSlug) {
+        return settings.currency[currencySlug].name;
+      }
+    }
+  }
+
+  const tempPath = clone(option.path).split('/').reverse().filter(e => e !== '');
+  let currentOption = {options};
+  while (tempPath.length) {
+    currentOption = getSubptions(currentOption, options)[tempPath.pop()];
+    if (currentOption === undefined) break;
+    if (currentOption.optionCurrency !== undefined) {
+      for (const currencySlug in currentOption.optionCurrency) {
+        if (currencySlug === searchedSlug) {
+          return currentOption.optionCurrency[currencySlug].name;
+        }
+      }
+    }
+    if (currentOption.childOptionCurrency !== undefined) {
+      for (const currencySlug in currentOption.childOptionCurrency) {
+        if (currencySlug === searchedSlug) {
+          return currentOption.childOptionCurrency[currencySlug].name;
+        }
+      }
+    }
+  }
+
+  return searchedSlug;
+}
+
 function replaceFunction(userFunction) {
   if (userFunction === undefined) return undefined;
   if (typeof userFunction === 'function') {
@@ -10,19 +47,27 @@ function replaceFunction(userFunction) {
   return userFunction;
 }
 
-function replaceFunctions(option) {
+function replaceFunctions(option, options) {
   option.text = replaceFunction(option.text);
   option.optionsFunction = replaceFunction(option.optionsFunction);
+  
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       option.cost[currencySlug] = replaceFunction(option.cost[currencySlug]);
+      if (!option.cost[currencySlug].isUserFunction) {
+        option.cost[currencySlug] = {
+          value: option.cost[currencySlug],
+          nextValue: option.cost[currencySlug],
+        };
+      }
+      option.cost[currencySlug].name = getCurrencyName(currencySlug, option, options);
     }
   }
 }
 
-export default function prepareOptions(options, path) {
-  for (const slug in options) {
-    const option = options[slug];
+export default function prepareOptions(currentOptions, path, options = currentOptions) {
+  for (const slug in currentOptions) {
+    const option = currentOptions[slug];
 
     option.type = option.type === undefined ? 'option' : option.type;
 
@@ -40,7 +85,7 @@ export default function prepareOptions(options, path) {
         {} : option.functionalChildren;
     }
 
-    option.options = prepareOptions(option.options, option.path);
+    option.options = prepareOptions(option.options, option.path, options);
 
     if (option.type === 'option') {
       if (option.hasIndividualChildren) {
@@ -52,10 +97,10 @@ export default function prepareOptions(options, path) {
       }
     }
 
-    replaceFunctions(option);
+    replaceFunctions(option, options);
 
   }
-  return options;
+  return currentOptions;
 }
 
 export const userFunctions = [];

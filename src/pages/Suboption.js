@@ -3,21 +3,23 @@ import PropTypes from 'prop-types';
 import propShapes from '../propShapes';
 import Name from './Name';
 import OptionControls from '../containers/OptionControls';
+import OptionStats from './OptionStats';
 
 function Suboption(props) {
   return <div className="Suboption">
-    <div className="flex">
-      <OptionControls
-        option={props.option}
-        sell={props.sell}
-        buy={props.buy}
-      />
-      <Name
-        name={props.option.name}
-        isChangeable={props.option.isChild}
-        change={props.change}
-      />
-    </div>
+    <OptionControls
+      option={props.option}
+      sell={props.sell}
+      buy={props.buy}
+    />
+    <Name
+      name={props.option.name}
+      isChangeable={props.option.isChild}
+      change={props.change}
+    />
+    <OptionStats
+      option={props.option}
+    />
   </div>
 }
 

@@ -1,15 +1,15 @@
 import prepareOptions from "./prepareOptions";
-import { getParent, clone } from "./helpers";
+import { getParent, clone, deepClone } from "./helpers";
 import getOption from "./getOption";
 import getSelected from "./getSelected";
 import getSelectedCount from "./getSelectedCount";
 
 function buyIndividualChild(option, options) {
-  if (getSelectedCount(option, options) >= option.max) return;
+  if (option.max !== false && getSelectedCount(option, options) >= option.max) return;
 
   const slug = option.nextChildId++;
   const childOptions = option.individualOptions === undefined ?
-    {} : Object.create(option.individualOptions);
+    {} : deepClone(option.individualOptions);
   const childCurrency = option.childOptionCurrency === undefined ?
     undefined : clone(option.childOptionCurrency);
   const child = {
@@ -22,15 +22,20 @@ function buyIndividualChild(option, options) {
       optionCurrency: childCurrency,
     }
   };
-  option.selected[slug] = prepareOptions(child, option.path)[slug];
+  option.selected[slug] = prepareOptions(child, option.path, options)[slug];
+  
 }
 
 function buySimpleChild(option, options) {
-  if (option.selected >= option.max) return;
+  if (option.max !== false && option.selected >= option.max) return;
 
   // deselect siblings
   const parent = getParent(option, options);
-  if (parent && parent.type === 'group' && parent.max === 1) {
+  if (
+    parent && parent.type === 'group' &&
+    parent.max === 1 &&
+    option.max === 1
+  ) {
     const selected = getSelected(parent, options);
     for (const slug in selected) {
       selected[slug].selected--;

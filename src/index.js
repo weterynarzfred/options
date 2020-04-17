@@ -16,8 +16,8 @@ import recalculateState from './functions/recalculateState';
 
 const initialState = {
   path: [],
-  options: prepareOptions(options),
   settings: prepareSettings(settings),
+  options: prepareOptions(options, undefined),
   errors: [],
 };
 

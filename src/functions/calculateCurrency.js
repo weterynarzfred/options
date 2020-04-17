@@ -1,4 +1,3 @@
-import { clone } from './helpers';
 import isOptionDisabled from './isOptionDisabled';
 import getSubptions from "./getSubptions";
 import getSelectedCount from './getSelectedCount';
@@ -10,7 +9,6 @@ import getSelectedCount from './getSelectedCount';
  * @param {object} options Global options.
  */
 export default function calculateCurrency(currentOptions, currentValues, options) {
-  let currentValuesClone = clone(currentValues);
   for (const slug in currentOptions) {
     const option = currentOptions[slug];
     if (isOptionDisabled(option, options))
@@ -19,27 +17,21 @@ export default function calculateCurrency(currentOptions, currentValues, options
       const selectedCount = getSelectedCount(option, options);
       if (selectedCount > 0 && option.cost !== undefined) {
         for (const currencySlug in option.cost) {
-          if (currentValuesClone[currencySlug] === undefined)
+          if (currentValues[currencySlug] === undefined)
             continue;
           let change = 0;
-          if (typeof option.cost[currencySlug] === 'number') {
-            change = option.cost[currencySlug] * selectedCount;
+          if (option.cost[currencySlug].isUserFunction) {
+            change = option.cost[currencySlug].value;
           }
-          else if (typeof option.cost[currencySlug] === 'function') {
-            for (let index = 0; index < selectedCount; index++) {
-              change += option.cost[currencySlug]({
-                option,
-                options,
-                index,
-              });
-            }
+          else {
+            change = option.cost[currencySlug].value * selectedCount;
           }
-          currentValuesClone[currencySlug].value -= change;
+          currentValues[currencySlug].currentValue -= change;
         }
       }
     }
     const childOptions = getSubptions(option, options);
-    currentValuesClone = calculateCurrency(childOptions, currentValuesClone, options);
+    currentValues = calculateCurrency(childOptions, currentValues, options);
   }
-  return currentValuesClone;
+  return currentValues;
 }

@@ -24,3 +24,16 @@
     }
   }
 }
+
+.OptionCost {
+  display: flex;
+
+  .OptionCost-single {
+    display: flex;
+    padding-right: 1em;
+
+    .OptionCost-name {
+      padding-right: .5em;
+    }
+  }
+}

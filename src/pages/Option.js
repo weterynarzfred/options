@@ -8,6 +8,7 @@ import propShapes from '../propShapes';
 import Suboptions from '../containers/Suboptions';
 import Name from './Name';
 import OptionLinks from '../containers/OptionLinks';
+import OptionStats from './OptionStats';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -41,6 +42,9 @@ function Option(props) {
         option={props.option}
         sell={props.sell}
         buy={props.buy}
+      />
+      <OptionStats
+        option={props.option}
       />
       <Name
         name={props.option.name}

@@ -2,19 +2,24 @@ import PropTypes from 'prop-types';
 
 const propShapes = {};
 
+propShapes.userFunction = PropTypes.shape({
+  isUserFunction: PropTypes.bool,
+  functionId: PropTypes.number,
+  value: PropTypes.node,
+});
+
 propShapes.text = PropTypes.oneOfType([
   PropTypes.node,
-  PropTypes.shape({
-    isUserFunction: PropTypes.bool,
-    functionId: PropTypes.number,
-    value: PropTypes.node,
-  }),
+  propShapes.userFunction,
 ]);
 
 propShapes.currency = PropTypes.objectOf(PropTypes.shape({
   name: PropTypes.string,
   value: PropTypes.number,
+  currentValue: PropTypes.number,
 }));
+
+propShapes.cost = PropTypes.objectOf(PropTypes.object);
 
 propShapes.option = PropTypes.shape({
   type: PropTypes.oneOf(['option', 'group', 'story']),
@@ -27,14 +32,15 @@ propShapes.option = PropTypes.shape({
     PropTypes.bool,
   ]),
   image: PropTypes.string,
-  cost: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.func,
-  ])),
+  cost: propShapes.cost,
   options: PropTypes.object,
   test: PropTypes.func,
   optionCurrency: propShapes.currency,
-  optionsFunction: PropTypes.func,
+  optionsFunction: PropTypes.shape({
+    isUserFunction: PropTypes.bool,
+    functionId: PropTypes.number,
+    value: PropTypes.object,
+  }),
   hasIndividualChildren: PropTypes.bool,
   individualOptions: PropTypes.object,
   childOptionCurrency: propShapes.currency,

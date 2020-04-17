@@ -1,11 +1,25 @@
 .Suboptions {
   .Suboption {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #555;
+    margin-bottom: .5em;
+    padding: .5em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     .OptionControls {
       width: 33.3333%;
     }
 
     .Name {
       font-size: 1em;
+    }
+
+    .OptionStats {
+      width: 100%;
     }
   }
 }

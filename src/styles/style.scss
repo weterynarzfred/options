@@ -7,10 +7,6 @@ body {
   margin: 0;
 }
 
-.flex {
-  display: flex;
-}
-
 .title {
   font-size: 1.5em;
   font-weight: 700;
@@ -35,9 +31,18 @@ input {
   }
 }
 
+.PathLink {
+  cursor: pointer;
+
+  &:hover {
+    color: #777;
+  }
+}
+
 @import '_Nav';
 @import '_Intro';
 @import '_OptionWide';
 @import '_Options';
 @import '_OptionControls';
 @import '_Suboptions';
+@import '_CurrencyStats';

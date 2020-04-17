@@ -10,7 +10,7 @@ function Breadcrumbs(props) {
     const currentPath = path.slice(0, i + 1);
     const optionName = getOption(currentPath, props.options).name;
     breadCrumbs.push(
-      <React.Fragment key={`breadcrumb-${currentPath.reverse().join('-')}`}>
+      <React.Fragment key={`breadcrumb-${currentPath.join('-')}`}>
         <PathLink path={currentPath.join('/')} text={optionName} /> /&nbsp;
       </React.Fragment>
     );

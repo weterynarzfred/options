@@ -5,6 +5,21 @@ export function clone(object) {
   return JSON.parse(JSON.stringify(object));
 }
 
+export function deepClone(aObject) {
+  if (!aObject) {
+    return aObject;
+  }
+
+  let v;
+  let bObject = Array.isArray(aObject) ? [] : {};
+  for (const k in aObject) {
+    v = aObject[k];
+    bObject[k] = (typeof v === "object") ? deepClone(v) : v;
+  }
+
+  return bObject;
+}
+
 export function getParent(option, options) {
   let pathArray = option.path.split('/');
   if (pathArray.length <= 1) return false;

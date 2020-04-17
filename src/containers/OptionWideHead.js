@@ -4,6 +4,7 @@ import propShapes from '../propShapes';
 import Name from './../pages/Name';
 import OptionControls from './OptionControls';
 import Text from '../pages/Text';
+import OptionStats from './../pages/OptionStats';
 
 function handleBuy(option) {
   this.dispatch({
@@ -35,6 +36,9 @@ function OptionWideHead(props) {
       buy={handleBuy.bind(props, props.option)}
       sell={handleSell.bind(props, props.option)}
     />
+    <OptionStats
+        option={props.option}
+      />
     <Name
       name={props.option.name}
       isChangeable={props.option.isChild}
