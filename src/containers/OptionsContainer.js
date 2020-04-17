@@ -2,6 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Option from '../pages/Option';
 import propShapes from '../propShapes';
+import getControlType from '../functions/getControlType';
+import getSubptions from '../functions/getSubptions';
+import getSelectedCount from '../functions/getSelectedCount';
+
+function getOptionInfo(option, options) {
+  if (option.path === undefined) return {suboptions: options};
+  const optionInfo =  {
+    controlType: getControlType(option),
+    suboptions: getSubptions(option, options, true),
+    isSelected: getSelectedCount(option, options) > 0,
+  };
+  optionInfo.isOpenable = Object.keys(optionInfo.suboptions).length > 0;
+
+  return optionInfo;
+}
 
 function handleBuy(option) {
   this.dispatch({
@@ -27,9 +42,10 @@ function handleChange(option, textProp, text) {
 }
 
 function OptionsContainer(props) {
+  const optionInfo = getOptionInfo(props.option, props.options);
   const optionsElements = [];
-  for (const slug in props.option.options) {
-    const currentOption = props.option.options[slug];
+  for (const slug in optionInfo.suboptions) {
+    const currentOption = optionInfo.suboptions[slug];
     if (currentOption.type === 'option' || currentOption.type === 'group') {
       optionsElements.push(<Option
         key={`option-${currentOption.path}`}
@@ -37,6 +53,7 @@ function OptionsContainer(props) {
         buy={handleBuy.bind(props, currentOption)}
         sell={handleSell.bind(props, currentOption)}
         change={handleChange.bind(props, currentOption)}
+        optionInfo={getOptionInfo(currentOption, props.options)}
       />);
     }
     else {

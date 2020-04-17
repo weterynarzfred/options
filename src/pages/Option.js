@@ -8,19 +8,6 @@ import propShapes from '../propShapes';
 import Suboptions from '../containers/Suboptions';
 import Name from './Name';
 import OptionLinks from '../containers/OptionLinks';
-import getSubptions from '../functions/getSubptions';
-import getSelectedCount from '../functions/getSelectedCount';
-import { connect } from 'react-redux';
-
-function getOptionInfo(option, options) {
-  const optionInfo =  {
-    controlType: getControlType(option),
-    suboptions: getSubptions(option, options, true),
-    isSelected: getSelectedCount(option, options) > 0,
-  };
-
-  return optionInfo;
-}
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -38,12 +25,13 @@ function handleClick(event) {
 }
 
 function Option(props) {
-  const optionInfo = getOptionInfo(props.option, props.options);
+  const optionInfo = props.optionInfo;
   return <div
     className={classNames(
       'Option',
       `OptionControl-${optionInfo.controlType}`,
-      {OptionSelected: optionInfo.isSelected}
+      {OptionSelected: optionInfo.isSelected},
+      {OptionOpenable: optionInfo.isOpenable}
     )}
     onClick={handleClick.bind(props)}
   >
@@ -73,12 +61,7 @@ Option.propTypes = {
   option: propShapes.option,
   buy: PropTypes.func,
   sell: PropTypes.func,
+  optionInfo: PropTypes.object,
 };
 
-function mapStateToProps(state) {
-  return {
-    options: state.options,
-  };
-}
-
-export default connect(mapStateToProps)(Option);
+export default Option;
