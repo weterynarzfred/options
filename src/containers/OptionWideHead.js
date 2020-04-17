@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propShapes from '../propShapes';
 import Name from './../pages/Name';
 import OptionControls from './OptionControls';
+import Text from '../pages/Text';
 
 function handleBuy(option) {
   this.dispatch({
@@ -38,6 +39,11 @@ function OptionWideHead(props) {
       name={props.option.name}
       isChangeable={props.option.isChild}
       change={handleChange.bind(props, props.option)}
+    />
+    <Text
+      text={props.option.text}
+      isChangeable={props.option.isChild}
+      change={props.change}
     />
   </div>
 }

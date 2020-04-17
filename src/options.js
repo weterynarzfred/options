@@ -247,6 +247,7 @@ const options = {
   group: {
     type: 'group',
     name: 'Group',
+    text: <p>Group description</p>,
     options: {
       a: {name: 'A'},
       b: {
