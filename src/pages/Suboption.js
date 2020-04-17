@@ -4,6 +4,7 @@ import propShapes from '../propShapes';
 import Name from './Name';
 import OptionControls from '../containers/OptionControls';
 import OptionStats from './OptionStats';
+import OptionFoot from '../containers/OptionFoot';
 
 function Suboption(props) {
   return <div className="Suboption">
@@ -20,6 +21,7 @@ function Suboption(props) {
     <OptionStats
       option={props.option}
     />
+    <OptionFoot option={props.option} />
   </div>
 }
 

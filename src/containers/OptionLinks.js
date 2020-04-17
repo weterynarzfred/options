@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import propShapes from '../propShapes';
 import getSubptions from '../functions/getSubptions';
 import PathLink from './PathLink';
-import { connect } from 'react-redux';
 
 function getOpenLink(props) {
   const suboptions = getSubptions(props.option, props.options, true);

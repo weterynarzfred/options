@@ -9,6 +9,7 @@ import Suboptions from '../containers/Suboptions';
 import Name from './Name';
 import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
+import OptionFoot from '../containers/OptionFoot';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -57,6 +58,7 @@ function Option(props) {
         change={props.change}
       />
       <OptionLinks option={props.option} />
+      <OptionFoot option={props.option} />
       <Suboptions option={props.option} />
     </div>
   </div>;

@@ -5,15 +5,17 @@ export function clone(object) {
   return JSON.parse(JSON.stringify(object));
 }
 
-export function deepClone(aObject) {
-  if (!aObject) {
-    return aObject;
+export function deepClone(object) {
+  if (!object) {
+    return object;
   }
 
+  if (typeof object === 'function') return object;
+
   let v;
-  let bObject = Array.isArray(aObject) ? [] : {};
-  for (const k in aObject) {
-    v = aObject[k];
+  let bObject = Array.isArray(object) ? [] : {};
+  for (const k in object) {
+    v = object[k];
     bObject[k] = (typeof v === "object") ? deepClone(v) : v;
   }
 

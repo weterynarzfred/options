@@ -1,5 +1,4 @@
 import React from 'react';
-import calculateCurrency from './functions/calculateCurrency';
 import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
 import getSelectedCount from './functions/getSelectedCount';
 
@@ -94,11 +93,7 @@ const options = {
         max: false,
         optionsFunction: data => optionsFromChildren(data.options.races, (result, source) => {
           result.cost = {
-            planePoints: data => -calculateCurrency(
-              source.options,
-              data.options.races.childOptionCurrency,
-              data.options
-            ).raceCost.value,
+            planePoints: -source.optionCurrency.raceCost.currentValue,
           };
           result.link = source.path;
           return result;

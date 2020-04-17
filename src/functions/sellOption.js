@@ -3,6 +3,7 @@ import { getParent } from "./helpers";
 
 export default function sellOption(option, options, path) {
   if (option.isSynthetic) {
+    if (option.selected <= option.min) return;
     const parent = getParent(option, options);
     parent.functionalChildren[option.slug].selected--;
     return;

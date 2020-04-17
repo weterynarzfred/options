@@ -10,6 +10,8 @@ function buyIndividualChild(option, options) {
   const slug = option.nextChildId++;
   const childOptions = option.individualOptions === undefined ?
     {} : deepClone(option.individualOptions);
+  console.log(childOptions);
+  
   const childCurrency = option.childOptionCurrency === undefined ?
     undefined : clone(option.childOptionCurrency);
   const child = {
@@ -46,6 +48,8 @@ function buySimpleChild(option, options) {
 }
 
 function buySyntheticOption(option, options) {
+  if (option.max !== false && option.selected >= option.max) return;
+  
   const parent = getParent(option, options);
   if (parent.functionalChildren[option.slug] === undefined) {
     parent.functionalChildren[option.slug] = {

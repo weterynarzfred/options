@@ -25,11 +25,9 @@ function rootReducer(state = initialState, action) {
   return produce(state, state => {
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, state.options);
-      findErrors(state);
     }
     else if (action.type === 'SELL_OPTION') {
       sellOption(action.option, state.options, state.path);
-      findErrors(state);
     }
     else if (action.type === 'CHANGE_PATH') {
       state.path = action.path.filter(e => e !== '');
@@ -37,11 +35,9 @@ function rootReducer(state = initialState, action) {
     else if (action.type === 'CHANGE_TEXT') {
       getOption(action.option, state.options)[action.textProp] = action.text;
     }
-    else {
-      findErrors(state);
-    }
     
     recalculateState(state);
+    findErrors(state);
     return state;
   });
 }
