@@ -40,3 +40,13 @@ export function optionsFromChildren(sourceOption, forEach, data) {
 export function checkIfPathSelected(path, options) {
   return getSelectedCount(getOption(path, options), options) > 0;
 }
+
+/**
+ * Checks if the provided value is an object.
+ * @param {*} value Value to be checked.
+ * @returns {bool} `true` if `value` was an object. `false` otheriwise.
+ */
+export function isObject(value) {
+  if (value === null) return false;
+  return ((typeof value === 'function') || (typeof value === 'object'));
+}

@@ -1,6 +1,6 @@
 import calculateCurrency from './calculateCurrency';
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getChildOptions from './getChildOptions';
+import getSubptions from './getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
 import getOption from './getOption';
 
@@ -47,7 +47,7 @@ function checkGlobalCurrencies(settings, options, errors) {
 function checkOptionCurrencies(option, options, errors) {
   if (option.optionCurrency === undefined) return;
   const currentValues = calculateCurrency(
-    getChildOptions(option, options),
+    getSubptions(option, options),
     option.optionCurrency,
     options
   );
@@ -101,7 +101,7 @@ function checkOptions(options, errors, currentOptions = options) {
     if (isOptionDisabled(option, options)) continue;
     checkMinMaxSelected(option, options, errors);
     checkOptionCurrencies(option, options, errors);
-    const childOptions = getChildOptions(option, options);
+    const childOptions = getSubptions(option, options);
     if (childOptions !== undefined) {
       checkOptions(options, errors, childOptions);
     }

@@ -2,13 +2,16 @@ import prepareOptions from "./prepareOptions";
 import { getParent, clone } from "./helpers";
 import getOption from "./getOption";
 import getSelected from "./getSelected";
+import getSelectedCount from "./getSelectedCount";
 
-function buyIndividualChild(option) {
+function buyIndividualChild(option, options) {
+  if (getSelectedCount(option, options) >= option.max) return;
+
   const slug = option.nextChildId++;
   const childOptions = option.individualOptions === undefined ?
     {} : Object.create(option.individualOptions);
   const childCurrency = option.childOptionCurrency === undefined ?
-    false : clone(option.childOptionCurrency);
+    undefined : clone(option.childOptionCurrency);
   const child = {
     [slug]: {
       type: 'group',
@@ -20,10 +23,12 @@ function buyIndividualChild(option) {
     }
   };
   option.selected[slug] = prepareOptions(child, option.path)[slug];
-  return option;
 }
 
 function buySimpleChild(option, options) {
+  if (option.selected >= option.max) return;
+
+  // deselect siblings
   const parent = getParent(option, options);
   if (parent && parent.type === 'group' && parent.max === 1) {
     const selected = getSelected(parent, options);
@@ -31,8 +36,8 @@ function buySimpleChild(option, options) {
       selected[slug].selected--;
     }
   }
+
   option.selected++;
-  return option;
 }
 
 function buySyntheticOption(option, options) {
@@ -46,17 +51,17 @@ function buySyntheticOption(option, options) {
 }
 
 export default function buyOption(option, options) {
+  if (option.type === 'group') return;
   if (option.isSynthetic) {
     buySyntheticOption(option, options);
   }
   else {
     option = getOption(option, options);
-    if (option.type === 'group') return;
     if (option.hasIndividualChildren) {
-      option = buyIndividualChild(option);
+      buyIndividualChild(option, options);
     }
     else {
-      option = buySimpleChild(option, options);
+      buySimpleChild(option, options);
     }
   }
 }

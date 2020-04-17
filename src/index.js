@@ -12,6 +12,7 @@ import settings from './settings';
 import prepareSettings from './functions/prepareSettings';
 import findErrors from './functions/findErrors';
 import getOption from './functions/getOption';
+import recalculateState from './functions/recalculateState';
 
 const initialState = {
   path: [],
@@ -33,12 +34,14 @@ function rootReducer(state = initialState, action) {
     else if (action.type === 'CHANGE_PATH') {
       state.path = action.path;
     }
-    else if (action.type === 'RENAME_CHILD') {
-      getOption(action.option, state.options).name = action.name;
+    else if (action.type === 'CHANGE_TEXT') {
+      getOption(action.option, state.options)[action.textProp] = action.text;
     }
     else {
       findErrors(state);
     }
+    
+    recalculateState(state);
     return state;
   });
 }

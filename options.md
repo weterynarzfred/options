@@ -42,6 +42,7 @@ The text that will be displayed. Parameter passed to the function is an object c
 {
   {object} option - Current option.
   {object} options - Global options.
+  {array} error - Global errors.
 }
 ```
 

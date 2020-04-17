@@ -1,0 +1,17 @@
+.Option {
+  width: 33.3333%;
+  padding: 1em;
+
+  &.control-checkbox {
+
+  }
+
+  .OptionWrap {
+    box-shadow: 0 0 0 1px #333;
+    height: 100%;
+
+    .title {
+      font-size: 1.5em;
+    }
+  }
+}

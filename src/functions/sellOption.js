@@ -10,6 +10,8 @@ export default function sellOption(option, options, path) {
 
   option = getOption(option, options);
   if (option.type === 'option') {
+    if (option.hasIndividualChildren) return;
+    if (option.selected <= option.min) return;
     option.selected--;
   }
   else if (option.type === 'group') {

@@ -1,4 +1,8 @@
+import React from 'react';
+
 const settings = {
+  title: 'Things to want',
+  intro: <p>Intro text.</p>,
   currency: {
     essence: {
       name: 'Essence',
@@ -10,7 +14,6 @@ const settings = {
     },
   },
   hideDisabledOptions: true,
-  maxDepth: 1,
 };
 
 export default settings;

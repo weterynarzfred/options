@@ -1,22 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import './style.scss';
-import Stats from './components/Stats';
-import Breadcrumbs from './components/Breadcrumbs';
-import MainOption from './components/MainOption';
+import './styles/style.scss';
+import HeadSection from './containers/HeadSection';
+import Content from './containers/Content';
 
 function App(props) {
   return (
     <div className="App">
-      <header>
-        <Breadcrumbs />
-        <Stats />
-      </header>
-      <main>
-        <MainOption />
-      </main>
+      <HeadSection />
+      <Content />
     </div>
   );
 }
 
-export default connect()(App);
+export default App;

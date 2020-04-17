@@ -1,6 +1,6 @@
 import { clone } from './helpers';
 import isOptionDisabled from './isOptionDisabled';
-import getChildOptions from "./getChildOptions";
+import getSubptions from "./getSubptions";
 import getSelectedCount from './getSelectedCount';
 
 /**
@@ -38,7 +38,7 @@ export default function calculateCurrency(currentOptions, currentValues, options
         }
       }
     }
-    const childOptions = getChildOptions(option, options);
+    const childOptions = getSubptions(option, options);
     currentValuesClone = calculateCurrency(childOptions, currentValuesClone, options);
   }
   return currentValuesClone;

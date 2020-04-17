@@ -1,4 +1,4 @@
-import getChildOptions from "./getChildOptions";
+import getSubptions from "./getSubptions";
 
 function getReversedPath(path) {
   if (typeof path === 'object') {
@@ -22,7 +22,7 @@ export default function getOption(path, options) {
 
   let option = {options};
   while (path.length) {
-    option = getChildOptions(option, options)[path.pop()];
+    option = getSubptions(option, options)[path.pop()];
   }
   return option;
 }
