@@ -1,4 +1,5 @@
 import React from 'react';
+import { checkIfPathSelected } from './functions/helpers';
 // import calculateCurrency from './functions/calculateCurrency';
 // import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
 // import getSelectedCount from './functions/getSelectedCount';
@@ -255,6 +256,7 @@ const options = {
         max: 3,
       },
     },
+    test: data => checkIfPathSelected('boolOption', data.options),
   },
   boolOption: {
     name: 'Boolean option',

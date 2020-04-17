@@ -5,6 +5,7 @@ import propShapes from '../propShapes';
 import getControlType from '../functions/getControlType';
 import getSubptions from '../functions/getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
+import isOptionDisabled from '../functions/isOptionDisabled';
 
 function getOptionInfo(option, options) {
   if (option.path === undefined) return {suboptions: options};
@@ -46,6 +47,7 @@ function OptionsContainer(props) {
   const optionsElements = [];
   for (const slug in optionInfo.suboptions) {
     const currentOption = optionInfo.suboptions[slug];
+    if (isOptionDisabled(currentOption, props.options)) continue;
     optionsElements.push(<Option
       key={`option-${currentOption.path}`}
       option={currentOption}
