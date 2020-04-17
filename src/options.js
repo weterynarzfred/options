@@ -275,6 +275,11 @@ const options = {
       },
     },
   },
+  story: {
+    type: 'story',
+    name: 'Hewwo',
+    text: <p>Go away.</p>
+  },
 };
 
 export default options;

@@ -46,21 +46,14 @@ function OptionsContainer(props) {
   const optionsElements = [];
   for (const slug in optionInfo.suboptions) {
     const currentOption = optionInfo.suboptions[slug];
-    if (currentOption.type === 'option' || currentOption.type === 'group') {
-      optionsElements.push(<Option
-        key={`option-${currentOption.path}`}
-        option={currentOption}
-        buy={handleBuy.bind(props, currentOption)}
-        sell={handleSell.bind(props, currentOption)}
-        change={handleChange.bind(props, currentOption)}
-        optionInfo={getOptionInfo(currentOption, props.options)}
-      />);
-    }
-    else {
-      optionsElements.push(<div key={`option-${currentOption.path}`}>
-        story elements not implemented
-      </div>);
-    }
+    optionsElements.push(<Option
+      key={`option-${currentOption.path}`}
+      option={currentOption}
+      buy={handleBuy.bind(props, currentOption)}
+      sell={handleSell.bind(props, currentOption)}
+      change={handleChange.bind(props, currentOption)}
+      optionInfo={getOptionInfo(currentOption, props.options)}
+    />);
   }
 
   return <div className="OptionsContainer">

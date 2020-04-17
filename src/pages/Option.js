@@ -30,6 +30,7 @@ function Option(props) {
     className={classNames(
       'Option',
       `OptionControl-${optionInfo.controlType}`,
+      `OptionType-${props.option.type}`,
       {OptionSelected: optionInfo.isSelected},
       {OptionOpenable: optionInfo.isOpenable}
     )}
