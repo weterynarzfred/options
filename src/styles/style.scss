@@ -11,15 +11,28 @@ body {
   display: flex;
 }
 
+.title {
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: center;
+}
+
 .Text {
   max-width: 40em;
   margin: 0 auto;
 }
 
-.title {
-  font-size: 1.5em;
-  font-weight: 700;
-  text-align: center;
+input {
+  background: none;
+  border: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  width: 100%;
+
+  &:hover {
+    background-color: #fff;
+  }
 }
 
 @import '_Nav';

@@ -1,4 +1,5 @@
 import getSubptions from "./getSubptions";
+import { clone } from "./helpers";
 
 function getReversedPath(path) {
   if (typeof path === 'object') {
@@ -18,11 +19,11 @@ function getReversedPath(path) {
  * @param {Object} options 
  */
 export default function getOption(path, options) {
-  path = getReversedPath(path);
+  const tempPath = getReversedPath(clone(path));
 
   let option = {options};
-  while (path.length) {
-    option = getSubptions(option, options)[path.pop()];
+  while (tempPath.length) {
+    option = getSubptions(option, options)[tempPath.pop()];
   }
   return option;
 }
