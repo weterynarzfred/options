@@ -6,3 +6,24 @@ body {
   background-color: #eee;
   margin: 0;
 }
+
+.flex {
+  display: flex;
+}
+
+.Text {
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 700;
+  text-align: center;
+}
+
+@import '_Intro';
+@import '_OptionWide';
+@import '_Options';
+@import '_OptionControls';
+@import '_Suboptions';

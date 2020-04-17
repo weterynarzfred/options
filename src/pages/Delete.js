@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './../styles/Suboption.module.scss';
 
 function Delete(props) {
   return <div
-    className={styles.Delete}
+    className="Delete"
     onClick={props.sell}
   >
     good delete

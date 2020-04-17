@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './../styles/Text.module.scss';
 import propShapes from '../propShapes';
 
 function getText(text) {
@@ -11,14 +10,14 @@ function getText(text) {
 
 function Text(props) {
   if (props.isChangeable) {
-    return <div className={styles.Text}>
+    return <div className="Text">
       <input
         value={getText(props.text)}
         onChange={event => props.change('text', event.target.value)}
       />
     </div>;
   }
-  return <div className={styles.Text}>
+  return <div className="Text">
     {getText(props.text)}
   </div>;
 }

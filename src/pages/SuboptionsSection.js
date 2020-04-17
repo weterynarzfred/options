@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './../styles/SuboptionsSection.module.scss';
 import { isObject } from '../functions/helpers';
 
-function SuboptionsSection(props) {
+function SuboptionsPage(props) {
   return <div
-    className={styles.SuboptionsSection}
+    className="Suboptions"
     onClick={event => {
       if (!isObject(event.detail)) event.detail = {};
       event.detail.fromSuboptions = true;
@@ -14,4 +13,4 @@ function SuboptionsSection(props) {
   </div>
 }
 
-export default SuboptionsSection;
+export default SuboptionsPage;

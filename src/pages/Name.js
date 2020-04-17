@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './../styles/Name.module.scss';
 
 function Name(props) {
   if (props.isChangeable) {
-    return <div className={styles.Name}>
+    return <div className="Name title">
       <input
         value={props.name}
         onChange={event => props.change('name', event.target.value)}
       />
     </div>;
   }
-  return <div className={styles.Name}>
+  return <div className="Name title">
     {props.name}
   </div>;
 }

@@ -1,13 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './../styles/Option.module.scss';
 import Text from './Text';
 import OptionControls from '../containers/OptionControls';
 import getControlType from '../functions/getControlType';
 import propShapes from '../propShapes';
 import Suboptions from '../containers/Suboptions';
 import Name from './Name';
+import OptionLinks from '../containers/OptionLinks';
+import getSubptions from '../functions/getSubptions';
+import getSelectedCount from '../functions/getSelectedCount';
+import { connect } from 'react-redux';
+
+function getOptionInfo(option, options) {
+  const optionInfo =  {
+    controlType: getControlType(option),
+    suboptions: getSubptions(option, options, true),
+    isSelected: getSelectedCount(option, options) > 0,
+  };
+
+  return optionInfo;
+}
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -20,49 +33,38 @@ function handleClick(event) {
     case 'spinbox':
       this.buy();
       break;
-    case 'addChild':
-      // ?
-      break;
-    case 'delete':
-      // ?
-      break;
     default:
-      return false;
   }
 }
 
 function Option(props) {
-  const controlType = getControlType(props.option);
+  const optionInfo = getOptionInfo(props.option, props.options);
   return <div
     className={classNames(
-      styles.Option,
-      styles[`control-${controlType}`]
+      'Option',
+      `OptionControl-${optionInfo.controlType}`,
+      {OptionSelected: optionInfo.isSelected}
     )}
     onClick={handleClick.bind(props)}
   >
-    <div className={styles.OptionWrap}>
+    <div className="OptionWrap">
       <OptionControls
         option={props.option}
         sell={props.sell}
         buy={props.buy}
       />
-      <div className={styles.title}>
-        <Name
-          name={props.option.name}
-          isChangeable={props.option.isChild}
-          change={props.change}
-        />
-      </div>
-      <div className={styles.text}>
-        <Text
-          text={props.option.text}
-          isChangeable={props.option.isChild}
-          change={props.change}
-        />
-      </div>
-      <Suboptions
-        option={props.option}
+      <Name
+        name={props.option.name}
+        isChangeable={props.option.isChild}
+        change={props.change}
       />
+      <Text
+        text={props.option.text}
+        isChangeable={props.option.isChild}
+        change={props.change}
+      />
+      <OptionLinks option={props.option} />
+      <Suboptions option={props.option} />
     </div>
   </div>;
 }
@@ -73,4 +75,10 @@ Option.propTypes = {
   sell: PropTypes.func,
 };
 
-export default Option;
+function mapStateToProps(state) {
+  return {
+    options: state.options,
+  };
+}
+
+export default connect(mapStateToProps)(Option);

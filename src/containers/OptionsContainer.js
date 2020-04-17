@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import getOption from './../functions/getOption';
 import Option from '../pages/Option';
-import OptionsSection from '../pages/OptionsSection';
+import propShapes from '../propShapes';
 
 function handleBuy(option) {
   this.dispatch({
@@ -27,18 +26,10 @@ function handleChange(option, textProp, text) {
   });
 }
 
-function Content(props) {
-  let selectedOption;
-  if (props.path.length > 0) {
-    selectedOption = getOption(props.path, props.options);
-  }
-  else {
-    selectedOption = {options: props.options};
-  }
-
+function OptionsContainer(props) {
   const optionsElements = [];
-  for (const slug in selectedOption.options) {
-    const currentOption = selectedOption.options[slug];
+  for (const slug in props.option.options) {
+    const currentOption = props.option.options[slug];
     if (currentOption.type === 'option' || currentOption.type === 'group') {
       optionsElements.push(<Option
         key={`option-${currentOption.path}`}
@@ -55,10 +46,14 @@ function Content(props) {
     }
   }
 
-  return <OptionsSection>
+  return <div className="OptionsContainer">
     {optionsElements}
-  </OptionsSection>;
+  </div>;
 }
+
+OptionsContainer.propTypes = {
+  option: propShapes.option,
+};
 
 function mapStateToProps(state) {
   return {
@@ -67,4 +62,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Content);
+export default connect(mapStateToProps)(OptionsContainer);

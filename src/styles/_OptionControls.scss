@@ -1,0 +1,7 @@
+.Checkbox {
+  cursor: pointer;
+
+  &.CheckboxSelected {
+    font-weight: 700;
+  }
+}

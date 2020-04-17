@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import getSubptions from '../functions/getSubptions';
 import propShapes from '../propShapes';
 import Suboption from '../pages/Suboption';
-import SuboptionsSection from '../pages/SuboptionsSection';
+import SuboptionsPage from '../pages/SuboptionsSection';
 
 function handleBuy(option) {
   this.dispatch({
@@ -45,9 +45,9 @@ function Suboptions(props) {
       />);
     }
   }
-  return <SuboptionsSection>
+  return <SuboptionsPage>
     {suboptionsElements}
-  </SuboptionsSection>;
+  </SuboptionsPage>;
 }
 
 Suboptions.propTypes = {
