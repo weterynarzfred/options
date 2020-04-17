@@ -32,7 +32,7 @@ function rootReducer(state = initialState, action) {
       findErrors(state);
     }
     else if (action.type === 'CHANGE_PATH') {
-      state.path = action.path;
+      state.path = action.path.filter(e => e);
     }
     else if (action.type === 'CHANGE_TEXT') {
       getOption(action.option, state.options)[action.textProp] = action.text;
