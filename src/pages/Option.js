@@ -13,6 +13,8 @@ import OptionFoot from '../containers/OptionFoot';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
+  if (event.detail.fromSuboptions) return;
+  if (event.detail.fromLink) return;
   
   switch(getControlType(this.option)) {
     case 'checkbox':

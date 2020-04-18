@@ -241,5 +241,4 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - images
 - `test` in `story`
 - display regular suboptions alongside option's children
-- stop opening an option with a checkbox from deselecting it
 - clean up old code
