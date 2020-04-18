@@ -11,7 +11,7 @@ function App(props) {
   const option = getOption(props.path, props.options);
   return (
     <div className="App">
-      <Nav />
+      <Nav option={option} />
       {props.path.length === 0 ?
         <Intro /> :
         <OptionWideHead option={option} />

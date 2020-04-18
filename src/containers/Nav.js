@@ -2,13 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Breadcrumbs from './Breadcrumbs';
 import CurrencyStats from '../pages/CurrencyStats';
+import propShapes from '../propShapes';
+import getCurrencies from '../functions/getCurrencies';
 
 function Nav(props) {
+  const currentCurrencies = getCurrencies(props, props.path);
+
   return <nav>
     <Breadcrumbs />
-    <CurrencyStats currency={props.settings.currency} />
+    <CurrencyStats currency={currentCurrencies} />
   </nav>
 }
+
+Nav.propTypes = {
+  option: propShapes.option,
+};
 
 function mapStateToProps(state) {
   return {

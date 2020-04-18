@@ -1,9 +1,7 @@
-import calculateCurrency from './calculateCurrency';
 import isOptionDisabled from '../functions/isOptionDisabled';
 import getSubptions from './getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
 import getOption from './getOption';
-import { clone } from './helpers';
 
 /**
  * Transforms path into a nice readable form.

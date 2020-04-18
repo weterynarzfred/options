@@ -238,11 +238,6 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - documentation
 - 'navigate back' button
 - 'rename' button
-- in a group, buying an option without a checkbox shouldn't uncheck other checkboxes
-- `image` in `story`
+- images
 - `test` in `story`
-- merge `options` and `optionsFunction`
-- editable text in child options
 - display regular suboptions alongside option's children
-- allow more complex options to be created using the `optionsFunction`
-- display option's currencies in all of its children.
