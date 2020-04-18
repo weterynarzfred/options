@@ -16,6 +16,7 @@ export function runUserFunction(userFunction, option, state) {
 
 function runUserFunctions(option, state) {
   runUserFunction(option.text, option, state);
+  runUserFunction(option.test, option, state);
   runUserFunction(option.optionsFunction, option, state);
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {

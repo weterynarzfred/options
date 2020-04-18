@@ -1,6 +1,7 @@
 import React from 'react';
+import prepareSettings from './functions/prepareSettings';
 
-const settings = {
+const settings = prepareSettings({
   title: 'Things to want',
   intro: <p>Intro text.</p>,
   currency: {
@@ -14,6 +15,6 @@ const settings = {
     },
   },
   hideDisabledOptions: true,
-};
+});
 
 export default settings;

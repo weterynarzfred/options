@@ -49,6 +49,7 @@ function replaceFunction(userFunction) {
 
 function replaceFunctions(option, options) {
   option.text = replaceFunction(option.text);
+  option.test = replaceFunction(option.test);
   option.optionsFunction = replaceFunction(option.optionsFunction);
   
   if (option.cost !== undefined) {

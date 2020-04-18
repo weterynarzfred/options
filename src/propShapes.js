@@ -5,7 +5,7 @@ const propShapes = {};
 propShapes.userFunction = PropTypes.shape({
   isUserFunction: PropTypes.bool,
   functionId: PropTypes.number,
-  value: PropTypes.node,
+  value: PropTypes.any,
 });
 
 propShapes.text = PropTypes.oneOfType([
@@ -34,13 +34,9 @@ propShapes.option = PropTypes.shape({
   image: PropTypes.string,
   cost: propShapes.cost,
   options: PropTypes.object,
-  test: PropTypes.func,
+  test: propShapes.userFunction,
   optionCurrency: propShapes.currency,
-  optionsFunction: PropTypes.shape({
-    isUserFunction: PropTypes.bool,
-    functionId: PropTypes.number,
-    value: PropTypes.object,
-  }),
+  optionsFunction: propShapes.userFunction,
   hasIndividualChildren: PropTypes.bool,
   individualOptions: PropTypes.object,
   childOptionCurrency: propShapes.currency,
