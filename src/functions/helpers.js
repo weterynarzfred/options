@@ -10,7 +10,10 @@ export function deepClone(object) {
     return object;
   }
 
-  if (typeof object === 'function') return object;
+  if (object.$$typeof !== undefined && object.$$typeof.toString() === 'Symbol(react.element)') {
+    return object;
+  }
+  
 
   let v;
   let bObject = Array.isArray(object) ? [] : {};

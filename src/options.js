@@ -6,7 +6,7 @@ const options = {
   intro: {
     type: 'story',
     name: 'Intro',
-    text: () => <p>lorem ipsum</p>,
+    text: <p>lorem ipsum</p>,
   },
   planeTravel: {
     name: 'Travel between planes',
@@ -54,7 +54,7 @@ const options = {
       planePoints: {
         name: 'Plane Points',
         max: false,
-        text: () => <p>Each point costs 1 essence more.</p>,
+        text: <p>Each point costs 1 essence more.</p>,
         cost: {
           essence: data => data.index + 1,
           planePoints: -1,
@@ -126,7 +126,7 @@ const options = {
       },
       tail: {
         name: 'Tail',
-        text: () => <p>They get a sexy tail.</p>,
+        text: <p>They get a sexy tail.</p>,
         image: './media/tail.jpg',
         cost: {
           raceCost: 1,
@@ -209,7 +209,7 @@ const options = {
           },
           fireball: {
             name: 'Fireball',
-            text: () => <p>It had to be here, didn't it.</p>,
+            text: <p>It had to be here, didn't it.</p>,
             cost: {
               essence: 1,
             },

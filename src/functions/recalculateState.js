@@ -3,20 +3,10 @@ import getSelectedCount from "./getSelectedCount";
 import calculateCurrency from "./calculateCurrency";
 import getUserFunctionValue from "./getUserFunctionValue";
 
-export function runUserFunction(userFunction, option, state) {
-  if (userFunction === undefined) return;
-  if (userFunction.isUserFunction) {
-    getUserFunctionValue(userFunction, {
-      option,
-      ...state,
-    }, 'value', true);
-  }
-}
-
 function runUserFunctions(option, state) {
-  runUserFunction(option.text, option, state);
-  runUserFunction(option.test, option, state);
-  runUserFunction(option.optionsFunction, option, state);
+  getUserFunctionValue(option.text, {option, ...state}, 'value', true);
+  getUserFunctionValue(option.test, {option, ...state}, 'value', true);
+  getUserFunctionValue(option.optionsFunction, {option, ...state}, 'value', true);
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];

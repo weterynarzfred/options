@@ -1,11 +1,12 @@
 import prepareOptions from "./prepareOptions";
 import { clone } from "./helpers";
-import { runUserFunction } from "./recalculateState";
+import getUserFunctionValue from "./getUserFunctionValue";
 
 export default function getSyntheticOptions(option, options) {
-  if (option.optionsFunction.value === undefined) {
-    runUserFunction(option.optionsFunction, option, {options});
-  }
+  getUserFunctionValue(option.optionsFunction, {
+    option,
+    options,
+  });
   
   const syntheticOptions = clone(option.optionsFunction.value);
 
