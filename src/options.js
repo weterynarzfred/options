@@ -216,7 +216,7 @@ const options = {
           },
         },
       },
-    }, 
+    },
   },
   simpleOptions: {
     type: 'story',

@@ -23,7 +23,7 @@ function buyIndividualChild(option, options) {
     }
   };
   option.selected[slug] = prepareOptions(child, option.path, options)[slug];
-  
+
 }
 
 function buySimpleChild(option, options) {
@@ -47,7 +47,7 @@ function buySimpleChild(option, options) {
 
 function buySyntheticOption(option, options) {
   if (option.max !== false && option.selected >= option.max) return;
-  
+
   const parent = getParent(option, options);
   if (parent.functionalChildren[option.slug] === undefined) {
     parent.functionalChildren[option.slug] = {

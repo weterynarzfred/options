@@ -38,8 +38,8 @@ function OptionWideHead(props) {
       sell={handleSell.bind(props, props.option)}
     />
     <OptionStats
-        option={props.option}
-      />
+      option={props.option}
+    />
     <Name
       name={props.option.name}
       isChangeable={props.option.isChild}

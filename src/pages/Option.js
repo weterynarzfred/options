@@ -15,8 +15,8 @@ function handleClick(event) {
   if (event.detail.fromOptionControl) return;
   if (event.detail.fromSuboptions) return;
   if (event.detail.fromLink) return;
-  
-  switch(getControlType(this.option)) {
+
+  switch (getControlType(this.option)) {
     case 'checkbox':
       if (this.option.selected) this.sell();
       else this.buy();
@@ -35,8 +35,8 @@ function Option(props) {
       'Option',
       `OptionControl-${optionInfo.controlType}`,
       `OptionType-${props.option.type}`,
-      {OptionSelected: optionInfo.isSelected},
-      {OptionOpenable: optionInfo.isOpenable}
+      { OptionSelected: optionInfo.isSelected },
+      { OptionOpenable: optionInfo.isOpenable }
     )}
     onClick={handleClick.bind(props)}
   >

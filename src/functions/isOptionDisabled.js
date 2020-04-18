@@ -11,7 +11,7 @@ export default function isOptionDisabled(option, options) {
     }
   }
   if (option.test !== undefined) {
-    return !getUserFunctionValue(option.test, {options, option});
+    return !getUserFunctionValue(option.test, { options, option });
   }
   return false;
 }

@@ -21,7 +21,7 @@ function getReversedPath(path) {
 export default function getOption(path, options) {
   const tempPath = getReversedPath(clone(path));
 
-  let option = {options};
+  let option = { options };
   while (tempPath.length) {
     option = getSubptions(option, options)[tempPath.pop()];
   }

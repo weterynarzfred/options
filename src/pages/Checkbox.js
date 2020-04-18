@@ -6,7 +6,7 @@ function Checkbox(props) {
   return <div
     className={classNames(
       "Checkbox",
-      {CheckboxSelected: props.selected}
+      { CheckboxSelected: props.selected }
     )}
     onClick={() => {
       if (props.selected) props.sell();

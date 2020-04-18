@@ -6,14 +6,13 @@ export function clone(object) {
 }
 
 export function deepClone(object) {
-  if (!object) {
-    return object;
-  }
-
-  if (object.$$typeof !== undefined && object.$$typeof.toString() === 'Symbol(react.element)') {
-    return object;
-  }
-  
+  if (
+    !object ||
+    (
+      object.$$typeof !== undefined &&
+      object.$$typeof.toString() === 'Symbol(react.element)'
+    )
+  ) return object;
 
   let v;
   let bObject = Array.isArray(object) ? [] : {};

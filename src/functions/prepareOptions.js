@@ -12,7 +12,7 @@ function getCurrencyName(searchedSlug, option, options) {
   }
 
   const tempPath = clone(option.path).split('/').reverse().filter(e => e !== '');
-  let currentOption = {options};
+  let currentOption = { options };
   while (tempPath.length) {
     currentOption = getSubptions(currentOption, options)[tempPath.pop()];
     if (currentOption === undefined) break;
@@ -51,7 +51,7 @@ function replaceFunctions(option, options) {
   option.text = replaceFunction(option.text);
   option.test = replaceFunction(option.test);
   option.optionsFunction = replaceFunction(option.optionsFunction);
-  
+
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       if (option.cost[currencySlug] === null) continue;

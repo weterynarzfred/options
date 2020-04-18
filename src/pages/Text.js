@@ -17,7 +17,7 @@ function Text(props) {
       />
     </div>;
   }
-  
+
   return <div className="Text">
     {getText(props.text)}
   </div>;

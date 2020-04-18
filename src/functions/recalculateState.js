@@ -4,9 +4,9 @@ import calculateCurrency from "./calculateCurrency";
 import getUserFunctionValue from "./getUserFunctionValue";
 
 function runUserFunctions(option, state) {
-  getUserFunctionValue(option.text, {option, ...state}, 'value', true);
-  getUserFunctionValue(option.test, {option, ...state}, 'value', true);
-  getUserFunctionValue(option.optionsFunction, {option, ...state}, 'value', true);
+  getUserFunctionValue(option.text, { option, ...state }, 'value', true);
+  getUserFunctionValue(option.test, { option, ...state }, 'value', true);
+  getUserFunctionValue(option.optionsFunction, { option, ...state }, 'value', true);
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];

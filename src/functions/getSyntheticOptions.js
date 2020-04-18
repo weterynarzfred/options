@@ -7,7 +7,7 @@ export default function getSyntheticOptions(option, options) {
     option,
     options,
   });
-  
+
   const syntheticOptions = clone(option.optionsFunction.value);
 
   for (const slug in syntheticOptions) {

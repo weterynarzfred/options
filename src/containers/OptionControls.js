@@ -10,7 +10,7 @@ import Delete from '../pages/Delete';
 
 function OptionControls(props) {
   let controls;
-  switch(getControlType(props.option)) {
+  switch (getControlType(props.option)) {
     case 'checkbox':
       controls = <Checkbox
         selected={!!props.option.selected}
