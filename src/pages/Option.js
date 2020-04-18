@@ -50,7 +50,7 @@ function Option(props) {
         option={props.option}
       />
       <Name
-        name={props.option.name}
+        name={props.option.name + ': ' + props.optionInfo.depth}
         isChangeable={props.option.isChild}
         change={props.change}
       />
@@ -59,7 +59,10 @@ function Option(props) {
         isChangeable={props.option.isChild}
         change={props.change}
       />
-      <OptionLinks option={props.option} />
+      <OptionLinks
+        option={props.option}
+        depth={optionInfo.depth}
+      />
       <OptionFoot option={props.option} />
       <Suboptions option={props.option} />
     </div>

@@ -14,7 +14,7 @@ function Suboption(props) {
       buy={props.buy}
     />
     <Name
-      name={props.option.name}
+      name={props.option.name + ': ' + props.optionInfo.depth}
       isChangeable={props.option.isChild}
       change={props.change}
     />

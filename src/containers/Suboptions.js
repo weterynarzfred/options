@@ -4,6 +4,7 @@ import getSubptions from '../functions/getSubptions';
 import propShapes from '../propShapes';
 import Suboption from '../pages/Suboption';
 import SuboptionsPage from '../pages/SuboptionsPage';
+import getOptionInfo from '../functions/getOptionInfor';
 
 function handleBuy(option) {
   this.dispatch({
@@ -42,6 +43,7 @@ function Suboptions(props) {
         buy={handleBuy.bind(props, currentOption)}
         sell={handleSell.bind(props, currentOption)}
         change={handleChange.bind(props, currentOption)}
+        optionInfo={getOptionInfo(currentOption, props.options)}
       />);
     }
   }

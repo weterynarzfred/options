@@ -6,6 +6,7 @@ import OptionControls from './OptionControls';
 import Text from '../pages/Text';
 import OptionStats from './../pages/OptionStats';
 import OptionFoot from './OptionFoot';
+import getOptionInfo from '../functions/getOptionInfor';
 
 function handleBuy(option) {
   this.dispatch({
@@ -31,6 +32,8 @@ function handleChange(option, textProp, text) {
 }
 
 function OptionWideHead(props) {
+  const optionInfo = getOptionInfo(props.option, props.options);
+
   return <div className="OptionWideHead">
     <OptionControls
       option={props.option}
@@ -41,7 +44,7 @@ function OptionWideHead(props) {
       option={props.option}
     />
     <Name
-      name={props.option.name}
+      name={props.option.name + ': ' + optionInfo.depth}
       isChangeable={props.option.isChild}
       change={handleChange.bind(props, props.option)}
     />
