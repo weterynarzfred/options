@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import Text from './Text';
 import OptionControls from '../containers/OptionControls';
 import getControlType from '../functions/getControlType';
@@ -10,6 +10,7 @@ import Name from './Name';
 import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
+import Select from './Select';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -64,7 +65,14 @@ function Option(props) {
         depth={optionInfo.depth}
       />
       <OptionFoot option={props.option} />
-      <Suboptions option={props.option} />
+      <Select
+        option={props.option}
+        optionInfo={optionInfo}
+      />
+      <Suboptions
+        option={props.option}
+        suboptions={props.optionInfo.suboptions}
+      />
     </div>
   </div>;
 }

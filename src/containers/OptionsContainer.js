@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Option from '../pages/Option';
 import propShapes from '../propShapes';
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getOptionInfo from '../functions/getOptionInfor';
+import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
 
 function handleBuy(option) {

@@ -15,6 +15,7 @@ export default function getControlType(option) {
       return 'delete';
     }
     if (option.max === 1) {
+      // has an additional test in getOptionsInfo
       return 'select';
     }
   }

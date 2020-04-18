@@ -37,6 +37,7 @@ function buySimpleChild(option, options) {
     option.max === 1
   ) {
     const selected = getSelected(parent, options);
+
     for (const slug in selected) {
       selected[slug].selected--;
     }

@@ -6,7 +6,7 @@ import OptionControls from './OptionControls';
 import Text from '../pages/Text';
 import OptionStats from './../pages/OptionStats';
 import OptionFoot from './OptionFoot';
-import getOptionInfo from '../functions/getOptionInfor';
+import getOptionInfo from '../functions/getOptionInfo';
 
 function handleBuy(option) {
   this.dispatch({

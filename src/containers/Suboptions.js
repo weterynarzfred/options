@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import getSubptions from '../functions/getSubptions';
+import PropTypes from 'prop-types';
 import propShapes from '../propShapes';
 import Suboption from '../pages/Suboption';
 import SuboptionsPage from '../pages/SuboptionsPage';
-import getOptionInfo from '../functions/getOptionInfor';
+import getOptionInfo from '../functions/getOptionInfo';
 
 function handleBuy(option) {
   this.dispatch({
@@ -30,7 +30,7 @@ function handleChange(option, textProp, text) {
 }
 
 function Suboptions(props) {
-  const suboptions = getSubptions(props.option, props.options, true);
+  const suboptions = props.suboptions;
   if (Object.keys(suboptions).length === 0) return false;
 
   const suboptionsElements = [];
@@ -54,6 +54,7 @@ function Suboptions(props) {
 
 Suboptions.propTypes = {
   option: propShapes.option,
+  suboptions: PropTypes.objectOf(propShapes.option),
 };
 
 function mapStateToProps(state) {

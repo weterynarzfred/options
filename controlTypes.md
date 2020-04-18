@@ -20,6 +20,7 @@
 *not displayed in `optionControls`*
 - `option.type === 'group'`
 - `option.max === 1`
+- has more than one suboption with `max === 1 && min === 0`
 
 # option click
 
