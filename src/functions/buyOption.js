@@ -10,8 +10,6 @@ function buyIndividualChild(option, options) {
   const slug = option.nextChildId++;
   const childOptions = option.individualOptions === undefined ?
     {} : deepClone(option.individualOptions);
-  console.log(childOptions);
-  
   const childCurrency = option.childOptionCurrency === undefined ?
     undefined : clone(option.childOptionCurrency);
   const child = {

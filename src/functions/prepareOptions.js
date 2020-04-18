@@ -54,6 +54,7 @@ function replaceFunctions(option, options) {
   
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
+      if (option.cost[currencySlug] === null) continue;
       option.cost[currencySlug] = replaceFunction(option.cost[currencySlug]);
       if (!option.cost[currencySlug].isUserFunction) {
         option.cost[currencySlug] = {

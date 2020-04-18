@@ -1,16 +1,15 @@
 import getSubptions from "./getSubptions";
-import { userFunctions } from "./prepareOptions";
 import getSelectedCount from "./getSelectedCount";
 import calculateCurrency from "./calculateCurrency";
+import getUserFunctionValue from "./getUserFunctionValue";
 
 export function runUserFunction(userFunction, option, state) {
   if (userFunction === undefined) return;
   if (userFunction.isUserFunction) {
-    userFunction.value = userFunctions[userFunction.functionId]({
+    getUserFunctionValue(userFunction, {
       option,
-      options: state.options, 
-      errors: state.errors,
-    });
+      ...state,
+    }, 'value', true);
   }
 }
 
@@ -21,24 +20,22 @@ function runUserFunctions(option, state) {
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];
-      if (!currency.isUserFunction) continue;
+      if (currency === null || !currency.isUserFunction) continue;
       const selectedCount = getSelectedCount(option, state.options);
       let cost = 0;
       for (let i = 0; i < selectedCount; i++) {
-        cost += userFunctions[currency.functionId]({
+        cost += getUserFunctionValue(currency, {
           index: i,
           option,
-          options: state.options, 
-          errors: state.errors,
-        });
+          ...state,
+        }, false);
       }
       currency.value = cost;
-      currency.nextValue = userFunctions[currency.functionId]({
+      getUserFunctionValue(currency, {
         index: selectedCount,
         option,
-        options: state.options, 
-        errors: state.errors,
-      });
+        ...state,
+      }, 'nextValue', true);
     }
   }
 }
