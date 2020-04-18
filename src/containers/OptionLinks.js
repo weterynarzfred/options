@@ -5,7 +5,7 @@ import propShapes from '../propShapes';
 import PathLink from './PathLink';
 
 function getOpenLink(props) {
-  if (props.depth > 0) {
+  if (props.depth > 1) {
     return <PathLink text="open" path={props.option.path} />
   }
   else return false;
