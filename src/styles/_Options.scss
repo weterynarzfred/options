@@ -2,28 +2,51 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 120em;
-  margin: 3em auto;
-  padding: 0 0.5em;
+  margin: 3em auto 3em auto;
+  padding: 0 3em;
 
   .Option {
-    width: 33.3333%;
-    padding: 0.5em;
+    position: relative;
+    width: 25%;
+    padding: 1.5em 0.5em;
 
     .OptionWrap {
-      padding: 0.5em;
-      height: 100%;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 0.5em;
+      border-radius: 0.5em;
+
+      > .Image {
+        box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003;
+      }
 
       > .Name {
-        font-weight: 700;
+        margin-top: 0.5em;
         text-align: center;
+        color: #555;
       }
-    }
 
-    &.OptionControl-checkbox {
-      border: 1px solid #333;
+      .OptionLinks {
+        text-align: right;
+        margin: 0.5em 1em;
 
-      &:hover {
-        background-color: #ddd;
+        .PathLink {
+          border-radius: 0.5em;
+          font-size: 0.75em;
+          padding: 0.5em 1em;
+          transition: 0.3s;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          font-weight: 700;
+          line-height: 1;
+          box-shadow: 0 0 0 1px #999;
+          background-color: #eee;
+
+          &:hover {
+            background-color: #555;
+            color: #eee;
+          }
+        }
       }
     }
 
@@ -34,6 +57,125 @@
     &.OptionControl-select {
       .SelectableSuboption {
         display: none;
+      }
+    }
+  }
+}
+
+.Option.OptionType-option,
+.Option.OptionType-group {
+  .OptionWrap {
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #999;
+  }
+
+  .OptionControls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+// selectable options
+.Option.OptionControl-checkbox,
+.Option.OptionControl-spinbox {
+  .OptionWrap {
+    background-color: #eee;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: 0.3s;
+
+    > .Image {
+      filter: grayscale(1);
+      transition: 0.3s;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &.OptionSelected {
+    .OptionWrap {
+      background-color: #fff;
+      opacity: 1;
+
+      > .Image {
+        filter: grayscale(0);
+      }
+
+      &:hover {
+        box-shadow: 0 0 0 2px #999;
+      }
+    }
+  }
+}
+
+// titles in options
+$nameShadowColor: #fff;
+$nameShadowOffset: 2px;
+$nameShadowSpread: 5px;
+.OptionsContainer {
+  .Option {
+    &.OptionType-option,
+    &.OptionType-group {
+      .OptionWrap {
+        > .Name {
+          position: relative;
+          margin-bottom: 0.5em;
+          font-size: 3em;
+          color: #333;
+          text-shadow: $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor,
+            -1 * $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
+            $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
+            -1 * $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor;
+        }
+
+        &.OptionWrapHasImage {
+          > .Name {
+            margin-top: -0.7em;
+          }
+        }
+      }
+    }
+  }
+}
+
+// shadows on options
+.OptionsContainer {
+  .Option {
+    &.OptionType-option,
+    &.OptionType-group {
+      .OptionWrap {
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: block;
+          pointer-events: none;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+// increase padding top of the option to make space for the controls
+.OptionsContainer {
+  .Option {
+    &.OptionControl-checkbox,
+    &.OptionControl-spinbox,
+    &.OptionControl-addChild {
+      .OptionWrap {
+        padding-top: 2em;
+
+        &.OptionWrapHasImage {
+          padding-top: 0;
+        }
       }
     }
   }

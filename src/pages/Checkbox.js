@@ -13,7 +13,9 @@ function Checkbox(props) {
       else props.buy();
     }}
   >
-    good checkbox
+    <svg viewBox="0 0 100 100">
+      <path d="M17 53L42 83L77 23" />
+    </svg>
   </div>
 }
 

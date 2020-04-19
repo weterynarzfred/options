@@ -11,6 +11,7 @@ import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
 import Select from './Select';
+import Image from './Image';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
@@ -31,6 +32,12 @@ function handleClick(event) {
 
 function Option(props) {
   const optionInfo = props.optionInfo;
+
+  let image = props.option.image;
+  if (optionInfo.controlType === 'select' && props.option.useImageOfSelected) {
+    image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+  }
+
   return <div
     className={classNames(
       'Option',
@@ -39,14 +46,22 @@ function Option(props) {
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable }
     )}
-    onClick={handleClick.bind(props)}
   >
-    <div className="OptionWrap">
-      <OptionControls
-        option={props.option}
-        sell={props.sell}
-        buy={props.buy}
-      />
+    <OptionControls
+      option={props.option}
+      sell={props.sell}
+      buy={props.buy}
+      trade={props.trade}
+      optionInfo={optionInfo}
+    />
+    <div
+      className={classNames(
+        'OptionWrap',
+        { OptionWrapHasImage: image !== undefined }
+      )}
+      onClick={handleClick.bind(props)}
+    >
+      <Image src={image} />
       <OptionStats
         option={props.option}
       />
@@ -81,6 +96,7 @@ Option.propTypes = {
   option: propShapes.option,
   buy: PropTypes.func,
   sell: PropTypes.func,
+  trade: PropTypes.func,
   optionInfo: PropTypes.object,
 };
 

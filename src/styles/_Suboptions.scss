@@ -1,25 +1,62 @@
 .Suboptions {
+  cursor: auto;
+
   .Suboption {
+    position: relative;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    border: 1px solid #555;
     margin-bottom: 0.5em;
-    padding: 0.5em;
+    padding-top: 0.5em;
 
     &:last-child {
       margin-bottom: 0;
     }
 
     .OptionControls {
-      width: 33.3333%;
+      position: relative;
+      width: 8em;
+
+      .Checkbox {
+        width: 2em;
+        height: 2em;
+      }
     }
 
     .Name {
-      font-size: 1em;
+      font-size: 1.5em;
+      margin: 0.25em 0 0 0;
+    }
+
+    .Text {
+      font-size: 0.825em;
+      width: 100%;
     }
 
     .OptionStats {
       width: 100%;
     }
+  }
+}
+
+// selectable suboptions
+.Suboption.OptionType-option,
+.Suboption.OptionType-group {
+  background-color: #eee;
+  opacity: 0.75;
+  transition: 0.3s;
+
+  // > .Image {
+  //   filter: grayscale(1);
+  //   transition: 0.3s;
+  // }
+
+  &.OptionSelected {
+    background-color: #fff;
+    opacity: 1;
+
+    // > .Image {
+    //   filter: grayscale(0);
+    // }
   }
 }

@@ -22,6 +22,14 @@ function handleSell(option) {
   });
 }
 
+function handleTrade(option, value) {
+  this.dispatch({
+    type: 'TRADE_OPTION',
+    value,
+    option,
+  });
+}
+
 function handleChange(option, textProp, text) {
   this.dispatch({
     type: 'CHANGE_TEXT',
@@ -39,6 +47,8 @@ function OptionWideHead(props) {
       option={props.option}
       buy={handleBuy.bind(props, props.option)}
       sell={handleSell.bind(props, props.option)}
+      trade={handleTrade.bind(props, props.option)}
+      optionInfo={optionInfo}
     />
     <OptionStats
       option={props.option}

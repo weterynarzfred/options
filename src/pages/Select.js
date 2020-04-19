@@ -1,22 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import propShapes from './../propShapes';
-import SelectControls from './SelectControls';
-import { connect } from 'react-redux';
+// import SelectControls from './SelectControls';
+import Text from './Text';
 
-function handleBuy(option) {
-  this.dispatch({
-    type: 'BUY_OPTION',
-    option,
-  });
-}
+// function handleBuy(option) {
+//   this.dispatch({
+//     type: 'BUY_OPTION',
+//     option,
+//   });
+// }
 
-function handleSell(option) {
-  this.dispatch({
-    type: 'SELL_OPTION',
-    option,
-  });
-}
+// function handleSell(option) {
+//   this.dispatch({
+//     type: 'SELL_OPTION',
+//     option,
+//   });
+// }
 
 function Select(props) {
   if (
@@ -26,13 +27,12 @@ function Select(props) {
 
   if (props.optionInfo.selectableSuboptions.length <= 1) return false;
 
+  const selected = props.optionInfo.selectableSuboptions[props.optionInfo.selectedSuboptionId];
+
   return <div className="Select">
-    <SelectControls
-      selectedId={props.optionInfo.selectedSuboptionId}
-      selectable={props.optionInfo.selectableSuboptions}
-      sell={handleSell.bind(props)}
-      buy={handleBuy.bind(props)}
-      includeEmpty={props.option.min === 0}
+    <Text
+      text={selected.text}
+      isChangeable={false}
     />
   </div>
 }

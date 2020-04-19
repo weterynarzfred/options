@@ -4,7 +4,18 @@
   display: flex;
 
   .IntroTitle {
-    font-size: 2em;
+    font-size: 3em;
+  }
+
+  .Image {
+    width: 40%;
+    flex-shrink: 0;
+
+    .ImageContent {
+      border-radius: 0.5em;
+      box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003 inset,
+        $shadowOffset $shadowOffset $shadowSpread 0 #fff;
+    }
   }
 
   &:after {

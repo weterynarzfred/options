@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import propShapes from '../propShapes';
 import Name from './Name';
+import Text from './Text';
 import OptionControls from '../containers/OptionControls';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
@@ -25,6 +26,11 @@ function Suboption(props) {
     />
     <Name
       name={props.option.name + ': ' + props.optionInfo.depth}
+      isChangeable={props.option.isChild}
+      change={props.change}
+    />
+    <Text
+      text={props.option.text}
       isChangeable={props.option.isChild}
       change={props.change}
     />

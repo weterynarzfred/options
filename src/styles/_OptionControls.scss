@@ -1,7 +1,134 @@
 .Checkbox {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
+  background-color: #eee;
+  z-index: 1;
+  border-radius: 50%;
   cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 0 1px #999;
+
+  svg {
+    transform: scale(0.5);
+    opacity: 0;
+    transition: 0.3s;
+
+    path {
+      stroke-dasharray: 110;
+      stroke-dashoffset: 110;
+      transition: 0.3s ease-in;
+    }
+  }
+
+  &:hover {
+    background-color: #fff;
+  }
 
   &.CheckboxSelected {
+    background-color: #fff;
+
+    svg {
+      transform: scale(0.7);
+      opacity: 1;
+
+      path {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    &:hover {
+      svg path {
+        stroke: #333;
+      }
+    }
+  }
+}
+
+.Spinbox {
+  position: relative;
+  top: 0.5em;
+  display: flex;
+  align-items: center;
+  width: 8em;
+  height: 2em;
+  background-color: #eee;
+  border-radius: 1.5em;
+  margin: 0 auto;
+  padding: 0 0.25em;
+  z-index: 1;
+  box-shadow: 0 0 0 1px #999;
+  transition: 0.3s;
+
+  button {
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #eee;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  input[type="number"] {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0.5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
     font-weight: 700;
+    color: #555;
+
+    &:hover,
+    &:focus {
+      background: none;
+    }
+  }
+
+  &:hover {
+    background-color: #fff;
+  }
+}
+
+.SelectControls {
+  position: relative;
+  top: 0.5em;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 2em;
+  background-color: #eee;
+  border-radius: 1.5em;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+  padding: 0 0.25em;
+  z-index: 1;
+  box-shadow: 0 0 0 1px #999;
+  transition: 0.3s;
+
+  .SelectControlsCurrent {
+    width: 100%;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.25em;
+  }
+
+  button {
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #eee;
+
+    &:hover {
+      background-color: #fff;
+    }
   }
 }

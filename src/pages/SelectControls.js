@@ -45,10 +45,18 @@ function SelectControls(props) {
     name = props.selectable[props.selectedId].name;
   }
 
-  return <div className="Spinbox">
-    <button onClick={handlePrevClick.bind(null, props)}>prev</button>
-    current: {name}
-    <button onClick={handleNextClick.bind(null, props)}>next</button>
+  return <div className="SelectControls">
+    <button onClick={handlePrevClick.bind(null, props)}>
+      <svg viewBox="0 0 100 100">
+        <path d="M70 10L10 50L70 90z" />
+      </svg>
+    </button>
+    <div className="SelectControlsCurrent">{name}</div>
+    <button onClick={handleNextClick.bind(null, props)}>
+      <svg viewBox="0 0 100 100">
+        <path d="M30 10L90 50L30 90z" />
+      </svg>
+    </button>
   </div>
 }
 

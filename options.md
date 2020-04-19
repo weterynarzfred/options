@@ -179,8 +179,12 @@ Object containing suboptions that will be copied to each child upon creation.
 - type: `object`
 - default: _none_
 - usable in: `option` when `hasIndividualChildren` is set to `true`
-- 
+
 Object containing currencies to be used in current option's children's suboptions.
+
+## `useImageOfSelected`
+- type: `bool`
+- default: `false`
 
 # keys set automaticaly
 

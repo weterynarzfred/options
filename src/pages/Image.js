@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function Image(props) {
+  if (props.src === undefined) return false;
+
   return <div
     className={classNames(
       'Image',
