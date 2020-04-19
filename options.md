@@ -238,15 +238,12 @@ Container for temporary option objects created using `optionsFunction`. This obj
 
 
 # To do
-- documentation
+- better documentation
 - 'navigate back' button
 - 'rename' button
-- images
 - styling
 - `test` in `story`
 - display regular suboptions alongside option's children
-- clean up old code
-- text in suboptions
 - links to open suboptions
 - selects in suboptions
 - links between options
