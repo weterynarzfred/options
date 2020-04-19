@@ -20,11 +20,11 @@ function handleClick(event) {
 
   switch (getControlType(this.option)) {
     case 'checkbox':
-      if (this.option.selected) this.sell();
-      else this.buy();
+      if (this.option.selected) this.sell(this.option);
+      else this.buy(this.option);
       break;
     case 'spinbox':
-      this.buy();
+      this.buy(this.option);
       break;
     default:
   }
@@ -61,12 +61,14 @@ function Option(props) {
       )}
       onClick={handleClick.bind(props)}
     >
-      <Image src={image} />
-      <OptionStats
-        option={props.option}
-      />
+      <div className="OptionHead">
+        <Image src={image} />
+        <OptionStats
+          option={props.option}
+        />
+      </div>
       <Name
-        name={props.option.name + ': ' + props.optionInfo.depth}
+        name={props.option.name}
         isChangeable={props.option.isChild}
         change={props.change}
       />

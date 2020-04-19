@@ -1,16 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './styles/style.scss';
 import Intro from './containers/Intro';
 import OptionsContainer from './containers/OptionsContainer';
 import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
-import { connect } from 'react-redux';
 import Nav from './containers/Nav';
+import $ from 'cash-dom';
+
+$(window).on('load', () => {
+  $('body').addClass('unlocked');
+  setTimeout(() => {
+    $('.MainOverlay').remove();
+  }, 300);
+});
 
 function App(props) {
   const option = getOption(props.path, props.options);
   return (
     <div className="App">
+      <div className="MainOverlay">
+        <svg className="loader" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" />
+        </svg>
+      </div>
       <Nav option={option} />
       {props.path.length === 0 ?
         <Intro /> :

@@ -20,6 +20,14 @@ function handleSell(option) {
   });
 }
 
+function handleTrade(option, value) {
+  this.dispatch({
+    type: 'TRADE_OPTION',
+    value,
+    option,
+  });
+}
+
 function handleChange(option, textProp, text) {
   this.dispatch({
     type: 'CHANGE_TEXT',
@@ -40,9 +48,10 @@ function Suboptions(props) {
       suboptionsElements.push(<Suboption
         key={`suboption-${currentOption.path}`}
         option={currentOption}
-        buy={handleBuy.bind(props, currentOption)}
-        sell={handleSell.bind(props, currentOption)}
-        change={handleChange.bind(props, currentOption)}
+        buy={handleBuy.bind(props)}
+        sell={handleSell.bind(props)}
+        trade={handleTrade.bind(props)}
+        change={handleChange.bind(props)}
         optionInfo={getOptionInfo(currentOption, props.options)}
       />);
     }

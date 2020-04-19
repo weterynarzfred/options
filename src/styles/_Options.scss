@@ -1,13 +1,15 @@
 .OptionsContainer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   max-width: 120em;
   margin: 3em auto 3em auto;
   padding: 0 3em;
 
   .Option {
     position: relative;
-    width: 25%;
+    width: 25em;
+    max-width: 100%;
     padding: 1.5em 0.5em;
 
     .OptionWrap {
@@ -15,8 +17,9 @@
       overflow: hidden;
       padding-bottom: 0.5em;
       border-radius: 0.5em;
+      height: 100%;
 
-      > .Image {
+      > .OptionHead .Image {
         box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003;
       }
 
@@ -26,7 +29,11 @@
         color: #555;
       }
 
-      .OptionLinks {
+      > .Select {
+        margin-top: 1em;
+      }
+
+      > .OptionLinks {
         text-align: right;
         margin: 0.5em 1em;
 
@@ -86,7 +93,7 @@
     opacity: 0.75;
     transition: 0.3s;
 
-    > .Image {
+    > .OptionHead .Image {
       filter: grayscale(1);
       transition: 0.3s;
     }
@@ -101,7 +108,7 @@
       background-color: #fff;
       opacity: 1;
 
-      > .Image {
+      > .OptionHead .Image {
         filter: grayscale(0);
       }
 
@@ -113,9 +120,9 @@
 }
 
 // titles in options
-$nameShadowColor: #fff;
-$nameShadowOffset: 2px;
-$nameShadowSpread: 5px;
+// $nameShadowColor: #fff;
+// $nameShadowOffset: 1px;
+// $nameShadowSpread: 1px;
 .OptionsContainer {
   .Option {
     &.OptionType-option,
@@ -123,19 +130,10 @@ $nameShadowSpread: 5px;
       .OptionWrap {
         > .Name {
           position: relative;
-          margin-bottom: 0.5em;
-          font-size: 3em;
-          color: #333;
-          text-shadow: $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor,
-            -1 * $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
-            $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
-            -1 * $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor;
-        }
-
-        &.OptionWrapHasImage {
-          > .Name {
-            margin-top: -0.7em;
-          }
+          // text-shadow: $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor,
+          //   -1 * $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
+          //   $nameShadowOffset -1 * $nameShadowOffset $nameShadowSpread $nameShadowColor,
+          //   -1 * $nameShadowOffset $nameShadowOffset $nameShadowSpread $nameShadowColor;
         }
       }
     }
@@ -170,26 +168,88 @@ $nameShadowSpread: 5px;
     &.OptionControl-checkbox,
     &.OptionControl-spinbox,
     &.OptionControl-addChild {
-      .OptionWrap {
-        padding-top: 2em;
-
-        &.OptionWrapHasImage {
-          padding-top: 0;
-        }
+      .OptionStats {
+        min-height: 2em;
       }
     }
   }
 }
 
-.OptionCost {
+// Option Stats
+.OptionStats {
   display: flex;
+  justify-content: space-between;
 
-  .OptionCost-single {
+  .OptionCost {
     display: flex;
-    padding-right: 1em;
+    flex-direction: column;
+    align-items: flex-start;
 
-    .OptionCost-name {
-      padding-right: 0.5em;
+    .OptionCostSingle {
+      height: 1.5em;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+
+      .OptionCost-name {
+        padding: 0 0.5em;
+      }
+
+      .OptionCost-value {
+        background-color: #555;
+        color: #f55;
+        min-width: 2em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.25em;
+        font-weight: 700;
+      }
+
+      &.OptionCostPositive {
+        .OptionCost-value {
+          color: #4c2;
+        }
+      }
+    }
+  }
+
+  .CurrencyStats {
+    .CurrencyStatSingle {
+      height: 1.5em;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+
+      .CurrencyStats-name {
+        padding: 0 0.5em;
+      }
+
+      .CurrencyStats-value {
+        min-width: 2em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.25em;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.Option > .OptionWrap {
+  &.OptionWrapHasImage {
+    .OptionHead {
+      position: relative;
+    }
+    .OptionStats {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      align-items: flex-end;
     }
   }
 }

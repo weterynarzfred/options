@@ -45,9 +45,9 @@ function OptionWideHead(props) {
   return <div className="OptionWideHead">
     <OptionControls
       option={props.option}
-      buy={handleBuy.bind(props, props.option)}
-      sell={handleSell.bind(props, props.option)}
-      trade={handleTrade.bind(props, props.option)}
+      buy={handleBuy.bind(props)}
+      sell={handleSell.bind(props)}
+      trade={handleTrade.bind(props)}
       optionInfo={optionInfo}
     />
     <OptionStats

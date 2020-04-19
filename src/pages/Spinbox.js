@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import $ from 'cash-dom';
 
 function handleBlur(setCurrentVal, event) {
   let value = Math.max(event.target.value, this.min);
@@ -27,6 +28,11 @@ function Spinbox(props) {
       max={props.max}
       onChange={event => setCurrentVal(event.target.value)}
       onBlur={handleBlur.bind(props, setCurrentVal)}
+      onKeyDown={event => {
+        if (event.which === 13) {
+          $(event.currentTarget).trigger('blur');
+        }
+      }}
     />
     <button onClick={props.buy}>
       <svg viewBox="0 0 100 100">

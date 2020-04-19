@@ -6,18 +6,14 @@ import isOptionDisabled from '../functions/isOptionDisabled';
 import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
 
-function handleBuy(option, override) {
-  if (override !== undefined) option = override;
-
+function handleBuy(option) {
   this.dispatch({
     type: 'BUY_OPTION',
     option,
   });
 }
 
-function handleSell(option, override) {
-  if (override !== undefined) option = override;
-
+function handleSell(option) {
   this.dispatch({
     type: 'SELL_OPTION',
     option,
@@ -50,10 +46,10 @@ function OptionsContainer(props) {
     optionsElements.push(<Option
       key={`option-${currentOption.path}`}
       option={currentOption}
-      buy={handleBuy.bind(props, currentOption)}
-      sell={handleSell.bind(props, currentOption)}
-      trade={handleTrade.bind(props, currentOption)}
-      change={handleChange.bind(props, currentOption)}
+      buy={handleBuy.bind(props)}
+      sell={handleSell.bind(props)}
+      trade={handleTrade.bind(props)}
+      change={handleChange.bind(props)}
       optionInfo={getOptionInfo(currentOption, props.options)}
     />);
   }

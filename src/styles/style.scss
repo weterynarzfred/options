@@ -7,7 +7,32 @@ $shadowSpread: 0.2em;
 
 html {
   font-size: 16px;
-  box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.5) inset;
+  box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.4) inset;
+  min-height: 100vh;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+    stroke-dasharray: 251.3274;
+    stroke-width: 20;
+  }
+  50% {
+    stroke-dasharray: 41.8879;
+    transform: rotate(0deg);
+  }
+  55% {
+    stroke-dasharray: 41.8879;
+    stroke-width: 20;
+  }
+  75% {
+    stroke-width: 10;
+  }
+  100% {
+    transform: rotate(360deg);
+    stroke-dasharray: 251.3274;
+    stroke-width: 20;
+  }
 }
 
 body {
@@ -15,8 +40,47 @@ body {
   background-image: url("/element/regal.png");
   background-size: 400px;
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   color: #333;
+  overflow: hidden;
+
+  .MainOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    opacity: 1;
+    transition: 0.3s;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .loader {
+      width: 3em;
+      height: 3em;
+
+      circle {
+        fill: none;
+        stroke: #eee;
+        stroke-width: 20;
+        stroke-linecap: round;
+        transform-origin: 50%;
+        animation: loading 5s infinite;
+      }
+    }
+  }
+
+  &.unlocked {
+    overflow: auto;
+
+    .MainOverlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
 }
 
 .niconne {
@@ -28,12 +92,14 @@ body {
 }
 
 .title {
-  font-size: 3em;
-  font-family: "Niconne", cursive;
+  font-size: 2em;
+  font-family: "EB Garamond", serif;
+  font-weight: 400;
   line-height: 1.1;
   text-align: center;
   margin-top: 0.25em;
   margin-bottom: 0.5em;
+  color: #555;
 }
 
 .Text {
@@ -42,6 +108,7 @@ body {
   p {
     max-width: 40em;
     margin: 0.5em auto;
+    text-align: justify;
     text-indent: 2em;
     line-height: 1.5;
   }

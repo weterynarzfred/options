@@ -23,9 +23,11 @@ function Suboption(props) {
       option={props.option}
       sell={props.sell}
       buy={props.buy}
+      trade={props.trade}
+      optionInfo={props.optionInfo}
     />
     <Name
-      name={props.option.name + ': ' + props.optionInfo.depth}
+      name={props.option.name}
       isChangeable={props.option.isChild}
       change={props.change}
     />

@@ -2,22 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import propShapes from './../propShapes';
-// import SelectControls from './SelectControls';
 import Text from './Text';
-
-// function handleBuy(option) {
-//   this.dispatch({
-//     type: 'BUY_OPTION',
-//     option,
-//   });
-// }
-
-// function handleSell(option) {
-//   this.dispatch({
-//     type: 'SELL_OPTION',
-//     option,
-//   });
-// }
 
 function Select(props) {
   if (

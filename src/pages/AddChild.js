@@ -6,7 +6,7 @@ function AddChild(props) {
     className="AddChild"
     onClick={props.buy}
   >
-    good add child
+    add new
   </div>
 }
 

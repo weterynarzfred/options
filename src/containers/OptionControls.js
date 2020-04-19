@@ -15,31 +15,31 @@ function OptionControls(props) {
     case 'checkbox':
       controls = <Checkbox
         selected={!!props.option.selected}
-        sell={props.sell}
-        buy={props.buy}
+        sell={props.sell.bind(null, props.option)}
+        buy={props.buy.bind(null, props.option)}
       />;
       break;
     case 'spinbox':
       controls = <Spinbox
         selected={props.option.selected}
-        sell={props.sell}
-        buy={props.buy}
-        trade={props.trade}
+        sell={props.sell.bind(null, props.option)}
+        buy={props.buy.bind(null, props.option)}
+        trade={props.trade.bind(null, props.option)}
         min={props.option.min}
         max={props.option.max}
       />
       break;
     case 'addChild':
-      controls = <AddChild buy={props.buy} />;
+      controls = <AddChild buy={props.buy.bind(null, props.option)} />;
       break;
     case 'delete':
-      controls = <Delete sell={props.sell} />;
+      controls = <Delete sell={props.sell.bind(null, props.option)} />;
       break;
     case 'select':
       controls = <SelectControls
         selectedId={props.optionInfo.selectedSuboptionId}
         selectable={props.optionInfo.selectableSuboptions}
-        sell={props.sell}
+        sell={props.sell.bind(null, props.option)}
         buy={props.buy}
         includeEmpty={props.option.min === 0}
       />;

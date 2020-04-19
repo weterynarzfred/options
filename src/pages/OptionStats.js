@@ -5,8 +5,8 @@ import OptionCost from './OptionCost';
 
 function OptionStats(props) {
   return <div className="OptionStats">
-    <CurrencyStats currency={props.option.optionCurrency} />
     <OptionCost cost={props.option.cost} />
+    <CurrencyStats currency={props.option.optionCurrency} />
   </div>
 }
 

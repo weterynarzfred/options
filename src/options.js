@@ -1,7 +1,6 @@
 import React from 'react';
 import getOption from './functions/getOption';
 import getSelected from './functions/getSelected';
-// import { clone } from './functions/helpers';
 
 function select(arr, def = false) {
   for (const condition of arr) {
@@ -72,7 +71,7 @@ const options = {
       },
       female: {
         name: 'Female',
-        text: <p>You have female genitals, round breasts and hips. Unfortunately you also have periods.</p>,
+        text: <p>You have female genitals, round breasts and hips. Unfortunately you also experience periods.</p>,
         image: './example/teacher_ordinary.jpg',
       },
     },
