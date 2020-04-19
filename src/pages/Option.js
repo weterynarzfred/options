@@ -35,7 +35,9 @@ function Option(props) {
 
   let image = props.option.image;
   if (optionInfo.controlType === 'select' && props.option.useImageOfSelected) {
-    image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+    if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
+      image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+    }
   }
 
   return <div

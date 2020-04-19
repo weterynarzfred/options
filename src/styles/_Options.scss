@@ -38,6 +38,7 @@
         margin: 0.5em 1em;
 
         .PathLink {
+          display: inline-block;
           border-radius: 0.5em;
           font-size: 0.75em;
           padding: 0.5em 1em;
@@ -167,7 +168,8 @@
   .Option {
     &.OptionControl-checkbox,
     &.OptionControl-spinbox,
-    &.OptionControl-addChild {
+    &.OptionControl-addChild,
+    &.OptionControl-select {
       .OptionStats {
         min-height: 2em;
       }
