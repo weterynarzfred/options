@@ -5,11 +5,13 @@ nav {
   left: 0;
   max-width: 80em;
   margin: 0 auto;
+  height: 2em;
   background-color: #333;
   color: #eee;
   padding: 0.25em 1em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   .CurrencyStats {
     display: flex;

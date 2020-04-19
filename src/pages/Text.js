@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Hyphenated from 'react-hyphen';
 import propShapes from '../propShapes';
 
 function getText(text) {
@@ -19,7 +20,9 @@ function Text(props) {
   }
 
   return <div className="Text">
-    {getText(props.text)}
+    <Hyphenated>
+      {getText(props.text)}
+    </Hyphenated>
   </div>;
 }
 

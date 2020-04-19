@@ -6,6 +6,7 @@ function Intro(props) {
   return <IntroPage
     title={props.settings.title}
     text={props.settings.intro}
+    image={props.settings.introImage}
   />;
 }
 

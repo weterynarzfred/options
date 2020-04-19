@@ -1,278 +1,74 @@
-// import React from 'react';
-// import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
-// import getSelectedCount from './functions/getSelectedCount';
+import React from 'react';
+import getOption from './functions/getOption';
+// import getSelected from './functions/getSelected';
+// import { clone } from './functions/helpers';
 
-// const options = {
-//   intro: {
-//     type: 'story',
-//     name: 'Intro',
-//     text: <p>lorem ipsum</p>,
-//   },
-//   planeTravel: {
-//     name: 'Travel between planes',
-//     type: 'group',
-//     max: false,
-//     test: data => getSelectedCount(data.options.planes, data.options) >= 2,
-//     options: {
-//       portals: {
-//         name: 'Portals',
-//         cost: {
-//           essence: 1,
-//         },
-//       },
-//       teleportation: {
-//         name: 'Teleportation',
-//         cost: {
-//           essence: 5,
-//         },
-//       },
-//     },
-//   },
-//   planes: {
-//     name: 'Planes',
-//     text: data => {
-//       const count = getSelectedCount(data.option, data.options);
-//       const texts = [
-//         `You have ${count} ${count === 1 ? 'plane' : 'planes'} created.`,
-//       ];
-//       return <p>Create some planes of existence. {texts[0]}</p>;
-//     },
-//     image: './media/starting_point.jpg',
-//     max: false,
-//     hasIndividualChildren: true,
-//     cost: {
-//       essence: 5,
-//       time: -1,
-//     },
-//     childOptionCurrency: {
-//       planePoints: {
-//         name: 'Plane Points',
-//         value: 10,
-//       },
-//     },
-//     individualOptions: {
-//       planePoints: {
-//         name: 'Plane Points',
-//         max: false,
-//         text: <p>Each point costs 1 essence more.</p>,
-//         cost: {
-//           essence: data => data.index + 1,
-//           planePoints: -1,
-//         },
-//       },
-//       scope: {
-//         name: 'Scope',
-//         type: 'group',
-//         min: 1,
-//         options: {
-//           planet: {
-//             name: 'Planet',
-//             cost: {
-//               planePoints: 5,
-//             },
-//           },
-//           continent: {
-//             name: 'Continent',
-//             cost: {
-//               planePoints: 4,
-//             },
-//           },
-//           island: {
-//             name: 'Island',
-//             cost: {
-//               planePoints: 2,
-//             },
-//           },
-//         },
-//       },
-//       races: {
-//         name: 'Races',
-//         image: './media/food_homemade.jpg',
-//         type: 'group',
-//         link: 'races',
-//         max: false,
-//         optionsFunction: data => optionsFromChildren(data.options.races, (result, source) => {
-//           result.cost = {
-//             planePoints: -source.optionCurrency.raceCost.currentValue,
-//           };
-//           result.link = source.path;
-//           return result;
-//         }),
-//       },
-//     },
-//   },
-//   races: {
-//     name: 'Races',
-//     image: './media/food_homemade.jpg',
-//     hasIndividualChildren: true,
-//     max: false,
-//     cost: {
-//       essence: 3,
-//     },
-//     childOptionCurrency: {
-//       raceCost: {
-//         name: 'Race Cost',
-//         value: 0,
-//         min: false,
-//       },
-//     },
-//     individualOptions: {
-//       cute: {
-//         name: 'Cute',
-//         selected: 1,
-//         cost: {
-//           raceCost: 5,
-//         },
-//       },
-//       tail: {
-//         name: 'Tail',
-//         text: <p>They get a sexy tail.</p>,
-//         image: './media/tail.jpg',
-//         cost: {
-//           raceCost: 1,
-//         },
-//       },
-//       horns: {
-//         name: 'horns',
-//         image: './media/horns.jpg',
-//         cost: {
-//           raceCost: 1,
-//         },
-//       },
-//       face: {
-//         name: 'Face',
-//         type: 'group',
-//         min: 1,
-//         max: 1,
-//         options: {
-//           humanoid: {
-//             name: 'Humanoid',
-//             cost: {
-//               raceCost: 2,
-//             },
-//           },
-//           animal: {
-//             name: 'Animal',
-//             image: './media/face_bestial.jpg',
-//             cost: {
-//               raceCost: 1,
-//             },
-//           },
-//           alien: {
-//             name: 'Alien',
-//             cost: {
-//               raceCost: 1,
-//             },
-//           },
-//         },
-//       },
-//     },
-//   },
-//   general: {
-//     name: 'General',
-//     type: 'group',
-//     image: './media/area_lakes.jpg',
-//     max: false,
-//     optionCurrency: {
-//       gold: {
-//         name: 'Gold',
-//         value: 5,
-//       },
-//     },
-//     options: {
-//       immortality: {
-//         name: 'Immortality',
-//         cost: {
-//           essence: 5,
-//         },
-//       },
-//       strength: {
-//         name: 'Strength',
-//         max: 3,
-//         cost: {
-//           essence: 1,
-//           gold: 1,
-//         },
-//       },
-//       magic: {
-//         name: 'Magic',
-//         cost: {
-//           essence: 1,
-//         },
-//         options: {
-//           portals: {
-//             name: 'Portals',
-//             test: data => checkIfPathSelected('planeTravel/portals', data.options),
-//             cost: {
-//               essence: 1,
-//             },
-//           },
-//           fireball: {
-//             name: 'Fireball',
-//             text: <p>It had to be here, didn't it.</p>,
-//             cost: {
-//               essence: 1,
-//             },
-//           },
-//         },
-//       },
-//     },
-//   },
-//   simpleOptions: {
-//     type: 'story',
-//     name: 'Simple Options',
-//     text: <p>For testing purposes only.</p>,
-//   },
-//   simple: {
-//     name: 'Simple Option',
-//     cost: {
-//       essence: 1,
-//     },
-//   },
-//   simple2: {
-//     name: 'Simple Option 2',
-//     test: data => data.options.simple.selected,
-//     cost: {
-//       essence: 1,
-//     }
-//   },
-// };
+function select(arr, def = false) {
+  for (const condition of arr) {
+    if (condition[0]) return condition[1];
+  }
+  return def;
+}
+
+function _is(path) {
+  const option = getOption(path, this.options);
+  return option.selected > 0;
+}
+
+function _val(path) {
+  const option = getOption(path, this.options);
+  return option.selected;
+}
+
+function bindData(data) {
+  return {
+    is: _is.bind(data),
+    val: _val.bind(data),
+  };
+}
 
 const options = {
-  oprion: {
-    name: 'Option',
+  body: {
+    name: 'Body',
+    type: 'story',
+    text: data => {
+      const { is, val } = bindData(data);
+      const cute = is('cuteness') ? ' cute' : false;
+      const gender = select([
+        [is('gender/male'), val('age') > 15 ? 'man' : 'boy'],
+        [is('gender/female'), val('age') > 15 ? 'woman' : 'girl'],
+      ], 'blank slate');
+
+      return <p>You are a{cute} {gender}. Choose from options below to specify your body.</p>
+    },
   },
-  group: {
+  cuteness: {
+    name: 'Cuteness',
+    text: <p>Are you cute?</p>
+  },
+  gender: {
+    name: 'Gender',
     type: 'group',
-    name: 'Group',
     min: 1,
+    text: <p>Are you a boy or a girl?</p>,
     options: {
-      a: {
-        name: 'A',
-        selected: 1,
+      male: {
+        name: 'Male',
+        text: <p>You have male genitals, high testosterone, and all good things that come from being a man.</p>,
       },
-      b: {
-        name: 'B',
+      female: {
+        name: 'Female',
+        text: <p>You have female genitals, round breasts and hips. Unfortunately you also have periods.</p>,
       },
     },
   },
-  group2: {
-    type: 'group',
-    name: 'Group 2',
-    min: 0,
-    options: {
-      a: {
-        name: 'A',
-      },
-      a2: {
-        name: 'A2',
-      },
-      b: {
-        name: 'B',
-        max: 2,
-      },
-    },
-  },
+  age: {
+    name: 'Age',
+    min: 12,
+    max: 36,
+    selected: 18,
+    text: <p>How old are you?</p>,
+  }
 };
 
 export default options;

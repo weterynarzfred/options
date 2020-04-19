@@ -1,9 +1,15 @@
 .Intro {
-  margin: 3em;
-  border: 1px solid #333;
-  padding: 0.5em;
+  max-width: 80em;
+  margin: 5em auto 3em auto;
+  display: flex;
 
   .IntroTitle {
     font-size: 2em;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
   }
 }

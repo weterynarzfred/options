@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  // box-shadow: 0 0 0 1px #f334 inset;
 }
 
 body {
@@ -7,15 +8,27 @@ body {
   margin: 0;
 }
 
+.main-column {
+  width: 100%;
+}
+
 .title {
   font-size: 1.5em;
   font-weight: 700;
   text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
 }
 
 .Text {
-  max-width: 40em;
-  margin: 0 auto;
+  margin: 0 1em;
+
+  p {
+    max-width: 40em;
+    margin: 0.5em auto;
+    text-indent: 2em;
+    line-height: 1.5;
+  }
 }
 
 input {
@@ -36,6 +49,19 @@ input {
 
   &:hover {
     color: #777;
+  }
+}
+
+.Image {
+  &.ImageFloating {
+    width: 33.3333%;
+    flex-shrink: 0;
+  }
+
+  .ImageContent {
+    padding-bottom: 150%;
+    background-position: center;
+    background-size: cover;
   }
 }
 

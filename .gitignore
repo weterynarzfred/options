@@ -6,7 +6,8 @@
 .pnp.js
 
 # media
-/public/media
+/public/example
+/public/image
 
 # testing
 /coverage

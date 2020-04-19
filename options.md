@@ -157,7 +157,6 @@ Object containing currencies to be used in current option's suboptions. Should h
 ```
 
 ## `optionsFunction`
-**to be removed**
 - type: `function`
 - default: _none_
 - usable in: `option`, `group`
@@ -239,6 +238,16 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - 'navigate back' button
 - 'rename' button
 - images
+- styling
 - `test` in `story`
 - display regular suboptions alongside option's children
 - clean up old code
+- text in suboptions
+- links to open suboptions
+- selects in suboptions
+- links between options
+- wide options
+- errors menu
+- random outcomess
+- access to `settings` in option functions
+- stages
