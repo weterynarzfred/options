@@ -3,6 +3,7 @@ import { getParent } from "./helpers";
 
 export default function sellOption(option, options, path) {
   if (option.isSynthetic) {
+    if (option.selected <= option.min) return;
     const parent = getParent(option, options);
     parent.functionalChildren[option.slug].selected--;
     return;
@@ -10,6 +11,8 @@ export default function sellOption(option, options, path) {
 
   option = getOption(option, options);
   if (option.type === 'option') {
+    if (option.hasIndividualChildren) return;
+    if (option.selected <= option.min) return;
     option.selected--;
   }
   else if (option.type === 'group') {

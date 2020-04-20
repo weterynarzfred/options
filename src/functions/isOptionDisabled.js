@@ -1,5 +1,6 @@
 import getSelectedCount from "./getSelectedCount";
 import { getParent } from "./helpers";
+import getUserFunctionValue from "./getUserFunctionValue";
 
 export default function isOptionDisabled(option, options) {
   const parent = getParent(option, options);
@@ -9,6 +10,8 @@ export default function isOptionDisabled(option, options) {
       if (getSelectedCount(parent, options) === 0) return true;
     }
   }
-  if (option.test !== undefined) return !option.test({option, options});
+  if (option.test !== undefined) {
+    return !getUserFunctionValue(option.test, { options, option });
+  }
   return false;
 }

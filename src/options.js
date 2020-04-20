@@ -1,245 +1,273 @@
 import React from 'react';
-import calculateCurrency from './functions/calculateCurrency';
-import { optionsFromChildren, checkIfPathSelected } from './functions/helpers';
-import getSelectedCount from './functions/getSelectedCount';
+import getOption from './functions/getOption';
+import getSelected from './functions/getSelected';
+
+function select(arr, def = false) {
+  for (const condition of arr) {
+    if (condition[0]) return condition[1];
+  }
+  return def;
+}
+
+function _is(path) {
+  const option = getOption(path, this.options);
+  return option.selected > 0;
+}
+
+function _val(path) {
+  const option = getOption(path, this.options);
+  if (option.selected === undefined) {
+    const selected = getSelected(option, this.options);
+    if (selected.length === 0) return false;
+    return selected[0].slug;
+  }
+  return option.selected;
+}
+
+function bindData(data) {
+  return {
+    is: _is.bind(data),
+    val: _val.bind(data),
+  };
+}
 
 const options = {
-  intro: {
-    type: 'story',
-    name: 'Intro',
-    text: <p>lorem ipsum</p>,
-  },
-  planeTravel: {
-    name: 'Travel between planes',
-    type: 'group',
-    max: false,
-    test: data => getSelectedCount(data.options.planes, data.options) >= 2,
-    options: {
-      portals: {
-        name: 'Portals',
-        cost: {
-          essence: 1,
-        },
-      },
-      teleportation: {
-        name: 'Teleportation',
-        cost: {
-          essence: 5,
-        },
-      },
-    },
-  },
-  planes: {
-    name: 'Planes',
-    text: data => {
-      const count = getSelectedCount(data.option, data.options);
-      const texts = [
-        `You have ${count} ${count === 1 ? 'plane' : 'planes'} created.`,
-      ];
-      return <p>Create some planes of existence. {texts[0]}</p>;
-    },
-    image: './media/starting_point.jpg',
-    max: false,
+  teammates: {
+    name: 'Teammates',
     hasIndividualChildren: true,
-    cost: {
-      essence: 5,
-      time: -1,
-    },
-    childOptionCurrency: {
-      planePoints: {
-        name: 'Plane Points',
-        value: 10,
-      },
-    },
+    defaultChildName: 'Teammate',
     individualOptions: {
-      planePoints: {
-        name: 'Plane Points',
-        max: false,
-        text: <p>Each point costs 1 essence more.</p>,
-        cost: {
-          essence: data => data.index + 1,
-          planePoints: -1,
-        },
-      },
-      scope: {
-        name: 'Scope',
+      race: {
+        name: 'Race',
         type: 'group',
         min: 1,
         options: {
-          planet: {
-            name: 'Planet',
-            cost: {
-              planePoints: 5,
-            },
+          human: {
+            name: 'Human',
           },
-          continent: {
-            name: 'Continent',
-            cost: {
-              planePoints: 4,
-            },
+          elf: {
+            name: 'Elf',
           },
-          island: {
-            name: 'Island',
-            cost: {
-              planePoints: 2,
-            },
+          dwarf: {
+            name: 'Dwarf',
           },
-        },
-      },
-      races: {
-        name: 'Races',
-        image: './media/food_homemade.jpg',
-        type: 'group',
-        link: 'races',
-        max: false,
-        optionsFunction: data => optionsFromChildren(data.options.races, (result, source) => {
-          result.cost = {
-            planePoints: data => -calculateCurrency(
-              source.options,
-              data.options.races.childOptionCurrency,
-              data.options
-            ).raceCost.value,
-          };
-          result.link = source.path;
-          return result;
-        }),
-      },
-    },
-  },
-  races: {
-    name: 'Races',
-    image: './media/food_homemade.jpg',
-    hasIndividualChildren: true,
-    max: false,
-    cost: {
-      essence: 3,
-    },
-    childOptionCurrency: {
-      raceCost: {
-        name: 'Race Cost',
-        value: 0,
-        min: false,
-      },
-    },
-    individualOptions: {
-      cute: {
-        name: 'Cute',
-        selected: 1,
-        cost: {
-          raceCost: 5,
-        },
-      },
-      tail: {
-        name: 'Tail',
-        text: <p>They get a sexy tail.</p>,
-        image: './media/tail.jpg',
-        cost: {
-          raceCost: 1,
-        },
-      },
-      horns: {
-        name: 'horns',
-        image: './media/horns.jpg',
-        cost: {
-          raceCost: 1,
-        },
-      },
-      face: {
-        name: 'Face',
-        type: 'group',
-        min: 1,
-        max: 1,
-        options: {
-          humanoid: {
-            name: 'Humanoid',
-            cost: {
-              raceCost: 2,
-            },
-          },
-          animal: {
-            name: 'Animal',
-            image: './media/face_bestial.jpg',
-            cost: {
-              raceCost: 1,
-            },
-          },
-          alien: {
-            name: 'Alien',
-            cost: {
-              raceCost: 1,
-            },
+          driad: {
+            name: 'Driad',
           },
         },
       },
     },
   },
-  general: {
-    name: 'General',
+  perks: {
+    name: 'Perks',
     type: 'group',
-    image: './media/area_lakes.jpg',
+    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima. Odio id eos molestias repudiandae, veniam error soluta laboriosam cumque perferendis tempore corrupti numquam?</p>,
     max: false,
-    optionCurrency: {
-      gold: {
-        name: 'Gold',
-        value: 5,
-      },
-    },
     options: {
-      immortality: {
-        name: 'Immortality',
+      counterspell: {
+        name: 'Counterspell',
+        text: <p>Quo asperiores recusandae, quasi inventore eius quia excepturi maiores ipsum dolore laborum id maxime sequi. Repellendus magnam voluptatum molestiae animi sequi quidem saepe, veniam odio vero. Voluptas numquam possimus fugiat?</p>,
+        image: './image/stf99_Counterspell.jpg',
         cost: {
-          essence: 5,
+          gold: 3,
         },
       },
-      strength: {
-        name: 'Strength',
+      saveSlot: {
+        name: 'Save Slot',
         max: 3,
+        text: <p>Libero officiis fugit nesciunt nemo voluptatum quaerat nihil iure voluptates. A perferendis libero, obcaecati ullam sunt consequuntur distinctio nisi odio reprehenderit. Iste autem modi eaque quisquam facilis eos voluptate ea.</p>,
+        image: './image/ed77b54d2bb5ec1625186e24d84f4ac7.jpg',
+      },
+      detection: {
+        name: 'Magic Detection',
+        text: <p>Deleniti sint, totam ullam dicta quos voluptatum, sequi similique placeat, non necessitatibus laboriosam molestias expedita vero. Magnam nulla perspiciatis laborum quos, architecto ex reiciendis quisquam nisi suscipit quo illo eaque.</p>,
+      },
+      elemental: {
+        name: 'Elemental Magic',
+        type: 'group',
+        text: <p>Impedit soluta velit voluptatem magni rem quia quisquam. Animi praesentium accusantium quibusdam recusandae tempora dolores ex molestias dolorum porro aliquam, a aliquid illum. Molestias ab amet aut est aspernatur dolores.</p>,
+        options: {
+          fire: {
+            name: 'Fire',
+            text: <p>Eos incidunt voluptatum adipisci quas beatae illum sunt aut. Eveniet, sapiente totam adipisci illo quaerat blanditiis reprehenderit similique voluptatem. Odit consequatur iste ullam ratione labore cum mollitia omnis modi voluptatibus.</p>,
+          },
+          water: {
+            name: 'Water',
+            text: <p>Inventore quas nulla praesentium aspernatur tempora nam, minus iste exercitationem voluptatem. Minima hic est rem? Sed eveniet fugit natus placeat minus nisi beatae deleniti labore, ut dolorem ab, laboriosam consequatur.</p>,
+          },
+          nature: {
+            name: 'Nature',
+            text: <p>Harum dignissimos tenetur numquam vel blanditiis dolorum ab eum, quasi placeat tempore veniam asperiores fugit minima impedit velit ex dicta praesentium odio in? Hic maxime deserunt fugit itaque! Delectus, magnam?</p>,
+          },
+        },
+      },
+    },
+  },
+  perks2: {
+    name: 'Perks 2',
+    type: 'group',
+    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima. Odio id eos molestias repudiandae, veniam error soluta laboriosam cumque perferendis tempore corrupti numquam?</p>,
+    max: false,
+    options: {
+      counterspell: {
+        name: 'Counterspell',
+        text: <p>Quo asperiores recusandae, quasi inventore eius quia excepturi maiores ipsum dolore laborum id maxime sequi. Repellendus magnam voluptatum molestiae animi sequi quidem saepe, veniam odio vero. Voluptas numquam possimus fugiat?</p>,
         cost: {
-          essence: 1,
+          gold: 3,
+          grace: 1,
+        },
+        optionCurrency: {
+          silver: {
+            name: 'Silver',
+            value: 15,
+          },
+        },
+      },
+      saveSlot: {
+        name: 'Save Slot',
+        max: false,
+        type: 'group',
+        optionCurrency: {
+          silver: {
+            name: 'Silver',
+            value: 15,
+          },
+        },
+      },
+      detection: {
+        name: 'Magic Detection',
+        type: 'group',
+        max: false,
+        text: <p>Deleniti sint, totam ullam dicta quos voluptatum, sequi similique placeat, non necessitatibus laboriosam molestias expedita vero. Magnam nulla perspiciatis laborum quos, architecto ex reiciendis quisquam nisi suscipit quo illo eaque.</p>,
+      },
+      elemental: {
+        name: 'Elemental Magic',
+        type: 'group',
+        text: <p>Impedit soluta velit voluptatem magni rem quia quisquam. Animi praesentium accusantium quibusdam recusandae tempora dolores ex molestias dolorum porro aliquam, a aliquid illum. Molestias ab amet aut est aspernatur dolores.</p>,
+        options: {
+          fire: {
+            name: 'Fire',
+            text: <p>Eos incidunt voluptatum adipisci quas beatae illum sunt aut. Eveniet, sapiente totam adipisci illo quaerat blanditiis reprehenderit similique voluptatem. Odit consequatur iste ullam ratione labore cum mollitia omnis modi voluptatibus.</p>,
+          },
+          water: {
+            name: 'Water',
+            text: <p>Inventore quas nulla praesentium aspernatur tempora nam, minus iste exercitationem voluptatem. Minima hic est rem? Sed eveniet fugit natus placeat minus nisi beatae deleniti labore, ut dolorem ab, laboriosam consequatur.</p>,
+          },
+          nature: {
+            name: 'Nature',
+            text: <p>Harum dignissimos tenetur numquam vel blanditiis dolorum ab eum, quasi placeat tempore veniam asperiores fugit minima impedit velit ex dicta praesentium odio in? Hic maxime deserunt fugit itaque! Delectus, magnam?</p>,
+          },
+        },
+      },
+    },
+  },
+  body: {
+    name: 'Body',
+    type: 'story',
+    text: data => {
+      const { is, val } = bindData(data);
+      const cute = is('cuteness') ? ' a cute looking' : ' an average looking';
+      const gender = select([
+        [is('gender/male'), val('age') > 15 ? 'man' : 'boy'],
+        [is('gender/female'), val('age') > 15 ? 'woman' : 'girl'],
+      ], 'blank slate');
+      const complexion = is('freckles') ? (select([
+        [is('complexion/dark'), ' You have freckles but they are hardly visible with your dark complexion.'],
+        [is('complexion/mild'), ' You have freckles and a mild complexion.'],
+        [is('complexion/pale'), ' You have freckles clearly visible on your pale skin.'],
+      ], ' You have freckles.')) : (val('complexion') ? select([
+        [is('complexion/dark'), ' You have a dark skin.'],
+        [is('complexion/mild'), ' You have mild complexion.'],
+        [is('complexion/pale'), ' You have a pale skin.'],
+      ]) : false);
+
+      return <p>Choose from options below to specify your body. You are{cute} {gender}.{complexion}</p>
+    },
+  },
+  gender: {
+    name: 'Gender',
+    type: 'group',
+    min: 1,
+    text: <p>Are you a boy or a girl?</p>,
+    image: '',
+    useImageOfSelected: true,
+    options: {
+      male: {
+        name: 'Male',
+        text: <p>You have male genitals, high testosterone, and all good things that come from being a man.</p>,
+        image: './example/manly.jpg',
+        cost: {
           gold: 1,
         },
+        selected: 1,
       },
-      magic: {
-        name: 'Magic',
+      female: {
+        name: 'Female',
+        text: <p>You have female genitals, round breasts and hips. Unfortunately you also experience periods.</p>,
+        image: './example/teacher_ordinary.jpg',
         cost: {
-          essence: 1,
-        },
-        options: {
-          portals: {
-            name: 'Portals',
-            test: data => checkIfPathSelected('planeTravel/portals', data.options),
-            cost: {
-              essence: 1,
-            },
-          },
-          fireball: {
-            name: 'Fireball',
-            text: <p>It had to be here, didn't it.</p>,
-            cost: {
-              essence: 1,
-            },
-          },
+          gold: 2,
         },
       },
-    }, 
-  },
-  simpleOptions: {
-    type: 'story',
-    name: 'Simple Options',
-    text: <p>For testing purposes only.</p>,
-  },
-  simple: {
-    name: 'Simple Option',
-    cost: {
-      essence: 1,
+      test: {
+        name: 'Test',
+        max: false,
+      },
     },
   },
-  simple2: {
-    name: 'Simple Option 2',
-    test: data => data.options.simple.selected,
+  cuteness: {
+    name: 'Cuteness',
+    text: <p>Are you a <strong>qt<span style={{ fontSize: '1.25em' }}>&#x1D70B;</span></strong>?</p>,
+    image: './example/__original_drawn_by_shell_wwwtrista__678e4146199ced72171b10e542dbd660.png',
     cost: {
-      essence: 1,
-    }
+      gold: 1,
+      grace: -3,
+    },
+  },
+  freckles: {
+    name: 'Freckles',
+    text: <p>Clusters of concentrated melaninized cells.</p>,
+    image: './image/e0a3e482ffdf4274e41ef712b0d72d01.jpg',
+    options: {
+      face: {
+        name: 'On your face',
+        text: <p>Most of your freckles are concentrated on your face.</p>,
+      },
+      body: {
+        name: 'On your whole body',
+        text: <p>Freckles cover most of your body.</p>,
+      },
+    },
+  },
+  age: {
+    name: 'Age',
+    min: 12,
+    max: 36,
+    selected: 18,
+    text: <p>How old are you?</p>,
+    image: './example/age_normal.jpg',
+  },
+  complexion: {
+    name: 'Complexion',
+    type: 'group',
+    min: 1,
+    text: <p>How much melanin do you have in your skin?</p>,
+    options: {
+      dark: {
+        name: 'Dark',
+      },
+      mild: {
+        name: 'Mild',
+        selected: 1,
+      },
+      pale: {
+        name: 'Pale',
+      },
+    },
+  },
+  memory: {
+    name: 'Eideic Memory',
+    image: './image/811105069b3e593706e38d8225d102be.jpg',
   },
 };
 

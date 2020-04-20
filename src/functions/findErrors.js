@@ -1,6 +1,5 @@
-import calculateCurrency from './calculateCurrency';
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getChildOptions from './getChildOptions';
+import getSubptions from './getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
 import getOption from './getOption';
 
@@ -26,13 +25,13 @@ function getReadablePath(path, options) {
  */
 function checkGlobalCurrencies(settings, options, errors) {
   if (settings.currency === undefined) return;
-  const currentValues = calculateCurrency(options, settings.currency, options);
-  for (const currencySlug in currentValues) {
-    const currency = currentValues[currencySlug];
+  for (const currencySlug in settings.currency) {
+    const currency = settings.currency[currencySlug];
     let min = currency.min === undefined ? 0 : currency.min;
-    if (min !== false && currency.value < min) {
+    if (min !== false && currency.currentValue < min) {
       errors.push({
         text: `Currency ${currency.name} cannot be below ${min}.`,
+        code: `currency-${currency.slug}`,
       });
     }
   }
@@ -46,18 +45,15 @@ function checkGlobalCurrencies(settings, options, errors) {
  */
 function checkOptionCurrencies(option, options, errors) {
   if (option.optionCurrency === undefined) return;
-  const currentValues = calculateCurrency(
-    getChildOptions(option, options),
-    option.optionCurrency,
-    options
-  );
-  for (const currencySlug in currentValues) {
-    const currency = currentValues[currencySlug];
-    let min = currency.min === undefined ? 0 : currency.min;
-    if (min !== false && currency.value < min) {
+  for (const currencySlug in option.optionCurrency) {
+    const currency = option.optionCurrency[currencySlug];
+    const min = currency.min === undefined ? 0 : currency.min;
+    
+    if (min !== false && currency.currentValue < min) {
       errors.push({
         path: option.path,
         text: `Currency ${currency.name} in ${getReadablePath(option.path, options)} cannot be below ${min}.`,
+        code: `currency-${option.path}-${currency.slug}`,
       });
     }
   }
@@ -76,6 +72,7 @@ function checkMinMaxSelected(option, options, errors) {
       errors.push({
         path: option.path,
         text: `Option ${getReadablePath(option.path, options)} cannot have less than ${option.min} selected.`,
+        code: `option-${option.path}-min`,
       });
     }
   }
@@ -84,6 +81,7 @@ function checkMinMaxSelected(option, options, errors) {
       errors.push({
         path: option.path,
         text: `Option ${getReadablePath(option.path, options)} cannot have more than ${option.max} selected.`,
+        code: `option-${option.path}-max`,
       });
     }
   }
@@ -101,7 +99,7 @@ function checkOptions(options, errors, currentOptions = options) {
     if (isOptionDisabled(option, options)) continue;
     checkMinMaxSelected(option, options, errors);
     checkOptionCurrencies(option, options, errors);
-    const childOptions = getChildOptions(option, options);
+    const childOptions = getSubptions(option, options);
     if (childOptions !== undefined) {
       checkOptions(options, errors, childOptions);
     }

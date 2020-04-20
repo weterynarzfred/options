@@ -1,0 +1,193 @@
+$shadowOffset: 0.1em;
+$shadowSpread: 0.2em;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.4) inset;
+  min-height: 100vh;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+    stroke-dasharray: 251.3274;
+    stroke-width: 20;
+  }
+  50% {
+    stroke-dasharray: 41.8879;
+    transform: rotate(0deg);
+  }
+  55% {
+    stroke-dasharray: 41.8879;
+    stroke-width: 20;
+  }
+  75% {
+    stroke-width: 10;
+  }
+  100% {
+    transform: rotate(360deg);
+    stroke-dasharray: 251.3274;
+    stroke-width: 20;
+  }
+}
+
+body {
+  background-color: #eee;
+  background-image: url("/element/regal.png");
+  background-size: 400px;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  color: #333;
+  overflow: hidden;
+
+  .MainOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    opacity: 1;
+    transition: 0.3s;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .loader {
+      width: 3em;
+      height: 3em;
+
+      circle {
+        fill: none;
+        stroke: #eee;
+        stroke-width: 20;
+        stroke-linecap: round;
+        transform-origin: 50%;
+        animation: loading 5s infinite;
+      }
+    }
+  }
+
+  &.unlocked {
+    overflow: auto;
+
+    .MainOverlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.niconne {
+  font-family: "Niconne", cursive;
+}
+
+.main-column {
+  width: 100%;
+}
+
+.title {
+  font-size: 2em;
+  font-family: "EB Garamond", serif;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+  margin-top: 0.25em;
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+.Text {
+  margin: 0 1em;
+
+  p {
+    max-width: 40em;
+    margin: 0.5em auto;
+    text-align: justify;
+    text-indent: 2em;
+    line-height: 1.5;
+  }
+}
+
+input {
+  background: none;
+  border: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  width: 100%;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #fff;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.PathLink {
+  cursor: pointer;
+
+  &:hover {
+    color: #777;
+  }
+}
+
+.Image {
+  .ImageContent {
+    padding-bottom: 100%;
+    background-position: center;
+    background-size: cover;
+    background-color: #555;
+  }
+}
+
+button {
+  font: inherit;
+  display: block;
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+svg {
+  display: block;
+
+  path {
+    fill: none;
+    stroke: #555;
+    stroke-width: 20;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+@import "_Nav";
+@import "_Intro";
+@import "_OptionWide";
+@import "_Options";
+@import "_OptionControls";
+@import "_Suboptions";
+@import "_Stats";
+@import "_OptionFoot";

@@ -1,41 +1,55 @@
 import prepareOptions from "./prepareOptions";
-import { getParent, clone } from "./helpers";
+import { getParent, clone, deepClone } from "./helpers";
 import getOption from "./getOption";
 import getSelected from "./getSelected";
+import getSelectedCount from "./getSelectedCount";
 
-function buyIndividualChild(option) {
+function buyIndividualChild(option, options) {
+  if (option.max !== false && getSelectedCount(option, options) >= option.max) return;
+
   const slug = option.nextChildId++;
   const childOptions = option.individualOptions === undefined ?
-    {} : Object.create(option.individualOptions);
+    {} : deepClone(option.individualOptions);
   const childCurrency = option.childOptionCurrency === undefined ?
-    false : clone(option.childOptionCurrency);
+    undefined : clone(option.childOptionCurrency);
+  const childName = option.defaultChildName || option.name;
   const child = {
     [slug]: {
       type: 'group',
-      name: option.name + ' - ' + slug,
+      name: childName + ' - ' + slug,
       options: childOptions,
       isChild: true,
       max: false,
       optionCurrency: childCurrency,
     }
   };
-  option.selected[slug] = prepareOptions(child, option.path)[slug];
-  return option;
+  option.selected[slug] = prepareOptions(child, option.path, options)[slug];
+
 }
 
 function buySimpleChild(option, options) {
+  if (option.max !== false && option.selected >= option.max) return;
+
+  // deselect siblings
   const parent = getParent(option, options);
-  if (parent && parent.type === 'group' && parent.max === 1) {
+  if (
+    parent && parent.type === 'group' &&
+    parent.max === 1 &&
+    option.max === 1
+  ) {
     const selected = getSelected(parent, options);
+
     for (const slug in selected) {
       selected[slug].selected--;
     }
   }
+
   option.selected++;
-  return option;
 }
 
 function buySyntheticOption(option, options) {
+  if (option.max !== false && option.selected >= option.max) return;
+
   const parent = getParent(option, options);
   if (parent.functionalChildren[option.slug] === undefined) {
     parent.functionalChildren[option.slug] = {
@@ -46,17 +60,17 @@ function buySyntheticOption(option, options) {
 }
 
 export default function buyOption(option, options) {
+  if (option.type === 'group') return;
   if (option.isSynthetic) {
     buySyntheticOption(option, options);
   }
   else {
     option = getOption(option, options);
-    if (option.type === 'group') return;
     if (option.hasIndividualChildren) {
-      option = buyIndividualChild(option);
+      buyIndividualChild(option, options);
     }
     else {
-      option = buySimpleChild(option, options);
+      buySimpleChild(option, options);
     }
   }
 }

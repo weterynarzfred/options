@@ -1,0 +1,90 @@
+.CurrencyStatSingle {
+  display: flex;
+}
+
+nav {
+  .CurrencyStats-name {
+    padding-right: 0.5em;
+  }
+}
+
+.OptionStats {
+  display: flex;
+  justify-content: space-between;
+
+  .OptionCost {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .OptionCostSingle {
+      height: 1.5em;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+
+      .OptionCost-name {
+        padding: 0 0.5em;
+      }
+
+      .OptionCost-value {
+        background-color: #555;
+        color: #f55;
+        min-width: 2em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.25em;
+        font-weight: 700;
+      }
+
+      &.OptionCostPositive {
+        .OptionCost-value {
+          color: #4c2;
+        }
+      }
+    }
+  }
+
+  .CurrencyStats {
+    margin-left: auto;
+
+    .CurrencyStatSingle {
+      height: 1.5em;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+
+      .CurrencyStats-name {
+        padding: 0 0.5em;
+      }
+
+      .CurrencyStats-value {
+        min-width: 2em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.25em;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.Option > .OptionWrap {
+  &.OptionWrapHasImage {
+    > .OptionHead {
+      position: relative;
+
+      .OptionStats {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        align-items: flex-end;
+      }
+    }
+  }
+}
