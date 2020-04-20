@@ -186,6 +186,10 @@ Object containing currencies to be used in current option's children's suboption
 - type: `bool`
 - default: `false`
 
+## `defaultChildName`
+- type: `string`
+- default: same as `name`
+
 # keys set automaticaly
 
 ## `slug`

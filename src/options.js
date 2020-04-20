@@ -32,6 +32,32 @@ function bindData(data) {
 }
 
 const options = {
+  teammates: {
+    name: 'Teammates',
+    hasIndividualChildren: true,
+    defaultChildName: 'Teammate',
+    individualOptions: {
+      race: {
+        name: 'Race',
+        type: 'group',
+        min: 1,
+        options: {
+          human: {
+            name: 'Human',
+          },
+          elf: {
+            name: 'Elf',
+          },
+          dwarf: {
+            name: 'Dwarf',
+          },
+          driad: {
+            name: 'Driad',
+          },
+        },
+      },
+    },
+  },
   body: {
     name: 'Body',
     type: 'story',

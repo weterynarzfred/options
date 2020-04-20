@@ -12,10 +12,11 @@ function buyIndividualChild(option, options) {
     {} : deepClone(option.individualOptions);
   const childCurrency = option.childOptionCurrency === undefined ?
     undefined : clone(option.childOptionCurrency);
+  const childName = option.defaultChildName || option.name;
   const child = {
     [slug]: {
       type: 'group',
-      name: option.name + ' - ' + slug,
+      name: childName + ' - ' + slug,
       options: childOptions,
       isChild: true,
       max: false,
