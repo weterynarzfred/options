@@ -54,7 +54,7 @@ function OptionWideHead(props) {
       option={props.option}
     />
     <Name
-      name={props.option.name + ': ' + optionInfo.depth}
+      name={props.option.name}
       isChangeable={props.option.isChild}
       change={handleChange.bind(props, props.option)}
     />

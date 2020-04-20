@@ -44,6 +44,11 @@ function Suboptions(props) {
   const suboptionsElements = [];
   for (const slug in suboptions) {
     const currentOption = suboptions[slug];
+    const optionInfo = getOptionInfo(currentOption, props.options);
+    if (
+      props.optionInfo.controlType === 'select' &&
+      optionInfo.isSelectableSuboption
+    ) continue;
     if (currentOption.type === 'option' || currentOption.type === 'group') {
       suboptionsElements.push(<Suboption
         key={`suboption-${currentOption.path}`}
@@ -52,10 +57,12 @@ function Suboptions(props) {
         sell={handleSell.bind(props)}
         trade={handleTrade.bind(props)}
         change={handleChange.bind(props)}
-        optionInfo={getOptionInfo(currentOption, props.options)}
+        optionInfo={optionInfo}
       />);
     }
   }
+  if (suboptionsElements.length === 0) return false;
+
   return <SuboptionsPage>
     {suboptionsElements}
   </SuboptionsPage>;
@@ -64,6 +71,7 @@ function Suboptions(props) {
 Suboptions.propTypes = {
   option: propShapes.option,
   suboptions: PropTypes.objectOf(propShapes.option),
+  optionInfo: PropTypes.object,
 };
 
 function mapStateToProps(state) {

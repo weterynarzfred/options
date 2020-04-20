@@ -34,9 +34,14 @@ function Option(props) {
   const optionInfo = props.optionInfo;
 
   let image = props.option.image;
-  if (optionInfo.controlType === 'select' && props.option.useImageOfSelected) {
+  let getStastsFrom = props.option;
+  if (optionInfo.controlType === 'select') {
     if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
-      image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+      getStastsFrom = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
+      if (props.option.useImageOfSelected) {
+        image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+      }
+
     }
   }
 
@@ -66,7 +71,7 @@ function Option(props) {
       <div className="OptionHead">
         <Image src={image} />
         <OptionStats
-          option={props.option}
+          option={getStastsFrom}
         />
       </div>
       <Name
@@ -91,6 +96,7 @@ function Option(props) {
       <Suboptions
         option={props.option}
         suboptions={props.optionInfo.suboptions}
+        optionInfo={optionInfo}
       />
     </div>
   </div>;

@@ -39,7 +39,7 @@ function OptionControls(props) {
       controls = <SelectControls
         selectedId={props.optionInfo.selectedSuboptionId}
         selectable={props.optionInfo.selectableSuboptions}
-        sell={props.sell.bind(null, props.option)}
+        sell={props.sell}
         buy={props.buy}
         includeEmpty={props.option.min === 0}
       />;

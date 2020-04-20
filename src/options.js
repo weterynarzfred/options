@@ -58,6 +58,109 @@ const options = {
       },
     },
   },
+  perks: {
+    name: 'Perks',
+    type: 'group',
+    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima. Odio id eos molestias repudiandae, veniam error soluta laboriosam cumque perferendis tempore corrupti numquam?</p>,
+    max: false,
+    options: {
+      counterspell: {
+        name: 'Counterspell',
+        text: <p>Quo asperiores recusandae, quasi inventore eius quia excepturi maiores ipsum dolore laborum id maxime sequi. Repellendus magnam voluptatum molestiae animi sequi quidem saepe, veniam odio vero. Voluptas numquam possimus fugiat?</p>,
+        image: './image/stf99_Counterspell.jpg',
+        cost: {
+          gold: 3,
+        },
+      },
+      saveSlot: {
+        name: 'Save Slot',
+        max: 3,
+        text: <p>Libero officiis fugit nesciunt nemo voluptatum quaerat nihil iure voluptates. A perferendis libero, obcaecati ullam sunt consequuntur distinctio nisi odio reprehenderit. Iste autem modi eaque quisquam facilis eos voluptate ea.</p>,
+        image: './image/ed77b54d2bb5ec1625186e24d84f4ac7.jpg',
+      },
+      detection: {
+        name: 'Magic Detection',
+        text: <p>Deleniti sint, totam ullam dicta quos voluptatum, sequi similique placeat, non necessitatibus laboriosam molestias expedita vero. Magnam nulla perspiciatis laborum quos, architecto ex reiciendis quisquam nisi suscipit quo illo eaque.</p>,
+      },
+      elemental: {
+        name: 'Elemental Magic',
+        type: 'group',
+        text: <p>Impedit soluta velit voluptatem magni rem quia quisquam. Animi praesentium accusantium quibusdam recusandae tempora dolores ex molestias dolorum porro aliquam, a aliquid illum. Molestias ab amet aut est aspernatur dolores.</p>,
+        options: {
+          fire: {
+            name: 'Fire',
+            text: <p>Eos incidunt voluptatum adipisci quas beatae illum sunt aut. Eveniet, sapiente totam adipisci illo quaerat blanditiis reprehenderit similique voluptatem. Odit consequatur iste ullam ratione labore cum mollitia omnis modi voluptatibus.</p>,
+          },
+          water: {
+            name: 'Water',
+            text: <p>Inventore quas nulla praesentium aspernatur tempora nam, minus iste exercitationem voluptatem. Minima hic est rem? Sed eveniet fugit natus placeat minus nisi beatae deleniti labore, ut dolorem ab, laboriosam consequatur.</p>,
+          },
+          nature: {
+            name: 'Nature',
+            text: <p>Harum dignissimos tenetur numquam vel blanditiis dolorum ab eum, quasi placeat tempore veniam asperiores fugit minima impedit velit ex dicta praesentium odio in? Hic maxime deserunt fugit itaque! Delectus, magnam?</p>,
+          },
+        },
+      },
+    },
+  },
+  perks2: {
+    name: 'Perks 2',
+    type: 'group',
+    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima. Odio id eos molestias repudiandae, veniam error soluta laboriosam cumque perferendis tempore corrupti numquam?</p>,
+    max: false,
+    options: {
+      counterspell: {
+        name: 'Counterspell',
+        text: <p>Quo asperiores recusandae, quasi inventore eius quia excepturi maiores ipsum dolore laborum id maxime sequi. Repellendus magnam voluptatum molestiae animi sequi quidem saepe, veniam odio vero. Voluptas numquam possimus fugiat?</p>,
+        cost: {
+          gold: 3,
+          grace: 1,
+        },
+        optionCurrency: {
+          silver: {
+            name: 'Silver',
+            value: 15,
+          },
+        },
+      },
+      saveSlot: {
+        name: 'Save Slot',
+        max: false,
+        type: 'group',
+        optionCurrency: {
+          silver: {
+            name: 'Silver',
+            value: 15,
+          },
+        },
+      },
+      detection: {
+        name: 'Magic Detection',
+        type: 'group',
+        max: false,
+        text: <p>Deleniti sint, totam ullam dicta quos voluptatum, sequi similique placeat, non necessitatibus laboriosam molestias expedita vero. Magnam nulla perspiciatis laborum quos, architecto ex reiciendis quisquam nisi suscipit quo illo eaque.</p>,
+      },
+      elemental: {
+        name: 'Elemental Magic',
+        type: 'group',
+        text: <p>Impedit soluta velit voluptatem magni rem quia quisquam. Animi praesentium accusantium quibusdam recusandae tempora dolores ex molestias dolorum porro aliquam, a aliquid illum. Molestias ab amet aut est aspernatur dolores.</p>,
+        options: {
+          fire: {
+            name: 'Fire',
+            text: <p>Eos incidunt voluptatum adipisci quas beatae illum sunt aut. Eveniet, sapiente totam adipisci illo quaerat blanditiis reprehenderit similique voluptatem. Odit consequatur iste ullam ratione labore cum mollitia omnis modi voluptatibus.</p>,
+          },
+          water: {
+            name: 'Water',
+            text: <p>Inventore quas nulla praesentium aspernatur tempora nam, minus iste exercitationem voluptatem. Minima hic est rem? Sed eveniet fugit natus placeat minus nisi beatae deleniti labore, ut dolorem ab, laboriosam consequatur.</p>,
+          },
+          nature: {
+            name: 'Nature',
+            text: <p>Harum dignissimos tenetur numquam vel blanditiis dolorum ab eum, quasi placeat tempore veniam asperiores fugit minima impedit velit ex dicta praesentium odio in? Hic maxime deserunt fugit itaque! Delectus, magnam?</p>,
+          },
+        },
+      },
+    },
+  },
   body: {
     name: 'Body',
     type: 'story',
@@ -93,12 +196,22 @@ const options = {
         name: 'Male',
         text: <p>You have male genitals, high testosterone, and all good things that come from being a man.</p>,
         image: './example/manly.jpg',
+        cost: {
+          gold: 1,
+        },
         selected: 1,
       },
       female: {
         name: 'Female',
         text: <p>You have female genitals, round breasts and hips. Unfortunately you also experience periods.</p>,
         image: './example/teacher_ordinary.jpg',
+        cost: {
+          gold: 2,
+        },
+      },
+      test: {
+        name: 'Test',
+        max: false,
       },
     },
   },
@@ -106,6 +219,10 @@ const options = {
     name: 'Cuteness',
     text: <p>Are you a <strong>qt<span style={{ fontSize: '1.25em' }}>&#x1D70B;</span></strong>?</p>,
     image: './example/__original_drawn_by_shell_wwwtrista__678e4146199ced72171b10e542dbd660.png',
+    cost: {
+      gold: 1,
+      grace: -3,
+    },
   },
   freckles: {
     name: 'Freckles',
@@ -147,6 +264,10 @@ const options = {
         name: 'Pale',
       },
     },
+  },
+  memory: {
+    name: 'Eideic Memory',
+    image: './image/811105069b3e593706e38d8225d102be.jpg',
   },
 };
 

@@ -1,26 +1,21 @@
 .Suboptions {
   cursor: auto;
+  border-top: 1px solid #ccc;
+  margin-top: 1em;
 
   .Suboption {
     position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 0.5em;
-    padding-top: 0.5em;
+    border-bottom: 1px solid #ccc;
 
-    &:last-child {
-      margin-bottom: 0;
+    .SuboptionWrap {
+      width: 100%;
     }
 
-    .OptionControls {
-      position: relative;
-      width: 8em;
-
-      .Checkbox {
-        width: 2em;
-        height: 2em;
-      }
+    &:last-child {
+      border-bottom: none;
     }
 
     .Name {
@@ -30,11 +25,35 @@
 
     .Text {
       font-size: 0.825em;
-      width: 100%;
+    }
+
+    .Image {
+      width: 33.3333%;
+      float: left;
+      margin: 0.5em;
+
+      .ImageContent {
+        border-radius: 50%;
+      }
     }
 
     .OptionStats {
       width: 100%;
+      min-height: 1.5em;
+    }
+  }
+}
+
+// create space for option controls
+.Suboptions {
+  .Suboption {
+    &.OptionControl-checkbox,
+    &.OptionControl-spinbox,
+    &.OptionControl-addChild,
+    &.OptionControl-select {
+      .OptionStats {
+        min-height: 3em;
+      }
     }
   }
 }
@@ -42,21 +61,39 @@
 // selectable suboptions
 .Suboption.OptionType-option,
 .Suboption.OptionType-group {
-  background-color: #eee;
-  opacity: 0.75;
-  transition: 0.3s;
+  .SuboptionWrap {
+    // background-color: #eee;
+    // opacity: 0.75;
+    transition: 0.3s;
 
-  // > .Image {
-  //   filter: grayscale(1);
-  //   transition: 0.3s;
-  // }
+    > .Image {
+      filter: grayscale(1);
+      transition: 0.3s;
+    }
+  }
 
   &.OptionSelected {
-    background-color: #fff;
-    opacity: 1;
+    .SuboptionWrap {
+      background-color: #fff;
+      opacity: 1;
 
-    // > .Image {
-    //   filter: grayscale(0);
-    // }
+      > .Image {
+        filter: grayscale(0);
+      }
+    }
+  }
+}
+
+// suboption controls
+.Suboptions {
+  .Suboption {
+    .OptionControls {
+      padding-top: 0.5em;
+
+      .Checkbox {
+        width: 2em;
+        height: 2em;
+      }
+    }
   }
 }
