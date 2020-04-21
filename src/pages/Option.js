@@ -41,7 +41,6 @@ function Option(props) {
       if (props.option.useImageOfSelected) {
         image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
       }
-
     }
   }
 
