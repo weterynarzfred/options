@@ -38,8 +38,8 @@
     }
 
     .OptionStats {
-      width: 100%;
-      min-height: 1.5em;
+      // min-height: 0;
+      margin-top: 0.5em;
     }
   }
 }
@@ -52,7 +52,7 @@
     &.OptionControl-addChild,
     &.OptionControl-select {
       .OptionStats {
-        min-height: 3em;
+        // min-height: 3em;
       }
     }
   }
@@ -63,7 +63,7 @@
 .Suboption.OptionType-group {
   .SuboptionWrap {
     // background-color: #eee;
-    // opacity: 0.75;
+    opacity: 0.75;
     transition: 0.3s;
 
     > .Image {
@@ -89,10 +89,34 @@
   .Suboption {
     .OptionControls {
       padding-top: 0.5em;
+      width: 100%;
+
+      .Checkbox,
+      .Spinbox,
+      .SelectControls,
+      .AddChild {
+        top: 0;
+      }
 
       .Checkbox {
         width: 2em;
         height: 2em;
+      }
+
+      .Spinbox {
+        height: 1.5em;
+
+        input[type="number"] {
+          font-size: 1.25em;
+        }
+      }
+
+      .SelectControls {
+        height: 1.5em;
+
+        .SelectControlsCurrent {
+          font-size: 1em;
+        }
       }
     }
   }

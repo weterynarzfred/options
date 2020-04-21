@@ -72,12 +72,12 @@
 
 .Option.OptionType-option,
 .Option.OptionType-group {
-  .OptionWrap {
+  > .OptionWrap {
     background-color: #fff;
     box-shadow: 0 0 0 1px #999;
   }
 
-  .OptionControls {
+  > .OptionControls {
     position: absolute;
     top: 0;
     right: 0;
@@ -149,8 +149,10 @@
     &.OptionControl-spinbox,
     &.OptionControl-addChild,
     &.OptionControl-select {
-      .OptionStats {
-        min-height: 2em;
+      .OptionHead {
+        .OptionStats {
+          min-height: 1em;
+        }
       }
     }
   }

@@ -13,9 +13,13 @@ function Suboption(props) {
   const optionInfo = props.optionInfo;
 
   let image = props.option.image;
-  if (optionInfo.controlType === 'select' && props.option.useImageOfSelected) {
+  let getStastsFrom = props.option;
+  if (optionInfo.controlType === 'select') {
     if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
-      image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+      getStastsFrom = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
+      if (props.option.useImageOfSelected) {
+        image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+      }
     }
   }
 
@@ -29,9 +33,6 @@ function Suboption(props) {
       { SelectableSuboption: optionInfo.isSelectableSuboption }
     )}
   >
-    <OptionStats
-      option={props.option}
-    />
     <OptionControls
       option={props.option}
       sell={props.sell}
@@ -45,6 +46,9 @@ function Suboption(props) {
         name={props.option.name}
         isChangeable={props.option.isChild}
         change={props.change}
+      />
+      <OptionStats
+        option={getStastsFrom}
       />
       <Text
         text={props.option.text}

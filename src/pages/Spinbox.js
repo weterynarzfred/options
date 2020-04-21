@@ -15,6 +15,8 @@ function Spinbox(props) {
     setCurrentVal(props.selected);
   }, [props.selected]);
 
+  const attr = {};
+  if (props.max !== false) attr.max = props.max;
   return <div className="Spinbox">
     <button onClick={props.sell}>
       <svg viewBox="0 0 100 100">
@@ -25,7 +27,7 @@ function Spinbox(props) {
       type="number"
       value={currenVal}
       min={props.min}
-      max={props.max}
+      {...attr}
       onChange={event => setCurrentVal(event.target.value)}
       onBlur={handleBlur.bind(props, setCurrentVal)}
       onKeyDown={event => {
@@ -49,7 +51,10 @@ Spinbox.propTypes = {
   buy: PropTypes.func,
   trade: PropTypes.func,
   min: PropTypes.number,
-  max: PropTypes.number,
+  max: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
 };
 
 export default Spinbox;

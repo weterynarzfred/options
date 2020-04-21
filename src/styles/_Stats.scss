@@ -14,14 +14,16 @@ nav {
 
   .OptionCost {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     align-items: flex-start;
+    margin: 0.1em;
 
     .OptionCostSingle {
       height: 1.5em;
       display: flex;
       align-items: center;
-      background-color: #fff;
+      background-color: #eee;
+      margin: 0.1em;
 
       .OptionCost-name {
         padding: 0 0.5em;
@@ -37,6 +39,7 @@ nav {
         justify-content: center;
         padding: 0 0.25em;
         font-weight: 700;
+        transition: 0.3s;
       }
 
       &.OptionCostPositive {
@@ -48,6 +51,7 @@ nav {
   }
 
   .CurrencyStats {
+    margin: 0.1em;
     margin-left: auto;
 
     .CurrencyStatSingle {
@@ -55,6 +59,8 @@ nav {
       display: flex;
       align-items: center;
       background-color: #fff;
+      border: 1px solid #999;
+      margin: 0.1em;
 
       .CurrencyStats-name {
         padding: 0 0.5em;
@@ -84,6 +90,38 @@ nav {
         bottom: 0;
         left: 0;
         align-items: flex-end;
+      }
+    }
+  }
+}
+
+.OptionControl-checkbox,
+.OptionControl-spinbox,
+.OptionControl-addChild,
+.OptionControl-select {
+  .OptionCost {
+    .OptionCostSingle {
+      .OptionCost-value {
+        color: #eee;
+      }
+      &.OptionCostPositive {
+        .OptionCost-value {
+          color: #eee;
+        }
+      }
+    }
+  }
+  &.OptionSelected {
+    .OptionCost {
+      .OptionCostSingle {
+        .OptionCost-value {
+          color: #f55;
+        }
+        &.OptionCostPositive {
+          .OptionCost-value {
+            color: #4c2;
+          }
+        }
       }
     }
   }

@@ -144,10 +144,15 @@ const options = {
         name: 'Elemental Magic',
         type: 'group',
         text: <p>Impedit soluta velit voluptatem magni rem quia quisquam. Animi praesentium accusantium quibusdam recusandae tempora dolores ex molestias dolorum porro aliquam, a aliquid illum. Molestias ab amet aut est aspernatur dolores.</p>,
+        useImageOfSelected: true,
         options: {
           fire: {
             name: 'Fire',
             text: <p>Eos incidunt voluptatum adipisci quas beatae illum sunt aut. Eveniet, sapiente totam adipisci illo quaerat blanditiis reprehenderit similique voluptatem. Odit consequatur iste ullam ratione labore cum mollitia omnis modi voluptatibus.</p>,
+            image: './image/fujihara-fujihara-fire-tornado2.jpg',
+            cost: {
+              gold: 1,
+            },
           },
           water: {
             name: 'Water',
@@ -208,10 +213,6 @@ const options = {
         cost: {
           gold: 2,
         },
-      },
-      test: {
-        name: 'Test',
-        max: false,
       },
     },
   },
