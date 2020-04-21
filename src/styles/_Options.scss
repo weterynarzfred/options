@@ -15,7 +15,6 @@
     .OptionWrap {
       position: relative;
       overflow: hidden;
-      padding-bottom: 0.5em;
       border-radius: 0.5em;
       height: 100%;
 
@@ -60,6 +59,10 @@
 
     &.OptionType-story {
       width: 100%;
+
+      .Text {
+        font-size: 1.25em;
+      }
     }
 
     &.OptionControl-select {
