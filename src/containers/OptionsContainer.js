@@ -2,17 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Option from '../pages/Option';
 import propShapes from '../propShapes';
-import isOptionDisabled from '../functions/isOptionDisabled';
 import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
 import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
 
 function OptionsContainer(props) {
-  const suboptions = getSubptions(props.option, props.options, true);
+  const suboptions = getSubptions(props.option, props.options);
+
   const optionsElements = [];
   for (const slug in suboptions) {
     const currentOption = suboptions[slug];
-    if (isOptionDisabled(currentOption, props.options)) continue;
+    const optionInfo = getOptionInfo(currentOption, props.options);
+    if (!currentOption.showWhenDisabled && optionInfo.isDisabled) continue;
     optionsElements.push(<Option
       key={`option-${currentOption.path}`}
       option={currentOption}
@@ -20,7 +21,7 @@ function OptionsContainer(props) {
       sell={handleSell.bind(props)}
       trade={handleTrade.bind(props)}
       change={handleChange.bind(props)}
-      optionInfo={getOptionInfo(currentOption, props.options)}
+      optionInfo={optionInfo}
     />);
   }
 

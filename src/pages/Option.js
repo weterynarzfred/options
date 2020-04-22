@@ -5,18 +5,20 @@ import Text from './Text';
 import OptionControls from '../containers/OptionControls';
 import getControlType from '../functions/getControlType';
 import propShapes from '../propShapes';
-import Suboptions from '../containers/Suboptions';
+import SuboptionsContainer from '../containers/SuboptionsContainer';
 import Name from './Name';
 import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
 import Select from './Select';
 import Image from './Image';
+import DisabledOverlay from './DisabledOverlay';
 
 function handleClick(event) {
   if (event.detail.fromOptionControl) return;
   if (event.detail.fromSuboptions) return;
   if (event.detail.fromLink) return;
+  if (this.optionInfo.isDisabled) return;
 
   switch (getControlType(this.option)) {
     case 'checkbox':
@@ -51,7 +53,8 @@ function Option(props) {
       `OptionType-${props.option.type}`,
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
-      { OptionHasImage: image }
+      { OptionHasImage: image },
+      { OptionDisabled: optionInfo.isDisabled }
     )}
   >
     <OptionControls
@@ -93,9 +96,13 @@ function Option(props) {
         option={props.option}
         optionInfo={optionInfo}
       />
-      <Suboptions
+      <SuboptionsContainer
         option={props.option}
         suboptions={props.optionInfo.suboptions}
+        optionInfo={optionInfo}
+      />
+      <DisabledOverlay
+        option={props.option}
         optionInfo={optionInfo}
       />
     </div>

@@ -143,6 +143,16 @@ A function that will be executed to decide if the options should be active. Para
 }
 ```
 
+## `showWhenDisabled`
+- type: `bool`
+- default: false
+- usable in: `option`, `group` when `test` is set
+
+## `disabledText`
+- type: `string` | `jsx`
+- default: ''
+- usable in: `option`, `group` when `showWhenDisabled` is `true`
+
 ## `optionCurrency`
 - type: `object`
 - default: _none_

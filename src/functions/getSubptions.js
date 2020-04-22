@@ -19,8 +19,8 @@ export default function getSubptions(option, options, skipDisabled = false) {
   else {
     currentOptions = option.options;
   }
-  if (!currentOptions)
-    return {};
+  if (!currentOptions) return {};
+
   if (skipDisabled) {
     const result = {};
     for (const slug in currentOptions) {

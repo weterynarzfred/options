@@ -5,19 +5,26 @@ import propShapes from '../propShapes';
 import Suboption from '../pages/Suboption';
 import SuboptionsPage from '../pages/SuboptionsPage';
 import getOptionInfo from '../functions/getOptionInfo';
-import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
+import { handleBuy, handleSell, handleChange, handleTrade } from '../functions/handlers';
 
-function Suboptions(props) {
+function SuboptionsContainer(props) {
   const suboptions = props.suboptions;
   if (Object.keys(suboptions).length === 0) return false;
+  if (props.optionInfo.isDisabled) return false;
 
   const suboptionsElements = [];
   for (const slug in suboptions) {
     const currentOption = suboptions[slug];
     const optionInfo = getOptionInfo(currentOption, props.options);
     if (
-      props.optionInfo.controlType === 'select' &&
-      optionInfo.isSelectableSuboption
+      (
+        props.optionInfo.controlType === 'select' &&
+        optionInfo.isSelectableSuboption
+      ) ||
+      (
+        !currentOption.showWhenDisabled &&
+        optionInfo.isDisabled
+      )
     ) continue;
     if (currentOption.type === 'option' || currentOption.type === 'group') {
       suboptionsElements.push(<Suboption
@@ -38,7 +45,7 @@ function Suboptions(props) {
   </SuboptionsPage>;
 }
 
-Suboptions.propTypes = {
+SuboptionsContainer.propTypes = {
   option: propShapes.option,
   suboptions: PropTypes.objectOf(propShapes.option),
   optionInfo: PropTypes.object,
@@ -51,4 +58,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Suboptions);
+export default connect(mapStateToProps)(SuboptionsContainer);

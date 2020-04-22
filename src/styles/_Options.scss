@@ -92,20 +92,16 @@
 
 // selectable options
 .Option.OptionControl-checkbox,
-.Option.OptionControl-spinbox {
+.Option.OptionControl-spinbox,
+.Option.OptionControl-select {
   .OptionWrap {
     background-color: #eee;
-    cursor: pointer;
     opacity: 0.75;
     transition: 0.3s;
 
     > .OptionHead .Image {
       filter: grayscale(1);
       transition: 0.3s;
-    }
-
-    &:hover {
-      opacity: 0.9;
     }
   }
 
@@ -117,9 +113,27 @@
       > .OptionHead .Image {
         filter: grayscale(0);
       }
+    }
+  }
+}
+
+// clickable options
+.Option.OptionControl-checkbox,
+.Option.OptionControl-spinbox {
+  &:not(.OptionDisabled) {
+    .OptionWrap {
+      cursor: pointer;
 
       &:hover {
-        box-shadow: 0 0 0 2px #999;
+        opacity: 0.9;
+      }
+    }
+
+    &.OptionSelected {
+      .OptionWrap {
+        &:hover {
+          box-shadow: 0 0 0 2px #999;
+        }
       }
     }
   }
@@ -128,19 +142,29 @@
 // shadows on options
 .OptionsContainer {
   .Option {
-    &.OptionType-option,
-    &.OptionType-group {
-      .OptionWrap {
-        &:after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          display: block;
-          pointer-events: none;
-          transition: 0.3s;
+    .OptionWrap {
+      .OptionDisabledInfo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        background-color: #fff5;
+        padding: 1em;
+
+        .OptionDisabledMessage {
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          font-family: "EB Garamond", serif;
+        }
+        .OptionDisabledReason {
+          font-weight: 700;
         }
       }
     }

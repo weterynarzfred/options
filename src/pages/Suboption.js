@@ -9,6 +9,7 @@ import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
 import Image from './Image';
+import DisabledOverlay from './DisabledOverlay';
 
 function Suboption(props) {
   const optionInfo = props.optionInfo;
@@ -32,7 +33,8 @@ function Suboption(props) {
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
       { SelectableSuboption: optionInfo.isSelectableSuboption },
-      { OptionHasImage: image }
+      { OptionHasImage: image },
+      { OptionDisabled: optionInfo.isDisabled }
     )}
   >
     <OptionControls
@@ -62,6 +64,10 @@ function Suboption(props) {
         depth={optionInfo.depth}
       />
       <OptionFoot option={props.option} />
+      <DisabledOverlay
+        option={props.option}
+        optionInfo={optionInfo}
+      />
     </div>
   </div>
 }
