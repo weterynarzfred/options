@@ -19,22 +19,22 @@ If using jsx in options like in the example, React has to be in scope:
 import React from 'react';
 ```
 
-# keys that can be set in `options`
+## keys that can be set in `options`
 
-## `type`
+### `type`
 - type: `string`
 - default: `'option'`
 
 Type of the option. Possible values are `'option'`,  `'group'` and `'story'`.
 
-## `name`
+### `name`
 - type: `string` | `jsx`
 - default: `''`
 - usable in: `option`, `group`, `story`
 
 The name that will be displayed.
 
-## `text`
+### `text`
 - type: `string` | `jsx` | `(sting|jsx) function`
 - default: `''`
 - usable in: `option`, `group`, `story`
@@ -48,7 +48,7 @@ The text that will be displayed. Parameter passed to the function is an object c
 }
 ```
 
-## `link`
+### `link`
 - type: `string`
 - default: _none_
 - usable in: `option`, `group`
@@ -71,28 +71,28 @@ const options = {
 };
 ```
 
-## `min`
+### `min`
 - type: `number`
 - default: 0
 - usable in: `option`, `group`
 
 Minimum number of times an options can be selected. Cannot be nagative. If above 0, option will be initially selected.
 
-## `max`
+### `max`
 - type: `number` | `(bool) false`
 - default: 1
 - usable in: `option`, `group`
 
 Analogous to `min`. Setting to `false` removes the restriction.
 
-## `image`
+### `image`
 - type: `string`
 - default: _none_
 - usable in: `option`, `group`
 
 Path to option's image, relative to the `public` folder.
 
-## `cost`
+### `cost`
 - type: `object`
 - default: _none_
 - usable in: `option`
@@ -123,14 +123,14 @@ Example of an option with a cost represented by a function:
 }
 ```
 
-## `options`
+### `options`
 - type: `object`
 - default: _none_
 - usable in: `option`, `group`
 
 Object containing suboptions of the current option.
 
-## `test`
+### `test`
 - type: `(bool) function`
 - default: _none_
 - usable in: `option`, `group`
@@ -143,17 +143,17 @@ A function that will be executed to decide if the options should be active. Para
 }
 ```
 
-## `showWhenDisabled`
+### `showWhenDisabled`
 - type: `bool`
 - default: false
 - usable in: `option`, `group` when `test` is set
 
-## `disabledText`
+### `disabledText`
 - type: `string` | `jsx`
 - default: ''
 - usable in: `option`, `group` when `showWhenDisabled` is `true`
 
-## `optionCurrency`
+### `optionCurrency`
 - type: `object`
 - default: _none_
 - usable in: `option`, `group`
@@ -168,49 +168,49 @@ Object containing currencies to be used in current option's suboptions. Should h
 }
 ```
 
-## `optionsFunction`
+### `optionsFunction`
 - type: `function`
 - default: _none_
 - usable in: `option`, `group`
 
-## `hasIndividualChildren`
+### `hasIndividualChildren`
 - type: `bool`
 - default: `false`
 - usable in: `option`
 
 If set to `true` each time the option is bought it will create a new option as a suboption of the bought option. When set, `options` will be ignored.
 
-## `individualOptions`
+### `individualOptions`
 - type: `object`
 - default: _none_
 - usable in: `option` when `hasIndividualChildren` is set to `true`
 
 Object containing suboptions that will be copied to each child upon creation.
 
-## `childOptionCurrency`
+### `childOptionCurrency`
 - type: `object`
 - default: _none_
 - usable in: `option` when `hasIndividualChildren` is set to `true`
 
 Object containing currencies to be used in current option's children's suboptions.
 
-## `useImageOfSelected`
+### `useImageOfSelected`
 - type: `bool`
 - default: `false`
 
-## `defaultChildName`
+### `defaultChildName`
 - type: `string`
 - default: same as `name`
 
-# keys set automaticaly
+## keys set automaticaly
 
-## `slug`
+### `slug`
 - type: `string`
 - default: _none_
 
 Has the same value as the key used to create the option.
 
-## `path`
+### `path`
 - type: `string`
 - default: _none_
 
@@ -228,25 +228,25 @@ const options = {
 };
 ```
 
-## `selected`
+### `selected`
 - type: `number` | `object`
 - default: `0`
 
 Either a number of times the option was selected or an object containing all of its created children.
 
-## `isChild`
+### `isChild`
 - type: `bool`
 - default: `false`
 
 Is set to `true` in options that were created as children of options with `hasIndividualChildren`.
 
-## `isSynthetic`
+### `isSynthetic`
 - type: `bool`
 - default: `false`
 
 Is set to `true` in temporary option objects created using `optionsFunction`. Those options are not present in the state.
 
-## `functionalChildren`
+### `functionalChildren`
 - type: `object`
 - default: `{}`
 
