@@ -1,7 +1,8 @@
 import getOption from "./getOption";
 import getSyntheticOptions from "./getSyntheticOptions";
+import isOptionDisabled from "./isOptionDisabled";
 
-export default function getSelected(option, options) {
+export default function getSelected(option, options, skipDisabled = false) {
   const selected = [];
   if (option.optionsFunction !== undefined) {
     const syntheticOptions = getSyntheticOptions(option, options);
@@ -26,6 +27,9 @@ export default function getSelected(option, options) {
         selected.push(subOption);
       }
     }
+  }
+  if (skipDisabled) {
+    return selected.filter(suboption => !isOptionDisabled(suboption, options));
   }
   return selected;
 }

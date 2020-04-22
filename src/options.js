@@ -32,6 +32,79 @@ function bindData(data) {
 }
 
 const options = {
+  world: {
+    name: 'Your New World',
+    type: 'story',
+  },
+  test: {
+    name: 'Test',
+    options: {
+      test: {
+        name: 'Test',
+      },
+    },
+  },
+  species: {
+    name: 'Species',
+  },
+  geography: {
+    name: 'Geography',
+    type: 'group',
+    min: 1,
+    options: {
+      island: {
+        name: 'Island',
+      },
+      world: {
+        name: 'World',
+        selected: 1,
+      },
+      megaWorld: {
+        name: 'Mega World',
+        test: data => _is.call(data, 'technology/nearFuture'),
+        showWhenDisabled: true,
+        disabledText: <p>Technology level has to be "near future"</p>,
+      },
+    },
+  },
+  technology: {
+    name: 'Technology',
+    type: 'group',
+    min: 1,
+    options: {
+      prehistoric: {
+        name: 'Prehistoric',
+      },
+      stoneAge: {
+        name: 'Stone Age',
+      },
+      agricultural: {
+        name: 'Agricultural',
+      },
+      bronzeAge: {
+        name: 'Bronze Age',
+      },
+      ironAge: {
+        name: 'Iron Age',
+      },
+      ancient: {
+        name: 'Ancient',
+      },
+      medieval: {
+        name: 'Medieval',
+        selected: 1,
+      },
+      industrial: {
+        name: 'Industrial',
+      },
+      modern: {
+        name: 'Modern',
+      },
+      nearFuture: {
+        name: 'Near Future',
+      },
+    },
+  },
   self: {
     name: 'Your New Self',
     type: 'story',
@@ -71,6 +144,7 @@ const options = {
     type: 'group',
     test: data => _is.call(data, 'age/newborn'),
     showWhenDisabled: true,
+    disabledText: <p>You need to be a newborn.</p>,
     min: 1,
     useImageOfSelected: true,
     options: {
@@ -121,6 +195,27 @@ const options = {
       },
       doom: {
         name: 'Mark of Doom',
+      },
+    },
+  },
+  yourMagic: {
+    name: 'Magic',
+    type: 'group',
+    min: 1,
+    // test: data => ,
+    options: {
+      none: {
+        name: 'None',
+        text: <p>You won't be able to wield magic no matter what.</p>,
+      },
+      same: {
+        name: 'Same as Inhabitants',
+        text: <p>You will have the same chance of bwing able to use magic as every other denizen of your new world.</p>,
+        selected: 1,
+      },
+      guaranteed: {
+        name: 'Guaranteed',
+        text: <p>You will be guaranteed to have the strongest form of magic possible on your new world.</p>,
       },
     },
   },

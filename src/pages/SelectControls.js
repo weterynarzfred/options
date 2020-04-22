@@ -12,12 +12,14 @@ function handleNextClick(props, event) {
     return;
   }
 
-  props.sell(props.selectable[props.selectedId]);
   if (props.selectedId < props.selectable.length - 1) {
     props.buy(props.selectable[props.selectedId + 1]);
   }
   else if (!props.includeEmpty) {
     props.buy(props.selectable[0]);
+  }
+  else {
+    props.sell(props.selectable[props.selectedId]);
   }
 }
 
@@ -30,12 +32,14 @@ function handlePrevClick(props, event) {
     return;
   }
 
-  props.sell(props.selectable[props.selectedId]);
   if (props.selectedId > 0) {
     props.buy(props.selectable[props.selectedId - 1]);
   }
   else if (!props.includeEmpty) {
     props.buy(props.selectable[props.selectable.length - 1]);
+  }
+  else {
+    props.sell(props.selectable[props.selectedId]);
   }
 }
 

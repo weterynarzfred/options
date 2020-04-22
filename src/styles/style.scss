@@ -1,5 +1,10 @@
-$shadowOffset: 0.1em;
-$shadowSpread: 0.2em;
+$colorDeselected: #eee;
+$opacityDeselected: 1;
+$colorSelected: #fff;
+$colorDisabledOverlay: #eeea;
+$controlsColor: #fff;
+$controlsBorderColor: #ddd;
+$optionBorderColor: #ddd;
 
 @mixin shadow() {
   box-shadow: 2px 2px 4px 0 #0003;
@@ -11,7 +16,7 @@ $shadowSpread: 0.2em;
 
 html {
   font-size: 16px;
-  box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.4) inset;
+  // box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.4) inset;
   min-height: 100vh;
 }
 

@@ -3,12 +3,12 @@
   width: 3em;
   height: 3em;
   margin: 0 auto;
-  background-color: #eee;
+  background-color: $controlsColor;
   z-index: 1;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid #999;
+  border: 1px solid $controlsBorderColor;
   @include shadow();
 
   svg {
@@ -24,7 +24,7 @@
   }
 
   &:hover {
-    background-color: #fff;
+    background-color: #eee;
   }
 
   &.CheckboxSelected {
@@ -54,12 +54,12 @@
   align-items: center;
   width: 8em;
   height: 2em;
-  background-color: #eee;
+  background-color: $controlsColor;
   border-radius: 1em;
   margin: 0 auto;
   padding: 0 0.25em;
   z-index: 1;
-  border: 1px solid #999;
+  border: 1px solid $controlsBorderColor;
   @include shadow();
   transition: 0.3s;
 
@@ -105,12 +105,12 @@
   align-items: center;
   width: 80%;
   height: 2em;
-  background-color: #eee;
+  background-color: $controlsColor;
   border-radius: 1em;
   margin: 0 auto;
   padding: 0 0.25em;
   z-index: 1;
-  border: 1px solid #999;
+  border: 1px solid $controlsBorderColor;
   @include shadow();
   transition: 0.3s;
 
@@ -143,12 +143,12 @@
   width: 8rem;
   height: 2rem;
   margin: 0 auto;
-  background-color: #eee;
+  background-color: $controlsColor;
   z-index: 1;
   border-radius: 1rem;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid #999;
+  border: 1px solid $controlsBorderColor;
   @include shadow();
   display: flex;
   align-items: center;
@@ -167,12 +167,12 @@
   width: 3em;
   height: 3em;
   margin: 0 auto;
-  background-color: #eee;
+  background-color: $controlsColor;
   z-index: 1;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid #999;
+  border: 1px solid $controlsBorderColor;
   @include shadow();
 
   svg {

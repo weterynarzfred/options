@@ -44,11 +44,11 @@
 .Suboption.OptionControl-checkbox,
 .Suboption.OptionControl-spinbox,
 .Suboption.OptionControl-select {
-  background-color: #eee;
+  background-color: $colorDeselected;
+  opacity: $opacityDeselected;
   transition: 0.3s;
 
   .SuboptionWrap {
-    opacity: 0.75;
     transition: 0.3s;
 
     > .Image {
@@ -58,11 +58,10 @@
   }
 
   &.OptionSelected {
-    background-color: #fff;
+    background-color: $colorSelected;
+    opacity: 1;
 
     .SuboptionWrap {
-      opacity: 1;
-
       > .Image {
         filter: grayscale(0);
       }

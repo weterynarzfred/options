@@ -19,7 +19,7 @@
       height: 100%;
 
       > .OptionHead .Image {
-        box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003;
+        // box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003;
       }
 
       > .Name {
@@ -78,8 +78,9 @@
 .Option.OptionType-group {
   > .OptionWrap {
     background-color: #fff;
-    border: 1px solid #999;
+    border: 1px solid $optionBorderColor;
     @include shadow();
+    transition: 0.3s;
   }
 
   > .OptionControls {
@@ -95,8 +96,8 @@
 .Option.OptionControl-spinbox,
 .Option.OptionControl-select {
   .OptionWrap {
-    background-color: #eee;
-    opacity: 0.75;
+    background-color: $colorDeselected;
+    opacity: $opacityDeselected;
     transition: 0.3s;
 
     > .OptionHead .Image {
@@ -107,7 +108,7 @@
 
   &.OptionSelected {
     .OptionWrap {
-      background-color: #fff;
+      background-color: $colorSelected;
       opacity: 1;
 
       > .OptionHead .Image {
@@ -126,48 +127,38 @@
 
       &:hover {
         opacity: 0.9;
-      }
-    }
-
-    &.OptionSelected {
-      .OptionWrap {
-        &:hover {
-          box-shadow: 0 0 0 2px #999;
-        }
+        border: 1px solid #999;
       }
     }
   }
 }
 
-// shadows on options
-.OptionsContainer {
-  .Option {
-    .OptionWrap {
-      .OptionDisabledInfo {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: 0.3s;
-        background-color: #fff5;
-        padding: 1em;
+// disabled options
 
-        .OptionDisabledMessage {
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-family: "EB Garamond", serif;
-        }
-        .OptionDisabledReason {
-          font-weight: 700;
-        }
-      }
-    }
+.OptionDisabledInfo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  background-color: $colorDisabledOverlay;
+  padding: 1em;
+  color: #500;
+
+  .OptionDisabledMessage {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding-left: 0.2em;
+    font-family: "EB Garamond", serif;
+  }
+  .OptionDisabledReason {
+    font-weight: 700;
   }
 }
 

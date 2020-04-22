@@ -26,7 +26,8 @@ export default function getOptionInfo(option, options) {
       if (
         suboption.type === 'option' &&
         suboption.max === 1 &&
-        suboption.min === 0
+        suboption.min === 0 &&
+        !isOptionDisabled(suboption, options)
       ) {
         optionInfo.selectableSuboptions.push(suboption);
         if (suboption.selected) {

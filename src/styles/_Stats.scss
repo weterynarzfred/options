@@ -14,7 +14,6 @@ nav {
 
   .OptionCost {
     display: flex;
-    // flex-direction: column;
     align-items: flex-start;
     margin: 0.1em;
 
@@ -30,8 +29,8 @@ nav {
       }
 
       .OptionCost-value {
-        background-color: #555;
-        color: #f55;
+        background-color: #333;
+        color: #f77;
         min-width: 2em;
         height: 100%;
         display: flex;
@@ -99,6 +98,9 @@ nav {
 .OptionControl-spinbox,
 .OptionControl-addChild,
 .OptionControl-select {
+  .OptionStats {
+    margin-top: 1em;
+  }
   .OptionCost {
     .OptionCostSingle {
       .OptionCost-value {
@@ -115,7 +117,7 @@ nav {
     .OptionCost {
       .OptionCostSingle {
         .OptionCost-value {
-          color: #f55;
+          color: #f77;
         }
         &.OptionCostPositive {
           .OptionCost-value {

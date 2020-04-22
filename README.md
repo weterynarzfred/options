@@ -288,7 +288,7 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - links between options
 - wide options
 - errors menu
-- random outcomess
+- random outcomes
 - access to `settings` in option functions
 - stages
 - image functions
