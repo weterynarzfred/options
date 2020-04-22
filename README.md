@@ -281,3 +281,4 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - random outcomess
 - access to `settings` in option functions
 - stages
+- image functions

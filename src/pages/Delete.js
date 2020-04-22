@@ -6,7 +6,10 @@ function Delete(props) {
     className="Delete"
     onClick={props.sell}
   >
-    good delete
+    <svg viewBox="0 0 100 100">
+      <path d="M20 20L80 80" />
+      <path d="M20 80L80 20" />
+    </svg>
   </div>
 }
 

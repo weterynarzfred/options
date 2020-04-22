@@ -5,37 +5,7 @@ import propShapes from '../propShapes';
 import isOptionDisabled from '../functions/isOptionDisabled';
 import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
-
-function handleBuy(option) {
-  this.dispatch({
-    type: 'BUY_OPTION',
-    option,
-  });
-}
-
-function handleSell(option) {
-  this.dispatch({
-    type: 'SELL_OPTION',
-    option,
-  });
-}
-
-function handleTrade(option, value) {
-  this.dispatch({
-    type: 'TRADE_OPTION',
-    value,
-    option,
-  });
-}
-
-function handleChange(option, textProp, text) {
-  this.dispatch({
-    type: 'CHANGE_TEXT',
-    option,
-    textProp,
-    text,
-  });
-}
+import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
 
 function OptionsContainer(props) {
   const suboptions = getSubptions(props.option, props.options, true);

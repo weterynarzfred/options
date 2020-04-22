@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '../pages/Checkbox';
-import getControlType from '../functions/getControlType';
 import Spinbox from '../pages/Spinbox';
 import propShapes from '../propShapes';
 import AddChild from '../pages/AddChild';
@@ -11,7 +10,7 @@ import SelectControls from './../pages/SelectControls';
 
 function OptionControls(props) {
   let controls;
-  switch (getControlType(props.option)) {
+  switch (props.optionInfo.controlType) {
     case 'checkbox':
       controls = <Checkbox
         selected={!!props.option.selected}

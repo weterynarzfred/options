@@ -9,13 +9,14 @@
     align-items: center;
     flex-wrap: wrap;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 1em;
 
     .SuboptionWrap {
       width: 100%;
     }
 
     &:last-child {
-      border-bottom: none;
+      margin-bottom: -1px;
     }
 
     .Name {
@@ -28,12 +29,8 @@
     }
 
     .Image {
-      width: 33.3333%;
-      float: left;
-      margin: 0.5em;
-
       .ImageContent {
-        border-radius: 0.5em;
+        padding-bottom: 50%;
       }
     }
 
@@ -44,8 +41,9 @@
 }
 
 // selectable suboptions
-.Suboption.OptionType-option,
-.Suboption.OptionType-group {
+.Suboption.OptionControl-checkbox,
+.Suboption.OptionControl-spinbox,
+.Suboption.OptionControl-select {
   background-color: #eee;
   transition: 0.3s;
 
@@ -93,18 +91,47 @@
 
       .Spinbox {
         height: 1.5em;
+        padding: 0 0.1em;
 
         input[type="number"] {
           font-size: 1.25em;
+        }
+
+        button {
+          width: 1.3em;
+          height: 1.3em;
         }
       }
 
       .SelectControls {
         height: 1.5em;
+        padding: 0 0.1em;
 
         .SelectControlsCurrent {
           font-size: 1em;
         }
+
+        button {
+          width: 1.3em;
+          height: 1.3em;
+        }
+      }
+
+      .Delete {
+        width: 2em;
+        height: 2em;
+      }
+
+      .AddChild {
+        height: 1.5em;
+        font-size: 1em;
+      }
+    }
+
+    &.OptionHasImage {
+      .OptionControls {
+        position: absolute;
+        top: 0;
       }
     }
   }

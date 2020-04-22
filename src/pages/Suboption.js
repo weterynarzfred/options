@@ -5,6 +5,7 @@ import propShapes from '../propShapes';
 import Name from './Name';
 import Text from './Text';
 import OptionControls from '../containers/OptionControls';
+import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
 import Image from './Image';
@@ -30,7 +31,8 @@ function Suboption(props) {
       `OptionType-${props.option.type}`,
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
-      { SelectableSuboption: optionInfo.isSelectableSuboption }
+      { SelectableSuboption: optionInfo.isSelectableSuboption },
+      { OptionHasImage: image }
     )}
   >
     <OptionControls
@@ -45,7 +47,7 @@ function Suboption(props) {
       <Name
         name={props.option.name}
         isChangeable={props.option.isChild}
-        change={props.change}
+        change={props.change.bind(null, props.option)}
       />
       <OptionStats
         option={getStastsFrom}
@@ -53,7 +55,11 @@ function Suboption(props) {
       <Text
         text={props.option.text}
         isChangeable={props.option.isChild}
-        change={props.change}
+        change={props.change.bind(null, props.option)}
+      />
+      <OptionLinks
+        option={props.option}
+        depth={optionInfo.depth}
       />
       <OptionFoot option={props.option} />
     </div>

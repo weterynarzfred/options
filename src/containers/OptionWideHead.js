@@ -7,37 +7,7 @@ import Text from '../pages/Text';
 import OptionStats from './../pages/OptionStats';
 import OptionFoot from './OptionFoot';
 import getOptionInfo from '../functions/getOptionInfo';
-
-function handleBuy(option) {
-  this.dispatch({
-    type: 'BUY_OPTION',
-    option,
-  });
-}
-
-function handleSell(option) {
-  this.dispatch({
-    type: 'SELL_OPTION',
-    option,
-  });
-}
-
-function handleTrade(option, value) {
-  this.dispatch({
-    type: 'TRADE_OPTION',
-    value,
-    option,
-  });
-}
-
-function handleChange(option, textProp, text) {
-  this.dispatch({
-    type: 'CHANGE_TEXT',
-    option,
-    textProp,
-    text,
-  });
-}
+import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
 
 function OptionWideHead(props) {
   const optionInfo = getOptionInfo(props.option, props.options);

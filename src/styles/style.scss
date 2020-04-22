@@ -1,6 +1,10 @@
 $shadowOffset: 0.1em;
 $shadowSpread: 0.2em;
 
+@mixin shadow() {
+  box-shadow: 2px 2px 4px 0 #0003;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -36,9 +40,8 @@ html {
 }
 
 body {
-  background-color: #eee;
+  background-color: #fff;
   background-image: url("/element/regal.png");
-  background-size: 400px;
   margin: 0;
   font-family: "Lato", sans-serif;
   color: #333;
@@ -83,10 +86,6 @@ body {
   }
 }
 
-.niconne {
-  font-family: "Niconne", cursive;
-}
-
 .main-column {
   width: 100%;
 }
@@ -103,7 +102,7 @@ body {
 }
 
 .Text {
-  margin: 0 1em;
+  margin: 0 1em 1em 1em;
 
   p {
     max-width: 40em;

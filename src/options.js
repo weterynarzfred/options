@@ -36,6 +36,7 @@ const options = {
     name: 'Teammates',
     hasIndividualChildren: true,
     defaultChildName: 'Teammate',
+    max: 5,
     individualOptions: {
       race: {
         name: 'Race',
@@ -106,7 +107,7 @@ const options = {
   perks2: {
     name: 'Perks 2',
     type: 'group',
-    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima. Odio id eos molestias repudiandae, veniam error soluta laboriosam cumque perferendis tempore corrupti numquam?</p>,
+    text: <p>Dicta atque asperiores exercitationem modi id! Soluta nisi ut voluptates temporibus quod dolore necessitatibus labore minima.</p>,
     max: false,
     options: {
       counterspell: {
@@ -161,6 +162,62 @@ const options = {
           nature: {
             name: 'Nature',
             text: <p>Harum dignissimos tenetur numquam vel blanditiis dolorum ab eum, quasi placeat tempore veniam asperiores fugit minima impedit velit ex dicta praesentium odio in? Hic maxime deserunt fugit itaque! Delectus, magnam?</p>,
+          },
+        },
+      },
+    },
+  },
+  inventory: {
+    name: 'Invetory',
+    type: 'group',
+    options: {
+      elixirs: {
+        name: 'Elixirs',
+        hasIndividualChildren: true,
+        defaultChildName: 'Elixir',
+        text: <p>Each elixir is one use only but the same effect can be selected multiple times.</p>,
+        max: 5,
+        individualOptions: {
+          effect: {
+            name: 'Effect',
+            type: 'group',
+            min: 1,
+            options: {
+              love: {
+                name: 'Love Potion',
+                text: <p>Whoever drinks this will fall in love with you.</p>,
+                selected: 1,
+              },
+              perfection: {
+                name: 'Perfection',
+                text: <p>Whoever drinks this will have their body slowly transformed as close to their ideal self as possible while still being recognized as the same pernom by ones who knew them. Does not heal diseases.</p>,
+              },
+              cure: {
+                name: 'Cure',
+                text: <p>Heals any and all diseases and cleanses of all toxins but cannot help to injuries. Will work up to 60 seconds after death</p>,
+              },
+              truth: {
+                name: 'Potion of truth',
+                text: <p>Whoever drinks this will involuntarily answer any questions posed to them to the best of their ability for the next hour.</p>,
+              },
+            },
+          },
+          undetectable: {
+            name: 'Undetectable',
+            text: <p>The potion will be tastless, odorless, trasparent and will easily mix into almost any food.</p>,
+          }
+        },
+      },
+      artifacts: {
+        name: 'Artifacts',
+        type: 'group',
+        max: false,
+        options: {
+          wand: {
+            name: 'Wand',
+          },
+          dragon: {
+            name: 'Dragon\'s egg',
           },
         },
       },

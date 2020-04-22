@@ -32,7 +32,7 @@
         margin-top: 1em;
       }
 
-      > .OptionLinks {
+      .OptionLinks {
         text-align: right;
         margin: 0.5em 1em;
 
@@ -46,7 +46,8 @@
           letter-spacing: 0.2em;
           font-weight: 700;
           line-height: 1;
-          box-shadow: 0 0 0 1px #999;
+          border: 1px solid #999;
+          @include shadow();
           background-color: #eee;
 
           &:hover {
@@ -77,7 +78,8 @@
 .Option.OptionType-group {
   > .OptionWrap {
     background-color: #fff;
-    box-shadow: 0 0 0 1px #999;
+    border: 1px solid #999;
+    @include shadow();
   }
 
   > .OptionControls {

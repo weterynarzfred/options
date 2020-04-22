@@ -8,7 +8,8 @@
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 0 1px #999;
+  border: 1px solid #999;
+  @include shadow();
 
   svg {
     transform: scale(0.5);
@@ -58,7 +59,8 @@
   margin: 0 auto;
   padding: 0 0.25em;
   z-index: 1;
-  box-shadow: 0 0 0 1px #999;
+  border: 1px solid #999;
+  @include shadow();
   transition: 0.3s;
 
   button {
@@ -108,7 +110,8 @@
   margin: 0 auto;
   padding: 0 0.25em;
   z-index: 1;
-  box-shadow: 0 0 0 1px #999;
+  border: 1px solid #999;
+  @include shadow();
   transition: 0.3s;
 
   .SelectControlsCurrent {
@@ -145,7 +148,8 @@
   border-radius: 1rem;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 0 0 1px #999;
+  border: 1px solid #999;
+  @include shadow();
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,5 +159,34 @@
 
   &:hover {
     background-color: #fff;
+  }
+}
+
+.Delete {
+  position: relative;
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
+  background-color: #eee;
+  z-index: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 1px solid #999;
+  @include shadow();
+
+  svg {
+    transform: scale(0.6);
+
+    path {
+      transition: 0.3s;
+    }
+  }
+
+  &:hover {
+    background-color: #f55;
+    path {
+      stroke: #fff;
+    }
   }
 }

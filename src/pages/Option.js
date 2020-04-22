@@ -50,7 +50,8 @@ function Option(props) {
       `OptionControl-${optionInfo.controlType}`,
       `OptionType-${props.option.type}`,
       { OptionSelected: optionInfo.isSelected },
-      { OptionOpenable: optionInfo.isOpenable }
+      { OptionOpenable: optionInfo.isOpenable },
+      { OptionHasImage: image }
     )}
   >
     <OptionControls
@@ -76,12 +77,12 @@ function Option(props) {
       <Name
         name={props.option.name}
         isChangeable={props.option.isChild}
-        change={props.change}
+        change={props.change.bind(null, props.option)}
       />
       <Text
         text={props.option.text}
         isChangeable={props.option.isChild}
-        change={props.change}
+        change={props.change.bind(null, props.option)}
       />
       <OptionLinks
         option={props.option}
