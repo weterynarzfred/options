@@ -1,13 +1,23 @@
+$colorBg: #eee;
+$colorText: #333;
+$colorTitles: #555;
+
+$optionBgColor: #fff;
+$optionTextColor: #333;
+$optionTitleColor: #555;
 $colorDeselected: #eee;
 $opacityDeselected: 1;
 $colorSelected: #fff;
-$colorDisabledOverlay: #eeea;
-$controlsColor: #fff;
-$controlsBorderColor: #ddd;
-$optionBorderColor: #ddd;
+$colorDisabledOverlay: #eee;
+$optionBorderColor: #0099ff;
+$optionDeselectedBorderColor: #aaa;
+
+$controlsColor: #3a3a3a;
+$controlsText: #ffffff;
+$controlsBorderColor: #0099ff;
 
 @mixin shadow() {
-  box-shadow: 2px 2px 4px 0 #0003;
+  // box-shadow: 2px 2px 4px 0 #0003;
 }
 
 * {
@@ -45,11 +55,11 @@ html {
 }
 
 body {
-  background-color: #fff;
-  background-image: url("/element/regal.png");
+  background-color: $colorBg;
+  // background-image: url("/element/regal.png");
   margin: 0;
   font-family: "Lato", sans-serif;
-  color: #333;
+  color: $colorText;
   overflow: hidden;
 
   .MainOverlay {
@@ -103,7 +113,7 @@ body {
   text-align: center;
   margin-top: 0.25em;
   margin-bottom: 0.5em;
-  color: #555;
+  color: $colorTitles;
 }
 
 .Text {

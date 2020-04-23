@@ -18,25 +18,26 @@ nav {
     margin: 0.1em;
 
     .OptionCostSingle {
-      height: 1.5em;
       display: flex;
       align-items: center;
       background-color: #eee;
+      color: #333;
       margin: 0.1em;
 
       .OptionCost-name {
-        padding: 0 0.5em;
+        padding: 0.5em 0.5em;
+        min-width: 2em;
       }
 
       .OptionCost-value {
         background-color: #333;
         color: #f77;
-        min-width: 2em;
-        height: 100%;
+        min-width: 3em;
+        align-self: stretch;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 0.25em;
+        padding: 0 0.5em;
         font-weight: 700;
         transition: 0.3s;
       }
@@ -58,6 +59,7 @@ nav {
       display: flex;
       align-items: center;
       background-color: #fff;
+      color: #333;
       border: 1px solid #999;
       margin: 0.1em;
 
