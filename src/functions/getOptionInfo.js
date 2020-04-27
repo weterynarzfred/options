@@ -17,6 +17,7 @@ export default function getOptionInfo(option, options) {
 
   optionInfo.isSelectableSuboption = option.type === 'option' &&
     option.min === 0 &&
+    !option.disableUseAsSelect &&
     option.max === 1;
 
   if (optionInfo.controlType === 'select') {
@@ -27,6 +28,7 @@ export default function getOptionInfo(option, options) {
         suboption.type === 'option' &&
         suboption.max === 1 &&
         suboption.min === 0 &&
+        !suboption.disableUseAsSelect &&
         !isOptionDisabled(suboption, options)
       ) {
         optionInfo.selectableSuboptions.push(suboption);

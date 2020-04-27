@@ -32,6 +32,81 @@ function bindData(data) {
 }
 
 const options = {
+  a: {
+    name: 'A',
+    text: <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius, quod. Culpa voluptatibus corporis dignissimos vero ut. Ea, dolor natus quaerat architecto, deserunt reiciendis, voluptatum non sapiente voluptatem porro nobis minima?</p>,
+    type: 'group',
+    image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+    options: {
+      aMain: {
+        name: 'A Main',
+        text: <p>Quisquam incidunt accusamus eos repellendus dolorum harum enim minima delectus, alias voluptates maiores, quo animi iusto quos. Nulla, rerum porro explicabo, dignissimos alias minima vero quidem assumenda cumque, magni nam.</p>,
+        type: 'group',
+        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+        options: {
+          a1: {
+            name: 'A1',
+            text: <p>Sit quaerat possimus eveniet voluptatem ullam nobis veniam nam neque ratione recusandae praesentium, molestiae fugit, amet saepe officiis enim nulla accusamus ut consequuntur cupiditate tempora. Accusamus explicabo nesciunt totam veritatis.</p>,
+            image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+            cost: {
+              gold: 1,
+            },
+          },
+          a2: {
+            name: 'A2',
+            text: <p>Ipsa, repellendus? Repellat cum qui delectus? Assumenda doloremque quis amet consectetur iste dolorem necessitatibus corrupti autem aperiam minus expedita tempore, cupiditate rem, ipsam minima. Facere nostrum aliquam maxime officia cum?</p>,
+            image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+            cost: {
+              gold: 1,
+            },
+          },
+        },
+      },
+      aOptional: {
+        name: 'A Optional',
+        text: <p>Pariatur, necessitatibus amet maxime itaque odit eaque nihil natus commodi velit non saepe dolorum minus adipisci! Laboriosam aliquam tenetur accusamus nam et! Ipsum aspernatur quas cumque esse et adipisci veniam?</p>,
+        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+        cost: {
+          gold: 1,
+        },
+        test: data => _val.call(data, 'a/aMain'),
+      },
+    },
+  },
+  b: {
+    name: 'B',
+    type: 'group',
+    image: './example/age_child.jpg',
+    disableUseAsSelect: true,
+    options: {
+      b1: {
+        name: 'B1',
+        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
+      },
+      b2: {
+        name: 'B2',
+      },
+      b3: {
+        name: 'B3',
+      },
+    },
+  },
+  c: {
+    name: 'C',
+    type: 'group',
+    options: {
+      c1: {
+        name: 'C1',
+      },
+      c2: {
+        name: 'C2',
+      },
+      c3: {
+        name: 'C3',
+        disableUseAsSelect: true,
+      },
+    },
+  },
   self: {
     name: 'Your New Self',
     type: 'story',
@@ -72,6 +147,7 @@ const options = {
     name: 'Parents',
     text: <p>Who will your parents be?</p>,
     type: 'group',
+    image: './image/parents_random.jpg',
     test: data => _is.call(data, 'age/child'),
     showWhenDisabled: true,
     disabledText: <p>You need to be a newborn.</p>,

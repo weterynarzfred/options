@@ -14,7 +14,7 @@ export default function getControlType(option) {
     if (option.isChild) {
       return 'delete';
     }
-    if (option.max === 1) {
+    if (option.max === 1 && !option.disableUseAsSelect) {
       // has an additional test in getOptionsInfo
       return 'select';
     }

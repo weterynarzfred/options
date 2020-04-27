@@ -8,6 +8,7 @@ import OptionControls from '../containers/OptionControls';
 import OptionLinks from '../containers/OptionLinks';
 import OptionStats from './OptionStats';
 import OptionFoot from '../containers/OptionFoot';
+import Select from './Select';
 import Image from './Image';
 import DisabledOverlay from './DisabledOverlay';
 
@@ -64,6 +65,10 @@ function Suboption(props) {
         depth={optionInfo.depth}
       />
       <OptionFoot option={props.option} />
+      <Select
+        option={props.option}
+        optionInfo={optionInfo}
+      />
       <DisabledOverlay
         option={props.option}
         optionInfo={optionInfo}

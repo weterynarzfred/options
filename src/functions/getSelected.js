@@ -18,13 +18,14 @@ export default function getSelected(option, options, skipDisabled = false) {
     option = getOption(option, options);
     if (option.options === undefined) return false;
     for (const slug in option.options) {
-      const subOption = option.options[slug];
+      const suboption = option.options[slug];
       if (
-        subOption.type === 'option' &&
-        subOption.max === 1 &&
-        subOption.selected
+        suboption.type === 'option' &&
+        suboption.max === 1 &&
+        !suboption.disableUseAsSelect &&
+        suboption.selected
       ) {
-        selected.push(subOption);
+        selected.push(suboption);
       }
     }
   }

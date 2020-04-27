@@ -194,13 +194,19 @@ Object containing suboptions that will be copied to each child upon creation.
 
 Object containing currencies to be used in current option's children's suboptions.
 
+### `defaultChildName`
+- type: `string`
+- default: same as `name`
+- usable in: `option` when `hasIndividualChildren` is set to `true`
+
 ### `useImageOfSelected`
 - type: `bool`
 - default: `false`
 
-### `defaultChildName`
-- type: `string`
-- default: same as `name`
+### `disableUseAsSelect`
+- type: `bool`
+- default: `false`
+- usable in: `option`, `group`
 
 ## keys set automaticaly
 

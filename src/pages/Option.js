@@ -71,36 +71,38 @@ function Option(props) {
       )}
       onClick={handleClick.bind(props)}
     >
+      <Image src={image} />
       <div className="OptionHead">
-        <Image src={image} />
         <OptionStats
           option={getStastsFrom}
         />
       </div>
-      <Name
-        name={props.option.name}
-        isChangeable={props.option.isChild}
-        change={props.change.bind(null, props.option)}
-      />
-      <Text
-        text={props.option.text}
-        isChangeable={props.option.isChild}
-        change={props.change.bind(null, props.option)}
-      />
-      <OptionLinks
-        option={props.option}
-        depth={optionInfo.depth}
-      />
-      <OptionFoot option={props.option} />
-      <Select
-        option={props.option}
-        optionInfo={optionInfo}
-      />
-      <SuboptionsContainer
-        option={props.option}
-        suboptions={props.optionInfo.suboptions}
-        optionInfo={optionInfo}
-      />
+      <div className="OptionContent">
+        <Name
+          name={props.option.name}
+          isChangeable={props.option.isChild}
+          change={props.change.bind(null, props.option)}
+        />
+        <Text
+          text={props.option.text}
+          isChangeable={props.option.isChild}
+          change={props.change.bind(null, props.option)}
+        />
+        <OptionLinks
+          option={props.option}
+          depth={optionInfo.depth}
+        />
+        <OptionFoot option={props.option} />
+        <Select
+          option={props.option}
+          optionInfo={optionInfo}
+        />
+        <SuboptionsContainer
+          option={props.option}
+          suboptions={props.optionInfo.suboptions}
+          optionInfo={optionInfo}
+        />
+      </div>
       <DisabledOverlay
         option={props.option}
         optionInfo={optionInfo}
