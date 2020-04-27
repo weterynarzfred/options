@@ -6,7 +6,7 @@ $optionBgColor: #fff;
 $optionDeselectedBgColor: #eee;
 $optionBorderColor: #ccc;
 $optionBorderSecondaryColor: #ccc;
-$optionDeselectedBorderColor: #aaa;
+$optionDeselectedBorderColor: #ccc;
 
 $optionTextColor: #333;
 $optionTitleColor: #555;
@@ -17,6 +17,8 @@ $colorDisabledOverlay: #eee;
 $controlsColor: #3a3a3a;
 $controlsText: #ffffff;
 $controlsBorderColor: #0099ff;
+
+$disabledWarningColor: #933;
 
 @mixin shadow() {
   box-shadow: 2px 2px 4px 0 #0003;

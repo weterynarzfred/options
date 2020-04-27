@@ -2,6 +2,7 @@ import getSubptions from "./getSubptions";
 import getSelectedCount from "./getSelectedCount";
 import calculateCurrency from "./calculateCurrency";
 import getUserFunctionValue from "./getUserFunctionValue";
+import isOptionDisabled from "./isOptionDisabled";
 
 function runUserFunctions(option, state) {
   getUserFunctionValue(option.text, { option, ...state }, 'value', true);
@@ -30,11 +31,21 @@ function runUserFunctions(option, state) {
   }
 }
 
+function getInfo(option, parentOption, state) {
+  option.info = {
+    isDisabled: parentOption.info.isDisabled || isOptionDisabled(option, state.options),
+  };
+}
+
 function checkOptions(parentOption, state) {
+  if (parentOption.info === undefined) {
+    parentOption.info = {};
+  }
   const suboptions = getSubptions(parentOption, state.options)
   for (const slug in suboptions) {
     const option = suboptions[slug];
     runUserFunctions(option, state);
+    getInfo(option, parentOption, state);
 
     checkOptions(option, state);
   }

@@ -8,5 +8,5 @@ export default function getSelectedCount(option, options) {
     if (typeof option.selected === 'number') return option.selected;
     return Object.getOwnPropertyNames(option.selected).length;
   }
-  return getSelected(option, options).length;
+  return getSelected(option, options, true).length;
 }

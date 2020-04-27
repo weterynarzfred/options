@@ -65,6 +65,7 @@ function Option(props) {
       <Select
         option={props.option}
         optionInfo={optionInfo}
+        options={props.options}
       />
       <SuboptionsContainer
         option={props.option}

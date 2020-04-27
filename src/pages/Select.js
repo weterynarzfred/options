@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import propShapes from './../propShapes';
 import Text from './Text';
@@ -10,9 +11,17 @@ function Select(props) {
   const selected = props.optionInfo.selectableSuboptions[props.optionInfo.selectedSuboptionId];
   if (selected === undefined) return false;
 
-  return <div className="Select">
+  let text = selected.text;
+  if (selected.info.isDisabled) {
+    text = selected.disabledText;
+  }
+
+  return <div className={classNames(
+    'Select',
+    { SelectDisabled: selected.info.isDisabled }
+  )}>
     <Text
-      text={selected.text}
+      text={text}
       isChangeable={false}
     />
   </div>

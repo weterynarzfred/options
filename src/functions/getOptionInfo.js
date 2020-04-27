@@ -32,7 +32,10 @@ export default function getOptionInfo(option, options) {
         suboption.max === 1 &&
         suboption.min === 0 &&
         !suboption.disableUseAsSelect &&
-        !isOptionDisabled(suboption, options)
+        (
+          !isOptionDisabled(suboption, options) ||
+          suboption.showWhenDisabled
+        )
       ) {
         optionInfo.selectableSuboptions.push(suboption);
         if (suboption.selected) {
