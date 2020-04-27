@@ -20,7 +20,7 @@ function Suboption(props) {
       { OptionOpenable: optionInfo.isOpenable },
       { SelectableSuboption: optionInfo.isSelectableSuboption },
       { OptionHasImage: optionInfo.image },
-      { OptionDisabled: optionInfo.isDisabled }
+      { OptionDisabled: props.option.info.isDisabled }
     )}
   >
     <OptionControls

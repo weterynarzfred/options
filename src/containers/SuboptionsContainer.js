@@ -10,7 +10,7 @@ import { handleBuy, handleSell, handleChange, handleTrade } from '../functions/h
 function SuboptionsContainer(props) {
   const suboptions = props.suboptions;
   if (Object.keys(suboptions).length === 0) return false;
-  if (props.optionInfo.isDisabled) return false;
+  if (props.option.info.isDisabled) return false;
 
   const suboptionsElements = [];
   for (const slug in suboptions) {
@@ -23,7 +23,7 @@ function SuboptionsContainer(props) {
       ) ||
       (
         !currentOption.showWhenDisabled &&
-        optionInfo.isDisabled
+        currentOption.info.isDisabled
       )
     ) continue;
     if (currentOption.type === 'option' || currentOption.type === 'group') {

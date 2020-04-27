@@ -14,7 +14,7 @@ function handleClick(event) {
   if (event.detail.fromOptionControl) return;
   if (event.detail.fromSuboptions) return;
   if (event.detail.fromLink) return;
-  if (this.optionInfo.isDisabled) return;
+  if (this.option.info.isDisabled) return;
 
   switch (getControlType(this.option)) {
     case 'checkbox':
@@ -39,7 +39,7 @@ function Option(props) {
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
       { OptionHasImage: optionInfo.image },
-      { OptionDisabled: optionInfo.isDisabled }
+      { OptionDisabled: props.option.info.isDisabled }
     )}
   >
     <OptionControls

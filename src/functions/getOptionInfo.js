@@ -10,7 +10,6 @@ export default function getOptionInfo(option, options) {
     controlType: getControlType(option),
     suboptions: getSubptions(option, options),
     isSelected: getSelectedCount(option, options) > 0,
-    isDisabled: isOptionDisabled(option, options),
     depth: getDepth(option, options),
   };
   optionInfo.isOpenable = Object.keys(optionInfo.suboptions).length > 0;

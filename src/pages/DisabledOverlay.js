@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import propShapes from '../propShapes';
 
 function DisabledOverlay(props) {
-  if (!props.optionInfo.isDisabled) return false;
+  if (!props.option.info.isDisabled) return false;
 
   return <div className="OptionDisabledInfo" >
     {props.option.image ? <div

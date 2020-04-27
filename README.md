@@ -258,6 +258,10 @@ Is set to `true` in temporary option objects created using `optionsFunction`. Th
 
 Container for temporary option objects created using `optionsFunction`. This object might not have an actual representation of option's suboptions.
 
+### `info`
+- type: `object`
+- default: `{}`
+
 
 # control types
 

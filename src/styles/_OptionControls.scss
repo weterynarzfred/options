@@ -46,6 +46,27 @@
   }
 }
 
+.Spinbox,
+.SelectControls {
+  button {
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    path {
+      stroke: #ccc;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      path {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
 .Spinbox {
   top: 0.5em;
   display: flex;
@@ -55,20 +76,6 @@
   background-color: $controlsColor;
   padding: 0 0.25em;
   transition: 0.3s;
-
-  button {
-    width: 1.5em;
-    height: 1.5em;
-    flex-shrink: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: #eee;
-
-    &:hover {
-      background-color: #fff;
-    }
-  }
 
   input[type="number"] {
     text-align: center;
@@ -107,19 +114,6 @@
     text-align: center;
     font-size: 1.25em;
     color: $controlsText;
-  }
-
-  button {
-    width: 1.5em;
-    height: 1.5em;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: #eee;
-
-    &:hover {
-      background-color: #fff;
-    }
   }
 }
 

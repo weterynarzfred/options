@@ -13,7 +13,7 @@ function OptionsContainer(props) {
   for (const slug in suboptions) {
     const currentOption = suboptions[slug];
     const optionInfo = getOptionInfo(currentOption, props.options);
-    if (!currentOption.showWhenDisabled && optionInfo.isDisabled) continue;
+    if (!currentOption.showWhenDisabled && currentOption.info.isDisabled) continue;
     optionsElements.push(<Option
       key={`option-${currentOption.path}`}
       option={currentOption}

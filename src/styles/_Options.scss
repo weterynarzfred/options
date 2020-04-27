@@ -86,7 +86,6 @@
     .OptionBox {
       position: relative;
       z-index: 1;
-      // border-top: 1px solid $optionBorderColor;
       padding-bottom: 0.5em;
 
       &:before {
@@ -99,7 +98,7 @@
         height: 6em;
         z-index: -1;
         transition: 0.3s;
-        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+        box-shadow: 0 -9em 4em -4em $optionBgColor inset;
       }
 
       > .OptionHead {
@@ -135,12 +134,12 @@
         .ImageContent {
           filter: grayscale(1) blur(3px);
           opacity: 0.75;
-          transition: 0.3s;
+          transition: filter 0.3s, opacity 0.3s;
         }
       }
 
       .OptionBox:before {
-        box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
+        box-shadow: 0 -9em 4em -4em $optionDeselectedBgColor inset;
       }
     }
 
@@ -170,7 +169,7 @@
         }
 
         .OptionBox:before {
-          box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
         }
       }
     }

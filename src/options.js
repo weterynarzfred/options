@@ -32,97 +32,6 @@ function bindData(data) {
 }
 
 const options = {
-  a: {
-    name: 'A',
-    text: <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius, quod. Culpa voluptatibus corporis dignissimos vero ut. Ea, dolor natus quaerat architecto, deserunt reiciendis, voluptatum non sapiente voluptatem porro nobis minima?</p>,
-    type: 'group',
-    image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-    options: {
-      aMain: {
-        name: 'A Main',
-        text: <p>Quisquam incidunt accusamus eos repellendus dolorum harum enim minima delectus, alias voluptates maiores, quo animi iusto quos. Nulla, rerum porro explicabo, dignissimos alias minima vero quidem assumenda cumque, magni nam.</p>,
-        type: 'group',
-        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-        options: {
-          a1: {
-            name: 'A1',
-            text: <p>Sit quaerat possimus eveniet voluptatem ullam nobis veniam nam neque ratione recusandae praesentium, molestiae fugit, amet saepe officiis enim nulla accusamus ut consequuntur cupiditate tempora. Accusamus explicabo nesciunt totam veritatis.</p>,
-            image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-            cost: {
-              gold: 1,
-            },
-          },
-          a2: {
-            name: 'A2',
-            text: <p>Ipsa, repellendus? Repellat cum qui delectus? Assumenda doloremque quis amet consectetur iste dolorem necessitatibus corrupti autem aperiam minus expedita tempore, cupiditate rem, ipsam minima. Facere nostrum aliquam maxime officia cum?</p>,
-            image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-            cost: {
-              gold: 1,
-            },
-          },
-        },
-      },
-      aOptional: {
-        name: 'A Optional',
-        text: <p>Pariatur, necessitatibus amet maxime itaque odit eaque nihil natus commodi velit non saepe dolorum minus adipisci! Laboriosam aliquam tenetur accusamus nam et! Ipsum aspernatur quas cumque esse et adipisci veniam?</p>,
-        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-        cost: {
-          gold: 1,
-        },
-        test: data => _val.call(data, 'a/aMain'),
-      },
-    },
-  },
-  b: {
-    name: 'B',
-    type: 'group',
-    image: './example/age_child.jpg',
-    disableUseAsSelect: true,
-    options: {
-      b1: {
-        name: 'B1',
-        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-      },
-      b2: {
-        name: 'B2',
-      },
-      b3: {
-        name: 'B3',
-      },
-    },
-  },
-  c: {
-    name: 'C',
-    type: 'group',
-    options: {
-      c1: {
-        name: 'C1',
-      },
-      c2: {
-        name: 'C2',
-      },
-      c3: {
-        name: 'C3',
-        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-        disableUseAsSelect: true,
-      },
-    },
-  },
-  d: {
-    name: 'D',
-    options: {
-      d1: {
-        name: 'D1',
-      },
-      d2: {
-        name: 'D2',
-      },
-      d3: {
-        name: 'D3',
-        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
-      },
-    },
-  },
   self: {
     name: 'Your New Self',
     type: 'story',
@@ -198,9 +107,32 @@ const options = {
       },
     },
   },
+  body: {
+    name: 'Physical Prowess',
+    type: 'group',
+    min: 1,
+    options: {
+      normal: {
+        name: 'Normal Body',
+        selected: 1,
+      },
+      peak: {
+        name: 'Peak Human',
+        cost: {
+          gold: 2,
+        },
+      },
+      heroic: {
+        name: 'Heroic',
+        cost: {
+          gold: 5,
+        },
+      }
+    },
+  },
   uniqueRace: {
     name: 'Unique Race',
-    text: <p>You can choose your body to have any biologicaly possible traits. Otherwise you have to choose one of the races prasent in your new world.</p>,
+    text: <p>You can choose your body to have any biologicaly possible traits. Otherwise you have to choose one of the races present in your new world.</p>,
     image: './image/18952b9d9f90fab3ed3ff6a40abfd8dd.jpg',
     cost: {
       gold: 10,
@@ -208,74 +140,125 @@ const options = {
   },
   markings: {
     name: 'Foretold Mark',
-    text: <p>Your body will bear a marking passed down in legends. It won't do anything except changing people's perception of you. The mark will be placed somewhere fairly easy to hide if you wish to.</p>,
+    text: <p>Your body will bear a marking passed down in legends. It won't do anything except changing people's perception of you. The mark will be possible to hide with some effort.</p>,
     type: 'group',
+    image: './image/ee73f0b46e3653303deccc7f70c9b44b.jpg',
+    useImageOfSelected: true,
     options: {
       saviour: {
         name: 'Mark of the Saviour',
+        image: './image/celestial_by_ajgiel_d9456vi-fullview.jpg',
       },
       demigod: {
         name: 'Mark of the Demigod',
+        image: './image/ee73f0b46e3653303deccc7f70c9b44b.jpg',
         cost: {
           gold: 2,
         },
       },
       doom: {
         name: 'Mark of Doom',
+        image: './image/tony-maverick-.jpg',
       },
     },
   },
   yourMagic: {
     name: 'Magic',
     type: 'group',
+    test: data => !_is.call(data, 'magicFrequency/none'),
     min: 1,
-    // test: data => ,
     options: {
       none: {
         name: 'None',
-        text: <p>You won't be able to wield magic no matter what.</p>,
+        text: <React.Fragment><p>You won't be able to wield the magic of your new world no matter what.</p><p>Gained gold depends on the frequency of people with access to magic.</p></React.Fragment>,
+        cost: {
+          gold: data => select([
+            [_is.call(data, 'magicFrequency/few'), 1],
+            [_is.call(data, 'magicFrequency/rare'), 2],
+            [_is.call(data, 'magicFrequency/common'), 5],
+            [_is.call(data, 'magicFrequency/half'), 10],
+            [_is.call(data, 'magicFrequency/everyone'), 15],
+          ]),
+        },
       },
       same: {
         name: 'Same as Inhabitants',
-        text: <p>You will have the same chance of bwing able to use magic as every other denizen of your new world.</p>,
+        text: <p>You will have the same chance of being able to use magic as every other denizen of your new world.</p>,
         selected: 1,
       },
       guaranteed: {
         name: 'Guaranteed',
-        text: <p>You will be guaranteed to have the strongest form of magic possible on your new world.</p>,
+        text: <React.Fragment><p>You will be guaranteed to have the strongest form of magic possible on your new world.</p><p>Cost depends on the frequency of people with access to magic.</p></React.Fragment>,
+        cost: {
+          gold: data => select([
+            [_is.call(data, 'magicFrequency/few'), 15],
+            [_is.call(data, 'magicFrequency/rare'), 10],
+            [_is.call(data, 'magicFrequency/common'), 5],
+            [_is.call(data, 'magicFrequency/half'), 2],
+            [_is.call(data, 'magicFrequency/everyone'), 1],
+          ]),
+        },
       },
+    },
+  },
+  uniqueMagic: {
+    name: 'Unique Magic',
+    image: './example/__original_drawn_by_shell_wwwtrista__678e4146199ced72171b10e542dbd660.png',
+    cost: {
+      gold: 25,
     },
   },
   world: {
     name: 'Your New World',
     type: 'story',
   },
-  test: {
-    name: 'Test',
+  species: {
+    name: 'Sapient Species',
     type: 'group',
+    min: 1,
     options: {
-      test: {
-        name: 'Test',
+      none: {
+        name: 'None',
+        cost: {
+          gold: -10,
+        },
+      },
+      humans: {
+        name: 'Humans',
+        selected: 1,
+      },
+      fantasy: {
+        name: 'Fantasy Species',
+        cost: {
+          gold: 5,
+        },
+      },
+      custom: {
+        name: 'Custom',
+        cost: {
+          gold: 10,
+        },
       },
     },
-  },
-  species: {
-    name: 'Species',
   },
   geography: {
     name: 'Geography',
     type: 'group',
+    useImageOfSelected: true,
     min: 1,
     options: {
       island: {
         name: 'Island',
+        image: './image/23qs9qpfeuj11.jpg',
       },
       world: {
         name: 'World',
         selected: 1,
+        image: './image/d5d17is-35153865-066b-4228-b85b-c8f83d573504.jpg',
       },
       megaWorld: {
         name: 'Mega World',
+        image: './image/ringworld.jpg',
         test: data => _is.call(data, 'technology/nearFuture'),
         showWhenDisabled: true,
         disabledText: <p>Technology level has to be "near future"</p>,
@@ -317,6 +300,37 @@ const options = {
       },
       nearFuture: {
         name: 'Near Future',
+      },
+    },
+  },
+  magicFrequency: {
+    name: 'Magic Frequency',
+    text: <p>How many sapient creatures on your new world will be able to use magic?</p>,
+    type: 'group',
+    min: 1,
+    options: {
+      none: {
+        name: 'None',
+        text: <p>There is no magic at all.</p>,
+        selected: 1,
+      },
+      few: {
+        name: 'Very Few',
+        text: <p>There will be only a handfull of people with access to magic.</p>,
+      },
+      rare: {
+        name: 'Rare',
+        text: <p>Magic will be rare, only about 0.001% of population will have access to it.</p>,
+      },
+      common: {
+        name: 'Common',
+        text: <p>About one in twenty people will have access to magic.</p>,
+      },
+      half: {
+        name: 'Half',
+      },
+      everyone: {
+        name: 'Mostly Everyone',
       },
     },
   },

@@ -9,7 +9,7 @@ import Delete from '../pages/Delete';
 import SelectControls from './../pages/SelectControls';
 
 function OptionControls(props) {
-  if (props.optionInfo.isDisabled) return false;
+  if (props.option.info.isDisabled) return false;
   let controls;
   switch (props.optionInfo.controlType) {
     case 'checkbox':
