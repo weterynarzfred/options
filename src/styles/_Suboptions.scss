@@ -8,10 +8,11 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $optionBorderColor;
 
     .SuboptionWrap {
       width: 100%;
+      overflow: hidden;
     }
 
     .SuboptionContent {
@@ -48,8 +49,17 @@
     transition: 0.3s;
 
     > .Image {
-      filter: grayscale(1);
-      transition: 0.3s;
+      overflow: hidden;
+
+      .ImageContent {
+        filter: grayscale(1) blur(3px);
+        opacity: 0.75;
+        transition: 0.3s;
+      }
+    }
+
+    .OptionBox:before {
+      box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
     }
   }
 
@@ -59,7 +69,14 @@
 
     .SuboptionContent {
       > .Image {
-        filter: grayscale(0);
+        .ImageContent {
+          opacity: 1;
+          filter: grayscale(0);
+        }
+      }
+
+      .OptionBox:before {
+        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
       }
     }
   }
@@ -132,28 +149,24 @@
   }
 }
 
-// suboptions width images
+// suboptions with images
 .Suboption.OptionHasImage {
-  // > .SuboptionWrap {
-  //   z-index: 1;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: flex-end;
-
   > .OptionControls {
     z-index: 2;
   }
 
   .Image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
+    margin-bottom: -6em;
 
     .ImageContent {
-      height: 100%;
+      box-sizing: content-box;
+      height: 6em;
+      padding-bottom: 100%;
     }
+  }
+
+  .OptionBox {
+    border-top: 1px solid $optionBorderSecondaryColor;
   }
 
   > .SuboptionWrap > .SuboptionContent {
@@ -164,29 +177,9 @@
     height: 100%;
     z-index: 1;
 
-    &:before {
-      content: "";
-      display: block;
-      padding-bottom: 100%;
-    }
-
-    .OptionBox {
-      position: relative;
-      z-index: 1;
-      background-color: #fff7;
-      box-shadow: 0 -15em 10em -5em #fff inset;
-      border-top: 1px solid $optionBorderColor;
-      padding-bottom: 0.5em;
-
-      > .OptionHead {
-        position: relative;
-      }
-    }
-
     .Select {
       position: relative;
       background-color: #fff;
     }
   }
-  // }
 }

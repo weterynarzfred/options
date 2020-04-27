@@ -1,15 +1,26 @@
-.Checkbox {
+.OptionControls {
+  pointer-events: none;
+}
+
+.Checkbox,
+.Spinbox,
+.SelectControls,
+.AddChild,
+.Delete {
   position: relative;
-  width: 3em;
-  height: 3em;
-  margin: 0 auto;
-  background-color: $controlsColor;
+  pointer-events: auto;
   z-index: 1;
-  // border-radius: 50%;
-  cursor: pointer;
-  transition: 0.3s;
+  margin: 0 auto;
   border: 1px solid $controlsBorderColor;
   @include shadow();
+}
+
+.Checkbox {
+  width: 3em;
+  height: 3em;
+  background-color: $controlsColor;
+  cursor: pointer;
+  transition: 0.3s;
 
   svg {
     transform: scale(0.5);
@@ -36,19 +47,13 @@
 }
 
 .Spinbox {
-  position: relative;
   top: 0.5em;
   display: flex;
   align-items: center;
   width: 8em;
   height: 2em;
   background-color: $controlsColor;
-  // border-radius: 1em;
-  margin: 0 auto;
   padding: 0 0.25em;
-  z-index: 1;
-  border: 1px solid $controlsBorderColor;
-  @include shadow();
   transition: 0.3s;
 
   button {
@@ -87,19 +92,13 @@
 }
 
 .SelectControls {
-  position: relative;
   top: 0.5em;
   display: flex;
   align-items: center;
   width: 80%;
   height: 2em;
   background-color: $controlsColor;
-  // border-radius: 1em;
-  margin: 0 auto;
   padding: 0 0.25em;
-  z-index: 1;
-  border: 1px solid $controlsBorderColor;
-  @include shadow();
   transition: 0.3s;
 
   .SelectControlsCurrent {
@@ -114,7 +113,6 @@
     width: 1.5em;
     height: 1.5em;
     flex-shrink: 0;
-    // border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
     background-color: #eee;
@@ -126,18 +124,12 @@
 }
 
 .AddChild {
-  position: relative;
   top: 0.5rem;
   width: 8rem;
   height: 2rem;
-  margin: 0 auto;
   background-color: $controlsColor;
-  z-index: 1;
-  // border-radius: 1rem;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid $controlsBorderColor;
-  @include shadow();
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,17 +143,11 @@
 }
 
 .Delete {
-  position: relative;
   width: 3em;
   height: 3em;
-  margin: 0 auto;
   background-color: $controlsColor;
-  z-index: 1;
-  // border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid $controlsBorderColor;
-  @include shadow();
 
   svg {
     transform: scale(0.6);

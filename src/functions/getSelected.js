@@ -16,7 +16,10 @@ export default function getSelected(option, options, skipDisabled = false) {
   }
   else {
     option = getOption(option, options);
-    if (option.options === undefined) return false;
+    if (
+      option.options === undefined ||
+      option.disableUseAsSelect
+    ) return false;
     for (const slug in option.options) {
       const suboption = option.options[slug];
       if (

@@ -16,7 +16,7 @@
     .OptionWrap {
       position: relative;
       overflow: hidden;
-      // height: 100%;
+      height: 100%;
 
       > .Name {
         margin-top: 0.5em;
@@ -77,6 +77,30 @@
     border: 1px solid $optionBorderColor;
     @include shadow();
     transition: 0.3s;
+
+    .OptionBox {
+      position: relative;
+      z-index: 1;
+      // border-top: 1px solid $optionBorderColor;
+      padding-bottom: 0.5em;
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 6em;
+        z-index: -1;
+        transition: 0.3s;
+        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+      }
+
+      > .OptionHead {
+        position: relative;
+      }
+    }
   }
 
   > .OptionControls {
@@ -93,32 +117,56 @@
 .Option.OptionControl-spinbox,
 .Option.OptionControl-select {
   .OptionWrap {
-    background-color: $colorDeselected;
-    transition: 0.3s;
+    background-color: $optionDeselectedBgColor;
     border-color: $optionDeselectedBorderColor;
+    transition: 0.3s;
 
-    > .Image {
-      filter: grayscale(1) blur(3px);
-      opacity: 0.75;
+    > .OptionContent {
       transition: 0.3s;
+
+      > .Image {
+        overflow: hidden;
+
+        .ImageContent {
+          filter: grayscale(1) blur(3px);
+          opacity: 0.75;
+          transition: 0.3s;
+        }
+      }
+
+      .OptionBox:before {
+        box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
+      }
     }
 
     &:hover {
-      > .Image {
-        filter: grayscale(1) blur(1px);
+      > .OptionContent {
+        > .Image {
+          .ImageContent {
+            filter: grayscale(1) blur(1px);
+          }
+        }
       }
     }
   }
 
   &.OptionSelected {
     .OptionWrap {
-      background-color: $colorSelected;
+      background-color: $optionBgColor;
       border-color: $optionBorderColor;
       opacity: 1;
 
-      > .Image {
-        opacity: 1;
-        filter: grayscale(0);
+      > .OptionContent {
+        > .Image {
+          .ImageContent {
+            opacity: 1;
+            filter: grayscale(0);
+          }
+        }
+
+        .OptionBox:before {
+          box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+        }
       }
     }
   }
@@ -131,7 +179,7 @@
     .OptionWrap {
       cursor: pointer;
 
-      &:hover {
+      &:hover .OptionContent {
         opacity: 0.9;
       }
     }
@@ -215,7 +263,7 @@
   }
 }
 
-// increase padding top of the option to make space for the controls
+// increase space at the top of the option to make space for the controls
 .OptionsContainer {
   .Option {
     &.OptionControl-checkbox,
@@ -237,17 +285,15 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     .Image {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 100%;
+      margin-bottom: -6em;
 
       .ImageContent {
-        height: 100%;
+        box-sizing: content-box;
+        height: 6em;
+        padding-bottom: 100%;
       }
     }
 
@@ -255,26 +301,9 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      height: 100%;
-
-      &:before {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
-      }
 
       .OptionBox {
-        position: relative;
-        z-index: 1;
-        background-color: #fff7;
-        box-shadow: 0 -15em 10em -5em #fff inset;
         border-top: 1px solid $optionBorderColor;
-        padding-bottom: 0.5em;
-
-        > .OptionHead {
-          position: relative;
-        }
       }
     }
   }
