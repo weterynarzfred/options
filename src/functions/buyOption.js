@@ -31,16 +31,19 @@ function buySimpleChild(option, options) {
   if (option.max !== false && option.selected >= option.max) return;
 
   // deselect siblings
-  const parent = getParent(option, options);
-  if (
-    parent && parent.type === 'group' &&
-    parent.max === 1 &&
-    option.max === 1
-  ) {
-    const selected = getSelected(parent, options);
+  if (!option.disableUseAsSelect) {
+    const parent = getParent(option, options);
+    if (
+      !parent.disableUseAsSelect &&
+      parent && parent.type === 'group' &&
+      parent.max === 1 &&
+      option.max === 1
+    ) {
+      const selected = getSelected(parent, options);
 
-    for (const slug in selected) {
-      selected[slug].selected--;
+      for (const slug in selected) {
+        selected[slug].selected--;
+      }
     }
   }
 

@@ -80,9 +80,11 @@ nav {
   }
 }
 
-.Option > .OptionWrap {
-  &.OptionWrapHasImage {
-    > .OptionHead {
+.OptionHasImage {
+  > .OptionWrap,
+  > .SuboptionWrap {
+    > .OptionContent,
+    > .SuboptionContent {
       .OptionStats {
         position: absolute;
         right: 0;

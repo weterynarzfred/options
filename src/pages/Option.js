@@ -1,17 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Text from './Text';
 import OptionControls from '../containers/OptionControls';
 import getControlType from '../functions/getControlType';
 import propShapes from '../propShapes';
 import SuboptionsContainer from '../containers/SuboptionsContainer';
-import Name from './Name';
-import OptionLinks from '../containers/OptionLinks';
-import OptionStats from './OptionStats';
-import OptionFoot from '../containers/OptionFoot';
 import Select from './Select';
 import Image from './Image';
+import OptionBox from './OptionBox';
 import DisabledOverlay from './DisabledOverlay';
 
 function handleClick(event) {
@@ -35,17 +31,6 @@ function handleClick(event) {
 function Option(props) {
   const optionInfo = props.optionInfo;
 
-  let image = props.option.image;
-  let getStastsFrom = props.option;
-  if (optionInfo.controlType === 'select') {
-    if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
-      getStastsFrom = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
-      if (props.option.useImageOfSelected) {
-        image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
-      }
-    }
-  }
-
   return <div
     className={classNames(
       'Option',
@@ -53,7 +38,7 @@ function Option(props) {
       `OptionType-${props.option.type}`,
       { OptionSelected: optionInfo.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
-      { OptionHasImage: image },
+      { OptionHasImage: optionInfo.image },
       { OptionDisabled: optionInfo.isDisabled }
     )}
   >
@@ -65,44 +50,27 @@ function Option(props) {
       optionInfo={optionInfo}
     />
     <div
-      className={classNames(
-        'OptionWrap',
-        { OptionWrapHasImage: image !== undefined }
-      )}
+      className="OptionWrap"
       onClick={handleClick.bind(props)}
     >
-      <Image src={image} />
-      <div className="OptionHead">
-        <OptionStats
-          option={getStastsFrom}
-        />
-      </div>
       <div className="OptionContent">
-        <Name
-          name={props.option.name}
-          isChangeable={props.option.isChild}
-          change={props.change.bind(null, props.option)}
-        />
-        <Text
-          text={props.option.text}
-          isChangeable={props.option.isChild}
-          change={props.change.bind(null, props.option)}
-        />
-        <OptionLinks
+        <Image src={optionInfo.image} />
+        <OptionBox
           option={props.option}
-          depth={optionInfo.depth}
-        />
-        <OptionFoot option={props.option} />
-        <Select
-          option={props.option}
-          optionInfo={optionInfo}
-        />
-        <SuboptionsContainer
-          option={props.option}
-          suboptions={props.optionInfo.suboptions}
+          getStastsFrom={optionInfo.getStastsFrom}
+          change={props.change}
           optionInfo={optionInfo}
         />
       </div>
+      <Select
+        option={props.option}
+        optionInfo={optionInfo}
+      />
+      <SuboptionsContainer
+        option={props.option}
+        suboptions={props.optionInfo.suboptions}
+        optionInfo={optionInfo}
+      />
       <DisabledOverlay
         option={props.option}
         optionInfo={optionInfo}
@@ -116,6 +84,7 @@ Option.propTypes = {
   buy: PropTypes.func,
   sell: PropTypes.func,
   trade: PropTypes.func,
+  change: PropTypes.func,
   optionInfo: PropTypes.object,
 };
 

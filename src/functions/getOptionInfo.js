@@ -14,7 +14,10 @@ export default function getOptionInfo(option, options) {
     depth: getDepth(option, options),
   };
   optionInfo.isOpenable = Object.keys(optionInfo.suboptions).length > 0;
+  optionInfo.image = option.image;
+  optionInfo.getStastsFrom = option;
 
+  // controlType === select
   optionInfo.isSelectableSuboption = option.type === 'option' &&
     option.min === 0 &&
     !option.disableUseAsSelect &&
@@ -39,6 +42,13 @@ export default function getOptionInfo(option, options) {
     }
     if (optionInfo.selectableSuboptions.length <= 1) {
       optionInfo.controlType = false;
+    }
+
+    if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
+      optionInfo.getStastsFrom = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
+      if (option.useImageOfSelected) {
+        optionInfo.image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+      }
     }
   }
 

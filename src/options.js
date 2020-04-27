@@ -103,7 +103,23 @@ const options = {
       },
       c3: {
         name: 'C3',
+        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
         disableUseAsSelect: true,
+      },
+    },
+  },
+  d: {
+    name: 'D',
+    options: {
+      d1: {
+        name: 'D1',
+      },
+      d2: {
+        name: 'D2',
+      },
+      d3: {
+        name: 'D3',
+        image: './image/a03b831d9f2c4987a4a67df9fdc4fad7.jpg',
       },
     },
   },
