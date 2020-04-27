@@ -6,7 +6,6 @@ $optionBgColor: #fff;
 $optionTextColor: #333;
 $optionTitleColor: #555;
 $colorDeselected: #eee;
-$opacityDeselected: 1;
 $colorSelected: #fff;
 $colorDisabledOverlay: #eee;
 $optionBorderColor: #0099ff;
@@ -17,7 +16,7 @@ $controlsText: #ffffff;
 $controlsBorderColor: #0099ff;
 
 @mixin shadow() {
-  // box-shadow: 2px 2px 4px 0 #0003;
+  box-shadow: 2px 2px 4px 0 #0003;
 }
 
 * {
@@ -26,7 +25,7 @@ $controlsBorderColor: #0099ff;
 
 html {
   font-size: 16px;
-  // box-shadow: 0 0 20em 1em rgba(70, 45, 0, 0.4) inset;
+  box-shadow: 0 0 20em 1em rgba(255, 255, 255, 1) inset;
   min-height: 100vh;
 }
 
@@ -56,7 +55,7 @@ html {
 
 body {
   background-color: $colorBg;
-  // background-image: url("/element/regal.png");
+  background-image: url("/element/regal.png");
   margin: 0;
   font-family: "Lato", sans-serif;
   color: $colorText;
@@ -167,7 +166,6 @@ input[type="number"] {
 
 .Image {
   .ImageContent {
-    padding-bottom: 100%;
     background-position: center;
     background-size: cover;
     background-color: #555;

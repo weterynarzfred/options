@@ -16,12 +16,7 @@
     .OptionWrap {
       position: relative;
       overflow: hidden;
-      border-radius: 0.5em;
       height: 100%;
-
-      > .OptionHead .Image {
-        // box-shadow: $shadowOffset $shadowOffset $shadowSpread 0 #0003;
-      }
 
       > .Name {
         margin-top: 0.5em;
@@ -39,7 +34,6 @@
 
         .PathLink {
           display: inline-block;
-          border-radius: 0.5em;
           font-size: 0.75em;
           padding: 0.5em 1em;
           transition: 0.3s;
@@ -90,6 +84,7 @@
     top: 0;
     right: 0;
     left: 0;
+    z-index: 2;
   }
 }
 
@@ -99,13 +94,19 @@
 .Option.OptionControl-select {
   .OptionWrap {
     background-color: $colorDeselected;
-    opacity: $opacityDeselected;
     transition: 0.3s;
     border-color: $optionDeselectedBorderColor;
 
-    > .OptionHead .Image {
-      filter: grayscale(1) blur(5px);
+    > .Image {
+      filter: grayscale(1) blur(3px);
+      opacity: 0.75;
       transition: 0.3s;
+    }
+
+    &:hover {
+      > .Image {
+        filter: grayscale(1) blur(1px);
+      }
     }
   }
 
@@ -115,7 +116,8 @@
       border-color: $optionBorderColor;
       opacity: 1;
 
-      > .OptionHead .Image {
+      > .Image {
+        opacity: 1;
         filter: grayscale(0);
       }
     }
@@ -131,7 +133,6 @@
 
       &:hover {
         opacity: 0.9;
-        // border: 1px solid #999;
       }
     }
   }
@@ -157,16 +158,60 @@
     background-color: $colorDisabledOverlay;
     padding: 1em;
     color: #500;
+    z-index: 1;
 
-    .OptionDisabledMessage {
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      padding-left: 0.2em;
-      font-family: "EB Garamond", serif;
+    .OptionDisabledImage {
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      filter: grayscale(1) blur(6px);
+
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #fff9;
+      }
     }
+
+    .OptionDisabledNameContainer {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      line-height: 1.2;
+
+      .OptionDisabledName {
+        font-family: "EB Garamond", serif;
+        font-size: 2em;
+        color: #0009;
+      }
+
+      .OptionDisabledMessage {
+        font-size: 0.75em;
+        margin-top: -0.3em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        padding-left: 0.5em;
+      }
+    }
+
     .OptionDisabledReason {
       font-weight: 700;
+
+      p {
+        // margin-top: 0.25em;
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -182,6 +227,47 @@
         .OptionStats {
           min-height: 1em;
         }
+      }
+    }
+  }
+}
+
+// options width images
+.Option {
+  > .OptionWrap {
+    &.OptionWrapHasImage {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      &:before {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+
+      .Image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 100%;
+
+        .ImageContent {
+          height: 100%;
+        }
+      }
+
+      > .OptionContent {
+        position: relative;
+        background-color: #fff7;
+        box-shadow: 0 -15em 10em -5em #fff inset;
+        border-top: 1px solid $optionBorderColor;
+      }
+
+      > .OptionHead {
+        position: relative;
       }
     }
   }

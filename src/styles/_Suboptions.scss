@@ -45,7 +45,6 @@
 .Suboption.OptionControl-spinbox,
 .Suboption.OptionControl-select {
   background-color: $colorDeselected;
-  opacity: $opacityDeselected;
   transition: 0.3s;
 
   .SuboptionWrap {
