@@ -17,27 +17,28 @@ const initialState = {
   errors: [],
 };
 
-function rootReducer(state = initialState, action) {
-  return produce(state, state => {
+function rootReducer(state, action) {
+  if (state === undefined) state = initialState;
+  return produce(state, newState => {
     if (action.type === 'BUY_OPTION') {
-      buyOption(action.option, state.options);
+      buyOption(action.option, newState.options);
     }
     else if (action.type === 'SELL_OPTION') {
-      sellOption(action.option, state.options, state.path);
+      sellOption(action.option, newState.options, newState.path);
     }
     else if (action.type === 'TRADE_OPTION') {
-      tradeOption(action.option, state.options, action.value);
+      tradeOption(action.option, newState.options, action.value);
     }
     else if (action.type === 'CHANGE_PATH') {
-      state.path = action.path.filter(e => e !== '');
+      newState.path = action.path.filter(e => e !== '');
     }
     else if (action.type === 'CHANGE_TEXT') {
-      getOption(action.option, state.options)[action.textProp] = action.text;
+      getOption(action.option, newState.options)[action.textProp] = action.text;
     }
 
-    recalculateState(state);
-    findErrors(state);
-    return state;
+    recalculateState(newState);
+    findErrors(newState);
+    return newState;
   });
 }
 
