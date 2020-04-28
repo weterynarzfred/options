@@ -4,10 +4,28 @@ import calculateCurrency from "./calculateCurrency";
 import getUserFunctionValue from "./getUserFunctionValue";
 import isOptionDisabled from "./isOptionDisabled";
 
+function clearUserFunction(userFunction, propName = 'value') {
+  if (userFunction === undefined) return;
+  if (userFunction.isUserFunction) userFunction[propName] = undefined;
+}
+
+function clearUserFunctions(option) {
+  clearUserFunction(option.text);
+  clearUserFunction(option.test);
+  clearUserFunction(option.optionsFunction);
+  if (option.cost !== undefined) {
+    for (const currencySlug in option.cost) {
+      const currency = option.cost[currencySlug];
+      clearUserFunction(currency);
+      clearUserFunction(currency, 'nextValue');
+    }
+  }
+}
+
 function runUserFunctions(option, state) {
-  getUserFunctionValue(option.text, { option, ...state }, 'value', true);
-  getUserFunctionValue(option.test, { option, ...state }, 'value', true);
-  getUserFunctionValue(option.optionsFunction, { option, ...state }, 'value', true);
+  getUserFunctionValue(option.text, { option, ...state });
+  getUserFunctionValue(option.test, { option, ...state });
+  getUserFunctionValue(option.optionsFunction, { option, ...state });
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];
@@ -26,7 +44,7 @@ function runUserFunctions(option, state) {
         index: selectedCount,
         option,
         ...state,
-      }, 'nextValue', true);
+      }, 'nextValue');
     }
   }
 }
@@ -35,6 +53,16 @@ function getInfo(option, parentOption, state) {
   option.info = {
     isDisabled: parentOption.info.isDisabled || isOptionDisabled(option, state.options),
   };
+}
+
+function cleanOptions(parentOption, state) {
+  const suboptions = getSubptions(parentOption, state.options)
+  for (const slug in suboptions) {
+    const option = suboptions[slug];
+    clearUserFunctions(option);
+
+    cleanOptions(option, state);
+  }
 }
 
 function checkOptions(parentOption, state) {
@@ -71,6 +99,7 @@ function checkCurrencies(currentOptions, currencies, options) {
 }
 
 export default function recalculateState(state) {
+  cleanOptions(state, state);
   checkOptions(state, state);
   checkOptionCurrenies(state, state.options)
   checkCurrencies(state.options, state.settings.currency, state.options);

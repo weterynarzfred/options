@@ -1,6 +1,7 @@
 import React from 'react';
 import getOption from './functions/getOption';
 import getSelected from './functions/getSelected';
+import isOptionDisabled from './functions/isOptionDisabled';
 
 function select(arr, def = false) {
   for (const condition of arr) {
@@ -16,6 +17,7 @@ function _is(path) {
 
 function _val(path) {
   const option = getOption(path, this.options);
+  if (isOptionDisabled(option, this.options)) return false;
   if (option.selected === undefined) {
     const selected = getSelected(option, this.options);
     if (selected.length === 0) return false;
@@ -165,14 +167,16 @@ const options = {
   yourMagic: {
     name: 'Magic',
     type: 'group',
-    test: data => !_is.call(data, 'magicFrequency/none'),
+    test: data => {
+      return !['none', false].includes(_val.call(data, 'magicFrequency'));
+    },
     min: 1,
     options: {
       none: {
         name: 'None',
         text: <React.Fragment><p>You won't be able to wield the magic of your new world no matter what.</p><p>Gained gold depends on the frequency of people with access to magic.</p></React.Fragment>,
         cost: {
-          gold: data => select([
+          gold: data => -select([
             [_is.call(data, 'magicFrequency/few'), 1],
             [_is.call(data, 'magicFrequency/rare'), 2],
             [_is.call(data, 'magicFrequency/common'), 5],
@@ -268,6 +272,7 @@ const options = {
   technology: {
     name: 'Technology',
     type: 'group',
+    test: data => !_is.call(data, 'species/none'),
     min: 1,
     options: {
       prehistoric: {
@@ -307,6 +312,7 @@ const options = {
     name: 'Magic Frequency',
     text: <p>How many sapient creatures on your new world will be able to use magic?</p>,
     type: 'group',
+    test: data => !_is.call(data, 'species/none'),
     min: 1,
     options: {
       none: {
@@ -331,6 +337,26 @@ const options = {
       },
       everyone: {
         name: 'Mostly Everyone',
+      },
+    },
+  },
+  magicPower: {
+    name: 'Magic Power',
+    text: <p>How powerfull will the magic be?</p>,
+    type: 'group',
+    test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
+    options: {
+      convenience: {
+        name: 'Convenience',
+      },
+      heroic: {
+        name: 'Heroic',
+      },
+      powerfull: {
+        name: 'Powerfull',
+      },
+      worldShattering: {
+        name: 'World Shattering',
       },
     },
   },
