@@ -35,56 +35,8 @@
     .OptionStats {
       margin-top: 0.5em;
     }
-  }
-}
 
-// selectable suboptions
-.Suboption.OptionControl-checkbox,
-.Suboption.OptionControl-spinbox,
-.Suboption.OptionControl-select {
-  background-color: $colorDeselected;
-  transition: 0.3s;
-
-  .SuboptionContent {
-    transition: 0.3s;
-
-    > .Image {
-      overflow: hidden;
-
-      .ImageContent {
-        filter: grayscale(1) blur(3px);
-        opacity: 0.75;
-        transition: 0.3s;
-      }
-    }
-
-    .OptionBox:before {
-      box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
-    }
-  }
-
-  &.OptionSelected {
-    background-color: $colorSelected;
-    opacity: 1;
-
-    .SuboptionContent {
-      > .Image {
-        .ImageContent {
-          opacity: 1;
-          filter: grayscale(0);
-        }
-      }
-
-      .OptionBox:before {
-        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
-      }
-    }
-  }
-}
-
-// suboption controls
-.Suboptions {
-  .Suboption {
+    // suboption controls
     .OptionControls {
       padding-top: 0.5em;
       width: 100%;
@@ -144,6 +96,50 @@
       .OptionControls {
         position: absolute;
         top: 0;
+      }
+    }
+  }
+}
+
+// selectable suboptions
+.Suboption.OptionControl-checkbox,
+.Suboption.OptionControl-spinbox,
+.Suboption.OptionControl-select {
+  background-color: $colorDeselected;
+  transition: 0.3s;
+
+  .SuboptionContent {
+    transition: 0.3s;
+
+    > .Image {
+      overflow: hidden;
+
+      .ImageContent {
+        filter: grayscale(1) blur(3px);
+        opacity: 0.75;
+        transition: 0.3s;
+      }
+    }
+
+    .OptionBox:before {
+      box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
+    }
+  }
+
+  &.OptionSelected {
+    background-color: $colorSelected;
+    opacity: 1;
+
+    .SuboptionContent {
+      > .Image {
+        .ImageContent {
+          opacity: 1;
+          filter: grayscale(0);
+        }
+      }
+
+      .OptionBox:before {
+        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
       }
     }
   }

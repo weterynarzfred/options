@@ -72,6 +72,18 @@
         display: none;
       }
     }
+
+    // increase space at the top of the option to make space for the controls
+    &.OptionControl-checkbox,
+    &.OptionControl-spinbox,
+    &.OptionControl-addChild,
+    &.OptionControl-select {
+      .OptionHead {
+        .OptionStats {
+          min-height: 1em;
+        }
+      }
+    }
   }
 }
 
@@ -264,22 +276,6 @@
       p {
         margin-top: 0.25em;
         margin-bottom: 0;
-      }
-    }
-  }
-}
-
-// increase space at the top of the option to make space for the controls
-.OptionsContainer {
-  .Option {
-    &.OptionControl-checkbox,
-    &.OptionControl-spinbox,
-    &.OptionControl-addChild,
-    &.OptionControl-select {
-      .OptionHead {
-        .OptionStats {
-          min-height: 1em;
-        }
       }
     }
   }
