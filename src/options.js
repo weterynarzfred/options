@@ -12,6 +12,7 @@ function select(arr, def = false) {
 
 function _is(path) {
   const option = getOption(path, this.options);
+  if (isOptionDisabled(option, this.options)) return false;
   return option.selected > 0;
 }
 
