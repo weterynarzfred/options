@@ -1,6 +1,5 @@
 import getControlType from './getControlType';
 import getSubptions from './getSubptions';
-import getSelectedCount from './getSelectedCount';
 import getDepth from './getDepth';
 import isOptionDisabled from './isOptionDisabled';
 
@@ -9,7 +8,6 @@ export default function getOptionInfo(option, options) {
   const optionInfo = {
     controlType: getControlType(option),
     suboptions: getSubptions(option, options),
-    isSelected: getSelectedCount(option, options) > 0,
     depth: getDepth(option, options),
   };
   optionInfo.isOpenable = Object.keys(optionInfo.suboptions).length > 0;

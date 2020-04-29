@@ -36,7 +36,7 @@ function Option(props) {
       'Option',
       `OptionControl-${optionInfo.controlType}`,
       `OptionType-${props.option.type}`,
-      { OptionSelected: optionInfo.isSelected },
+      { OptionSelected: props.option.info.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
       { OptionHasImage: optionInfo.image },
       { OptionDisabled: props.option.info.isDisabled }

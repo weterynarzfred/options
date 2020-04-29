@@ -16,7 +16,7 @@ function Suboption(props) {
       'Suboption',
       `OptionControl-${optionInfo.controlType}`,
       `OptionType-${props.option.type}`,
-      { OptionSelected: optionInfo.isSelected },
+      { OptionSelected: props.option.info.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
       { SelectableSuboption: optionInfo.isSelectableSuboption },
       { OptionHasImage: optionInfo.image },

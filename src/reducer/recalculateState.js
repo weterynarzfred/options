@@ -5,10 +5,12 @@ import isOptionDisabled from "../functions/isOptionDisabled";
 import createSyntheticOptions from './createSyntheticOptions';
 import runUserFunctions from "./runUserFunctions";
 import clearUserFunctions from "./clearUserFunctions";
+import getSelectedCount from "../functions/getSelectedCount";
 
 function getInfo(option, parentOption, state) {
   option.info = {
     isDisabled: parentOption.info.isDisabled || isOptionDisabled(option, state.options),
+    isSelected: getSelectedCount(option, state.options) > 0,
   };
 }
 
