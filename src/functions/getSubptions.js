@@ -1,5 +1,4 @@
 import isOptionDisabled from './isOptionDisabled';
-import getSyntheticOptions from './getSyntheticOptions';
 
 /**
  * Finds suboptions, children or synthetic suboptions of the given option.
@@ -8,13 +7,13 @@ import getSyntheticOptions from './getSyntheticOptions';
  * @param {boolean} skipDisabled Remove disabled options from the return value.
  * @returns {object} An object containing suboptions, or an empty object.
  */
-export default function getSubptions(option, options, skipDisabled = false, recreate = false) {
+export default function getSubptions(option, options, skipDisabled = false) {
   let currentOptions;
   if (option.hasIndividualChildren) {
     currentOptions = option.selected;
   }
   else if (option.options !== undefined && option.options.isUserFunction) {
-    currentOptions = getSyntheticOptions(option, options, recreate);
+    currentOptions = option.functionalChildren;
   }
   else {
     currentOptions = option.options;
