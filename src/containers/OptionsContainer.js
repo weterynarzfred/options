@@ -37,7 +37,7 @@ OptionsContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     options: state.options,
-    path: state.path,
+    path: state.path.map(e => e.slug),
   };
 }
 

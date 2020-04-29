@@ -12,7 +12,6 @@ function Intro(props) {
 
 function mapStateToProps(state) {
   return {
-    path: state.path,
     settings: state.settings,
   };
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './styles/style.scss';
 import Intro from './containers/Intro';
@@ -7,6 +7,7 @@ import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
 import Nav from './containers/Nav';
 import $ from 'cash-dom';
+import pipe from './pipe';
 
 $(window).on('load', () => {
   $('body').addClass('unlocked');
@@ -16,6 +17,13 @@ $(window).on('load', () => {
 });
 
 function App(props) {
+  useEffect(() => {
+    if (pipe.scroll !== undefined) {
+      window.scroll(0, pipe.scroll);
+      pipe.scroll = undefined;
+    }
+  });
+
   const option = getOption(props.path, props.options);
   return (
     <div className="App">
@@ -36,7 +44,7 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    path: state.path,
+    path: state.path.map(e => e.slug),
     options: state.options,
   };
 }

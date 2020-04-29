@@ -38,6 +38,16 @@ const options = {
   count: {
     name: 'Count',
     max: 5,
+    options: {
+      a: {
+        name: 'A',
+        options: {
+          b: {
+            name: 'B',
+          },
+        },
+      },
+    },
   },
   group: {
     name: 'Group',
@@ -198,17 +208,23 @@ const options = {
       saviour: {
         name: 'Mark of the Saviour',
         image: './image/celestial_by_ajgiel_d9456vi-fullview.jpg',
+        cost: {
+          gold: 2,
+        },
       },
       demigod: {
         name: 'Mark of the Demigod',
         image: './image/ee73f0b46e3653303deccc7f70c9b44b.jpg',
         cost: {
-          gold: 2,
+          gold: 5,
         },
       },
       doom: {
         name: 'Mark of Doom',
         image: './image/tony-maverick-.jpg',
+        cost: {
+          gold: 2,
+        },
       },
     },
   },

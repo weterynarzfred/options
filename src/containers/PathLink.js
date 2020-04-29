@@ -10,6 +10,7 @@ function PathLink(props) {
       props.dispatch({
         type: 'CHANGE_PATH',
         path: props.path.split('/'),
+        scroll: window.scrollY,
       });
     }}>
       {props.text}
