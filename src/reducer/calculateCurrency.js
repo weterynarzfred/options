@@ -1,6 +1,6 @@
-import isOptionDisabled from './isOptionDisabled';
-import getSubptions from "./getSubptions";
-import getSelectedCount from './getSelectedCount';
+import isOptionDisabled from '../functions/isOptionDisabled';
+import getSubptions from "../functions/getSubptions";
+import getSelectedCount from '../functions/getSelectedCount';
 
 /**
  * Calculate how much of each currency is left.

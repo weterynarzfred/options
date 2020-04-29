@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import propShapes from '../propShapes';
-import OptionControls from '../containers/OptionControls';
+import OptionControls from './OptionControls';
 import Select from './Select';
 import Image from './Image';
 import OptionBox from './OptionBox';

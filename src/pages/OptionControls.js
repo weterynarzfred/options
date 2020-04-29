@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from '../pages/Checkbox';
-import Spinbox from '../pages/Spinbox';
+import Checkbox from './Checkbox';
+import Spinbox from './Spinbox';
 import propShapes from '../propShapes';
-import AddChild from '../pages/AddChild';
+import AddChild from './AddChild';
 import { isObject } from '../functions/helpers';
-import Delete from '../pages/Delete';
-import SelectControls from './../pages/SelectControls';
+import Delete from './Delete';
+import SelectControls from './SelectControls';
 
 function OptionControls(props) {
   if (props.option.info.isDisabled) return false;

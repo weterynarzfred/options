@@ -1,6 +1,7 @@
+import calculateCurrency from "./calculateCurrency";
+import findErrors from './findErrors';
 import getSubptions from "../functions/getSubptions";
 import getSelectedCount from "../functions/getSelectedCount";
-import calculateCurrency from "../functions/calculateCurrency";
 import getUserFunctionValue from "../functions/getUserFunctionValue";
 import isOptionDisabled from "../functions/isOptionDisabled";
 
@@ -9,16 +10,20 @@ function clearUserFunction(userFunction, propName = 'value') {
   if (userFunction.isUserFunction) userFunction[propName] = undefined;
 }
 
-function clearUserFunctions(option) {
-  clearUserFunction(option.text);
-  clearUserFunction(option.test);
-  clearUserFunction(option.optionsFunction);
-  if (option.cost !== undefined) {
-    for (const currencySlug in option.cost) {
-      const currency = option.cost[currencySlug];
-      if (currency === null || !currency.isUserFunction) continue;
-      clearUserFunction(currency);
-      clearUserFunction(currency, 'nextValue');
+function clearUserFunctions(option, keys) {
+  for (const key of keys) {
+    if (key === 'cost') {
+      if (option.cost !== undefined) {
+        for (const currencySlug in option.cost) {
+          const currency = option.cost[currencySlug];
+          if (currency === null || !currency.isUserFunction) continue;
+          clearUserFunction(currency);
+          clearUserFunction(currency, 'nextValue');
+        }
+      }
+    }
+    else {
+      clearUserFunction(option[key]);
     }
   }
 }
@@ -55,17 +60,8 @@ function getInfo(option, parentOption, state) {
   };
 }
 
-function cleanOptions(parentOption, state) {
-  const suboptions = getSubptions(parentOption, state.options)
-  for (const slug in suboptions) {
-    const option = suboptions[slug];
-    clearUserFunctions(option);
 
-    cleanOptions(option, state);
-  }
-}
-
-function checkOptions(parentOption, state) {
+function checkOptions(parentOption, state, keys) {
   if (parentOption.info === undefined) {
     parentOption.info = {};
   }
@@ -81,7 +77,7 @@ function checkOptions(parentOption, state) {
 }
 
 function checkOptionCurrencies(parentOption, options) {
-  const suboptions = getSubptions(parentOption, options)
+  const suboptions = getSubptions(parentOption, options);
   for (const slug in suboptions) {
     const option = suboptions[slug];
     if (option.optionCurrency !== undefined) {
@@ -89,6 +85,16 @@ function checkOptionCurrencies(parentOption, options) {
     }
 
     checkOptionCurrencies(option, options);
+  }
+}
+
+function forEachOption(parentOption, state, callback) {
+  const suboptions = getSubptions(parentOption, state.options);
+
+  for (const slug in suboptions) {
+    const option = suboptions[slug];
+    callback(option, state);
+    forEachOption(option, state, callback);
   }
 }
 
@@ -100,9 +106,17 @@ function checkCurrencies(currentOptions, currencies, options) {
 }
 
 export default function recalculateState(state) {
+  forEachOption(state, state, (option, state) => {
+    clearUserFunctions(option, ['test', 'cost', 'optionsFunction']);
+  });
+  checkOptions(state, state, ['test', 'cost', 'optionsFunction']);
+
   checkOptionCurrencies(state, state.options)
   checkCurrencies(state.options, state.settings.currency, state.options);
+  findErrors(state);
 
-  cleanOptions(state, state);
-  checkOptions(state, state);
+  forEachOption(state, state, (option, state) => {
+    clearUserFunctions(option, ['text']);
+  });
+  checkOptions(state, state, ['text']);
 }

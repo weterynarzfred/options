@@ -6,7 +6,6 @@ import prepareOptions from './reducer/prepareOptions';
 import buyOption from "./reducer/buyOption";
 import sellOption from "./reducer/sellOption";
 import tradeOption from './reducer/tradeOption';
-import findErrors from './reducer/findErrors';
 import getOption from './functions/getOption';
 import recalculateState from './reducer/recalculateState';
 import pipe from './pipe';
@@ -21,7 +20,7 @@ const initialState = {
 function rootReducer(state = initialState, action = '') {
   return produce(state, newState => {
     pipe.state = newState;
-    let skipCheck = false;
+    let skipRecalculate = false;
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, newState.options);
     }
@@ -33,16 +32,15 @@ function rootReducer(state = initialState, action = '') {
     }
     else if (action.type === 'CHANGE_PATH') {
       newState.path = action.path.filter(e => e !== '');
-      skipCheck = true;
+      skipRecalculate = true;
     }
     else if (action.type === 'CHANGE_TEXT') {
       getOption(action.option, newState.options)[action.textProp] = action.text;
-      skipCheck = true;
+      skipRecalculate = true;
     }
 
-    if (!skipCheck) {
+    if (!skipRecalculate) {
       recalculateState(newState);
-      findErrors(newState);
     }
 
     return newState;

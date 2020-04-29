@@ -286,6 +286,12 @@ Container for temporary option objects created using `optionsFunction`. This obj
 - `option.max === 1`
 - has more than one suboption with `max === 1 && min === 0`
 
+# User functions
+- `test`
+- `cost[currency]`
+- `optionsFunction`
+- `text` - executed after currencies and errors are processed
+
 # To do
 - better documentation
 - 'navigate back' button

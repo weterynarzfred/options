@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propShapes from '../propShapes';
 import Name from './../pages/Name';
-import OptionControls from './OptionControls';
+import OptionControls from './../pages/OptionControls';
 import Text from '../pages/Text';
 import OptionStats from './../pages/OptionStats';
 import OptionFoot from './OptionFoot';
