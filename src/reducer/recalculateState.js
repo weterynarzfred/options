@@ -1,63 +1,10 @@
 import calculateCurrency from "./calculateCurrency";
 import findErrors from './findErrors';
 import getSubptions from "../functions/getSubptions";
-import getSelectedCount from "../functions/getSelectedCount";
-import getUserFunctionValue from "../functions/getUserFunctionValue";
 import isOptionDisabled from "../functions/isOptionDisabled";
 import createSyntheticOptions from './createSyntheticOptions';
-
-function clearUserFunction(userFunction, propName = 'value') {
-  if (userFunction === undefined) return;
-  if (userFunction.isUserFunction) userFunction[propName] = undefined;
-}
-
-function clearUserFunctions(option, keys) {
-  for (const key of keys) {
-    if (key === 'cost') {
-      if (option.cost !== undefined) {
-        for (const currencySlug in option.cost) {
-          const currency = option.cost[currencySlug];
-          if (currency === null || !currency.isUserFunction) continue;
-          clearUserFunction(currency);
-          clearUserFunction(currency, 'nextValue');
-        }
-      }
-    }
-    else {
-      clearUserFunction(option[key]);
-    }
-  }
-}
-
-function runUserFunctions(option, state, keys) {
-  for (const key of keys) {
-    if (key === 'cost') {
-      if (option.cost !== undefined) {
-        for (const currencySlug in option.cost) {
-          const currency = option.cost[currencySlug];
-
-          if (currency === null || !currency.isUserFunction) continue;
-          const selectedCount = getSelectedCount(option, state.options);
-          let cost = 0;
-          for (let i = 0; i < selectedCount; i++) {
-            cost += getUserFunctionValue(currency, {
-              index: i,
-              option,
-            }, false);
-          }
-          currency.value = cost;
-          getUserFunctionValue(currency, {
-            index: selectedCount,
-            option,
-          }, 'nextValue');
-        }
-      }
-    }
-    else {
-      getUserFunctionValue(option[key], { option });
-    }
-  }
-}
+import runUserFunctions from "./runUserFunctions";
+import clearUserFunctions from "./clearUserFunctions";
 
 function getInfo(option, parentOption, state) {
   option.info = {
@@ -90,10 +37,8 @@ export default function recalculateState(state) {
     clearUserFunctions(option, ['test', 'cost', 'options']);
   });
   forEachOption(state, state, (option, parentOption, state) => {
-    runUserFunctions(option, state, ['test', 'cost', 'options']);
-  });
-  forEachOption(state, state, (option, parentOption, state) => {
     getInfo(option, parentOption, state);
+    runUserFunctions(option, state, ['test', 'cost', 'options']);
   }, (parentOption, state) => {
     if (parentOption.info === undefined) {
       parentOption.info = {};

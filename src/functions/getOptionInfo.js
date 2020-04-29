@@ -16,7 +16,7 @@ export default function getOptionInfo(option, options) {
   optionInfo.image = option.image;
   optionInfo.getStastsFrom = option;
 
-  // controlType === select
+  // when controlType === select
   optionInfo.isSelectableSuboption = option.type === 'option' &&
     option.min === 0 &&
     !option.disableUseAsSelect &&
