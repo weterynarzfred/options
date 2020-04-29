@@ -15,15 +15,15 @@ const settings = prepareSettings({
   },
 });
 
-function prepareSettings(settings) {
-  for (const slug in settings.currencies) {
-    const currency = settings.currencies[slug];
+function prepareSettings(currentSettings) {
+  for (const slug in currentSettings.currencies) {
+    const currency = currentSettings.currencies[slug];
     currency.slug = slug;
   }
-  settings.hideDisabledOptions = settings.hideDisabledOptions === undefined ?
-    false : settings.hideDisabledOptions
-  settings.maxDepth = settings.maxDepth === undefined ? 2 : settings.maxDepth;
-  return settings;
+  currentSettings.hideDisabledOptions = currentSettings.hideDisabledOptions === undefined ?
+    false : currentSettings.hideDisabledOptions
+  currentSettings.maxDepth = currentSettings.maxDepth === undefined ? 2 : currentSettings.maxDepth;
+  return currentSettings;
 }
 
 export default settings;

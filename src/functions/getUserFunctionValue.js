@@ -6,7 +6,10 @@ export default function getUserFunctionValue(userFunction, data, propName = 'val
   if (!userFunction.isUserFunction) return userFunction;
 
   if (propName === false) {
-    return userFunctions[userFunction.functionId](data);
+    return userFunctions[userFunction.functionId]({
+      ...data,
+      ...pipe.state
+    });
   }
 
   if (reset || userFunction[propName] === undefined) {
@@ -15,5 +18,6 @@ export default function getUserFunctionValue(userFunction, data, propName = 'val
       ...pipe.state
     });
   }
+
   return userFunction[propName];
 }

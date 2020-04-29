@@ -80,7 +80,7 @@ function checkOptions(parentOption, state) {
   }
 }
 
-function checkOptionCurrenies(parentOption, options) {
+function checkOptionCurrencies(parentOption, options) {
   const suboptions = getSubptions(parentOption, options)
   for (const slug in suboptions) {
     const option = suboptions[slug];
@@ -88,7 +88,7 @@ function checkOptionCurrenies(parentOption, options) {
       checkCurrencies(option.options, option.optionCurrency, options);
     }
 
-    checkOptionCurrenies(option, options);
+    checkOptionCurrencies(option, options);
   }
 }
 
@@ -100,8 +100,9 @@ function checkCurrencies(currentOptions, currencies, options) {
 }
 
 export default function recalculateState(state) {
+  checkOptionCurrencies(state, state.options)
+  checkCurrencies(state.options, state.settings.currency, state.options);
+
   cleanOptions(state, state);
   checkOptions(state, state);
-  checkOptionCurrenies(state, state.options)
-  checkCurrencies(state.options, state.settings.currency, state.options);
 }

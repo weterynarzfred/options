@@ -10,7 +10,6 @@ import getOption from './functions/getOption';
 import recalculateState from './reducer/recalculateState';
 import tradeOption from './functions/tradeOption';
 import pipe from './pipe';
-import { clone } from './functions/helpers';
 
 const initialState = {
   path: [],
@@ -44,7 +43,6 @@ function rootReducer(state, action) {
     return newState;
   });
 
-  pipe.state = clone(currentState);
   return currentState;
 }
 
