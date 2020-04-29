@@ -3,12 +3,12 @@ import produce from 'immer';
 import options from './options';
 import settings from './settings';
 import prepareOptions from './reducer/prepareOptions';
-import sellOption from "./reducer/sellOption";
 import buyOption from "./reducer/buyOption";
+import sellOption from "./reducer/sellOption";
+import tradeOption from './reducer/tradeOption';
 import findErrors from './reducer/findErrors';
 import getOption from './functions/getOption';
 import recalculateState from './reducer/recalculateState';
-import tradeOption from './functions/tradeOption';
 import pipe from './pipe';
 
 const initialState = {
@@ -18,10 +18,10 @@ const initialState = {
   errors: [],
 };
 
-function rootReducer(state, action) {
-  if (state === undefined) state = initialState;
-  const currentState = produce(state, newState => {
+function rootReducer(state = initialState, action = '') {
+  return produce(state, newState => {
     pipe.state = newState;
+    let skipCheck = false;
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, newState.options);
     }
@@ -33,17 +33,20 @@ function rootReducer(state, action) {
     }
     else if (action.type === 'CHANGE_PATH') {
       newState.path = action.path.filter(e => e !== '');
+      skipCheck = true;
     }
     else if (action.type === 'CHANGE_TEXT') {
       getOption(action.option, newState.options)[action.textProp] = action.text;
+      skipCheck = true;
     }
 
-    recalculateState(newState);
-    findErrors(newState);
+    if (!skipCheck) {
+      recalculateState(newState);
+      findErrors(newState);
+    }
+
     return newState;
   });
-
-  return currentState;
 }
 
 const store = createStore(

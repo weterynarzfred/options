@@ -1,5 +1,5 @@
-import { getParent } from "./helpers";
-import getOption from "./getOption";
+import { getParent } from "../functions/helpers";
+import getOption from "../functions/getOption";
 
 function tradeSyntheticOption(option, options, value) {
   const parent = getParent(option, options);
