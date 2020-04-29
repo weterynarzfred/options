@@ -6,6 +6,7 @@ import Name from './Name';
 import Text from './Text';
 import OptionLinks from '../containers/OptionLinks';
 import OptionFoot from '../containers/OptionFoot';
+import getUserFunctionValue from "./../functions/getUserFunctionValue";
 
 function OptionBox(props) {
 
@@ -21,7 +22,7 @@ function OptionBox(props) {
       change={props.change.bind(null, props.option)}
     />
     <Text
-      text={props.option.text}
+      text={getUserFunctionValue(props.option.text, { option: props.option })}
       isChangeable={props.option.isChild}
       change={props.change.bind(null, props.option)}
     />

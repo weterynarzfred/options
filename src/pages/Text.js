@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 import Hyphenated from 'react-hyphen';
 import propShapes from '../propShapes';
 
-function getText(text) {
-  if (text === undefined) return '';
-  if (text.isUserFunction) return text.value;
-  return text;
-}
-
 function Text(props) {
   if (props.isChangeable) {
     return <div className="Text">
       <input
-        value={getText(props.text)}
+        value={props.text}
         onChange={event => props.change('text', event.target.value)}
       />
     </div>;
@@ -21,7 +15,7 @@ function Text(props) {
 
   return <div className="Text">
     <Hyphenated>
-      {getText(props.text)}
+      {props.text || null}
     </Hyphenated>
   </div>;
 }
