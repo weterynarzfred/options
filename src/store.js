@@ -1,14 +1,16 @@
 import { createStore } from 'redux';
 import produce from 'immer';
 import options from './options';
-import sellOption from "./functions/sellOption";
-import buyOption from "./functions/buyOption";
-import prepareOptions from './functions/prepareOptions';
 import settings from './settings';
-import findErrors from './functions/findErrors';
+import prepareOptions from './reducer/prepareOptions';
+import sellOption from "./reducer/sellOption";
+import buyOption from "./reducer/buyOption";
+import findErrors from './reducer/findErrors';
 import getOption from './functions/getOption';
-import recalculateState from './functions/recalculateState';
+import recalculateState from './reducer/recalculateState';
 import tradeOption from './functions/tradeOption';
+import pipe from './pipe';
+import { clone } from './functions/helpers';
 
 const initialState = {
   path: [],
@@ -19,7 +21,8 @@ const initialState = {
 
 function rootReducer(state, action) {
   if (state === undefined) state = initialState;
-  return produce(state, newState => {
+  const currentState = produce(state, newState => {
+    pipe.state = newState;
     if (action.type === 'BUY_OPTION') {
       buyOption(action.option, newState.options);
     }
@@ -40,6 +43,9 @@ function rootReducer(state, action) {
     findErrors(newState);
     return newState;
   });
+
+  pipe.state = clone(currentState);
+  return currentState;
 }
 
 const store = createStore(

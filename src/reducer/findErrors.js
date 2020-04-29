@@ -1,7 +1,7 @@
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getSubptions from './getSubptions';
+import getSubptions from '../functions/getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
-import getOption from './getOption';
+import getOption from '../functions/getOption';
 
 /**
  * Transforms path into a nice readable form.
@@ -48,7 +48,7 @@ function checkOptionCurrencies(option, options, errors) {
   for (const currencySlug in option.optionCurrency) {
     const currency = option.optionCurrency[currencySlug];
     const min = currency.min === undefined ? 0 : currency.min;
-    
+
     if (min !== false && currency.currentValue < min) {
       errors.push({
         path: option.path,

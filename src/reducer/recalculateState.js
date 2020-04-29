@@ -1,8 +1,8 @@
-import getSubptions from "./getSubptions";
-import getSelectedCount from "./getSelectedCount";
-import calculateCurrency from "./calculateCurrency";
-import getUserFunctionValue from "./getUserFunctionValue";
-import isOptionDisabled from "./isOptionDisabled";
+import getSubptions from "../functions/getSubptions";
+import getSelectedCount from "../functions/getSelectedCount";
+import calculateCurrency from "../functions/calculateCurrency";
+import getUserFunctionValue from "../functions/getUserFunctionValue";
+import isOptionDisabled from "../functions/isOptionDisabled";
 
 function clearUserFunction(userFunction, propName = 'value') {
   if (userFunction === undefined) return;
@@ -16,6 +16,7 @@ function clearUserFunctions(option) {
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];
+      if (currency === null || !currency.isUserFunction) continue;
       clearUserFunction(currency);
       clearUserFunction(currency, 'nextValue');
     }
@@ -23,12 +24,13 @@ function clearUserFunctions(option) {
 }
 
 function runUserFunctions(option, state) {
-  getUserFunctionValue(option.text, { option, ...state });
-  getUserFunctionValue(option.test, { option, ...state });
-  getUserFunctionValue(option.optionsFunction, { option, ...state });
+  getUserFunctionValue(option.text, { option });
+  getUserFunctionValue(option.test, { option });
+  getUserFunctionValue(option.optionsFunction, { option });
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];
+
       if (currency === null || !currency.isUserFunction) continue;
       const selectedCount = getSelectedCount(option, state.options);
       let cost = 0;
@@ -36,14 +38,12 @@ function runUserFunctions(option, state) {
         cost += getUserFunctionValue(currency, {
           index: i,
           option,
-          ...state,
         }, false);
       }
       currency.value = cost;
       getUserFunctionValue(currency, {
         index: selectedCount,
         option,
-        ...state,
       }, 'nextValue');
     }
   }
@@ -69,7 +69,8 @@ function checkOptions(parentOption, state) {
   if (parentOption.info === undefined) {
     parentOption.info = {};
   }
-  const suboptions = getSubptions(parentOption, state.options)
+  const suboptions = getSubptions(parentOption, state.options, false, true);
+
   for (const slug in suboptions) {
     const option = suboptions[slug];
     runUserFunctions(option, state);

@@ -1,25 +1,31 @@
-import prepareOptions from "./prepareOptions";
+import prepareOptions from "./../reducer/prepareOptions";
 import { clone } from "./helpers";
-import getUserFunctionValue from "./getUserFunctionValue";
 
-export default function getSyntheticOptions(option, options) {
-  getUserFunctionValue(option.optionsFunction, {
-    option,
-    options,
-  });
+export default function getSyntheticOptions(option, options, recreate = false) {
 
-  const syntheticOptions = clone(option.optionsFunction.value);
+  if (recreate) {
+    const syntheticOptions = clone(option.optionsFunction.value);
+    for (const slug in syntheticOptions) {
+      syntheticOptions[slug] = {
+        ...syntheticOptions[slug],
+        isSynthetic: true,
+        selected: 0,
+      };
+      if (option.functionalChildren[slug] !== undefined) {
+        Object.assign(syntheticOptions[slug], option.functionalChildren[slug]);
+      }
+      if (syntheticOptions[slug].path === undefined) {
+        syntheticOptions[slug] = prepareOptions(
+          { [slug]: syntheticOptions[slug] },
+          option.path,
+          options
+        )[slug];
+      }
+    }
 
-  for (const slug in syntheticOptions) {
-    const selected = option.functionalChildren[slug] === undefined ?
-      0 : option.functionalChildren[slug].selected;
-
-    syntheticOptions[slug] = {
-      ...syntheticOptions[slug],
-      isSynthetic: true,
-      selected,
-    };
+    option.functionalChildren = syntheticOptions;
+    return syntheticOptions;
   }
 
-  return prepareOptions(syntheticOptions, option.path, options);
+  return option.functionalChildren;
 }

@@ -1,4 +1,5 @@
-import { userFunctions } from "./prepareOptions";
+import userFunctions from "./../userFunctions";
+import pipe from './../pipe';
 
 export default function getUserFunctionValue(userFunction, data, propName = 'value', reset = false) {
   if (userFunction === undefined) return undefined;
@@ -9,7 +10,10 @@ export default function getUserFunctionValue(userFunction, data, propName = 'val
   }
 
   if (reset || userFunction[propName] === undefined) {
-    userFunction[propName] = userFunctions[userFunction.functionId](data);
+    userFunction[propName] = userFunctions[userFunction.functionId]({
+      ...data,
+      ...pipe.state
+    });
   }
   return userFunction[propName];
 }

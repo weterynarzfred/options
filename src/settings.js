@@ -1,5 +1,4 @@
 import React from 'react';
-import prepareSettings from './functions/prepareSettings';
 
 const settings = prepareSettings({
   title: 'A quick trip',
@@ -15,5 +14,16 @@ const settings = prepareSettings({
     },
   },
 });
+
+function prepareSettings(settings) {
+  for (const slug in settings.currencies) {
+    const currency = settings.currencies[slug];
+    currency.slug = slug;
+  }
+  settings.hideDisabledOptions = settings.hideDisabledOptions === undefined ?
+    false : settings.hideDisabledOptions
+  settings.maxDepth = settings.maxDepth === undefined ? 2 : settings.maxDepth;
+  return settings;
+}
 
 export default settings;

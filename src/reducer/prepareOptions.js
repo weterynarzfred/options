@@ -1,6 +1,7 @@
-import { clone } from "./helpers";
-import getSubptions from "./getSubptions";
 import settings from "./../settings";
+import { clone } from "./../functions/helpers";
+import getSubptions from "./../functions/getSubptions";
+import userFunctions from "./../userFunctions";
 
 function getCurrencyName(searchedSlug, option, options) {
   if (settings.currency !== undefined) {
@@ -104,5 +105,3 @@ export default function prepareOptions(currentOptions, path, options = currentOp
   }
   return currentOptions;
 }
-
-export const userFunctions = [];

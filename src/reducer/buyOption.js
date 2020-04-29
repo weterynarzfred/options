@@ -1,8 +1,8 @@
 import prepareOptions from "./prepareOptions";
-import { getParent, clone, deepClone } from "./helpers";
-import getOption from "./getOption";
-import getSelected from "./getSelected";
-import getSelectedCount from "./getSelectedCount";
+import { getParent, clone, deepClone } from "../functions/helpers";
+import getOption from "../functions/getOption";
+import getSelected from "../functions/getSelected";
+import getSelectedCount from "../functions/getSelectedCount";
 
 function buyIndividualChild(option, options) {
   if (option.max !== false && getSelectedCount(option, options) >= option.max) return;
@@ -24,15 +24,14 @@ function buyIndividualChild(option, options) {
     }
   };
   option.selected[slug] = prepareOptions(child, option.path, options)[slug];
-
 }
 
-function buySimpleChild(option, options) {
-  if (option.max !== false && option.selected >= option.max) return;
-
-  // deselect siblings
+function deselectSiblings(option, options, parent) {
   if (!option.disableUseAsSelect) {
-    const parent = getParent(option, options);
+    if (parent === undefined) {
+      parent = getParent(option, options);
+    }
+
     if (
       !parent.disableUseAsSelect &&
       parent && parent.type === 'group' &&
@@ -46,7 +45,12 @@ function buySimpleChild(option, options) {
       }
     }
   }
+}
 
+function buySimpleChild(option, options) {
+  if (option.max !== false && option.selected >= option.max) return;
+
+  deselectSiblings(option, options);
   option.selected++;
 }
 
@@ -54,11 +58,8 @@ function buySyntheticOption(option, options) {
   if (option.max !== false && option.selected >= option.max) return;
 
   const parent = getParent(option, options);
-  if (parent.functionalChildren[option.slug] === undefined) {
-    parent.functionalChildren[option.slug] = {
-      selected: 0,
-    };
-  }
+  deselectSiblings(option, options, parent);
+
   parent.functionalChildren[option.slug].selected++;
 }
 
