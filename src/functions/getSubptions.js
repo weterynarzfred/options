@@ -13,7 +13,7 @@ export default function getSubptions(option, options, skipDisabled = false, recr
   if (option.hasIndividualChildren) {
     currentOptions = option.selected;
   }
-  else if (option.optionsFunction !== undefined) {
+  else if (option.options !== undefined && option.options.isUserFunction) {
     currentOptions = getSyntheticOptions(option, options, recreate);
   }
   else {

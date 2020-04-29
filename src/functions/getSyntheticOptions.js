@@ -4,7 +4,7 @@ import { clone } from "./helpers";
 export default function getSyntheticOptions(option, options, recreate = false) {
 
   if (recreate) {
-    const syntheticOptions = clone(option.optionsFunction.value);
+    const syntheticOptions = clone(option.options.value);
     for (const slug in syntheticOptions) {
       syntheticOptions[slug] = {
         ...syntheticOptions[slug],

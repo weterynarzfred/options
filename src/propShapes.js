@@ -36,7 +36,6 @@ propShapes.option = PropTypes.shape({
   options: PropTypes.object,
   test: propShapes.userFunction,
   optionCurrency: propShapes.currency,
-  optionsFunction: propShapes.userFunction,
   hasIndividualChildren: PropTypes.bool,
   individualOptions: PropTypes.object,
   childOptionCurrency: propShapes.currency,

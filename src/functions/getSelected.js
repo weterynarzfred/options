@@ -6,7 +6,7 @@ export default function getSelected(option, options, skipDisabled = false) {
 
   const selected = [];
   let suboptions;
-  if (option.optionsFunction !== undefined) {
+  if (option.options !== undefined && option.options.isUserFunction) {
     suboptions = getSyntheticOptions(option, options);
   }
   else {

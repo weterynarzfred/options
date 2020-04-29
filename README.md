@@ -44,7 +44,8 @@ The text that will be displayed. Parameter passed to the function is an object c
 {
   {object} option - Current option.
   {object} options - Global options.
-  {array} error - Global errors.
+  {object} settings - Global settings.
+  {array} errors - Global errors.
 }
 ```
 
@@ -110,6 +111,8 @@ Function will be called in a loop for each time the option was bought. Parameter
   {number} index - Number of current iteration.
   {object} option - Current option.
   {object} options - Global options.
+  {object} settings - Global settings.
+  {array} errors - Global errors.
 }
 ```
 Example of an option with a cost represented by a function:
@@ -124,11 +127,19 @@ Example of an option with a cost represented by a function:
 ```
 
 ### `options`
-- type: `object`
+- type: `object` | `(object) function
 - default: _none_
 - usable in: `option`, `group`
 
-Object containing suboptions of the current option.
+Object containing suboptions of the current option. If usead as a function will receive an object containing:
+```
+{
+  {object} option - Current option.
+  {object} options - Global options.
+  {object} settings - Global settings.
+  {array} errors - Global errors.
+}
+```
 
 ### `test`
 - type: `(bool) function`
@@ -140,6 +151,8 @@ A function that will be executed to decide if the options should be active. Para
 {
   {object} option - Current option.
   {object} options - Global options.
+  {object} settings - Global settings.
+  {array} errors - Global errors.
 }
 ```
 
@@ -167,11 +180,6 @@ Object containing currencies to be used in current option's suboptions. Should h
   },
 }
 ```
-
-### `optionsFunction`
-- type: `function`
-- default: _none_
-- usable in: `option`, `group`
 
 ### `hasIndividualChildren`
 - type: `bool`
@@ -250,13 +258,13 @@ Is set to `true` in options that were created as children of options with `hasIn
 - type: `bool`
 - default: `false`
 
-Is set to `true` in temporary option objects created using `optionsFunction`. Those options are not present in the state.
+Is set to `true` in temporary option objects created when `options` is a function. Those options are not present in the state.
 
 ### `functionalChildren`
 - type: `object`
 - default: `{}`
 
-Container for temporary option objects created using `optionsFunction`. This object might not have an actual representation of option's suboptions.
+Container for temporary option objects created when `options` is a function. This object might not have an actual representation of option's suboptions.
 
 ### `info`
 - type: `object`
@@ -289,7 +297,7 @@ Container for temporary option objects created using `optionsFunction`. This obj
 # User functions
 - `test`
 - `cost[currency]`
-- `optionsFunction`
+- `options`
 - `text` - executed after currencies and errors are processed
 
 # To do

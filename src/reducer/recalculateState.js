@@ -31,7 +31,7 @@ function clearUserFunctions(option, keys) {
 function runUserFunctions(option, state) {
   getUserFunctionValue(option.text, { option });
   getUserFunctionValue(option.test, { option });
-  getUserFunctionValue(option.optionsFunction, { option });
+  getUserFunctionValue(option.options, { option });
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
       const currency = option.cost[currencySlug];
@@ -107,9 +107,9 @@ function checkCurrencies(currentOptions, currencies, options) {
 
 export default function recalculateState(state) {
   forEachOption(state, state, (option, state) => {
-    clearUserFunctions(option, ['test', 'cost', 'optionsFunction']);
+    clearUserFunctions(option, ['test', 'cost', 'options']);
   });
-  checkOptions(state, state, ['test', 'cost', 'optionsFunction']);
+  checkOptions(state, state, ['test', 'cost', 'options']);
 
   checkOptionCurrencies(state, state.options)
   checkCurrencies(state.options, state.settings.currency, state.options);

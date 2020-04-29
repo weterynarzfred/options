@@ -51,7 +51,7 @@ function replaceFunction(userFunction) {
 function replaceFunctions(option, options) {
   option.text = replaceFunction(option.text);
   option.test = replaceFunction(option.test);
-  option.optionsFunction = replaceFunction(option.optionsFunction);
+  option.options = replaceFunction(option.options);
 
   if (option.cost !== undefined) {
     for (const currencySlug in option.cost) {
@@ -83,13 +83,12 @@ export default function prepareOptions(currentOptions, path, options = currentOp
 
     option.path = path === undefined ? slug : path + '/' + slug;
 
-    if (option.optionsFunction !== undefined) {
+    if (option.options !== undefined && typeof option.options === 'function') {
       option.functionalChildren = option.functionalChildren === undefined ?
         {} : option.functionalChildren;
     }
 
     option.options = prepareOptions(option.options, option.path, options);
-
     if (option.type === 'option') {
       if (option.hasIndividualChildren) {
         option.selected = option.selected === undefined ? {} : option.selected;
