@@ -53,6 +53,7 @@
     height: 1.5em;
     flex-shrink: 0;
     cursor: pointer;
+    padding: 0 0.25em;
 
     path {
       stroke: #ccc;
@@ -82,10 +83,12 @@
     font-size: 1.5em;
     margin: 0 0.5rem;
     height: 2rem;
-    border-radius: 0.5rem;
     font-weight: 700;
     color: $controlsText;
     line-height: 1.2;
+    flex-shrink: 3;
+    flex-grow: 0;
+    width: 3.5rem;
 
     &:hover,
     &:focus {

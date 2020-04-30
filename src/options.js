@@ -64,6 +64,10 @@ const options = {
           },
         },
       },
+      c: {
+        name: 'C',
+        max: false,
+      },
     },
   },
   group: {
