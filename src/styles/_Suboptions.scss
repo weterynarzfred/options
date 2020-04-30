@@ -124,7 +124,7 @@
         overflow: hidden;
 
         .ImageContent {
-          filter: grayscale(1) blur(3px);
+          filter: blur(3px) grayscale(1);
           opacity: 0.75;
           transition: 0.3s;
         }
