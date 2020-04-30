@@ -54,7 +54,11 @@ function Option(props) {
       onClick={handleClick.bind(props)}
     >
       <div className="OptionContent">
-        <Image src={optionInfo.image} />
+        <Image
+          src={optionInfo.image}
+          cx={optionInfo.imageCx}
+          cy={optionInfo.imageCy}
+        />
         <OptionBox
           option={props.option}
           getStastsFrom={optionInfo.getStastsFrom}

@@ -14,10 +14,6 @@ const options = {
   }
 };
 ```
-If using jsx in options like in the example, React has to be in scope:
-```js
-import React from 'react';
-```
 
 ## keys that can be set in `options`
 
@@ -92,6 +88,16 @@ Analogous to `min`. Setting to `false` removes the restriction.
 - usable in: `option`, `group`
 
 Path to option's image, relative to the `public` folder.
+
+### `imageCy`
+- type: `number`
+- default: 50
+- usable in: `option`, `group`
+- 
+### `imageCx`
+- type: `number`
+- default: 50
+- usable in: `option`, `group`
 
 ### `cost`
 - type: `object`

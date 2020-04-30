@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 function Image(props) {
   if (props.src === undefined) return false;
 
-  return <div
-    className={classNames(
-      'Image',
-      { ImageFloating: props.floating },
-      { ImageHorizontal: props.horizontal }
-    )}
-  >
+  return <div className="Image">
     <div className="ImageContent"
       style={{
         backgroundImage: `url(${props.src})`,
+        backgroundPositionY: (props.cy === undefined ? 50 : props.cy) + '%',
+        backgroundPositionX: (props.cx === undefined ? 50 : props.cx) + '%',
       }}
     ></div>
   </div>
@@ -22,8 +17,8 @@ function Image(props) {
 
 Image.propTypes = {
   src: PropTypes.string,
-  floating: PropTypes.bool,
-  horizontal: PropTypes.bool,
+  cx: PropTypes.number,
+  cy: PropTypes.number,
 };
 
 export default Image;

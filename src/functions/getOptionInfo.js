@@ -12,6 +12,8 @@ export default function getOptionInfo(option, options) {
   };
   optionInfo.isOpenable = Object.keys(optionInfo.suboptions).length > 0;
   optionInfo.image = option.image;
+  optionInfo.imageCy = option.imageCy;
+  optionInfo.imageCx = option.imageCx;
   optionInfo.getStastsFrom = option;
 
   // when controlType === select
@@ -44,10 +46,13 @@ export default function getOptionInfo(option, options) {
       optionInfo.controlType = false;
     }
 
-    if (optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId] !== undefined) {
-      optionInfo.getStastsFrom = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
+    const selected = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
+    if (selected !== undefined) {
+      optionInfo.getStastsFrom = selected;
       if (option.useImageOfSelected) {
-        optionInfo.image = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId].image;
+        optionInfo.image = selected.image;
+        optionInfo.imageCy = selected.imageCy;
+        optionInfo.imageCx = selected.imageCx;
       }
     }
   }

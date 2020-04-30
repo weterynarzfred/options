@@ -170,24 +170,47 @@ const options = {
   body: {
     name: 'Physical Prowess',
     type: 'group',
+    useImageOfSelected: true,
     min: 1,
     options: {
       normal: {
         name: 'Normal Body',
         selected: 1,
+        image: './image/ros-morales-09-07-2016.jpg',
       },
       peak: {
         name: 'Peak Human',
+        image: './image/suqcZ67.jpg',
         cost: {
           gold: 2,
         },
       },
       heroic: {
         name: 'Heroic',
+        image: './image/kim-sung-hwan-lineage-warrior-01.jpg',
+        imageCy: 0,
         cost: {
           gold: 5,
         },
-      }
+      },
+      focus: {
+        name: 'Focus',
+        type: 'group',
+        min: 1,
+        test: data => !['normal', false].includes(_val.call(data, 'body')),
+        options: {
+          agility: {
+            name: 'Agility',
+          },
+          balanced: {
+            name: 'Balanced',
+            selected: 1,
+          },
+          strength: {
+            name: 'Strength',
+          },
+        },
+      },
     },
   },
   uniqueRace: {
@@ -231,9 +254,7 @@ const options = {
   yourMagic: {
     name: 'Magic',
     type: 'group',
-    test: data => {
-      return !['none', false].includes(_val.call(data, 'magicFrequency'));
-    },
+    test: data => !['none', false].includes(_val.call(data, 'magicFrequency')),
     min: 1,
     options: {
       none: {

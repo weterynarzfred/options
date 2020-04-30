@@ -32,7 +32,11 @@ function Suboption(props) {
     />
     <div className="SuboptionWrap">
       <div className="SuboptionContent">
-        <Image src={optionInfo.image} />
+        <Image
+          src={optionInfo.image}
+          cx={optionInfo.imageCx}
+          cy={optionInfo.imageCy}
+        />
         <OptionBox
           option={props.option}
           getStastsFrom={optionInfo.getStastsFrom}
