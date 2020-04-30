@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4e5aec3d788ee6b881bf6a43a64f9a35",
+    "revision": "b8c19ffd52ed1410cfe548a00e7ca54c",
     "url": "./index.html"
   },
   {
-    "revision": "4f17fd926d801bab1911",
-    "url": "./static/css/main.35d90c5c.chunk.css"
+    "revision": "4c8a225c3b1974f3b131",
+    "url": "./static/css/main.c40e1b11.chunk.css"
   },
   {
-    "revision": "fb3918f35d80768eb4d8",
-    "url": "./static/js/2.c0feeb22.chunk.js"
+    "revision": "9a14e071c2c987270af3",
+    "url": "./static/js/2.e2971f9b.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.c0feeb22.chunk.js.LICENSE"
+    "url": "./static/js/2.e2971f9b.chunk.js.LICENSE"
   },
   {
-    "revision": "4f17fd926d801bab1911",
-    "url": "./static/js/main.39130766.chunk.js"
+    "revision": "4c8a225c3b1974f3b131",
+    "url": "./static/js/main.e2880dca.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -38,10 +38,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "4e218c57331324f5c0255c4232fb7077",
     "url": "./static/media/761d5a41242919c542956586b92baaf5.4e218c57.jpg"
-  },
-  {
-    "revision": "36c91ecf3ed810368fb73f725f98835d",
-    "url": "./static/media/__original_drawn_by_shell_wwwtrista__678e4146199ced72171b10e542dbd660.36c91ecf.jpg"
   },
   {
     "revision": "02ee5fb6468c58ab20e68bd6850accb9",
@@ -76,6 +72,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/parents_random.62ee246b.jpg"
   },
   {
+    "revision": "6c418e003638c89d209f1cff30417752",
+    "url": "./static/media/regal.6c418e00.png"
+  },
+  {
     "revision": "12f48870837c31dd39ed18c95edfde07",
     "url": "./static/media/ringworld.12f48870.jpg"
   },
@@ -85,7 +85,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "b7b8affc72c7d2cc600a11e2f4941377",
-    "url": "./static/media/ryan-coyoca-hero.b7b8affc.jpg"
+    "url": "./static/media/ryan_coyoca_hero.b7b8affc.jpg"
   },
   {
     "revision": "c2c1cb88cf5b465949485b5c927eb749",
@@ -94,6 +94,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d61d696bcc2ade7b5c68a68e0387539f",
     "url": "./static/media/tony-maverick-.d61d696b.jpg"
+  },
+  {
+    "revision": "36c91ecf3ed810368fb73f725f98835d",
+    "url": "./static/media/unique_magic.36c91ecf.jpg"
   },
   {
     "revision": "7c4588042a6e917b4a5647091f53d804",
