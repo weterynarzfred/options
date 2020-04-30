@@ -38,19 +38,19 @@ export default function recalculateState(state) {
   forEachOption(state, state, option => {
     clearUserFunctions(option, ['test', 'cost', 'options']);
   });
-  forEachOption(state, state, (option, parentOption, state) => {
-    getInfo(option, parentOption, state);
-    runUserFunctions(option, state, ['test', 'cost', 'options']);
-  }, (parentOption, state) => {
+  forEachOption(state, state, (option, parentOption, innerState) => {
+    getInfo(option, parentOption, innerState);
+    runUserFunctions(option, innerState, ['test', 'cost', 'options']);
+  }, (parentOption, innerState) => {
     if (parentOption.info === undefined) {
       parentOption.info = {};
     }
-    createSyntheticOptions(parentOption, state.options);
+    createSyntheticOptions(parentOption, innerState.options);
   });
 
-  forEachOption(state, state, (option, parentOption, state) => {
+  forEachOption(state, state, (option, parentOption, innerState) => {
     if (option.optionCurrency !== undefined) {
-      checkCurrencies(option.options, option.optionCurrency, state.options);
+      checkCurrencies(option.options, option.optionCurrency, innerState.options);
     }
   });
   checkCurrencies(state.options, state.settings.currency, state.options);
@@ -59,7 +59,7 @@ export default function recalculateState(state) {
   forEachOption(state, state, option => {
     clearUserFunctions(option, ['text']);
   });
-  forEachOption(state, state, (option, parentOption, state) => {
-    runUserFunctions(option, state, ['text']);
+  forEachOption(state, state, (option, parentOption, innerState) => {
+    runUserFunctions(option, innerState, ['text']);
   });
 }

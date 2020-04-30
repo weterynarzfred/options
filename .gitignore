@@ -4,15 +4,10 @@
 .pnp.js
 
 # media
-/public/example
-/public/image
-/public/element
+/src/media
 
 # testing
 /coverage
-
-# production
-/build
 
 # misc
 .DS_Store
