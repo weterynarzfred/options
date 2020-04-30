@@ -3,7 +3,7 @@ import { isObject } from '../functions/helpers';
 
 function SuboptionsPage(props) {
   return <div
-    className="Suboptions"
+    className="SuboptionsContainer"
     onClick={event => {
       if (!isObject(event.detail)) event.detail = {};
       event.detail.fromSuboptions = true;

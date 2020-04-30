@@ -16,6 +16,10 @@ function _is(path) {
   return option.selected > 0;
 }
 
+function _isnt(path, values) {
+  return !values.includes(_val.call(this, path));
+}
+
 function _val(path) {
   const option = getOption(path, this.options);
   if (isOptionDisabled(option, this.options)) return false;
@@ -30,6 +34,7 @@ function _val(path) {
 function bindData(data) {
   return {
     is: _is.bind(data),
+    isnt: _isnt.bind(data),
     val: _val.bind(data),
   };
 }
@@ -103,11 +108,13 @@ const options = {
     text: <p>At what age will your new body be?</p>,
     min: 1,
     useImageOfSelected: true,
+    disableOpenButton: true,
     options: {
       child: {
         name: 'Child',
         text: <p>Your soul will enter a body that would otherwise be a stillborn. Your parents will provide for your basic needs but you won't have much autonomy at first. Your mind and memory will be fully functional but you will have to adapt to your new body making you as clumsy as every other newborn.</p>,
-        image: './example/age_child.jpg',
+        image: './image/wallhaven-dgzkw3.jpg',
+        imageCx: 30,
         cost: {
           gold: 1,
         },
@@ -138,6 +145,7 @@ const options = {
     disabledText: <p>You need to be a newborn.</p>,
     min: 1,
     useImageOfSelected: true,
+    disableOpenButton: true,
     options: {
       abandoned: {
         name: 'Abandoned',
@@ -171,6 +179,7 @@ const options = {
     name: 'Physical Prowess',
     type: 'group',
     useImageOfSelected: true,
+    disableOpenButton: true,
     min: 1,
     options: {
       normal: {
@@ -195,9 +204,11 @@ const options = {
       },
       focus: {
         name: 'Focus',
+        text: <p>To which type will your body belong? This affects your looks and abilities both initial and the natural tendency of your body.</p>,
         type: 'group',
         min: 1,
-        test: data => !['normal', false].includes(_val.call(data, 'body')),
+        test: data => _isnt.call(data, 'body', ['normal', false]),
+        disableOpenButton: true,
         options: {
           agility: {
             name: 'Agility',
@@ -227,6 +238,7 @@ const options = {
     type: 'group',
     image: './image/ee73f0b46e3653303deccc7f70c9b44b.jpg',
     useImageOfSelected: true,
+    disableOpenButton: true,
     options: {
       saviour: {
         name: 'Mark of the Saviour',
@@ -254,8 +266,9 @@ const options = {
   yourMagic: {
     name: 'Magic',
     type: 'group',
-    test: data => !['none', false].includes(_val.call(data, 'magicFrequency')),
+    test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
     min: 1,
+    disableOpenButton: true,
     options: {
       none: {
         name: 'None',
@@ -305,6 +318,7 @@ const options = {
     name: 'Sapient Species',
     type: 'group',
     min: 1,
+    disableOpenButton: true,
     options: {
       none: {
         name: 'None',
@@ -334,6 +348,7 @@ const options = {
     name: 'Geography',
     type: 'group',
     useImageOfSelected: true,
+    disableOpenButton: true,
     min: 1,
     options: {
       island: {
@@ -358,6 +373,7 @@ const options = {
     name: 'Technology',
     type: 'group',
     test: data => !_is.call(data, 'species/none'),
+    disableOpenButton: true,
     min: 1,
     options: {
       prehistoric: {
@@ -399,6 +415,7 @@ const options = {
     type: 'group',
     test: data => !_is.call(data, 'species/none'),
     min: 1,
+    disableOpenButton: true,
     options: {
       none: {
         name: 'None',
@@ -430,6 +447,7 @@ const options = {
     text: <p>How powerfull will the magic be?</p>,
     type: 'group',
     test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
+    disableOpenButton: true,
     options: {
       convenience: {
         name: 'Convenience',
@@ -442,6 +460,32 @@ const options = {
       },
       worldShattering: {
         name: 'World Shattering',
+      },
+    },
+  },
+  magicSituation: {
+    name: 'Situation of Mages',
+    type: 'group',
+    min: 1,
+    test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
+    disableOpenButton: true,
+    options: {
+      hidden: {
+        name: 'Hidden',
+        test: data => !_is.call(data, 'magicFrequency/everyone'),
+        showWhenDisabled: true,
+        disabledText: <p>Mages cannot be hidden if everyone is a mage.</p>,
+      },
+      casual: {
+        name: 'Casual',
+        text: <p>Magic exists and is use like any other resource.</p>,
+        selected: 1,
+      },
+      revered: {
+        name: 'Revered',
+      },
+      worshipped: {
+        name: 'Worshipped',
       },
     },
   },

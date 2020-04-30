@@ -18,7 +18,7 @@ function SuboptionsContainer(props) {
     const optionInfo = getOptionInfo(currentOption, props.options);
     if (
       (
-        optionInfo.controlType === 'select' &&
+        props.optionInfo.controlType === 'select' &&
         optionInfo.isSelectableSuboption
       ) ||
       (

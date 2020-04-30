@@ -147,6 +147,11 @@ Object containing suboptions of the current option. If usead as a function will 
 }
 ```
 
+### `disableOpenButton`
+- type: `bool`
+- default: false
+- usable in: `option`, `group`
+
 ### `test`
 - type: `(bool) function`
 - default: _none_

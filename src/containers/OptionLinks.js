@@ -5,15 +5,16 @@ import propShapes from '../propShapes';
 import PathLink from './PathLink';
 
 function getOpenLink(props) {
-  if (props.depth > 1) {
-    return <PathLink text="open" path={props.option.path} />
-  }
-  else return false;
+  if (props.depth <= 1 || props.option.disableOpenButton) return false;
+  return <PathLink text="open" path={props.option.path} />
 }
 
 function OptionLinks(props) {
+  const openLink = getOpenLink(props);
+  if (openLink === false) return false;
+
   return <div className="OptionLinks">
-    {getOpenLink(props)}
+    {openLink}
   </div>
 }
 

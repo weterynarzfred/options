@@ -13,9 +13,11 @@ function Text(props) {
     </div>;
   }
 
+  if (!props.text) return false;
+
   return <div className="Text">
     <Hyphenated>
-      {props.text || null}
+      {props.text}
     </Hyphenated>
   </div>;
 }

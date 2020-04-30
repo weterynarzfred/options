@@ -4,6 +4,7 @@ import propShapes from '../propShapes';
 
 function OptionCost(props) {
   if (props.cost === undefined) return false;
+
   const costs = [];
   for (const costSlug in props.cost) {
     const cost = props.cost[costSlug];

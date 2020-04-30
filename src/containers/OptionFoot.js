@@ -10,6 +10,8 @@ function OptionFoot(props) {
       {error.text}
     </div>);
   }
+  if (errors.length === 0) return false;
+
   return <div className="OptionFoot">
     {errors}
   </div>

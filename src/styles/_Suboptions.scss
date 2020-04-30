@@ -1,7 +1,6 @@
-.Suboptions {
+.SuboptionsContainer {
   cursor: auto;
   border-top: 1px solid #ccc;
-  margin-top: 1em;
 
   .Suboption {
     position: relative;
@@ -20,12 +19,12 @@
     }
 
     &:last-child {
-      margin-bottom: -1px;
+      // margin-bottom: -1px;
+      border-bottom: none;
     }
 
     .Name {
       font-size: 1.5em;
-      margin: 0.25em 0 0 0;
     }
 
     .Text {
@@ -34,6 +33,7 @@
 
     .OptionStats {
       margin-top: 0.5em;
+      min-height: 0 !important;
     }
 
     // suboption controls
@@ -69,6 +69,7 @@
 
       .SelectControls {
         height: 1.5em;
+        width: 4em;
         padding: 0 0.1em;
 
         .SelectControlsCurrent {
@@ -110,36 +111,42 @@
 
   .SuboptionContent {
     transition: 0.3s;
-
-    > .Image {
-      overflow: hidden;
-
-      .ImageContent {
-        filter: grayscale(1) blur(3px);
-        opacity: 0.75;
-        transition: 0.3s;
-      }
-    }
-
-    .OptionBox:before {
-      box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
-    }
   }
 
   &.OptionSelected {
     background-color: $colorSelected;
     opacity: 1;
+  }
 
+  &.OptionHasImage {
     .SuboptionContent {
       > .Image {
+        overflow: hidden;
+
         .ImageContent {
-          opacity: 1;
-          filter: grayscale(0);
+          filter: grayscale(1) blur(3px);
+          opacity: 0.75;
+          transition: 0.3s;
         }
       }
 
       .OptionBox:before {
-        box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+        box-shadow: 0 -9em 3em -3em $optionDeselectedBgColor inset;
+      }
+    }
+
+    &.OptionSelected {
+      .SuboptionContent {
+        > .Image {
+          .ImageContent {
+            opacity: 1;
+            filter: grayscale(0);
+          }
+        }
+
+        .OptionBox:before {
+          box-shadow: 0 -9em 3em -3em $optionBgColor inset;
+        }
       }
     }
   }

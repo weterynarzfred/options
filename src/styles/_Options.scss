@@ -18,15 +18,15 @@
       overflow: hidden;
       height: 100%;
 
-      > .Name {
-        margin-top: 0.5em;
-        text-align: center;
+      .OptionContent {
+        overflow: hidden;
+      }
+
+      .Name {
         color: $optionTitleColor;
       }
 
       > .Select {
-        margin-top: 1em;
-
         &.SelectDisabled {
           font-weight: 700;
           color: $disabledWarningColor;
@@ -61,6 +61,7 @@
 
     &.OptionType-story {
       width: 100%;
+      margin-top: 3em;
 
       .Text {
         font-size: 1.25em;
@@ -98,20 +99,6 @@
     .OptionBox {
       position: relative;
       z-index: 1;
-      padding-bottom: 0.5em;
-
-      &:before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 6em;
-        z-index: -1;
-        transition: 0.3s;
-        box-shadow: 0 -9em 4em -4em $optionBgColor inset;
-      }
 
       > .OptionHead {
         position: relative;
@@ -125,80 +112,6 @@
     right: 0;
     left: 0;
     z-index: 2;
-  }
-}
-
-// selectable options
-.Option.OptionControl-checkbox,
-.Option.OptionControl-spinbox,
-.Option.OptionControl-select {
-  .OptionWrap {
-    background-color: $optionDeselectedBgColor;
-    border-color: $optionDeselectedBorderColor;
-    transition: 0.3s;
-
-    > .OptionContent {
-      transition: 0.3s;
-
-      > .Image {
-        overflow: hidden;
-
-        .ImageContent {
-          filter: grayscale(1) blur(3px);
-          opacity: 0.75;
-          transition: filter 0.3s, opacity 0.3s;
-        }
-      }
-
-      .OptionBox:before {
-        box-shadow: 0 -9em 4em -4em $optionDeselectedBgColor inset;
-      }
-    }
-
-    &:hover {
-      > .OptionContent {
-        > .Image {
-          .ImageContent {
-            filter: grayscale(1) blur(1px);
-          }
-        }
-      }
-    }
-  }
-
-  &.OptionSelected {
-    .OptionWrap {
-      background-color: $optionBgColor;
-      border-color: $optionBorderColor;
-      opacity: 1;
-
-      > .OptionContent {
-        > .Image {
-          .ImageContent {
-            opacity: 1;
-            filter: grayscale(0);
-          }
-        }
-
-        .OptionBox:before {
-          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
-        }
-      }
-    }
-  }
-}
-
-// clickable options
-.Option.OptionControl-checkbox,
-.Option.OptionControl-spinbox {
-  &:not(.OptionDisabled) {
-    .OptionWrap {
-      cursor: pointer;
-
-      &:hover .OptionContent {
-        opacity: 0.9;
-      }
-    }
   }
 }
 
@@ -306,7 +219,104 @@
 
       .OptionBox {
         border-top: 1px solid $optionBorderColor;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          height: 6em;
+          max-height: 100%;
+          z-index: -1;
+          transition: 0.3s;
+          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+        }
       }
     }
+  }
+}
+
+// selectable options
+.Option.OptionControl-checkbox,
+.Option.OptionControl-spinbox,
+.Option.OptionControl-select {
+  .OptionWrap {
+    background-color: $optionDeselectedBgColor;
+    border-color: $optionDeselectedBorderColor;
+    transition: 0.3s;
+
+    > .OptionContent {
+      transition: 0.3s;
+
+      > .Image {
+        overflow: hidden;
+
+        .ImageContent {
+          filter: grayscale(1) blur(3px);
+          opacity: 0.75;
+          transition: filter 0.3s, opacity 0.3s;
+        }
+      }
+
+      .OptionBox:before {
+        box-shadow: 0 -9em 4em -4em $optionDeselectedBgColor inset;
+      }
+    }
+
+    &:hover {
+      > .OptionContent {
+        > .Image {
+          .ImageContent {
+            filter: grayscale(1) blur(1px);
+          }
+        }
+      }
+    }
+  }
+
+  &.OptionSelected {
+    .OptionWrap {
+      background-color: $optionBgColor;
+      border-color: $optionBorderColor;
+      opacity: 1;
+
+      > .OptionContent {
+        > .Image {
+          .ImageContent {
+            opacity: 1;
+            filter: grayscale(0);
+          }
+        }
+
+        .OptionBox:before {
+          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+        }
+      }
+    }
+  }
+}
+
+// clickable options
+.Option.OptionControl-checkbox,
+.Option.OptionControl-spinbox {
+  &:not(.OptionDisabled) {
+    .OptionWrap {
+      cursor: pointer;
+
+      &:hover .OptionContent {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+// select info
+.Select {
+  margin-bottom: 1em;
+
+  .Name {
+    font-weight: 700;
   }
 }

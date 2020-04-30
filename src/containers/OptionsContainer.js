@@ -5,6 +5,7 @@ import propShapes from '../propShapes';
 import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
 import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
+import OptionsPage from '../pages/OptionsPage';
 
 function OptionsContainer(props) {
   const suboptions = getSubptions(props.option, props.options);
@@ -25,9 +26,9 @@ function OptionsContainer(props) {
     />);
   }
 
-  return <div className="OptionsContainer">
+  return <OptionsPage>
     {optionsElements}
-  </div>;
+  </OptionsPage>;
 }
 
 OptionsContainer.propTypes = {

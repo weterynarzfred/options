@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import propShapes from './../propShapes';
+import Name from './Name';
 import Text from './Text';
 
 function Select(props) {
@@ -20,6 +21,10 @@ function Select(props) {
     'Select',
     { SelectDisabled: selected.info.isDisabled }
   )}>
+    <Name
+      name={selected.name}
+      isChangeable={false}
+    />
     <Text
       text={text}
       isChangeable={false}
