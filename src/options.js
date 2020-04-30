@@ -317,7 +317,7 @@ const options = {
   },
   uniqueMagic: {
     name: 'Unique Magic',
-    image: images['__original_drawn_by_shell_wwwtrista__678e4146199ced72171b10e542dbd660'],
+    image: images['unique_magic'],
     cost: {
       gold: 25,
     },
