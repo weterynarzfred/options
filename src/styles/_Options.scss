@@ -8,15 +8,38 @@
 
   .Option {
     position: relative;
-    width: 25em;
+    width: 25%;
     max-width: 100%;
     padding: 1.5em 0.5em;
     color: $optionTextColor;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+
+    // transitions
+    &.item-enter,
+    &.item-exit.item-exit-active {
+      transform: scale(0);
+      width: 0%;
+      padding: 0;
+    }
+
+    &.item-enter-active,
+    &.item-enter-done,
+    &.item-exit {
+      transform: scale(1);
+      width: 25%;
+      padding: 1.5em 0.5em;
+    }
+
+    // transitions - end
 
     .OptionWrap {
       position: relative;
       overflow: hidden;
       height: 100%;
+      width: 25em;
+      flex-shrink: 0;
 
       .OptionContent {
         overflow: hidden;
@@ -62,6 +85,10 @@
     &.OptionType-story {
       width: 100%;
       margin-top: 3em;
+
+      .OptionWrap {
+        width: 100%;
+      }
 
       .Text {
         font-size: 1.25em;

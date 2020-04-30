@@ -1,9 +1,10 @@
 import React from 'react';
+import { TransitionGroup } from 'react-transition-group';
 
 function OptionsPage(props) {
-  return <div className="OptionsContainer">
+  return <TransitionGroup className="OptionsContainer">
     {props.children}
-  </div>
+  </TransitionGroup>;
 }
 
 export default OptionsPage;
