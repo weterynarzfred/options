@@ -22,8 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "sonarqube": "sonar-scanner.bat -D\"sonar.projectKey=options-react\" -D\"sonar.sources=./src\""
+    "test": "react-scripts test --coverage",
+    "sonarqube": "sonar-scanner.bat"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +43,8 @@
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
     "jest-dom": "^4.0.0",
+    "jest-junit": "^10.0.0",
+    "jest-sonar-reporter": "^2.0.0",
     "react-test-renderer": "^16.13.1"
   }
 }

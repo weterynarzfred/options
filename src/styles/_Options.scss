@@ -68,9 +68,9 @@
           font-weight: 700;
           line-height: 1;
           border: 1px solid #999;
-          @include shadow();
           background-color: #eee;
           color: #555;
+          @include shadow();
 
           &:hover {
             background-color: #555;
@@ -113,6 +113,10 @@
           padding-top: 0;
         }
       }
+    }
+
+    .OptionFoot {
+      margin: 0.5em 1em;
     }
   }
 }
@@ -274,55 +278,58 @@
 .Option.OptionControl-checkbox,
 .Option.OptionControl-spinbox,
 .Option.OptionControl-select {
-  .OptionWrap {
-    background-color: $optionDeselectedBgColor;
-    border-color: $optionDeselectedBorderColor;
-    transition: 0.3s;
-
-    > .OptionContent {
+  &.OptionType-group,
+  &.OptionType-option {
+    .OptionWrap {
+      background-color: $optionDeselectedBgColor;
+      border-color: $optionDeselectedBorderColor;
       transition: 0.3s;
 
-      > .Image {
-        overflow: hidden;
-
-        .ImageContent {
-          filter: blur(3px) grayscale(1);
-          opacity: 0.75;
-        }
-      }
-
-      .OptionBox:before {
-        box-shadow: 0 -9em 4em -4em $optionDeselectedBgColor inset;
-      }
-    }
-
-    &:hover {
       > .OptionContent {
-        > .Image {
-          .ImageContent {
-            filter: blur(1px) grayscale(1);
-          }
-        }
-      }
-    }
-  }
+        transition: 0.3s;
 
-  &.OptionSelected {
-    .OptionWrap {
-      background-color: $optionBgColor;
-      border-color: $optionBorderColor;
-      opacity: 1;
-
-      > .OptionContent {
         > .Image {
+          overflow: hidden;
+
           .ImageContent {
-            opacity: 1;
-            filter: grayscale(0);
+            filter: blur(3px) grayscale(1);
+            opacity: 0.75;
           }
         }
 
         .OptionBox:before {
-          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+          box-shadow: 0 -9em 4em -4em $optionDeselectedBgColor inset;
+        }
+      }
+
+      &:hover {
+        > .OptionContent {
+          > .Image {
+            .ImageContent {
+              filter: blur(1px) grayscale(1);
+            }
+          }
+        }
+      }
+    }
+
+    &.OptionSelected {
+      .OptionWrap {
+        background-color: $optionBgColor;
+        border-color: $optionBorderColor;
+        opacity: 1;
+
+        > .OptionContent {
+          > .Image {
+            .ImageContent {
+              opacity: 1;
+              filter: grayscale(0);
+            }
+          }
+
+          .OptionBox:before {
+            box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+          }
         }
       }
     }

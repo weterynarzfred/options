@@ -12,7 +12,12 @@ function importAll(r) {
   return obj;
 }
 
-export const images = importAll(require.context('./media/image_scaled', false, /\.(png|jpe?g|svg|gif)$/));
+let images = {};
+try {
+  images = importAll(require.context('./media/image_scaled', false, /\.(png|jpe?g|svg|gif)$/));
+} catch (error) { }
+
+export { images };
 
 
 
@@ -66,6 +71,9 @@ const options = {
     options: {
       a: {
         name: 'A',
+        cost: {
+          gold: data => _val.call(data, 'count/c'),
+        },
         options: {
           b: {
             name: 'B',
@@ -160,6 +168,7 @@ const options = {
     text: <p>Who will your parents be?</p>,
     type: 'group',
     test: data => _is.call(data, 'age/child'),
+    image: images.parents_random,
     min: 1,
     disableOpenButton: true,
     options: {

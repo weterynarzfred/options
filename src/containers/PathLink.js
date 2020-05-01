@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { isObject } from '../functions/helpers';
 
 function PathLink(props) {
@@ -17,5 +18,10 @@ function PathLink(props) {
     </span>
   );
 }
+
+PathLink.propTypes = {
+  text: PropTypes.string,
+  path: PropTypes.string,
+};
 
 export default connect()(PathLink);

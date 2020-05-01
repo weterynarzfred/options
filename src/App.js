@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import $ from 'cash-dom';
 import './styles/style.scss';
+import pipe from './pipe';
 import OptionsContainer from './containers/OptionsContainer';
 import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
 import Nav from './containers/Nav';
-import $ from 'cash-dom';
-import pipe from './pipe';
+import Breadcrumbs from './containers/Breadcrumbs';
 
 $(window).on('load', () => {
   $('body').addClass('unlocked');
@@ -32,6 +33,7 @@ function App(props) {
         </svg>
       </div>
       <Nav option={option} />
+      <Breadcrumbs />
       {props.path.length === 0 ? false :
         <OptionWideHead option={option} />
       }

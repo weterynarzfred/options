@@ -21,6 +21,9 @@ $controlsBorderColor: #aaa;
 
 $disabledWarningColor: #933;
 
+$navCostNegativeColor: #940000;
+$navCostPositiveColor: #1c8d00;
+
 @mixin shadow() {
   box-shadow: 2px 2px 4px 0 #0003;
 }
@@ -164,6 +167,7 @@ input[type="number"] {
 
 .PathLink {
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     color: #777;
@@ -209,4 +213,4 @@ svg {
 @import "_OptionControls";
 @import "_Suboptions";
 @import "_Stats";
-@import "_OptionFoot";
+@import "_errors";

@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Breadcrumbs from './Breadcrumbs';
 import CurrencyStats from '../pages/CurrencyStats';
 import propShapes from '../propShapes';
 import getCurrencies from '../functions/getCurrencies';
+import Menu from './Menu';
 
 function Nav(props) {
   const currentCurrencies = getCurrencies(props, props.path);
 
-  return <nav>
-    <Breadcrumbs />
+  return <div className="Nav">
     <CurrencyStats currency={currentCurrencies} />
-  </nav>
+    <Menu />
+  </div>
 }
 
 Nav.propTypes = {

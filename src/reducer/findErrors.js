@@ -1,21 +1,7 @@
 import isOptionDisabled from '../functions/isOptionDisabled';
 import getSubptions from '../functions/getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
-import getOption from '../functions/getOption';
-
-/**
- * Transforms path into a nice readable form.
- * @param {string} path Path to transform.
- * @param {object} options Global options.
- */
-function getReadablePath(path, options) {
-  const pathArray = path.split('/');
-  const readableArray = [];
-  for (let i = 0; i < pathArray.length; i++) {
-    readableArray.push(getOption(pathArray.slice(0, i + 1), options).name);
-  }
-  return readableArray.join(' / ');
-}
+import { getReadablePath } from './../functions/helpers';
 
 /**
  * Checks if values of global currencies are less than minimum.
