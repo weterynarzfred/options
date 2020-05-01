@@ -29,10 +29,13 @@ function select(arr, def = false) {
   return def;
 }
 
-function _is(path) {
+function _is(path, values) {
   const option = getOption(path, this.options);
   if (isOptionDisabled(option, this.options)) return false;
-  return option.selected > 0;
+  if (values === undefined) {
+    return option.selected > 0;
+  }
+  return values.includes(_val.call(this, option));
 }
 
 function _isnt(path, values) {
@@ -40,7 +43,13 @@ function _isnt(path, values) {
 }
 
 function _val(path) {
-  const option = getOption(path, this.options);
+  let option;
+  if (typeof path === 'string') {
+    option = getOption(path, this.options);
+  }
+  else {
+    option = path;
+  }
   if (isOptionDisabled(option, this.options)) return false;
   if (option.selected === undefined) {
     const selected = getSelected(option, this.options);
@@ -67,67 +76,6 @@ const options = {
     </React.Fragment>,
     image: introImg,
     classes: ['intro'],
-  },
-  count: {
-    name: 'Count',
-    max: 5,
-    options: {
-      a: {
-        name: 'A',
-        cost: {
-          gold: data => _val.call(data, 'count/c'),
-        },
-        options: {
-          b: {
-            name: 'B',
-          },
-        },
-      },
-      c: {
-        name: 'C',
-        max: false,
-      },
-    },
-  },
-  parent: {
-    name: 'Parent',
-    max: false,
-    hasIndividualChildren: true,
-    defaultChildName: 'Child',
-    individualOptions: {
-      cute: {
-        name: 'Cute',
-      }
-    },
-    classes: ['double'],
-  },
-  group2: {
-    name: 'Group 2',
-    type: 'group',
-    min: 1,
-    options: data => {
-      const count = _val.call(data, 'count') + 1;
-      const suboptions = {};
-      for (let i = 0; i < count; i++) {
-        suboptions[`option${i + 1}`] = {
-          name: `Option ${i + 1}`,
-        };
-      }
-      return suboptions;
-    },
-  },
-  option: {
-    name: 'Option',
-    options: data => {
-      const count = _val.call(data, 'count') + 1;
-      const suboptions = {};
-      for (let i = 0; i < count; i++) {
-        suboptions[`option${i + 1}`] = {
-          name: `Option ${i + 1}`,
-        };
-      }
-      return suboptions;
-    },
   },
   self: {
     name: 'Your New Self',
@@ -328,6 +276,7 @@ const options = {
   species: {
     name: 'Sapient Species',
     type: 'group',
+    text: <p>What king of sapient creatures will inhabit the world?</p>,
     min: 1,
     disableOpenButton: true,
     options: {
@@ -343,6 +292,7 @@ const options = {
       },
       fantasy: {
         name: 'Fantasy Species',
+        text: <p>Assortment of standard fantasy races.</p>,
         cost: {
           gold: 5,
         },
@@ -373,6 +323,69 @@ const options = {
         test: data => _is.call(data, 'technology/nearFuture'),
         showWhenDisabled: true,
         disabledText: <p>Technology level has to be "near future"</p>,
+      },
+    },
+  },
+  population: {
+    name: 'Population',
+    type: 'group',
+    min: 1,
+    disableOpenButton: true,
+    options: {
+      sparselyPopulated: {
+        name: 'Sparsely Populated',
+      },
+      mediumPopulation: {
+        name: 'Medium Population',
+        selected: 1,
+      },
+      denslyPopulated: {
+        name: 'Densly Populated',
+        test: data => _is.call(data, 'technology', ['ancient', 'medieval', 'industrial', 'modern', 'nearFuture']),
+        showWhenDisabled: true,
+        disabledText: <p>Technology level has to be at least ancient.</p>,
+      },
+    },
+  },
+  balanceOfPower: {
+    name: 'Balance of Power',
+    type: 'group',
+    text: <p>What are the realtions between races, countries and people?</p>,
+    test: data => _isnt.call(data, 'species', ['none', false]),
+    min: 1,
+    options: {
+      idyll: {
+        name: 'Idyll',
+        text: <p>Mostly everyone lives in peace with themselves and each other. War and conflict practically does not exist.</p>,
+        cost: {
+          gold: 10,
+        },
+      },
+      balanced: {
+        name: 'Balanced',
+        text: <p>Forces of races and great nations exist in an equilibrium where everyone is discouraged from atacking each other. It doesn't seem like anything will change this balance anytime soon. This means conflicts on large scale are very rare.</p>,
+        cost: {
+          gold: 5,
+        },
+      },
+      natural: {
+        name: 'Natural',
+        text: <p>Similar to your previous world. Conflicts happen aplenty but usually, majority of the population manages to get by.</p>,
+        selected: 1,
+      },
+      strained: {
+        name: 'Strained',
+        text: <p>The world is on a verge of a revolution of some sort. When the war finally breaks out it will change the societal ladscape of the world.</p>,
+        cost: {
+          gold: -5,
+        },
+      },
+      hellish: {
+        name: 'Hellish',
+        text: <p>War is the default state of the world. Most of each country's budget is spent on warfare or repairing war losses. Alliances and peace are possible but will require significant effort.</p>,
+        cost: {
+          gold: -10,
+        },
       },
     },
   },

@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f9c3c773e4ec78751936c21c638f877c",
+    "revision": "c5e788ea6cefbd4477cc1f15c7159da2",
     "url": "./index.html"
   },
   {
-    "revision": "cd4ba2e22ee0cda796be",
+    "revision": "ad96bdb9b366846a9ff1",
     "url": "./static/css/main.1b9ba571.chunk.css"
   },
   {
-    "revision": "27542d39f425afe151bc",
-    "url": "./static/js/2.34d0ce22.chunk.js"
+    "revision": "f97135281c3615498a8e",
+    "url": "./static/js/2.e95ecd8b.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.34d0ce22.chunk.js.LICENSE"
+    "url": "./static/js/2.e95ecd8b.chunk.js.LICENSE"
   },
   {
-    "revision": "cd4ba2e22ee0cda796be",
-    "url": "./static/js/main.724b9ff5.chunk.js"
+    "revision": "ad96bdb9b366846a9ff1",
+    "url": "./static/js/main.0d61ca4c.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -34,6 +34,26 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "02ee5fb6468c58ab20e68bd6850accb9",
     "url": "./static/media/age_teen.02ee5fb6.jpg"
+  },
+  {
+    "revision": "052010a151b8d729fc5b701968009998",
+    "url": "./static/media/balanceOfPower_balanced.052010a1.jpg"
+  },
+  {
+    "revision": "a10d0c62e493ce35ba09f3d558390db9",
+    "url": "./static/media/balanceOfPower_hellish.a10d0c62.jpg"
+  },
+  {
+    "revision": "89ff8f19c601314baab8040ad97b699a",
+    "url": "./static/media/balanceOfPower_idyll.89ff8f19.jpg"
+  },
+  {
+    "revision": "49737ff35d937d786ed55c6a098474db",
+    "url": "./static/media/balanceOfPower_natural.49737ff3.jpg"
+  },
+  {
+    "revision": "822db632f03a5fc18e51b7a48c67e40f",
+    "url": "./static/media/balanceOfPower_strained.822db632.jpg"
   },
   {
     "revision": "5eb907cc3809ab0445fe2a353a66749a",
@@ -98,6 +118,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "303deda0ec9c7b815249c12333643de5",
     "url": "./static/media/parents_royalty.303deda0.jpg"
+  },
+  {
+    "revision": "bac216f6e4b3961b5ba0b4176f4951fe",
+    "url": "./static/media/population_denslyPopulated.bac216f6.jpg"
+  },
+  {
+    "revision": "e2f11b3607ca5eadde1a30f5803b2780",
+    "url": "./static/media/population_mediumPopulation.e2f11b36.jpg"
+  },
+  {
+    "revision": "eef30694ed542f1e3b6e90122556b035",
+    "url": "./static/media/population_sparselyPopulated.eef30694.jpg"
   },
   {
     "revision": "8a499bdcae5f53e291f6193457276961",

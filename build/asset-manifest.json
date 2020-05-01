@@ -1,20 +1,25 @@
 {
   "files": {
     "main.css": "./static/css/main.1b9ba571.chunk.css",
-    "main.js": "./static/js/main.724b9ff5.chunk.js",
-    "main.js.map": "./static/js/main.724b9ff5.chunk.js.map",
+    "main.js": "./static/js/main.0d61ca4c.chunk.js",
+    "main.js.map": "./static/js/main.0d61ca4c.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.92b9c040.js",
     "runtime-main.js.map": "./static/js/runtime-main.92b9c040.js.map",
-    "static/js/2.34d0ce22.chunk.js": "./static/js/2.34d0ce22.chunk.js",
-    "static/js/2.34d0ce22.chunk.js.map": "./static/js/2.34d0ce22.chunk.js.map",
+    "static/js/2.e95ecd8b.chunk.js": "./static/js/2.e95ecd8b.chunk.js",
+    "static/js/2.e95ecd8b.chunk.js.map": "./static/js/2.e95ecd8b.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.2fb347d82746ccb912312e71eb4977f5.js": "./precache-manifest.2fb347d82746ccb912312e71eb4977f5.js",
+    "precache-manifest.6cd04589e7acb34713b9cbefaef95c16.js": "./precache-manifest.6cd04589e7acb34713b9cbefaef95c16.js",
     "service-worker.js": "./service-worker.js",
     "static/css/main.1b9ba571.chunk.css.map": "./static/css/main.1b9ba571.chunk.css.map",
-    "static/js/2.34d0ce22.chunk.js.LICENSE": "./static/js/2.34d0ce22.chunk.js.LICENSE",
+    "static/js/2.e95ecd8b.chunk.js.LICENSE": "./static/js/2.e95ecd8b.chunk.js.LICENSE",
     "static/media/age_adult.jpg": "./static/media/age_adult.fc86563e.jpg",
     "static/media/age_child.jpg": "./static/media/age_child.7c458804.jpg",
     "static/media/age_teen.jpg": "./static/media/age_teen.02ee5fb6.jpg",
+    "static/media/balanceOfPower_balanced.jpg": "./static/media/balanceOfPower_balanced.052010a1.jpg",
+    "static/media/balanceOfPower_hellish.jpg": "./static/media/balanceOfPower_hellish.a10d0c62.jpg",
+    "static/media/balanceOfPower_idyll.jpg": "./static/media/balanceOfPower_idyll.89ff8f19.jpg",
+    "static/media/balanceOfPower_natural.jpg": "./static/media/balanceOfPower_natural.49737ff3.jpg",
+    "static/media/balanceOfPower_strained.jpg": "./static/media/balanceOfPower_strained.822db632.jpg",
     "static/media/body_heroic.jpg": "./static/media/body_heroic.5eb907cc.jpg",
     "static/media/body_normal.jpg": "./static/media/body_normal.f11b8203.jpg",
     "static/media/body_peak.jpg": "./static/media/body_peak.c2c1cb88.jpg",
@@ -30,6 +35,9 @@
     "static/media/parents_highStatus.jpg": "./static/media/parents_highStatus.3943ec18.jpg",
     "static/media/parents_random.jpg": "./static/media/parents_random.62ee246b.jpg",
     "static/media/parents_royalty.jpg": "./static/media/parents_royalty.303deda0.jpg",
+    "static/media/population_denslyPopulated.jpg": "./static/media/population_denslyPopulated.bac216f6.jpg",
+    "static/media/population_mediumPopulation.jpg": "./static/media/population_mediumPopulation.e2f11b36.jpg",
+    "static/media/population_sparselyPopulated.jpg": "./static/media/population_sparselyPopulated.eef30694.jpg",
     "static/media/species_custom.jpg": "./static/media/species_custom.8a499bdc.jpg",
     "static/media/species_fantasy.jpg": "./static/media/species_fantasy.01f5beb5.jpg",
     "static/media/species_humans.jpg": "./static/media/species_humans.04039750.jpg",
@@ -39,8 +47,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.92b9c040.js",
-    "static/js/2.34d0ce22.chunk.js",
+    "static/js/2.e95ecd8b.chunk.js",
     "static/css/main.1b9ba571.chunk.css",
-    "static/js/main.724b9ff5.chunk.js"
+    "static/js/main.0d61ca4c.chunk.js"
   ]
 }
