@@ -2,6 +2,7 @@ import React from 'react';
 import getOption from './functions/getOption';
 import getSelected from './functions/getSelected';
 import isOptionDisabled from './functions/isOptionDisabled';
+import introImg from './media/element/intro.jpg';
 
 function importAll(r) {
   const obj = {};
@@ -64,6 +65,8 @@ const options = {
     text: <React.Fragment>
       <p>Due to some disturbances in spacetime you were ripped out of your reality. Your soul is currently hovering in an endless void. You have no senses to feel anything yet you realize you can steer yourself to any of the myriad of realities scattered around you. Each one of them branching into countless others. In what world will you end up depends solely on your choices.</p>
     </React.Fragment>,
+    image: introImg,
+    classes: ['intro'],
   },
   count: {
     name: 'Count',
@@ -86,20 +89,17 @@ const options = {
       },
     },
   },
-  group: {
-    name: 'Group',
-    type: 'group',
+  parent: {
+    name: 'Parent',
     max: false,
-    options: data => {
-      const count = _val.call(data, 'count') + 1;
-      const suboptions = {};
-      for (let i = 0; i < count; i++) {
-        suboptions[`option${i + 1}`] = {
-          name: `Option ${i + 1}`,
-        };
+    hasIndividualChildren: true,
+    defaultChildName: 'Child',
+    individualOptions: {
+      cute: {
+        name: 'Cute',
       }
-      return suboptions;
     },
+    classes: ['double'],
   },
   group2: {
     name: 'Group 2',

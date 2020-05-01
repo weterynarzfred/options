@@ -7,6 +7,7 @@ function Name(props) {
       <input
         value={props.name}
         onChange={event => props.change('name', event.target.value)}
+        placeholder="name"
       />
     </div>;
   }

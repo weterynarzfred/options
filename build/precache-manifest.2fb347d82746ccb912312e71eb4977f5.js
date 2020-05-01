@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4293f21baa162155c484345017b14183",
+    "revision": "f9c3c773e4ec78751936c21c638f877c",
     "url": "./index.html"
   },
   {
-    "revision": "296a5fd72e5593bbfcc1",
-    "url": "./static/css/main.3b6ba1eb.chunk.css"
+    "revision": "cd4ba2e22ee0cda796be",
+    "url": "./static/css/main.1b9ba571.chunk.css"
   },
   {
-    "revision": "602993c7880e9786739e",
-    "url": "./static/js/2.6d058d10.chunk.js"
+    "revision": "27542d39f425afe151bc",
+    "url": "./static/js/2.34d0ce22.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.6d058d10.chunk.js.LICENSE"
+    "url": "./static/js/2.34d0ce22.chunk.js.LICENSE"
   },
   {
-    "revision": "296a5fd72e5593bbfcc1",
-    "url": "./static/js/main.4ef0f6e7.chunk.js"
+    "revision": "cd4ba2e22ee0cda796be",
+    "url": "./static/js/main.724b9ff5.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -60,6 +60,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/geography_world.38b9d24c.jpg"
   },
   {
+    "revision": "06194c1499ffac08146c788ac6a32d8f",
+    "url": "./static/media/intro.06194c14.jpg"
+  },
+  {
     "revision": "b7b8affc72c7d2cc600a11e2f4941377",
     "url": "./static/media/intro.b7b8affc.jpg"
   },
@@ -76,6 +80,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/markings_saviour.5bba0f7c.jpg"
   },
   {
+    "revision": "49e0c69aa839a6250b72e95cd90a62c5",
+    "url": "./static/media/noisy_@2X.49e0c69a.png"
+  },
+  {
     "revision": "46490d23013c5e3fca209acbdf2d60a1",
     "url": "./static/media/parents_abandoned.46490d23.jpg"
   },
@@ -90,10 +98,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "303deda0ec9c7b815249c12333643de5",
     "url": "./static/media/parents_royalty.303deda0.jpg"
-  },
-  {
-    "revision": "6c418e003638c89d209f1cff30417752",
-    "url": "./static/media/regal.6c418e00.png"
   },
   {
     "revision": "8a499bdcae5f53e291f6193457276961",

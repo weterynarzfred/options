@@ -1,6 +1,9 @@
 .SuboptionsContainer {
   cursor: auto;
   border-top: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   .Suboption {
     position: relative;
@@ -8,6 +11,7 @@
     align-items: center;
     flex-wrap: wrap;
     border-bottom: 1px solid $optionBorderColor;
+    width: 100%;
 
     .SuboptionWrap {
       width: 100%;
@@ -99,6 +103,14 @@
         top: 0;
       }
     }
+  }
+}
+
+.Option.double .SuboptionsContainer .Suboption {
+  width: 50%;
+
+  &:nth-child(2n) {
+    border-left: 1px solid $optionBorderColor;
   }
 }
 

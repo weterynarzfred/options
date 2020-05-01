@@ -54,12 +54,13 @@
       width: 2em;
       height: 2em;
       cursor: pointer;
+      background-color: #eee;
 
       div {
         position: absolute;
         right: 0;
         left: 0;
-        width: 80%;
+        width: 75%;
         height: 4px;
         margin: -2px auto 0 auto;
         background-color: #333;

@@ -6,9 +6,10 @@ import propShapes from '../propShapes';
 function Text(props) {
   if (props.isChangeable) {
     return <div className="Text">
-      <input
+      <textarea
         value={props.text}
         onChange={event => props.change('text', event.target.value)}
+        placeholder="description"
       />
     </div>;
   }

@@ -14,10 +14,11 @@ $colorDeselected: #eee;
 $colorSelected: #fff;
 $colorDisabledOverlay: #eee;
 
-$controlsBgColor: #3a3a3a;
-$controlsBgColorHovered: #555555;
-$controlsText: #ffffff;
-$controlsBorderColor: #aaa;
+$controlsBgColor: #eee;
+$controlsBgColorHovered: #fff;
+$controlsText: #333;
+$controlsTextHovered: #777;
+$controlsBorderColor: #ccc;
 
 $disabledWarningColor: #933;
 
@@ -34,7 +35,7 @@ $navCostPositiveColor: #1c8d00;
 
 html {
   font-size: 16px;
-  box-shadow: 0 0 20em 1em rgba(255, 255, 255, 1) inset;
+  box-shadow: 0 0 20em 1em rgba(0, 0, 0, 0.3) inset;
   min-height: 100vh;
 }
 
@@ -64,7 +65,7 @@ html {
 
 body {
   background-color: $colorBg;
-  background-image: url("./../media/element/regal.png");
+  background-image: url("./../media/element/noisy_@2X.png");
   margin: 0;
   font-family: "Lato", sans-serif;
   color: $colorText;
@@ -117,7 +118,7 @@ body {
   font-size: 2em;
   font-family: "EB Garamond", serif;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.3;
   text-align: center;
   margin-top: 0.5em;
   margin-bottom: 0.25em;
@@ -136,23 +137,30 @@ body {
   }
 }
 
-input {
+input,
+textarea {
   background: none;
   border: none;
   font: inherit;
   letter-spacing: inherit;
   text-align: inherit;
   width: 100%;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 
   &:hover {
-    background-color: #fff;
+    box-shadow: 0 0 1px #000 inset;
   }
 
   &:focus {
     outline: none;
-    background-color: #fff;
+    box-shadow: 0 0 1px #000 inset;
   }
+}
+
+textarea {
+  min-height: 2em;
+  height: 2em;
+  resize: vertical;
 }
 
 input::-webkit-outer-spin-button,
@@ -214,3 +222,43 @@ svg {
 @import "_Suboptions";
 @import "_Stats";
 @import "_errors";
+
+.intro {
+  max-width: none !important;
+  min-height: 100vh;
+  padding: 0 !important;
+  margin: -3em 0 3em 0 !important;
+  transition: none !important;
+
+  .OptionWrap {
+    overflow: visible !important;
+    display: flex;
+    align-items: flex-end;
+
+    .OptionContent {
+      margin: 0 auto !important;
+      padding: 12em 3em 3em 3em;
+
+      .Image {
+        position: absolute;
+        top: 0;
+        right: -3em;
+        bottom: 0;
+        left: -3em;
+        width: auto !important;
+        height: auto !important;
+
+        .ImageContent {
+          padding: 0 !important;
+          height: 100%;
+        }
+      }
+
+      .OptionBox {
+        position: relative;
+        background-color: #eee;
+        border: 1px solid #fff5;
+      }
+    }
+  }
+}

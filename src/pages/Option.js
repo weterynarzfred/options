@@ -39,7 +39,8 @@ function Option(props) {
       { OptionSelected: props.option.info.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
       { OptionHasImage: optionInfo.image },
-      { OptionDisabled: props.option.info.isDisabled }
+      { OptionDisabled: props.option.info.isDisabled },
+      ...props.option.classes
     )}
   >
     <OptionControls

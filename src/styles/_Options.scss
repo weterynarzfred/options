@@ -9,10 +9,13 @@
   .Option {
     position: relative;
     width: 25%;
-    max-width: 100%;
     padding: 1.5em 0.5em;
     color: $optionTextColor;
     transition: transform 0.3s;
+
+    &.double {
+      width: 50%;
+    }
 
     // transitions
     &.item-enter {
@@ -103,7 +106,8 @@
     &.OptionControl-checkbox,
     &.OptionControl-spinbox,
     &.OptionControl-addChild,
-    &.OptionControl-select {
+    &.OptionControl-select,
+    &.OptionControl-delete {
       .OptionWrap {
         padding-top: 1em;
       }

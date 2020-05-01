@@ -40,6 +40,11 @@
   }
 
   &.CheckboxSelected {
+    background-color: $controlsBgColorHovered;
+
+    &:hover {
+      background-color: $controlsBgColor;
+    }
     svg {
       transform: scale(0.7);
       opacity: 1;
@@ -61,13 +66,13 @@
     padding: 0 0.25em;
 
     path {
-      stroke: #ccc;
+      stroke: $controlsText;
       transition: 0.3s;
     }
 
     &:hover {
       path {
-        stroke: #fff;
+        stroke: $controlsTextHovered;
       }
     }
   }
@@ -134,7 +139,7 @@
   font-weight: 700;
 
   &:hover {
-    background-color: #fff;
+    background-color: $controlsBgColorHovered;
   }
 }
 
@@ -154,8 +159,9 @@
 
   &:hover {
     background-color: #f55;
+
     path {
-      stroke: #fff;
+      stroke: $controlsBgColorHovered;
     }
   }
 }

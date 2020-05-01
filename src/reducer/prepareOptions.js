@@ -88,7 +88,7 @@ export default function prepareOptions(currentOptions, path, options = currentOp
         option.image = images[imageName];
       }
     }
-
+    option.classes = option.classes === undefined ? [] : option.classes;
 
     if (option.options !== undefined && typeof option.options === 'function') {
       option.functionalChildren = option.functionalChildren === undefined ?
