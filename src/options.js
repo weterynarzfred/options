@@ -12,7 +12,8 @@ function importAll(r) {
   return obj;
 }
 
-const images = importAll(require.context('./media/image_scaled', false, /\.(png|jpe?g|svg|gif)$/));
+export const images = importAll(require.context('./media/image_scaled', false, /\.(png|jpe?g|svg|gif)$/));
+
 
 
 function select(arr, def = false) {
@@ -52,6 +53,13 @@ function _val(path) {
 // }
 
 const options = {
+  intro: {
+    name: 'A quick trip',
+    type: 'story',
+    text: <React.Fragment>
+      <p>Due to some disturbances in spacetime you were ripped out of your reality. Your soul is currently hovering in an endless void. You have no senses to feel anything yet you realize you can steer yourself to any of the myriad of realities scattered around you. Each one of them branching into countless others. In what world will you end up depends solely on your choices.</p>
+    </React.Fragment>,
+  },
   count: {
     name: 'Count',
     max: 5,
@@ -123,13 +131,11 @@ const options = {
     type: 'group',
     text: <p>At what age will your new body be?</p>,
     min: 1,
-    useImageOfSelected: true,
     disableOpenButton: true,
     options: {
       child: {
         name: 'Child',
         text: <p>Your soul will enter a body that would otherwise be a stillborn. Your parents will provide for your basic needs but you won't have much autonomy at first. Your mind and memory will be fully functional but you will have to adapt to your new body making you as clumsy as every other newborn.</p>,
-        image: images['wallhaven-dgzkw3'],
         imageCx: 30,
         cost: {
           gold: 1,
@@ -138,13 +144,11 @@ const options = {
       teen: {
         name: 'Teen',
         text: <p>You will appear in a secluded area in a body similar to people around but not belonging to anyone in praticular. You will have a body of a child around 12 years old which will limit your strating strength and possibilities.</p>,
-        image: images['a03b831d9f2c4987a4a67df9fdc4fad7'],
         selected: 1,
       },
       adult: {
         name: 'Adult',
         text: <p>You will appear in a secluded area in a body similar to people around but not belonging to anyone in praticular. You will have a body of a fully grown adult below 30 years of age.</p>,
-        image: images['age_adult'],
         cost: {
           gold: 1,
         },
@@ -155,36 +159,28 @@ const options = {
     name: 'Parents',
     text: <p>Who will your parents be?</p>,
     type: 'group',
-    image: images['parents_random'],
     test: data => _is.call(data, 'age/child'),
-    showWhenDisabled: true,
-    disabledText: <p>You need to be a newborn.</p>,
     min: 1,
-    useImageOfSelected: true,
     disableOpenButton: true,
     options: {
       abandoned: {
         name: 'Abandoned',
-        image: images['area_orphanage'],
         cost: {
           gold: -1,
         },
       },
       random: {
         name: 'Random',
-        image: images['parents_random'],
         selected: 1,
       },
-      high: {
+      highStatus: {
         name: 'Hight Status',
-        image: images['3262c6bf9d049b604bcdb38facbed2c6'],
         cost: {
           gold: 5,
         },
       },
       royalty: {
         name: 'Royalty',
-        image: images['761d5a41242919c542956586b92baaf5'],
         cost: {
           gold: 10,
         },
@@ -194,25 +190,21 @@ const options = {
   body: {
     name: 'Physical Prowess',
     type: 'group',
-    useImageOfSelected: true,
     disableOpenButton: true,
     min: 1,
     options: {
       normal: {
         name: 'Normal Body',
         selected: 1,
-        image: images['ros-morales-09-07-2016'],
       },
       peak: {
         name: 'Peak Human',
-        image: images['suqcZ67'],
         cost: {
           gold: 2,
         },
       },
       heroic: {
         name: 'Heroic',
-        image: images['kim-sung-hwan-lineage-warrior-01'],
         imageCy: 0,
         cost: {
           gold: 5,
@@ -243,7 +235,6 @@ const options = {
   uniqueRace: {
     name: 'Unique Race',
     text: <p>You can choose your body to have any biologicaly possible traits. Otherwise you have to choose one of the races present in your new world.</p>,
-    image: images['18952b9d9f90fab3ed3ff6a40abfd8dd'],
     cost: {
       gold: 10,
     },
@@ -252,27 +243,23 @@ const options = {
     name: 'Foretold Mark',
     text: <p>Your body will bear a marking passed down in legends. It won't do anything except changing people's perception of you. The mark will be possible to hide with some effort.</p>,
     type: 'group',
-    image: images['ee73f0b46e3653303deccc7f70c9b44b'],
-    useImageOfSelected: true,
+    image: images.markings_demigod,
     disableOpenButton: true,
     options: {
       saviour: {
         name: 'Mark of the Saviour',
-        image: images['celestial_by_ajgiel_d9456vi-fullview'],
         cost: {
           gold: 2,
         },
       },
       demigod: {
         name: 'Mark of the Demigod',
-        image: images['ee73f0b46e3653303deccc7f70c9b44b'],
         cost: {
           gold: 5,
         },
       },
       doom: {
         name: 'Mark of Doom',
-        image: images['tony-maverick-'],
         cost: {
           gold: 2,
         },
@@ -321,7 +308,6 @@ const options = {
   },
   uniqueMagic: {
     name: 'Unique Magic',
-    image: images['unique_magic'],
     cost: {
       gold: 25,
     },
@@ -363,22 +349,18 @@ const options = {
   geography: {
     name: 'Geography',
     type: 'group',
-    useImageOfSelected: true,
     disableOpenButton: true,
     min: 1,
     options: {
       island: {
         name: 'Island',
-        image: images['23qs9qpfeuj11'],
       },
       world: {
         name: 'World',
         selected: 1,
-        image: images['d5d17is-35153865-066b-4228-b85b-c8f83d573504'],
       },
       megaWorld: {
         name: 'Mega World',
-        image: images['ringworld'],
         test: data => _is.call(data, 'technology/nearFuture'),
         showWhenDisabled: true,
         disabledText: <p>Technology level has to be "near future"</p>,
@@ -464,9 +446,11 @@ const options = {
     type: 'group',
     test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
     disableOpenButton: true,
+    min: 1,
     options: {
       convenience: {
         name: 'Convenience',
+        selected: 1,
       },
       heroic: {
         name: 'Heroic',

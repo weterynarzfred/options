@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import './styles/style.scss';
-import Intro from './containers/Intro';
 import OptionsContainer from './containers/OptionsContainer';
 import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
@@ -33,8 +32,7 @@ function App(props) {
         </svg>
       </div>
       <Nav option={option} />
-      {props.path.length === 0 ?
-        <Intro /> :
+      {props.path.length === 0 ? false :
         <OptionWideHead option={option} />
       }
       <OptionsContainer option={option} />

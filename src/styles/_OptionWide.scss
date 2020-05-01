@@ -1,8 +1,12 @@
 .OptionWideHead {
-  margin: 3em;
+  margin: 5em 0 3em 0;
 
   .OptionControls {
     max-width: 30em;
     margin: 0 auto 1em auto;
+  }
+
+  .Name {
+    font-size: 3em;
   }
 }

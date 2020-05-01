@@ -49,7 +49,7 @@ export default function getOptionInfo(option, options) {
     const selected = optionInfo.selectableSuboptions[optionInfo.selectedSuboptionId];
     if (selected !== undefined) {
       optionInfo.getStastsFrom = selected;
-      if (option.useImageOfSelected) {
+      if (!option.dontUseImageOfSelected) {
         optionInfo.image = selected.image;
         optionInfo.imageCy = selected.imageCy;
         optionInfo.imageCx = selected.imageCx;

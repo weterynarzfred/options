@@ -12,34 +12,32 @@
     max-width: 100%;
     padding: 1.5em 0.5em;
     color: $optionTextColor;
-    transition: 0.5s;
-    display: flex;
-    justify-content: center;
+    transition: transform 0.3s;
 
     // transitions
-    &.item-enter,
-    &.item-exit.item-exit-active {
+    &.item-enter {
       transform: scale(0);
-      width: 0%;
-      padding: 0;
     }
 
     &.item-enter-active,
-    &.item-enter-done,
-    &.item-exit {
+    &.item-enter-done {
       transform: scale(1);
-      width: 25%;
-      padding: 1.5em 0.5em;
     }
 
+    &.item-exit {
+      transform: scale(1);
+    }
+
+    &.item-exit-active,
+    &.item-exit-done {
+      transform: scale(0);
+    }
     // transitions - end
 
     .OptionWrap {
       position: relative;
       overflow: hidden;
       height: 100%;
-      width: 25em;
-      flex-shrink: 0;
 
       .OptionContent {
         overflow: hidden;
@@ -106,9 +104,13 @@
     &.OptionControl-spinbox,
     &.OptionControl-addChild,
     &.OptionControl-select {
-      .OptionHead {
-        .OptionStats {
-          min-height: 1em;
+      .OptionWrap {
+        padding-top: 1em;
+      }
+
+      &.OptionHasImage {
+        .OptionWrap {
+          padding-top: 0;
         }
       }
     }
@@ -223,42 +225,45 @@
 
 // options width images
 .Option.OptionHasImage {
-  > .OptionWrap {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    .Image {
-      margin-bottom: -6em;
-
-      .ImageContent {
-        box-sizing: content-box;
-        height: 6em;
-        padding-bottom: 100%;
-      }
-    }
-
-    > .OptionContent {
-      position: relative;
+  &.OptionType-group,
+  &.OptionType-option {
+    > .OptionWrap {
+      z-index: 1;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
 
-      .OptionBox {
-        border-top: 1px solid $optionBorderColor;
+      .Image {
+        margin-bottom: -6em;
 
-        &:before {
-          content: "";
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
+        .ImageContent {
+          box-sizing: content-box;
           height: 6em;
-          max-height: 100%;
-          z-index: -1;
-          transition: 0.3s;
-          box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+          padding-bottom: 100%;
+        }
+      }
+
+      > .OptionContent {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .OptionBox {
+          border-top: 1px solid $optionBorderColor;
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 6em;
+            max-height: 100%;
+            z-index: -1;
+            transition: 0.3s;
+            box-shadow: 0 -9em 4em -4em $optionBgColor inset;
+          }
         }
       }
     }
@@ -283,7 +288,6 @@
         .ImageContent {
           filter: blur(3px) grayscale(1);
           opacity: 0.75;
-          transition: filter 0.3s, opacity 0.3s;
         }
       }
 

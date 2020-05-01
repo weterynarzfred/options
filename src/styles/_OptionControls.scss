@@ -12,13 +12,13 @@
   z-index: 1;
   margin: 0 auto;
   border: 1px solid $controlsBorderColor;
+  background-color: $controlsBgColor;
   @include shadow();
 }
 
 .Checkbox {
   width: 3em;
   height: 3em;
-  background-color: $controlsColor;
   cursor: pointer;
   transition: 0.3s;
 
@@ -34,6 +34,11 @@
       stroke: $controlsText;
     }
   }
+
+  &:hover {
+    background-color: $controlsBgColorHovered;
+  }
+
   &.CheckboxSelected {
     svg {
       transform: scale(0.7);
@@ -74,7 +79,6 @@
   align-items: center;
   width: 8em;
   height: 2em;
-  background-color: $controlsColor;
   padding: 0 0.25em;
   transition: 0.3s;
 
@@ -105,7 +109,6 @@
   width: 80%;
   width: 6em;
   height: 2em;
-  background-color: $controlsColor;
   padding: 0 0.25em;
   transition: 0.3s;
 
@@ -121,7 +124,6 @@
   top: 0.5rem;
   width: 8rem;
   height: 2rem;
-  background-color: $controlsColor;
   cursor: pointer;
   transition: 0.3s;
   display: flex;
@@ -139,7 +141,6 @@
 .Delete {
   width: 3em;
   height: 3em;
-  background-color: $controlsColor;
   cursor: pointer;
   transition: 0.3s;
 

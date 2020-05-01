@@ -14,7 +14,8 @@ $colorDeselected: #eee;
 $colorSelected: #fff;
 $colorDisabledOverlay: #eee;
 
-$controlsColor: #3a3a3a;
+$controlsBgColor: #3a3a3a;
+$controlsBgColorHovered: #555555;
 $controlsText: #ffffff;
 $controlsBorderColor: #aaa;
 
@@ -174,6 +175,7 @@ input[type="number"] {
     background-position: center;
     background-size: cover;
     background-color: #999;
+    transition: filter 0.3s, opacity 0.3s;
   }
 }
 
@@ -201,9 +203,9 @@ svg {
 }
 
 @import "_Nav";
-@import "_Intro";
 @import "_OptionWide";
 @import "_Options";
+@import "_Story";
 @import "_OptionControls";
 @import "_Suboptions";
 @import "_Stats";

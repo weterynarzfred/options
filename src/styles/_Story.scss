@@ -1,0 +1,28 @@
+.OptionType-story {
+  .OptionContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 80em;
+    margin: 3em auto 1em auto;
+
+    .Name {
+      font-size: 3em;
+    }
+
+    .Text {
+      font-size: 1.25em;
+      margin-left: 3em;
+      margin-right: 3em;
+    }
+
+    .Image {
+      width: 40%;
+      flex-shrink: 0;
+
+      .ImageContent {
+        padding-bottom: 50%;
+      }
+    }
+  }
+}

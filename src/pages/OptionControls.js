@@ -45,7 +45,7 @@ function OptionControls(props) {
       />;
       break;
     default:
-      controls = false;
+      return false;
   }
 
   return <div

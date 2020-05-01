@@ -18,7 +18,7 @@ function OptionsContainer(props) {
     if (!currentOption.showWhenDisabled && currentOption.info.isDisabled) continue;
     optionsElements.push(<CSSTransition
       key={`option-${currentOption.path}`}
-      timeout={500}
+      timeout={300}
       classNames="item"
     >
       <Option
@@ -31,6 +31,14 @@ function OptionsContainer(props) {
       />
     </CSSTransition>);
   }
+
+  optionsElements.push(<CSSTransition
+    key={`option-after-${props.option.path}`}
+    timeout={300}
+    classNames="item"
+  ><div style={{
+    width: '100%',
+  }}></div></CSSTransition>);
 
   return <OptionsPage>
     {optionsElements}

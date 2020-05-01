@@ -218,7 +218,7 @@ Object containing currencies to be used in current option's children's suboption
 - default: same as `name`
 - usable in: `option` when `hasIndividualChildren` is set to `true`
 
-### `useImageOfSelected`
+### `dontUseImageOfSelected`
 - type: `bool`
 - default: `false`
 
@@ -317,7 +317,6 @@ Container for temporary option objects created when `options` is a function. Thi
 - 'rename' button
 - styling
 - `test` in `story`
-- display regular suboptions alongside option's children
 - links between options
 - wide options
 - errors menu
