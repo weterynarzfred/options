@@ -65,18 +65,6 @@ function _val(path) {
 // }
 
 const options = {
-  welcome: {
-    name: 'Welcome',
-    type: 'scene',
-    frames: [
-      {
-        text: <p>Welcome to a new world.</p>,
-      },
-      {
-        text: <p>You're fucked.</p>,
-      },
-    ],
-  },
   main: {
     name: 'Main',
     type: 'optionsContainer',

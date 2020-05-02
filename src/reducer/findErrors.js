@@ -80,10 +80,7 @@ function checkMinMaxSelected(option, options, errors) {
 export default function findErrors(state) {
   state.errors = [];
   forEachOption({ options: state.options }, state, (option, parent, { options, errors }) => {
-    if (
-      option.type === 'optionsContainer' ||
-      option.type === 'scene'
-    ) return;
+    if (option.type === 'optionsContainer') return;
     if (isOptionDisabled(option, options)) return;
     checkMinMaxSelected(option, options, errors);
     checkOptionCurrencies(option, options, errors);
