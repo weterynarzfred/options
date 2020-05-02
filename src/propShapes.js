@@ -22,7 +22,7 @@ propShapes.currency = PropTypes.objectOf(PropTypes.shape({
 propShapes.cost = PropTypes.objectOf(PropTypes.object);
 
 propShapes.option = PropTypes.shape({
-  type: PropTypes.oneOf(['option', 'group', 'story']),
+  type: PropTypes.oneOf(['option', 'group', 'story', 'scene', 'optionsContainer']),
   name: PropTypes.node,
   text: propShapes.text,
   link: PropTypes.string,

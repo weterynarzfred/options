@@ -26,7 +26,7 @@ function Breadcrumbs(props) {
 
 function mapStateToProps(state) {
   return {
-    path: state.path.map(e => e.slug),
+    path: state.path,
     options: state.options,
   };
 }

@@ -16,6 +16,14 @@ $(window).on('load', () => {
   }, 300);
 });
 
+function getWideHead(option, props) {
+  if (props.settings.usesStages) {
+    if (props.path.length === 1) return false;
+  }
+  if (props.path.length === 0) return false;
+  return <OptionWideHead option={option} />;
+}
+
 function App(props) {
   useEffect(() => {
     if (pipe.scroll !== undefined) {
@@ -34,9 +42,7 @@ function App(props) {
       </div>
       <Nav option={option} />
       <Breadcrumbs />
-      {props.path.length === 0 ? false :
-        <OptionWideHead option={option} />
-      }
+      {getWideHead(option, props)}
       <OptionsContainer option={option} />
     </div>
   );
@@ -44,8 +50,9 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    path: state.path.map(e => e.slug),
+    settings: state.options,
     options: state.options,
+    path: state.path,
   };
 }
 
