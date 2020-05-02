@@ -498,6 +498,12 @@ const options = {
         test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
         disableOpenButton: true,
         options: {
+          feared: {
+            name: 'Feared',
+            test: data => !_is.call(data, 'magicFrequency/everyone'),
+            showWhenDisabled: true,
+            disabledText: <p>Mages cannot be feared if everyone is a mage.</p>,
+          },
           hidden: {
             name: 'Hidden',
             test: data => !_is.call(data, 'magicFrequency/everyone'),

@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c5e788ea6cefbd4477cc1f15c7159da2",
+    "revision": "365e2e0bde08076b677a1d7c75d6ef70",
     "url": "./index.html"
   },
   {
-    "revision": "ad96bdb9b366846a9ff1",
-    "url": "./static/css/main.1b9ba571.chunk.css"
+    "revision": "95a8b1c6488d86a943e3",
+    "url": "./static/css/main.70821290.chunk.css"
   },
   {
-    "revision": "f97135281c3615498a8e",
-    "url": "./static/js/2.e95ecd8b.chunk.js"
+    "revision": "ac816e62021e388ff388",
+    "url": "./static/js/2.72deb58e.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.e95ecd8b.chunk.js.LICENSE"
+    "url": "./static/js/2.72deb58e.chunk.js.LICENSE"
   },
   {
-    "revision": "ad96bdb9b366846a9ff1",
-    "url": "./static/js/main.0d61ca4c.chunk.js"
+    "revision": "95a8b1c6488d86a943e3",
+    "url": "./static/js/main.3c2e91a8.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -56,6 +56,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/balanceOfPower_strained.822db632.jpg"
   },
   {
+    "revision": "15a4ece3cd219d6aae59ad7e80b8c4fd",
+    "url": "./static/media/batch.15a4ece3.jpg"
+  },
+  {
     "revision": "5eb907cc3809ab0445fe2a353a66749a",
     "url": "./static/media/body_heroic.5eb907cc.jpg"
   },
@@ -86,6 +90,42 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b7b8affc72c7d2cc600a11e2f4941377",
     "url": "./static/media/intro.b7b8affc.jpg"
+  },
+  {
+    "revision": "eb652fd9f5d271e0ca0c6182fa262b69",
+    "url": "./static/media/magicPower_convenience.eb652fd9.jpg"
+  },
+  {
+    "revision": "a6dfdead40e942b87a6115a3bc84130c",
+    "url": "./static/media/magicPower_heroic.a6dfdead.jpg"
+  },
+  {
+    "revision": "1656b12cde40d8697ff4726ba0042d5a",
+    "url": "./static/media/magicPower_powerfull.1656b12c.jpg"
+  },
+  {
+    "revision": "8800eca2b3d503babc48c327a1bd92e0",
+    "url": "./static/media/magicPower_worldShattering.8800eca2.jpg"
+  },
+  {
+    "revision": "b7641aa476609e0f5a9cc04fb1a15dea",
+    "url": "./static/media/magicSituation_casual.b7641aa4.jpg"
+  },
+  {
+    "revision": "7a119553b9fb44a63279f7bfaca25fdb",
+    "url": "./static/media/magicSituation_feared.7a119553.jpg"
+  },
+  {
+    "revision": "cdfac04f89798700b48f05ee061ded6d",
+    "url": "./static/media/magicSituation_hidden.cdfac04f.jpg"
+  },
+  {
+    "revision": "e5b37e5cfb4f0a801b0ce21a31b26b0c",
+    "url": "./static/media/magicSituation_revered.e5b37e5c.jpg"
+  },
+  {
+    "revision": "a575695d16316d94aeeb620e94a2ff13",
+    "url": "./static/media/magicSituation_worshipped.a575695d.jpg"
   },
   {
     "revision": "b0bc3a860adacf024e897189a7fd571a",
@@ -146,6 +186,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f2781cff04192308d6c40ad64b89a30e",
     "url": "./static/media/species_none.f2781cff.jpg"
+  },
+  {
+    "revision": "76c81ad3270474323657a3532a9104a6",
+    "url": "./static/media/technology_prehistoric.76c81ad3.jpg"
+  },
+  {
+    "revision": "9120001bfcb6794700a415b9431621ce",
+    "url": "./static/media/technology_stoneAge.9120001b.jpg"
   },
   {
     "revision": "36c91ecf3ed810368fb73f725f98835d",
