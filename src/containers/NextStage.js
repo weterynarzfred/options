@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import PathLink from './PathLink';
 
 function NextStage(props) {
-  const text = <div className="NextStageButton">
-    Preceed to the next stage.
-  </div>;
+  const text = props.text === undefined ?
+    'Preceed to the next stage' : props.text;
+
   return <div className="NextStage">
     <PathLink
       path={props.target}

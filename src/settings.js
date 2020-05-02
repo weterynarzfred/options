@@ -1,6 +1,6 @@
 const settings = prepareSettings({
   usesStages: true,
-  currentStage: 'main',
+  currentStage: 'options',
   currency: {
     gold: {
       name: 'Gold',

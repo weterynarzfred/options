@@ -18,7 +18,7 @@ $(window).on('load', () => {
 
 function getWideHead(option, props) {
   if (props.settings.usesStages) {
-    if (props.path.length === 1) return false;
+    if (props.path.length <= 1) return false;
   }
   if (props.path.length === 0) return false;
   return <OptionWideHead option={option} />;
@@ -50,7 +50,7 @@ function App(props) {
 
 function mapStateToProps(state) {
   return {
-    settings: state.options,
+    settings: state.settings,
     options: state.options,
     path: state.path,
   };
