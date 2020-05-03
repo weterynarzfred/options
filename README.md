@@ -335,9 +335,9 @@ optionSlug: {
 - 'rename' button
 - styling
 - `test` in `story`
+- image functions
 - links between options
 - wide options
-- errors menu
+- mark unseen option
 - random outcomes
-- stages
-- image functions
+- summary mode

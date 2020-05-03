@@ -5,7 +5,7 @@ import createSyntheticOptions from './createSyntheticOptions';
 import runUserFunctions from "./runUserFunctions";
 import clearUserFunctions from "./clearUserFunctions";
 import getSelectedCount from "../functions/getSelectedCount";
-import forEachOption from "../functions/forEachOptino";
+import forEachOption from "../functions/forEachOption";
 
 function getInfo(option, parentOption, state) {
   option.info = {

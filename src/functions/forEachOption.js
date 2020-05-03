@@ -1,4 +1,4 @@
-import getSubptions from "../functions/getSubptions";
+import getSubptions from "./getSubptions";
 
 export default function forEachOption(parentOption, state, callback, prepareCallback) {
   if (prepareCallback !== undefined) {

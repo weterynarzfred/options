@@ -1,7 +1,7 @@
 import isOptionDisabled from '../functions/isOptionDisabled';
 import getSelectedCount from '../functions/getSelectedCount';
 import { getReadablePath } from './../functions/helpers';
-import forEachOption from '../functions/forEachOptino';
+import forEachOption from '../functions/forEachOption';
 
 /**
  * Checks if values of global currencies are less than minimum.

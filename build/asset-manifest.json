@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "./static/css/main.70821290.chunk.css",
-    "main.js": "./static/js/main.3c2e91a8.chunk.js",
-    "main.js.map": "./static/js/main.3c2e91a8.chunk.js.map",
+    "main.js": "./static/js/main.a4f9d253.chunk.js",
+    "main.js.map": "./static/js/main.a4f9d253.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.92b9c040.js",
     "runtime-main.js.map": "./static/js/runtime-main.92b9c040.js.map",
-    "static/js/2.72deb58e.chunk.js": "./static/js/2.72deb58e.chunk.js",
-    "static/js/2.72deb58e.chunk.js.map": "./static/js/2.72deb58e.chunk.js.map",
+    "static/js/2.916fb29a.chunk.js": "./static/js/2.916fb29a.chunk.js",
+    "static/js/2.916fb29a.chunk.js.map": "./static/js/2.916fb29a.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.042a22cde1aabda6e46af590d908c029.js": "./precache-manifest.042a22cde1aabda6e46af590d908c029.js",
+    "precache-manifest.bea3f31eef09f1f367bd9ca61ff67698.js": "./precache-manifest.bea3f31eef09f1f367bd9ca61ff67698.js",
     "service-worker.js": "./service-worker.js",
     "static/css/main.70821290.chunk.css.map": "./static/css/main.70821290.chunk.css.map",
-    "static/js/2.72deb58e.chunk.js.LICENSE": "./static/js/2.72deb58e.chunk.js.LICENSE",
+    "static/js/2.916fb29a.chunk.js.LICENSE": "./static/js/2.916fb29a.chunk.js.LICENSE",
     "static/media/age_adult.jpg": "./static/media/age_adult.fc86563e.jpg",
     "static/media/age_child.jpg": "./static/media/age_child.7c458804.jpg",
     "static/media/age_teen.jpg": "./static/media/age_teen.02ee5fb6.jpg",
@@ -20,7 +20,6 @@
     "static/media/balanceOfPower_idyll.jpg": "./static/media/balanceOfPower_idyll.89ff8f19.jpg",
     "static/media/balanceOfPower_natural.jpg": "./static/media/balanceOfPower_natural.49737ff3.jpg",
     "static/media/balanceOfPower_strained.jpg": "./static/media/balanceOfPower_strained.822db632.jpg",
-    "static/media/batch.jpg": "./static/media/batch.15a4ece3.jpg",
     "static/media/body_heroic.jpg": "./static/media/body_heroic.5eb907cc.jpg",
     "static/media/body_normal.jpg": "./static/media/body_normal.f11b8203.jpg",
     "static/media/body_peak.jpg": "./static/media/body_peak.c2c1cb88.jpg",
@@ -59,8 +58,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.92b9c040.js",
-    "static/js/2.72deb58e.chunk.js",
+    "static/js/2.916fb29a.chunk.js",
     "static/css/main.70821290.chunk.css",
-    "static/js/main.3c2e91a8.chunk.js"
+    "static/js/main.a4f9d253.chunk.js"
   ]
 }

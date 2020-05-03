@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "365e2e0bde08076b677a1d7c75d6ef70",
+    "revision": "ba72a87ef7b685e77ab769f0a8d1f1d2",
     "url": "./index.html"
   },
   {
-    "revision": "95a8b1c6488d86a943e3",
+    "revision": "b25e8784a90f4a194d59",
     "url": "./static/css/main.70821290.chunk.css"
   },
   {
-    "revision": "ac816e62021e388ff388",
-    "url": "./static/js/2.72deb58e.chunk.js"
+    "revision": "a115957f38192f7ca033",
+    "url": "./static/js/2.916fb29a.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.72deb58e.chunk.js.LICENSE"
+    "url": "./static/js/2.916fb29a.chunk.js.LICENSE"
   },
   {
-    "revision": "95a8b1c6488d86a943e3",
-    "url": "./static/js/main.3c2e91a8.chunk.js"
+    "revision": "b25e8784a90f4a194d59",
+    "url": "./static/js/main.a4f9d253.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -54,10 +54,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "822db632f03a5fc18e51b7a48c67e40f",
     "url": "./static/media/balanceOfPower_strained.822db632.jpg"
-  },
-  {
-    "revision": "15a4ece3cd219d6aae59ad7e80b8c4fd",
-    "url": "./static/media/batch.15a4ece3.jpg"
   },
   {
     "revision": "5eb907cc3809ab0445fe2a353a66749a",
