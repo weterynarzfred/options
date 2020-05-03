@@ -3,6 +3,7 @@ import getOption from './functions/getOption';
 import getSelected from './functions/getSelected';
 import isOptionDisabled from './functions/isOptionDisabled';
 import introImg from './media/element/intro.jpg';
+import EnterSummaryMode from './containers/EnterSummaryMode';
 
 function importAll(r) {
   const obj = {};
@@ -193,6 +194,7 @@ const options = {
   uniqueRace: {
     name: 'Unique Race',
     text: <p>You can choose your body to have any biologicaly possible traits. Otherwise you have to choose one of the races present in your new world.</p>,
+    selected: 1,
     cost: {
       gold: 10,
     },
@@ -517,6 +519,15 @@ const options = {
         name: 'Worshipped',
       },
     },
+  },
+  epilogue: {
+    name: 'Epilogue',
+    type: 'story',
+    text: <React.Fragment>
+      <p>This is the end, would you like to see the summary?</p>
+      <EnterSummaryMode state={true} />
+    </React.Fragment>,
+    test: data => !data.settings.isSummaryMode,
   },
 };
 

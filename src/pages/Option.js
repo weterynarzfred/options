@@ -31,10 +31,20 @@ function handleClick(event) {
 function Option(props) {
   const optionInfo = props.optionInfo;
 
+  if (
+    props.isSummaryMode &&
+    ['option', 'group'].includes(props.option.type) &&
+    (
+      props.option.info.isDisabled ||
+      !props.option.info.isSelected
+    )
+  ) return false;
+
+  const controllClass = props.isSummaryMode ? false : `OptionControl-${optionInfo.controlType}`;
   return <div
     className={classNames(
       'Option',
-      `OptionControl-${optionInfo.controlType}`,
+      controllClass,
       `OptionType-${props.option.type}`,
       { OptionSelected: props.option.info.isSelected },
       { OptionOpenable: optionInfo.isOpenable },
@@ -49,10 +59,11 @@ function Option(props) {
       buy={props.buy}
       trade={props.trade}
       optionInfo={optionInfo}
+      isSummaryMode={props.isSummaryMode}
     />
     <div
       className="OptionWrap"
-      onClick={handleClick.bind(props)}
+      onClick={props.isSummaryMode ? undefined : handleClick.bind(props)}
     >
       <div className="OptionContent">
         <Image
@@ -92,6 +103,7 @@ Option.propTypes = {
   trade: PropTypes.func,
   change: PropTypes.func,
   optionInfo: PropTypes.object,
+  isSummaryMode: PropTypes.bool,
 };
 
 export default Option;

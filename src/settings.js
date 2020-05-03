@@ -16,6 +16,7 @@ function prepareSettings(sett) {
     false : sett.hideDisabledOptions
   sett.maxDepth = sett.maxDepth === undefined ? 2 : sett.maxDepth;
   sett.usesStages = sett.usesStages === undefined ? false : sett.usesStages;
+  sett.isSummaryMode = sett.isSummaryMode === undefined ? false : sett.isSummaryMode;
 
   return sett;
 }

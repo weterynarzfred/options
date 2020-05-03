@@ -46,6 +46,9 @@ function rootReducer(state = initialState, action = '') {
       getOption(action.option, newState.options)[action.textProp] = action.text;
       skipRecalculate = true;
     }
+    else if (action.type === 'CHANGE_SUMMARY_MODE') {
+      newState.settings.isSummaryMode = action.state;
+    }
 
     if (!skipRecalculate) {
       recalculateState(newState);

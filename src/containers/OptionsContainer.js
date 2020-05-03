@@ -29,6 +29,7 @@ function OptionsContainer(props) {
         trade={handleTrade.bind(props)}
         change={handleChange.bind(props)}
         optionInfo={optionInfo}
+        isSummaryMode={props.settings.isSummaryMode}
       />
     </CSSTransition>);
   }

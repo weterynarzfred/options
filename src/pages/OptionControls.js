@@ -9,7 +9,10 @@ import Delete from './Delete';
 import SelectControls from './SelectControls';
 
 function OptionControls(props) {
-  if (props.option.info.isDisabled) return false;
+  if (
+    props.option.info.isDisabled ||
+    props.isSummaryMode
+  ) return false;
   let controls;
   switch (props.optionInfo.controlType) {
     case 'checkbox':
@@ -65,6 +68,7 @@ OptionControls.propTypes = {
   buy: PropTypes.func,
   trade: PropTypes.func,
   optionInfo: PropTypes.object,
+  isSummaryMode: PropTypes.bool,
 };
 
 export default OptionControls;
