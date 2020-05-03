@@ -1,5 +1,5 @@
 # Intro
-This is an unfinished react/redux boilerplate for making interactive CYOAs. As of now it is largely unfinished and unusable.
+This is an unfinished react/redux boilerplate for making interactive CYOAs. [Current version preview.](https://weterynarzfred.github.io/options/) There are no plans for an editor. Creating your own version requires requires knowing JavaScript and understanding my terribly documented option parameters.
 
 # Options
 All options should be objects placed in the `options` object inside `options.js`. Each option on the same level has to have an unique key. Example:
