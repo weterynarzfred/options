@@ -83,7 +83,7 @@ export default function prepareOptions(currentOptions, path, options = currentOp
     option.slug = slug;
     option.path = path === undefined ? slug : path + '/' + slug;
     if (option.image === undefined) {
-      const imageName = option.path.replace(/\//g, '_').replace('options_', '');
+      const imageName = option.path.replace(/\//g, '_');
       if (images[imageName] !== undefined) {
         option.image = images[imageName];
       }

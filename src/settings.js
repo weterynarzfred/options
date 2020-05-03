@@ -1,6 +1,4 @@
 const settings = prepareSettings({
-  usesStages: true,
-  currentStage: 'options',
   currency: {
     gold: {
       name: 'Gold',
@@ -17,7 +15,7 @@ function prepareSettings(sett) {
   sett.hideDisabledOptions = sett.hideDisabledOptions === undefined ?
     false : sett.hideDisabledOptions
   sett.maxDepth = sett.maxDepth === undefined ? 2 : sett.maxDepth;
-  sett.usesStages = sett.usesStages === undefined ? 2 : sett.usesStages;
+  sett.usesStages = sett.usesStages === undefined ? false : sett.usesStages;
 
   return sett;
 }
