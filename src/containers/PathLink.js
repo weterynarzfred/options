@@ -12,6 +12,7 @@ function PathLink(props) {
         type: 'CHANGE_PATH',
         path: props.path.split('/'),
         scroll: window.scrollY,
+        isChangingStage: props.isChangingStage,
       });
     }}>
       {props.text}
@@ -20,8 +21,12 @@ function PathLink(props) {
 }
 
 PathLink.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
   path: PropTypes.string,
+  isChangingStage: PropTypes.bool,
 };
 
 export default connect()(PathLink);

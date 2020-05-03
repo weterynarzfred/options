@@ -1,7 +1,7 @@
 import isOptionDisabled from '../functions/isOptionDisabled';
-import getSubptions from '../functions/getSubptions';
 import getSelectedCount from '../functions/getSelectedCount';
 import { getReadablePath } from './../functions/helpers';
+import forEachOption from '../functions/forEachOptino';
 
 /**
  * Checks if values of global currencies are less than minimum.
@@ -74,30 +74,16 @@ function checkMinMaxSelected(option, options, errors) {
 }
 
 /**
- * Checks options for errors.
- * @param {object} options Global options.
- * @param {object} currentOptions Options to be checked.
- * @param {array} errors Error array to push errors into.
- */
-function checkOptions(options, errors, currentOptions = options) {
-  for (const slug in currentOptions) {
-    const option = currentOptions[slug];
-    if (isOptionDisabled(option, options)) continue;
-    checkMinMaxSelected(option, options, errors);
-    checkOptionCurrencies(option, options, errors);
-    const childOptions = getSubptions(option, options);
-    if (childOptions !== undefined) {
-      checkOptions(options, errors, childOptions);
-    }
-  }
-}
-
-/**
  * Finds errors in selected options.
  * @param {object} state Global state.
  */
 export default function findErrors(state) {
   state.errors = [];
-  checkOptions(state.options, state.errors);
+  forEachOption({ options: state.options }, state, (option, parent, { options, errors }) => {
+    if (option.type === 'optionsContainer') return;
+    if (isOptionDisabled(option, options)) return;
+    checkMinMaxSelected(option, options, errors);
+    checkOptionCurrencies(option, options, errors);
+  });
   checkGlobalCurrencies(state.settings, state.options, state.errors);
 }

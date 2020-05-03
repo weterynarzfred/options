@@ -26,3 +26,26 @@
     }
   }
 }
+
+.NextStage {
+  text-align: center;
+
+  .PathLink {
+    display: inline-block;
+    padding: 0.5em 1em;
+    margin: 1.5em 0;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    line-height: 1;
+    background-color: #333;
+    color: #eee;
+    @include shadow();
+
+    &:hover {
+      background-color: #555;
+      color: #eee;
+    }
+  }
+}

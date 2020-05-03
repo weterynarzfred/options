@@ -54,7 +54,7 @@ SuboptionsContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     options: state.options,
-    path: state.path.map(e => e.slug),
+    path: state.path,
   };
 }
 

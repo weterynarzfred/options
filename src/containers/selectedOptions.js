@@ -16,7 +16,7 @@ function getValue(option, options) {
   return option.selected;
 }
 
-function getCost(option) {
+function getCost(option, count) {
   if (option.cost === undefined) return false;
   const result = [];
   for (const currencySlug in option.cost) {
@@ -30,7 +30,7 @@ function getCost(option) {
     >
       <div className="list-option-cost-name">{currency.name}</div>
       <div className="list-option-cost-value">{
-        (currency.value > 0 ? '' : '+') + (-currency.value)
+        (currency.value > 0 ? '' : '+') + (-currency.value * count)
       }</div>
     </div>);
   }
@@ -44,13 +44,16 @@ function getSelectedHierarchy(parentOption, options) {
     const option = suboptions[slug];
     if (isOptionDisabled(option, options)) continue;
     const value = getValue(option, options);
-    const cost = getCost(option);
+    const cost = getCost(option, value);
     if (typeof value === 'number' && value > 0) {
       selected.push(<tr
         className="list-option"
         key={`list-option-${option.path}`}
       >
-        <td>{getReadablePath(option.path, options)}{value > 1 ? ' × ' + value : ''}</td>
+        <td>
+          {getReadablePath(option.path, options)}
+          {value > 1 ? ' × ' + value : ''}
+        </td>
         <td>{cost}</td>
       </tr>);
     }
@@ -62,8 +65,6 @@ function getSelectedHierarchy(parentOption, options) {
 
 function SelectedOptions(props) {
   const selected = getSelectedHierarchy({ options: props.options }, props.options);
-
-
   return <table className="SelectedOptions">
     <tbody>
       {selected}

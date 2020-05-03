@@ -14,8 +14,9 @@ function OptionsContainer(props) {
   const optionsElements = [];
   for (const slug in suboptions) {
     const currentOption = suboptions[slug];
-    const optionInfo = getOptionInfo(currentOption, props.options);
+
     if (!currentOption.showWhenDisabled && currentOption.info.isDisabled) continue;
+    const optionInfo = getOptionInfo(currentOption, props.options);
     optionsElements.push(<CSSTransition
       key={`option-${currentOption.path}`}
       timeout={300}
@@ -51,8 +52,9 @@ OptionsContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    settings: state.settings,
     options: state.options,
-    path: state.path.map(e => e.slug),
+    path: state.path,
   };
 }
 

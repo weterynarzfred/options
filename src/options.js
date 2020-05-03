@@ -17,10 +17,7 @@ let images = {};
 try {
   images = importAll(require.context('./media/image_scaled', false, /\.(png|jpe?g|svg|gif)$/));
 } catch (error) { }
-
 export { images };
-
-
 
 function select(arr, def = false) {
   for (const condition of arr) {
@@ -29,8 +26,12 @@ function select(arr, def = false) {
   return def;
 }
 
-function _is(path, values) {
-  const option = getOption(path, this.options);
+// function roll(max, min = 0) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+
+function _is(path, values, prepend = '') {
+  const option = getOption(prepend + path, this.options);
   if (isOptionDisabled(option, this.options)) return false;
   if (values === undefined) {
     return option.selected > 0;
@@ -38,14 +39,14 @@ function _is(path, values) {
   return values.includes(_val.call(this, option));
 }
 
-function _isnt(path, values) {
-  return !values.includes(_val.call(this, path));
+function _isnt(path, values, prepend = '') {
+  return !values.includes(_val.call(this, path, prepend));
 }
 
-function _val(path) {
+function _val(path, prepend = '') {
   let option;
   if (typeof path === 'string') {
-    option = getOption(path, this.options);
+    option = getOption(prepend + path, this.options);
   }
   else {
     option = path;
@@ -492,6 +493,12 @@ const options = {
     test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
     disableOpenButton: true,
     options: {
+      feared: {
+        name: 'Feared',
+        test: data => !_is.call(data, 'magicFrequency/everyone'),
+        showWhenDisabled: true,
+        disabledText: <p>Mages cannot be feared if everyone is a mage.</p>,
+      },
       hidden: {
         name: 'Hidden',
         test: data => !_is.call(data, 'magicFrequency/everyone'),

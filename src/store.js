@@ -31,31 +31,16 @@ function rootReducer(state = initialState, action = '') {
       tradeOption(action.option, newState.options, action.value);
     }
     else if (action.type === 'CHANGE_PATH') {
-      const newPath = action.path.filter(e => e !== '');
-      if (newPath.length > newState.path.length) {
-        for (let i = 0; i < newPath.length; i++) {
-          if (i < newState.path.length) {
-            newPath[i] = newState.path[i];
-          }
-          else {
-            newPath[i] = {
-              slug: newPath[i],
-              scroll: 0,
-            };
-            if (i === newState.path.length) {
-              newPath[i].scroll = action.scroll;
-            }
-          }
-        }
-        pipe.scroll = 0;
-        newState.path = newPath;
+      getOption(newState.path, newState.options).scroll = action.scroll;
+      newState.path = action.path.filter(e => e !== '');
+      pipe.scroll = getOption(newState.path, newState.options).scroll;
+
+      if (action.isChangingStage) {
+        newState.settings.currentStage = newState.path[0];
       }
       else {
-        pipe.scroll = newState.path[newPath.length].scroll;
-        newState.path.splice(newPath.length);
+        skipRecalculate = true;
       }
-
-      skipRecalculate = true;
     }
     else if (action.type === 'CHANGE_TEXT') {
       getOption(action.option, newState.options)[action.textProp] = action.text;

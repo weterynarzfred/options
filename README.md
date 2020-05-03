@@ -305,6 +305,24 @@ Container for temporary option objects created when `options` is a function. Thi
 - `option.max === 1`
 - has more than one suboption with `max === 1 && min === 0`
 
+# Using stages
+- add `usesStages: true` to `settings`
+- add `currentStage: {stageSlug}` to `settings`
+- to omit having to insert stage name in default stage change default `prepend` to `{stageSlug/}` in `_is`, `_isnt` and `_val`
+- same with images: add `.replace(/{stageSlug}_/, '')` to `imageName` in `prepareOptions()`
+
+To add a link to a stage:
+```js
+optionSlug: {
+  name: 'Option',
+  type: 'story',
+  text: <React.Fragment>
+    <p>This is the end of this stage.</p>
+    <NextStage target="{stageSlug}" text="proceed to the next stage" />
+  </React.Fragment>,
+},
+```
+
 # User functions
 - `test`
 - `cost[currency]`

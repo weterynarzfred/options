@@ -5,7 +5,10 @@ import PathLink from './PathLink';
 
 function Breadcrumbs(props) {
   const path = props.path.filter(e => e !== '');
-  if (path.length === 0) return false;
+  if (
+    path.length === 0 ||
+    (props.settings.usesStages && path.length <= 1)
+  ) return false;
   const breadCrumbs = [];
   for (let i = 0; i < path.length; i++) {
     const currentPath = path.slice(0, i + 1);
@@ -18,16 +21,21 @@ function Breadcrumbs(props) {
     );
   }
   return <nav className="Breadcrumbs">
-    <PathLink path="" text="home" />
-    <span> / </span>
+    {props.settings.usesStages ? '' :
+      <React.Fragment>
+        <PathLink path="" text="home" />
+        <span> / </span>
+      </React.Fragment>
+    }
     {breadCrumbs}
   </nav>;
 }
 
 function mapStateToProps(state) {
   return {
-    path: state.path.map(e => e.slug),
+    settings: state.settings,
     options: state.options,
+    path: state.path,
   };
 }
 

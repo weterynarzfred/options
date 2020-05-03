@@ -13,6 +13,7 @@ export default function getCurrencies(props, path) {
   const currencies = clone(props.settings.currency);
   const tempPath = clone(path).reverse();
   let currentPath = '';
+
   while (tempPath.length > 0) {
     currentPath += '/' + tempPath.pop();
     const option = getOption(currentPath, props.options);
