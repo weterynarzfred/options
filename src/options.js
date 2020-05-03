@@ -409,12 +409,6 @@ const options = {
       agricultural: {
         name: 'Agricultural',
       },
-      bronzeAge: {
-        name: 'Bronze Age',
-      },
-      ironAge: {
-        name: 'Iron Age',
-      },
       ancient: {
         name: 'Ancient',
       },
@@ -424,9 +418,11 @@ const options = {
       },
       industrial: {
         name: 'Industrial',
+        imageCy: 100,
       },
       modern: {
         name: 'Modern',
+        imageCy: 10,
       },
       nearFuture: {
         name: 'Near Future',

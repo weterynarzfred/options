@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d276c9e1c4ebe7da6c72a9ff6a398c5b",
+    "revision": "11ed7910154f58746d41ab7b6ed36af8",
     "url": "./index.html"
   },
   {
-    "revision": "b75a1528328550b4145d",
+    "revision": "3c8a5646a4827924dbe1",
     "url": "./static/css/main.984d2175.chunk.css"
   },
   {
-    "revision": "a115957f38192f7ca033",
-    "url": "./static/js/2.916fb29a.chunk.js"
+    "revision": "6cf9ba56f7704c31e12a",
+    "url": "./static/js/2.fa251aad.chunk.js"
   },
   {
     "revision": "f7ca4bf62dab730414a11c7ee9da82d4",
-    "url": "./static/js/2.916fb29a.chunk.js.LICENSE"
+    "url": "./static/js/2.fa251aad.chunk.js.LICENSE"
   },
   {
-    "revision": "b75a1528328550b4145d",
-    "url": "./static/js/main.e04e788e.chunk.js"
+    "revision": "3c8a5646a4827924dbe1",
+    "url": "./static/js/main.9dfd3181.chunk.js"
   },
   {
     "revision": "3eaef5445bbd343cd546",
@@ -86,6 +86,30 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b7b8affc72c7d2cc600a11e2f4941377",
     "url": "./static/media/intro.b7b8affc.jpg"
+  },
+  {
+    "revision": "c825d3c2482eb65a3b50b5326cb6a26f",
+    "url": "./static/media/magicFrequency_common.c825d3c2.jpg"
+  },
+  {
+    "revision": "0458115d73b96899d5a881e29923129a",
+    "url": "./static/media/magicFrequency_everyone.0458115d.jpg"
+  },
+  {
+    "revision": "e0c3e5fdd5031b5a3953c826c377c03a",
+    "url": "./static/media/magicFrequency_few.e0c3e5fd.jpg"
+  },
+  {
+    "revision": "b9b73272cfa6ea142d9091c4e099226a",
+    "url": "./static/media/magicFrequency_half.b9b73272.jpg"
+  },
+  {
+    "revision": "dc1bfbd9026555b3b7fb64f2b589c2d2",
+    "url": "./static/media/magicFrequency_none.dc1bfbd9.jpg"
+  },
+  {
+    "revision": "f1bcbac75dabfab473bd72c4f373cb5a",
+    "url": "./static/media/magicFrequency_rare.f1bcbac7.jpg"
   },
   {
     "revision": "eb652fd9f5d271e0ca0c6182fa262b69",
@@ -182,6 +206,30 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f2781cff04192308d6c40ad64b89a30e",
     "url": "./static/media/species_none.f2781cff.jpg"
+  },
+  {
+    "revision": "510fe2e2732aea0c7fe35fa0f117af6a",
+    "url": "./static/media/technology_agricultural.510fe2e2.jpg"
+  },
+  {
+    "revision": "412d0c18621254cdc31671b666d7071b",
+    "url": "./static/media/technology_ancient.412d0c18.jpg"
+  },
+  {
+    "revision": "182462572488b015188a5598957b3f91",
+    "url": "./static/media/technology_industrial.18246257.jpg"
+  },
+  {
+    "revision": "65efe7e02173c9e4f2874a9f172d23ba",
+    "url": "./static/media/technology_medieval.65efe7e0.jpg"
+  },
+  {
+    "revision": "97335005e203a381ef8c8bb02665fe0e",
+    "url": "./static/media/technology_modern.97335005.jpg"
+  },
+  {
+    "revision": "2961a3bce092d942ca76cd708ef948f6",
+    "url": "./static/media/technology_nearFuture.2961a3bc.jpg"
   },
   {
     "revision": "76c81ad3270474323657a3532a9104a6",
