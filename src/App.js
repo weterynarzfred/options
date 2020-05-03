@@ -8,7 +8,7 @@ import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
 import Nav from './containers/Nav';
 
-$(window).on('load', () => {
+window.addEventListener('load', () => {
   $('body').addClass('unlocked');
   setTimeout(() => {
     $('.MainOverlay').remove();
@@ -30,6 +30,23 @@ function App(props) {
       pipe.scroll = undefined;
     }
   });
+
+  const dispatch = props.dispatch;
+  useEffect(() => {
+    window.history.replaceState({
+      path: [],
+    }, "");
+    window.onpopstate = event => {
+      if (event.state) {
+        dispatch({
+          type: 'CHANGE_PATH',
+          scroll: window.scrollY,
+          path: event.state.path,
+          fromHistory: true,
+        });
+      }
+    };
+  }, [dispatch]);
 
   const option = getOption(props.path, props.options);
   return (

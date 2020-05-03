@@ -16,7 +16,6 @@ const initialState = {
   settings,
   options: prepareOptions(options, undefined),
   errors: [],
-  pathHistory: [],
 };
 
 function rootReducer(state = initialState, action = '') {

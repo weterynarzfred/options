@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import PathLink from '../containers/PathLink';
 
 function ReturnButton(props) {
-  if (props.pathHistory.length === 0) return false;
+  if (props.path.length === 0) return false;
 
-  const text = <svg viewBox="0 0 100 100">
+  const text = <svg viewBox="0 0 133 100">
     <path d="M70 10L10 50L70 90z" />
+    <path d="M75 50L123 50" />
   </svg>;
   return <div className="ReturnButton">
     <PathLink
@@ -17,7 +18,7 @@ function ReturnButton(props) {
 }
 
 ReturnButton.propTypes = {
-  pathHistory: PropTypes.arrayOf(PropTypes.string),
+  path: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ReturnButton;

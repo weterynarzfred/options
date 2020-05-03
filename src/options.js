@@ -194,7 +194,6 @@ const options = {
   uniqueRace: {
     name: 'Unique Race',
     text: <p>You can choose your body to have any biologicaly possible traits. Otherwise you have to choose one of the races present in your new world.</p>,
-    selected: 1,
     cost: {
       gold: 10,
     },
@@ -472,7 +471,7 @@ const options = {
     text: <p>How powerfull will the magic be?</p>,
     type: 'group',
     test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
-    // disableOpenButton: true,
+    disableOpenButton: true,
     min: 1,
     options: {
       convenience: {

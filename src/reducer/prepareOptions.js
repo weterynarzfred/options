@@ -18,17 +18,11 @@ function getCurrencyName(searchedSlug, option, options) {
   while (tempPath.length) {
     currentOption = getSubptions(currentOption, options)[tempPath.pop()];
     if (currentOption === undefined) break;
-    if (currentOption.optionCurrency !== undefined) {
-      for (const currencySlug in currentOption.optionCurrency) {
+    const currencyGroup = currentOption.optionCurrency || currentOption.childOptionCurrency;
+    if (currencyGroup !== undefined) {
+      for (const currencySlug in currencyGroup) {
         if (currencySlug === searchedSlug) {
-          return currentOption.optionCurrency[currencySlug].name;
-        }
-      }
-    }
-    if (currentOption.childOptionCurrency !== undefined) {
-      for (const currencySlug in currentOption.childOptionCurrency) {
-        if (currencySlug === searchedSlug) {
-          return currentOption.childOptionCurrency[currencySlug].name;
+          return currencyGroup[currencySlug].name;
         }
       }
     }

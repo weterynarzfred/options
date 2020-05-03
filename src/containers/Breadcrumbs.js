@@ -37,7 +37,7 @@ function Breadcrumbs(props) {
   const path = props.path.filter(e => e !== '');
 
   return <nav className="Breadcrumbs">
-    <ReturnButton pathHistory={props.pathHistory} />
+    <ReturnButton path={props.path} />
     {getBreadcrumbsPage(path, props)}
   </nav>;
 }
@@ -47,7 +47,6 @@ function mapStateToProps(state) {
     settings: state.settings,
     options: state.options,
     path: state.path,
-    pathHistory: state.pathHistory,
   };
 }
 
