@@ -5,10 +5,12 @@
 .OptionStats {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 
   .OptionCost {
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     margin: 0.1em;
 
     .OptionCostSingle {

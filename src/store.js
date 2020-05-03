@@ -9,51 +9,45 @@ import tradeOption from './reducer/tradeOption';
 import getOption from './functions/getOption';
 import recalculateState from './reducer/recalculateState';
 import pipe from './pipe';
+import changePath from './reducer/changePath';
 
 const initialState = {
   path: [],
   settings,
   options: prepareOptions(options, undefined),
   errors: [],
+  pathHistory: [],
 };
 
 function rootReducer(state = initialState, action = '') {
   return produce(state, newState => {
     pipe.state = newState;
     let skipRecalculate = false;
-    if (action.type === 'BUY_OPTION') {
-      buyOption(action.option, newState.options);
-    }
-    else if (action.type === 'SELL_OPTION') {
-      sellOption(action.option, newState.options, newState.path);
-    }
-    else if (action.type === 'TRADE_OPTION') {
-      tradeOption(action.option, newState.options, action.value);
-    }
-    else if (action.type === 'CHANGE_PATH') {
-      getOption(newState.path, newState.options).scroll = action.scroll;
-      newState.path = action.path.filter(e => e !== '');
-      pipe.scroll = getOption(newState.path, newState.options).scroll;
-
-      if (action.isChangingStage) {
-        newState.settings.currentStage = newState.path[0];
-      }
-      else {
+    switch (action.type) {
+      case 'BUY_OPTION':
+        buyOption(action.option, newState.options);
+        break;
+      case 'SELL_OPTION':
+        sellOption(action.option, newState.options, newState.path);
+        break;
+      case 'TRADE_OPTION':
+        tradeOption(action.option, newState.options, action.value);
+        break;
+      case 'CHANGE_PATH':
+        skipRecalculate = changePath(action, newState);
+        break;
+      case 'CHANGE_TEXT':
+        const option = getOption(action.option, newState.options);
+        option[action.textProp] = action.text;
         skipRecalculate = true;
-      }
-    }
-    else if (action.type === 'CHANGE_TEXT') {
-      getOption(action.option, newState.options)[action.textProp] = action.text;
-      skipRecalculate = true;
-    }
-    else if (action.type === 'CHANGE_SUMMARY_MODE') {
-      newState.settings.isSummaryMode = action.state;
+        break;
+      case 'CHANGE_SUMMARY_MODE':
+        newState.settings.isSummaryMode = action.state;
+        break;
+      default:
     }
 
-    if (!skipRecalculate) {
-      recalculateState(newState);
-    }
-
+    if (!skipRecalculate) recalculateState(newState);
     return newState;
   });
 }

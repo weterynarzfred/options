@@ -7,7 +7,6 @@ import OptionsContainer from './containers/OptionsContainer';
 import OptionWideHead from './containers/OptionWideHead';
 import getOption from './functions/getOption';
 import Nav from './containers/Nav';
-import Breadcrumbs from './containers/Breadcrumbs';
 
 $(window).on('load', () => {
   $('body').addClass('unlocked');
@@ -41,7 +40,6 @@ function App(props) {
         </svg>
       </div>
       <Nav option={option} />
-      <Breadcrumbs />
       {getWideHead(option, props)}
       <OptionsContainer option={option} />
     </div>

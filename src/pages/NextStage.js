@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PathLink from './PathLink';
+import PathLink from '../containers/PathLink';
 
 function NextStage(props) {
   const text = props.text === undefined ?
@@ -20,4 +19,4 @@ NextStage.propTypes = {
   target: PropTypes.string,
 };
 
-export default connect()(NextStage);
+export default NextStage;

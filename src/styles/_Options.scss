@@ -56,31 +56,6 @@
           color: $disabledWarningColor;
         }
       }
-
-      .OptionLinks {
-        text-align: right;
-        margin: 0.5em 1em;
-
-        .PathLink {
-          display: inline-block;
-          font-size: 0.75em;
-          padding: 0.5em 1em;
-          transition: 0.3s;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          line-height: 1;
-          border: 1px solid #999;
-          background-color: #eee;
-          color: #555;
-          @include shadow();
-
-          &:hover {
-            background-color: #555;
-            color: #eee;
-          }
-        }
-      }
     }
 
     &.OptionType-story {

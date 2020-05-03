@@ -331,13 +331,10 @@ optionSlug: {
 
 # To do
 - better documentation
-- 'navigate back' button
 - 'rename' button
 - styling
-- `test` in `story`
 - image functions
-- links between options
+- scrolling links
 - wide options
 - mark unseen option
 - random outcomes
-- summary mode

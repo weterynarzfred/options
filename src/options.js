@@ -355,6 +355,7 @@ const options = {
     type: 'group',
     text: <p>What are the realtions between races, countries and people?</p>,
     test: data => _isnt.call(data, 'species', ['none', false]),
+    disableOpenButton: true,
     min: 1,
     options: {
       idyll: {
@@ -362,6 +363,7 @@ const options = {
         text: <p>Mostly everyone lives in peace with themselves and each other. War and conflict practically does not exist.</p>,
         cost: {
           gold: 10,
+          test: -10,
         },
       },
       balanced: {
@@ -470,7 +472,7 @@ const options = {
     text: <p>How powerfull will the magic be?</p>,
     type: 'group',
     test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
-    disableOpenButton: true,
+    // disableOpenButton: true,
     min: 1,
     options: {
       convenience: {
@@ -523,9 +525,10 @@ const options = {
   epilogue: {
     name: 'Epilogue',
     type: 'story',
-    text: <React.Fragment>
-      <p>This is the end, would you like to see the summary?</p>
-      <EnterSummaryMode state={true} />
+    text: data => <React.Fragment>
+
+      {data.errors.length === 0 ? <p>This is the end, would you like to see the summary?</p> : <p>You cannot see the summary yet. Check the menu for errors.</p>}
+      {data.errors.length === 0 ? <EnterSummaryMode state={true} /> : ''}
     </React.Fragment>,
     test: data => !data.settings.isSummaryMode,
   },

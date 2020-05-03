@@ -5,18 +5,19 @@ import { isObject } from '../functions/helpers';
 
 function PathLink(props) {
   return (
-    <span className="PathLink" onClick={event => {
+    <div className="PathLink" onClick={event => {
       if (!isObject(event.detail)) event.detail = {};
       event.detail.fromLink = true;
       props.dispatch({
         type: 'CHANGE_PATH',
-        path: props.path.split('/'),
+        path: props.path === undefined ? props.path : props.path.split('/'),
         scroll: window.scrollY,
         isChangingStage: props.isChangingStage,
+        previous: props.previous,
       });
     }}>
       {props.text}
-    </span>
+    </div>
   );
 }
 
@@ -27,6 +28,7 @@ PathLink.propTypes = {
   ]),
   path: PropTypes.string,
   isChangingStage: PropTypes.bool,
+  previous: PropTypes.bool,
 };
 
 export default connect()(PathLink);

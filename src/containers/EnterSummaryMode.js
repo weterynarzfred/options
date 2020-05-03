@@ -17,7 +17,7 @@ function EnterSummaryMode(props) {
     className="EnterSummaryMode"
     onClick={handleClick.bind(props, props.state)}
   >
-    {text}
+    <div>{text}</div>
   </div>;
 }
 
