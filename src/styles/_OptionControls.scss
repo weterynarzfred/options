@@ -67,12 +67,14 @@
 
     path {
       stroke: $controlsText;
+      fill: $controlsText;
       transition: 0.3s;
     }
 
     &:hover {
       path {
         stroke: $controlsTextHovered;
+        fill: $controlsTextHovered;
       }
     }
   }

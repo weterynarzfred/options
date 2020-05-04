@@ -52,13 +52,15 @@ function SelectControls(props) {
   return <div className="SelectControls">
     <button onClick={handlePrevClick.bind(null, props)}>
       <svg viewBox="0 0 100 100">
-        <path d="M70 10L10 50L70 90z" />
+        <path d="M70 20L10 50L70 80z" />
+        <path d="M75 50L90 50" />
       </svg>
     </button>
     <div className="SelectControlsCurrent">{name}</div>
     <button onClick={handleNextClick.bind(null, props)}>
       <svg viewBox="0 0 100 100">
-        <path d="M30 10L90 50L30 90z" />
+        <path d="M30 20L90 50L30 80z" />
+        <path d="M25 50L10 50" />
       </svg>
     </button>
   </div>

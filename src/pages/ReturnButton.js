@@ -6,7 +6,7 @@ function ReturnButton(props) {
   if (props.path.length === 0) return false;
 
   const text = <svg viewBox="0 0 133 100">
-    <path d="M70 10L10 50L70 90z" />
+    <path d="M70 20L10 50L70 80z" />
     <path d="M75 50L123 50" />
   </svg>;
   return <div className="ReturnButton">
