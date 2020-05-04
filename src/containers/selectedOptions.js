@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import getSubptions from '../functions/getSubptions';
 import getSelected from '../functions/getSelected';
 import isOptionDisabled from '../functions/isOptionDisabled';
+import getCurrencies from '../functions/getCurrencies';
+import CurrencyStats from '../pages/CurrencyStats';
 import { getReadablePath } from '../functions/helpers';
 
 function getValue(option, options) {
@@ -65,16 +67,25 @@ function getSelectedHierarchy(parentOption, options) {
 
 function SelectedOptions(props) {
   const selected = getSelectedHierarchy({ options: props.options }, props.options);
+  const currentCurrencies = getCurrencies(props, props.path);
   return <table className="SelectedOptions">
     <tbody>
       {selected}
+      <tr>
+        <td></td>
+        <td>
+          <CurrencyStats currency={currentCurrencies} />
+        </td>
+      </tr>
     </tbody>
   </table>;
 }
 
 function mapStateToProps(state) {
   return {
+    settings: state.settings,
     options: state.options,
+    path: state.path,
   };
 }
 

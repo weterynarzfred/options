@@ -22,9 +22,9 @@ Nav.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    settings: state.settings,
     options: state.options,
     path: state.path,
-    settings: state.settings,
   };
 }
 

@@ -342,5 +342,4 @@ optionSlug: {
 - wide options
 - mark unseen option
 - random outcomes
-- show option currencies in menu
 - oragnize options in menu into levels

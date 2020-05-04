@@ -15,6 +15,7 @@ function Menu(props) {
     </div>);
   }
 
+
   return <div className={classNames(
     'Menu',
     { MenuOpened: opened },
