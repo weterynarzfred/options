@@ -510,15 +510,28 @@ const options = {
       convenience: {
         name: 'Convenience',
         selected: 1,
+        cost: {
+          miasma: -2,
+        },
       },
       heroic: {
         name: 'Heroic',
+        cost: {
+          miasma: -5,
+        },
       },
       powerful: {
         name: 'Powerful',
+        cost: {
+          miasma: -10,
+        },
       },
       worldShattering: {
         name: 'World Shattering',
+        text: <p>A single mage has enought power to unleash a category 5 hurricane. But also only one is enough to stop it.</p>,
+        cost: {
+          miasma: -25,
+        },
       },
     },
   },
@@ -532,11 +545,11 @@ const options = {
     disabledText: <p>Requires at least some people to be mages.</p>,
     image: images.magicSituation_feared,
     options: {
-      feared: {
-        name: 'Feared',
+      persecuted: {
+        name: 'Persecuted',
         test: data => !_is.call(data, 'magicFrequency/everyone'),
         showWhenDisabled: true,
-        disabledText: <p>Mages cannot be feared if everyone is a mage.</p>,
+        disabledText: <p>Mages cannot be persecuted if everyone is a mage.</p>,
       },
       hidden: {
         name: 'Hidden',

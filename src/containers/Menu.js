@@ -27,7 +27,7 @@ function Menu(props) {
     </div>
     <div className="MenuWrap">
       {errors.length > 0 ? <React.Fragment>
-        <div className="MenuHeading">Errors</div>
+        <div className="MenuHeading">Warnings</div>
         {errors}
       </React.Fragment> : ''}
       <div className="MenuHeading">Your options</div>

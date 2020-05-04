@@ -342,4 +342,3 @@ optionSlug: {
 - wide options
 - mark unseen option
 - random outcomes
-- oragnize options in menu into levels

@@ -129,26 +129,67 @@
       .SelectedOptions {
         border-collapse: collapse;
         width: 100%;
-        font-size: 0.75em;
+        font-size: 0.8em;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
 
-        tr {
-          &:first-child td {
-            border-top: none;
-          }
-          &:last-child td {
-            border-bottom: none;
-          }
-        }
+        .list-option {
+          .listOptionContent {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.1em 0.25em;
+            background-color: #fff0;
+            transition: 0.3s;
 
-        td {
-          border: 1px solid #999;
-          padding: 0.25em 0.5em;
+            &:hover {
+              background-color: #0001;
+            }
 
-          &:first-child {
-            border-left: none;
+            > div {
+              flex-shrink: 0;
+            }
           }
-          &:last-child {
-            border-right: none;
+
+          &.listOptionHasCost {
+            .listOptionFill {
+              width: 100%;
+              margin: 0 1em;
+              flex-shrink: 1;
+
+              path {
+                stroke-width: 1;
+                stroke-dasharray: 2 10;
+                stroke: #333;
+              }
+            }
+          }
+
+          &.listOptionHasChildren {
+            margin: 1em 0;
+          }
+
+          svg {
+            width: 0.7em;
+            display: inline-block;
+            margin-right: 0.5em;
+
+            path {
+              stroke-width: 15;
+            }
+          }
+
+          ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            .list-option {
+              margin-left: 0.5em;
+              padding-left: 0.5em;
+              border-left: 1px solid #0009;
+            }
           }
         }
 
@@ -162,6 +203,8 @@
           .list-option-cost-value {
             font-weight: 700;
             color: $navCostNegativeColor;
+            min-width: 2em;
+            text-align: right;
           }
 
           &.costPositive {

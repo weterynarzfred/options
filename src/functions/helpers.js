@@ -46,11 +46,21 @@ export function isObject(value) {
  * @param {string} path Path to transform.
  * @param {object} options Global options.
  */
-export function getReadablePath(path, options) {
+export function getReadablePath(path, options, separator = ' / ') {
   const pathArray = path.split('/');
   const readableArray = [];
   for (let i = 0; i < pathArray.length; i++) {
     readableArray.push(getOption(pathArray.slice(0, i + 1), options).name);
   }
-  return readableArray.join(' / ');
+  return readableArray.join(separator);
+}
+
+export function replaceLastOccurence(subject, pattern, replacement) {
+  const n = subject.lastIndexOf(pattern);
+  if (n >= 0) {
+    return subject.substring(0, n) +
+      replacement +
+      subject.substring(n + pattern.length);
+  }
+  return subject;
 }
