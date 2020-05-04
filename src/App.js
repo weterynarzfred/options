@@ -25,7 +25,6 @@ function getWideHead(option, props) {
 
 function App(props) {
   useEffect(() => {
-    console.log(pipe.scrollSamePath);
 
     if (pipe.scroll !== undefined) {
       const scrollOptions = { top: pipe.scroll };
@@ -40,7 +39,7 @@ function App(props) {
           behavior: 'smooth',
         });
         pipe.scrollAnchor = undefined;
-      }, 300);
+      }, pipe.scrollSamePath ? 0 : 300);
     }
   });
 

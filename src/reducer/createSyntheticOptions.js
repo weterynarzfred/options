@@ -12,7 +12,6 @@ export default function createSyntheticOptions(option, options) {
       selected: 0,
     };
     if (option.functionalChildren[slug] !== undefined) {
-      console.log(option.functionalChildren[slug]);
       Object.assign(syntheticOptions[slug], option.functionalChildren[slug]);
     }
     if (syntheticOptions[slug].path === undefined) {

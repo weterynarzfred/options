@@ -16,6 +16,7 @@ export default function changePath(action, state) {
     option.scroll = action.scroll;
   }
   // save new path to the state
+  const samePath = state.path.toString() === action.path.toString();
   state.path = action.path.filter(e => e !== '');
 
   if (!action.fromHistory) {
@@ -33,6 +34,7 @@ export default function changePath(action, state) {
   // inform about new scroll position
   if (action.anchor !== undefined) {
     pipe.scrollAnchor = [...state.path, action.anchor].join('_');
+    pipe.scrollSamePath = samePath;
   }
   if (state.path.length === 0) {
     pipe.scroll = state.settings.scroll;
