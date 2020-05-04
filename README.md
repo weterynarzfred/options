@@ -167,6 +167,11 @@ A function that will be executed to decide if the options should be active. Para
 }
 ```
 
+### `showAsSuboption`
+- type: `bool`
+- default: false
+- usable in: `option`, `group`
+
 ### `showWhenDisabled`
 - type: `bool`
 - default: false
@@ -338,3 +343,5 @@ optionSlug: {
 - wide options
 - mark unseen option
 - random outcomes
+- show option currencies in menu
+- oragnize options in menu into levels

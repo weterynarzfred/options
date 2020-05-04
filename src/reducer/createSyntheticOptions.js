@@ -1,10 +1,10 @@
 import prepareOptions from "./prepareOptions";
-import { clone } from "../functions/helpers";
+import { deepClone } from "../functions/helpers";
 
 export default function createSyntheticOptions(option, options) {
   if (option.options === undefined || !option.options.isUserFunction) return;
 
-  const syntheticOptions = clone(option.options.value);
+  const syntheticOptions = deepClone(option.options.value);
   for (const slug in syntheticOptions) {
     syntheticOptions[slug] = {
       ...syntheticOptions[slug],
@@ -12,6 +12,7 @@ export default function createSyntheticOptions(option, options) {
       selected: 0,
     };
     if (option.functionalChildren[slug] !== undefined) {
+      console.log(option.functionalChildren[slug]);
       Object.assign(syntheticOptions[slug], option.functionalChildren[slug]);
     }
     if (syntheticOptions[slug].path === undefined) {

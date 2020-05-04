@@ -8,6 +8,7 @@ function OptionCost(props) {
   const costs = [];
   for (const costSlug in props.cost) {
     const cost = props.cost[costSlug];
+    if (cost.nextValue === 0 && cost.value === 0) continue;
     costs.push(
       <div className={classNames(
         'OptionCostSingle',

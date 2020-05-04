@@ -4,20 +4,26 @@ import PropTypes from 'prop-types';
 import { isObject } from '../functions/helpers';
 
 function PathLink(props) {
+  let path, anchor;
+  if (props.path !== undefined) {
+    [path, anchor] = props.path.split('#');
+    path = path.split('/');
+  }
   return (
-    <div className="PathLink" onClick={event => {
+    <span className="PathLink" onClick={event => {
       if (!isObject(event.detail)) event.detail = {};
       event.detail.fromLink = true;
       props.dispatch({
         type: 'CHANGE_PATH',
-        path: props.path === undefined ? props.path : props.path.split('/'),
+        path,
+        anchor,
         scroll: window.scrollY,
         isChangingStage: props.isChangingStage,
         previous: props.previous,
       });
     }}>
       {props.text}
-    </div>
+    </span>
   );
 }
 

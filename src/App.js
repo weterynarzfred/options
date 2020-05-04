@@ -25,9 +25,22 @@ function getWideHead(option, props) {
 
 function App(props) {
   useEffect(() => {
+    console.log(pipe.scrollSamePath);
+
     if (pipe.scroll !== undefined) {
-      window.scroll(0, pipe.scroll);
+      const scrollOptions = { top: pipe.scroll };
+      window.scrollTo(scrollOptions);
       pipe.scroll = undefined;
+    }
+    if (pipe.scrollAnchor !== undefined) {
+      setTimeout(() => {
+        const target = $(`#${pipe.scrollAnchor}`).offset().top - 16;
+        window.scrollTo({
+          top: target,
+          behavior: 'smooth',
+        });
+        pipe.scrollAnchor = undefined;
+      }, 300);
     }
   });
 

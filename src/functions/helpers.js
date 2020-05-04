@@ -24,6 +24,7 @@ export function deepClone(object) {
 }
 
 export function getParent(option, options) {
+  if (option.path === undefined) return false;
   let pathArray = option.path.split('/');
   if (pathArray.length <= 1) return false;
   pathArray.pop();

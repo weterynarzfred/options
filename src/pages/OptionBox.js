@@ -9,7 +9,6 @@ import OptionFoot from '../containers/OptionFoot';
 import getUserFunctionValue from "./../functions/getUserFunctionValue";
 
 function OptionBox(props) {
-
   return <div className="OptionBox">
     <div className="OptionHead">
       <OptionStats

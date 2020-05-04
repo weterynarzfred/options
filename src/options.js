@@ -4,6 +4,7 @@ import getSelected from './functions/getSelected';
 import isOptionDisabled from './functions/isOptionDisabled';
 import introImg from './media/element/intro.jpg';
 import EnterSummaryMode from './containers/EnterSummaryMode';
+import PathLink from './containers/PathLink';
 
 function importAll(r) {
   const obj = {};
@@ -115,21 +116,23 @@ const options = {
   },
   parents: {
     name: 'Parents',
-    text: <p>Who will your parents be?</p>,
+    text: <p>Who will your parents be? Fate will conspire so that you will for sure survive at least until your twelfth birthday.</p>,
     type: 'group',
     test: data => _is.call(data, 'age/child'),
-    image: images.parents_random,
     min: 1,
     disableOpenButton: true,
+    showWhenDisabled: true,
+    image: images.parents_common,
     options: {
       abandoned: {
         name: 'Abandoned',
+        text: <p>You will be abandoned at birth at an orphanage. You will be given only the minimum required care for you to survive.</p>,
         cost: {
           gold: -1,
         },
       },
-      random: {
-        name: 'Random',
+      common: {
+        name: 'Common',
         selected: 1,
       },
       highStatus: {
@@ -176,6 +179,7 @@ const options = {
         min: 1,
         test: data => _isnt.call(data, 'body', ['normal', false]),
         disableOpenButton: true,
+        showAsSuboption: true,
         options: {
           agility: {
             name: 'Agility',
@@ -237,11 +241,11 @@ const options = {
         text: <React.Fragment><p>You won't be able to wield the magic of your new world no matter what.</p><p>Gained gold depends on the frequency of people with access to magic.</p></React.Fragment>,
         cost: {
           gold: data => -select([
-            [_is.call(data, 'magicFrequency/few'), 1],
-            [_is.call(data, 'magicFrequency/rare'), 2],
-            [_is.call(data, 'magicFrequency/common'), 5],
-            [_is.call(data, 'magicFrequency/half'), 10],
-            [_is.call(data, 'magicFrequency/everyone'), 15],
+            [_is.call(data, 'magicFrequency/few'), -1],
+            [_is.call(data, 'magicFrequency/rare'), -2],
+            [_is.call(data, 'magicFrequency/common'), -5],
+            [_is.call(data, 'magicFrequency/half'), -10],
+            [_is.call(data, 'magicFrequency/everyone'), -15],
           ]),
         },
       },
@@ -267,8 +271,23 @@ const options = {
   },
   uniqueMagic: {
     name: 'Unique Magic',
+    text: <p>You will possess an unique form of magic. Open this optino to specify your capabilities. Your budget for spells is measured in miasma. The amount of miasma available depends on <PathLink text="Magic Frequency" path="#magicFrequency" /> and <PathLink text="Magic Power" path="#magicPower" /> in the world.</p>,
     cost: {
       gold: 25,
+    },
+    options: {
+      elemental: {
+        name: 'Elemental Magic',
+        cost: {
+          miasma: 1,
+        },
+      },
+      summoning: {
+        name: 'Summoning',
+        cost: {
+          miasma: 1,
+        },
+      },
     },
   },
   world: {
@@ -445,20 +464,35 @@ const options = {
       few: {
         name: 'Very Few',
         text: <p>There will be only a handfull of people with access to magic.</p>,
+        cost: {
+          miasma: -5,
+        },
       },
       rare: {
         name: 'Rare',
         text: <p>Magic will be rare, only about 0.001% of population will have access to it.</p>,
+        cost: {
+          miasma: -10,
+        },
       },
       common: {
         name: 'Common',
         text: <p>About one in twenty people will have access to magic.</p>,
+        cost: {
+          miasma: -15,
+        },
       },
       half: {
         name: 'Half',
+        cost: {
+          miasma: -20,
+        },
       },
       everyone: {
         name: 'Mostly Everyone',
+        cost: {
+          miasma: -25,
+        },
       },
     },
   },
@@ -468,6 +502,9 @@ const options = {
     type: 'group',
     test: data => !_is.call(data, 'species/none') && !_is.call(data, 'magicFrequency/none'),
     disableOpenButton: true,
+    showWhenDisabled: true,
+    disabledText: <p>Requires at least some people to be mages.</p>,
+    image: images.magicPower_powerful,
     min: 1,
     options: {
       convenience: {
@@ -477,8 +514,8 @@ const options = {
       heroic: {
         name: 'Heroic',
       },
-      powerfull: {
-        name: 'Powerfull',
+      powerful: {
+        name: 'Powerful',
       },
       worldShattering: {
         name: 'World Shattering',
@@ -491,6 +528,9 @@ const options = {
     min: 1,
     test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
     disableOpenButton: true,
+    showWhenDisabled: true,
+    disabledText: <p>Requires at least some people to be mages.</p>,
+    image: images.magicSituation_feared,
     options: {
       feared: {
         name: 'Feared',
@@ -506,11 +546,12 @@ const options = {
       },
       casual: {
         name: 'Casual',
-        text: <p>Magic exists and is use like any other resource.</p>,
+        text: <p>Magic exists and is used like any other resource.</p>,
         selected: 1,
       },
       revered: {
         name: 'Revered',
+        text: <p>Mages are revered for theirs skills</p>,
       },
       worshipped: {
         name: 'Worshipped',
@@ -521,7 +562,6 @@ const options = {
     name: 'Epilogue',
     type: 'story',
     text: data => <React.Fragment>
-
       {data.errors.length === 0 ? <p>This is the end, would you like to see the summary?</p> : <p>You cannot see the summary yet. Check the menu for errors.</p>}
       {data.errors.length === 0 ? <EnterSummaryMode state={true} /> : ''}
     </React.Fragment>,

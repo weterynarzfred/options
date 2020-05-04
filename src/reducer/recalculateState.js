@@ -14,11 +14,11 @@ function getInfo(option, parentOption, state) {
   };
 }
 
-function checkCurrencies(currentOptions, currencies, options) {
+function checkCurrencies(currentOptions, currencies, options, restrictTo) {
   for (const currencySlug in currencies) {
     currencies[currencySlug].currentValue = currencies[currencySlug].value;
   }
-  calculateCurrency(currentOptions, currencies, options);
+  calculateCurrency(currentOptions.options, currencies, options, restrictTo);
 }
 
 function checkStages(state) {
@@ -42,12 +42,21 @@ export default function recalculateState(state) {
     createSyntheticOptions(parentOption, innerState.options);
   });
 
-  forEachOption({ options: state.options }, state, (option, parentOption, innerState) => {
-    if (option.optionCurrency !== undefined) {
-      checkCurrencies(option.options, option.optionCurrency, innerState.options);
+  forEachOption(
+    { options: state.options },
+    state,
+    (option, parentOption, innerState) => {
+      if (option.optionCurrency !== undefined) {
+        checkCurrencies(
+          parentOption,
+          option.optionCurrency,
+          innerState.options,
+          option.slug
+        );
+      }
     }
-  });
-  checkCurrencies(state.options, state.settings.currency, state.options);
+  );
+  checkCurrencies(state, state.settings.currency, state.options);
   checkStages(state);
   findErrors(state);
 

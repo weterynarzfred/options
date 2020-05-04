@@ -42,6 +42,7 @@ function Option(props) {
 
   const controllClass = props.isSummaryMode ? false : `OptionControl-${optionInfo.controlType}`;
   return <div
+    id={props.option.path.replace('/', '_')}
     className={classNames(
       'Option',
       controllClass,

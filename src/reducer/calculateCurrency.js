@@ -7,12 +7,13 @@ import getSelectedCount from '../functions/getSelectedCount';
  * @param {object} currentOptions Options to check.
  * @param {object} currentValues Current currency values.
  * @param {object} options Global options.
+ * @param {string} restrictTo Restrict calculation only to the option with this slug.
  */
-export default function calculateCurrency(currentOptions, currentValues, options) {
+export default function calculateCurrency(currentOptions, currentValues, options, restrictTo) {
   for (const slug in currentOptions) {
+    if (restrictTo !== undefined && slug !== restrictTo) continue;
     const option = currentOptions[slug];
-    if (isOptionDisabled(option, options))
-      continue;
+    if (isOptionDisabled(option, options)) continue;
     if (option.type === 'option') {
       const selectedCount = getSelectedCount(option, options);
       if (selectedCount > 0 && option.cost !== undefined) {

@@ -7,6 +7,7 @@ function CurrencyStats(props) {
   const currencies = [];
   for (const currencySlug in props.currency) {
     const currency = props.currency[currencySlug];
+    if (currency.currentValue === 0 && currency.value === 0) continue;
     currencies.push(
       <div className={
         classNames(

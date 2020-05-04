@@ -213,6 +213,7 @@
     @include shadow();
 
     .PathLink {
+      display: block;
       padding: 0.4em;
 
       svg {

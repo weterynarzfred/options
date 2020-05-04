@@ -14,27 +14,28 @@ function SuboptionsContainer(props) {
 
   const suboptionsElements = [];
   for (const slug in suboptions) {
-    const currentOption = suboptions[slug];
-    const optionInfo = getOptionInfo(currentOption, props.options);
+    const suboption = suboptions[slug];
+    const suboptionInfo = getOptionInfo(suboption, props.options);
     if (
+      !suboption.showAsSuboption ||
       (
         props.optionInfo.controlType === 'select' &&
-        optionInfo.isSelectableSuboption
+        suboptionInfo.isSelectableSuboption
       ) ||
       (
-        !currentOption.showWhenDisabled &&
-        currentOption.info.isDisabled
+        !suboption.showWhenDisabled &&
+        suboption.info.isDisabled
       )
     ) continue;
-    if (currentOption.type === 'option' || currentOption.type === 'group') {
+    if (suboption.type === 'option' || suboption.type === 'group') {
       suboptionsElements.push(<Suboption
-        key={`suboption-${currentOption.path}`}
-        option={currentOption}
+        key={`suboption-${suboption.path}`}
+        option={suboption}
         buy={handleBuy.bind(props)}
         sell={handleSell.bind(props)}
         trade={handleTrade.bind(props)}
         change={handleChange.bind(props)}
-        optionInfo={optionInfo}
+        optionInfo={suboptionInfo}
       />);
     }
   }

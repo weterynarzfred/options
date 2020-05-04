@@ -31,6 +31,9 @@ export default function changePath(action, state) {
   else skipRecalculate = true;
 
   // inform about new scroll position
+  if (action.anchor !== undefined) {
+    pipe.scrollAnchor = [...state.path, action.anchor].join('_');
+  }
   if (state.path.length === 0) {
     pipe.scroll = state.settings.scroll;
   }

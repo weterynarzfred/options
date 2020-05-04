@@ -4,6 +4,10 @@ const settings = prepareSettings({
       name: 'Gold',
       value: 100,
     },
+    miasma: {
+      name: 'Miasma',
+      value: 0,
+    },
   },
 });
 
