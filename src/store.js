@@ -34,14 +34,18 @@ function rootReducer(state = initialState, action = '') {
         break;
       case 'CHANGE_PATH':
         skipRecalculate = changePath(action, newState);
+        break;;
+      case 'CHANGE_SUMMARY_MODE':
+        newState.settings.isSummaryMode = action.state;
         break;
       case 'CHANGE_TEXT':
         const option = getOption(action.option, newState.options);
         option[action.textProp] = action.text;
         skipRecalculate = true;
-        break;
-      case 'CHANGE_SUMMARY_MODE':
-        newState.settings.isSummaryMode = action.state;
+        break
+      case 'MARK_AS_SEEN':
+        getOption(action.option, newState.options).info.isUnseen = false;
+        skipRecalculate = true;
         break;
       default:
     }

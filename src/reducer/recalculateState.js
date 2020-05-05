@@ -8,7 +8,9 @@ import getSelectedCount from "../functions/getSelectedCount";
 import forEachOption from "../functions/forEachOption";
 
 function getInfo(option, parentOption, state) {
+  const isUnseen = option.info === undefined ? true : option.info.isUnseen;
   option.info = {
+    isUnseen,
     isDisabled: parentOption.info.isDisabled || isOptionDisabled(option, state.options),
     isSelected: getSelectedCount(option, state.options) > 0,
   };

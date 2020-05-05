@@ -125,6 +125,31 @@
     left: 0;
     z-index: 2;
   }
+
+  // unseen options
+
+  &:not(.OptionDisabled).isUnseen {
+    &:after {
+      content: "!";
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 1.75rem;
+      right: 0.75rem;
+      width: 2rem;
+      height: 2rem;
+      margin: -1rem;
+      font-size: 1.25em;
+      font-weight: 700;
+      line-height: 1;
+      background-color: #fff3bd;
+      border-radius: 50%;
+      z-index: 2;
+      transform: rotate(15deg);
+      @include shadow();
+    }
+  }
 }
 
 // disabled options

@@ -11,10 +11,19 @@ import OptionBox from './OptionBox';
 import DisabledOverlay from './DisabledOverlay';
 
 function handleClick(event) {
-  if (event.detail.fromOptionControl) return;
-  if (event.detail.fromSuboptions) return;
-  if (event.detail.fromLink) return;
-  if (this.option.info.isDisabled) return;
+  if (this.isSummaryMode || this.option.info.isUnseen) {
+    this.markSeen(this.option);
+  }
+}
+
+function handleWrapClick(event) {
+  if (
+    this.isSummaryMode ||
+    event.detail.fromOptionControl ||
+    event.detail.fromSuboptions ||
+    event.detail.fromLink ||
+    this.option.info.isDisabled
+  ) return;
 
   switch (getControlType(this.option)) {
     case 'checkbox':
@@ -26,6 +35,19 @@ function handleClick(event) {
       break;
     default:
   }
+}
+
+let mouseEnterTimeout;
+function handleMouseEnter() {
+  if (this.isSummaryMode || !this.option.info.isUnseen) return;
+  mouseEnterTimeout = setTimeout(() => {
+    this.markSeen(this.option);
+  }, 1000);
+}
+
+function handleMouseLeave() {
+  if (this.isSummaryMode || !this.option.info.isUnseen) return;
+  clearTimeout(mouseEnterTimeout);
 }
 
 function Option(props) {
@@ -40,7 +62,8 @@ function Option(props) {
     )
   ) return false;
 
-  const controllClass = props.isSummaryMode ? false : `OptionControl-${optionInfo.controlType}`;
+  const controllClass = props.isSummaryMode ?
+    false : `OptionControl-${optionInfo.controlType}`;
   return <div
     id={props.option.path.replace('/', '_')}
     className={classNames(
@@ -51,8 +74,12 @@ function Option(props) {
       { OptionOpenable: optionInfo.isOpenable },
       { OptionHasImage: optionInfo.image },
       { OptionDisabled: props.option.info.isDisabled },
+      { isUnseen: !props.isSummaryMode && props.option.info.isUnseen },
       ...props.option.classes
     )}
+    onClick={handleClick.bind(props)}
+    onMouseEnter={handleMouseEnter.bind(props)}
+    onMouseLeave={handleMouseLeave.bind(props)}
   >
     <OptionControls
       option={props.option}
@@ -64,7 +91,7 @@ function Option(props) {
     />
     <div
       className="OptionWrap"
-      onClick={props.isSummaryMode ? undefined : handleClick.bind(props)}
+      onClick={handleWrapClick.bind(props)}
     >
       <div className="OptionContent">
         <Image

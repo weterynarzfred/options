@@ -4,7 +4,7 @@ import Option from '../pages/Option';
 import propShapes from '../propShapes';
 import getOptionInfo from '../functions/getOptionInfo';
 import getSubptions from '../functions/getSubptions';
-import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
+import { handleBuy, handleSell, handleChange, handleTrade, handleSee } from './../functions/handlers';
 import OptionsPage from '../pages/OptionsPage';
 import { CSSTransition } from 'react-transition-group';
 
@@ -28,6 +28,7 @@ function OptionsContainer(props) {
         sell={handleSell.bind(props)}
         trade={handleTrade.bind(props)}
         change={handleChange.bind(props)}
+        markSeen={handleSee.bind(props)}
         optionInfo={optionInfo}
         isSummaryMode={props.settings.isSummaryMode}
       />

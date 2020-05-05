@@ -28,3 +28,10 @@ export function handleChange(option, textProp, text) {
     text,
   });
 }
+
+export function handleSee(option) {
+  this.dispatch({
+    type: 'MARK_AS_SEEN',
+    option,
+  });
+}
