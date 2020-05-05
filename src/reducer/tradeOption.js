@@ -9,6 +9,7 @@ function tradeSyntheticOption(option, options, value) {
     };
   }
   parent.functionalChildren[option.slug].selected = value;
+  parent.functionalChildren[option.slug].info.isUnseen = false;
 }
 
 export default function tradeOption(option, options, value) {
@@ -24,6 +25,7 @@ export default function tradeOption(option, options, value) {
   }
   else {
     option = getOption(option, options);
+    option.info.isUnseen = false;
     option.selected = value;
   }
 }

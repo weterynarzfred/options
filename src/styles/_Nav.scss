@@ -103,12 +103,11 @@
       right: -25em;
       bottom: 0;
       width: 25em;
-      background-color: #fffc;
+      background-color: #f2f2f2;
       border-left: 1px solid #999;
       padding: 1.5em;
       transition: 0.3s;
       overflow: auto;
-      backdrop-filter: blur(5px);
       -ms-overflow-style: none;
       scrollbar-width: none;
 
@@ -144,7 +143,7 @@
             transition: 0.3s;
 
             &:hover {
-              background-color: #0001;
+              background-color: #fff;
             }
 
             > div {
@@ -167,7 +166,7 @@
           }
 
           &.listOptionHasChildren {
-            margin: 1em 0;
+            margin: 0.5em 0;
           }
 
           svg {
@@ -189,6 +188,11 @@
               margin-left: 0.5em;
               padding-left: 0.5em;
               border-left: 1px solid #0009;
+
+              &.listOptionHasChildren {
+                margin-top: 0.25em;
+                margin-bottom: 0.25em;
+              }
             }
           }
         }

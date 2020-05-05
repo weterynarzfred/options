@@ -21,12 +21,12 @@ try {
 } catch (error) { }
 export { images };
 
-function select(arr, def = false) {
-  for (const condition of arr) {
-    if (condition[0]) return condition[1];
-  }
-  return def;
-}
+// function select(arr, def = false) {
+//   for (const condition of arr) {
+//     if (condition[0]) return condition[1];
+//   }
+//   return def;
+// }
 
 // function roll(max, min = 0) {
 //   return Math.floor(Math.random() * (max - min + 1) + min);

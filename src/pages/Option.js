@@ -11,9 +11,12 @@ import OptionBox from './OptionBox';
 import DisabledOverlay from './DisabledOverlay';
 
 function handleClick(event) {
-  if (this.isSummaryMode || this.option.info.isUnseen) {
-    this.markSeen(this.option);
-  }
+  if (
+    this.isSummaryMode ||
+    this.option.info.isDisabled ||
+    !this.option.info.isUnseen
+  ) return;
+  this.markSeen(this.option);
 }
 
 function handleWrapClick(event) {
@@ -39,14 +42,22 @@ function handleWrapClick(event) {
 
 let mouseEnterTimeout;
 function handleMouseEnter() {
-  if (this.isSummaryMode || !this.option.info.isUnseen) return;
+  if (
+    this.isSummaryMode ||
+    this.option.info.isDisabled ||
+    !this.option.info.isUnseen
+  ) return;
   mouseEnterTimeout = setTimeout(() => {
     this.markSeen(this.option);
   }, 1000);
 }
 
 function handleMouseLeave() {
-  if (this.isSummaryMode || !this.option.info.isUnseen) return;
+  if (
+    this.isSummaryMode ||
+    this.option.info.isDisabled ||
+    !this.option.info.isUnseen
+  ) return;
   clearTimeout(mouseEnterTimeout);
 }
 
@@ -65,7 +76,7 @@ function Option(props) {
   const controllClass = props.isSummaryMode ?
     false : `OptionControl-${optionInfo.controlType}`;
   return <div
-    id={props.option.path.replace('/', '_')}
+    id={props.option.path.replace(/\//g, '_')}
     className={classNames(
       'Option',
       controllClass,

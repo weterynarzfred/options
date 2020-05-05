@@ -61,6 +61,7 @@ function buySyntheticOption(option, options) {
   deselectSiblings(option, options, parent);
 
   parent.functionalChildren[option.slug].selected++;
+  parent.functionalChildren[option.slug].info.isUnseen = false;
 }
 
 export default function buyOption(option, options) {
@@ -70,6 +71,7 @@ export default function buyOption(option, options) {
   }
   else {
     option = getOption(option, options);
+    option.info.isUnseen = false;
     if (option.hasIndividualChildren) {
       buyIndividualChild(option, options);
     }
