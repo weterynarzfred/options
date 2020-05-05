@@ -34,7 +34,7 @@ function rootReducer(state = initialState, action = '') {
         break;
       case 'CHANGE_PATH':
         skipRecalculate = changePath(action, newState);
-        break;;
+        break;
       case 'CHANGE_SUMMARY_MODE':
         newState.settings.isSummaryMode = action.state;
         break;
