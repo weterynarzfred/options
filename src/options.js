@@ -230,52 +230,21 @@ const options = {
     },
   },
   yourMagic: {
-    name: 'Magic',
-    type: 'group',
-    test: data => _isnt.call(data, 'magicFrequency', ['none', false]),
-    min: 1,
-    disableOpenButton: true,
-    options: {
-      none: {
-        name: 'None',
-        text: <React.Fragment><p>You won't be able to wield the magic of your new world no matter what.</p><p>Gained gold depends on the frequency of people with access to magic.</p></React.Fragment>,
-        cost: {
-          gold: data => -select([
-            [_is.call(data, 'magicFrequency/few'), -1],
-            [_is.call(data, 'magicFrequency/rare'), -2],
-            [_is.call(data, 'magicFrequency/common'), -5],
-            [_is.call(data, 'magicFrequency/half'), -10],
-            [_is.call(data, 'magicFrequency/everyone'), -15],
-          ]),
-        },
-      },
-      same: {
-        name: 'Same as Inhabitants',
-        text: <p>You will have the same chance of being able to use magic as every other denizen of your new world.</p>,
-        selected: 1,
-      },
-      guaranteed: {
-        name: 'Guaranteed',
-        text: <React.Fragment><p>You will be guaranteed to have the strongest form of magic possible on your new world.</p><p>Cost depends on the frequency of people with access to magic.</p></React.Fragment>,
-        cost: {
-          gold: data => select([
-            [_is.call(data, 'magicFrequency/few'), 15],
-            [_is.call(data, 'magicFrequency/rare'), 10],
-            [_is.call(data, 'magicFrequency/common'), 5],
-            [_is.call(data, 'magicFrequency/half'), 2],
-            [_is.call(data, 'magicFrequency/everyone'), 1],
-          ]),
-        },
-      },
-    },
-  },
-  uniqueMagic: {
-    name: 'Unique Magic',
+    name: 'Your Magic',
     text: <p>You will possess an unique form of magic. Open this optino to specify your capabilities. Your budget for spells is measured in miasma. The amount of miasma available depends on <PathLink text="Magic Frequency" path="#magicFrequency" /> and <PathLink text="Magic Power" path="#magicPower" /> in the world.</p>,
     cost: {
       gold: 25,
     },
     options: {
+      personalMiasma: {
+        name: 'Personal Miasma',
+        text: <p>You have your very own source of magic. This will allow you to learn new spells without increasing the number and power of other mages. Each point costs one gold more.</p>,
+        max: 10,
+        cost: {
+          miasma: -1,
+          gold: data => data.index + 1,
+        },
+      },
       elemental: {
         name: 'Elemental Magic',
         cost: {
@@ -543,7 +512,7 @@ const options = {
     disableOpenButton: true,
     showWhenDisabled: true,
     disabledText: <p>Requires at least some people to be mages.</p>,
-    image: images.magicSituation_feared,
+    image: images.magicSituation_persecuted,
     options: {
       persecuted: {
         name: 'Persecuted',

@@ -71,6 +71,14 @@
       transition: 0.3s;
     }
 
+    &:disabled {
+      cursor: default;
+
+      path {
+        opacity: 0.25;
+      }
+    }
+
     &:hover {
       path {
         stroke: $controlsTextHovered;

@@ -10,7 +10,7 @@ function handleBlur(setCurrentVal, event) {
 }
 
 function Spinbox(props) {
-  const [currenVal, setCurrentVal] = useState(props.selected);
+  const [currentVal, setCurrentVal] = useState(props.selected);
   useEffect(() => {
     setCurrentVal(props.selected);
   }, [props.selected]);
@@ -18,14 +18,14 @@ function Spinbox(props) {
   const attr = {};
   if (props.max !== false) attr.max = props.max;
   return <div className="Spinbox">
-    <button onClick={props.sell}>
+    <button onClick={props.sell} disabled={currentVal <= props.min}>
       <svg viewBox="0 0 100 100">
         <path d="M20 50L80 50" />
       </svg>
     </button>
     <input
       type="number"
-      value={currenVal}
+      value={currentVal}
       min={props.min}
       {...attr}
       onChange={event => setCurrentVal(event.target.value)}
@@ -36,7 +36,7 @@ function Spinbox(props) {
         }
       }}
     />
-    <button onClick={props.buy}>
+    <button onClick={props.buy} disabled={currentVal >= props.max}>
       <svg viewBox="0 0 100 100">
         <path d="M20 50L80 50" />
         <path d="M50 20L50 80" />
