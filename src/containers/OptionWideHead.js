@@ -29,6 +29,7 @@ function OptionWideHead(props) {
         getStastsFrom={optionInfo.getStastsFrom}
         change={handleChange}
         optionInfo={optionInfo}
+        isOpened={true}
       />
     </div>
   </div>

@@ -6,7 +6,11 @@ import PathLink from './PathLink';
 import getOption from '../functions/getOption';
 
 function getOpenLink(props) {
-  if (props.depth <= 1 || props.option.disableOpenButton) return false;
+  if (
+    props.isOpened ||
+    props.depth <= 1 ||
+    props.option.disableOpenButton
+  ) return false;
   return <PathLink text="open" path={props.option.path} />
 }
 
@@ -33,6 +37,7 @@ function OptionLinks(props) {
 OptionLinks.propTypes = {
   option: propShapes.option,
   depth: PropTypes.number,
+  isOpened: PropTypes.bool,
 };
 
 function mapStateToProps(state) {

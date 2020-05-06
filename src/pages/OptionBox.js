@@ -28,6 +28,7 @@ function OptionBox(props) {
     <OptionLinks
       option={props.option}
       depth={props.optionInfo.depth}
+      isOpened={props.isOpened}
     />
     <OptionFoot option={props.option} />
   </div>
@@ -38,6 +39,7 @@ Option.propTypes = {
   getStastsFrom: propShapes.option,
   change: PropTypes.func,
   optionInfo: PropTypes.object,
+  isOpened: PropTypes.bool,
 };
 
 export default OptionBox;
