@@ -1,10 +1,31 @@
 .OptionWideHead {
-  margin: 5em 0 3em 0;
+  margin: 5em auto 3em auto;
   padding: 0 3em;
 
   .OptionControls {
     max-width: 30em;
     margin: 0 auto 1em auto;
+  }
+
+  .OptionContent {
+    margin: 0 auto;
+    max-width: 70em;
+    display: flex;
+
+    .Image {
+      width: 40%;
+      margin-right: 3em;
+
+      .ImageContent {
+        padding-bottom: 100%;
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
   }
 
   .Name {

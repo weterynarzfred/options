@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propShapes from '../propShapes';
-import Name from './../pages/Name';
 import OptionControls from './../pages/OptionControls';
-import Text from '../pages/Text';
-import OptionStats from './../pages/OptionStats';
-import OptionFoot from './OptionFoot';
 import getOptionInfo from '../functions/getOptionInfo';
 import { handleBuy, handleSell, handleChange, handleTrade } from './../functions/handlers';
+import OptionBox from '../pages/OptionBox';
+import Image from '../pages/Image';
 
 function OptionWideHead(props) {
   const optionInfo = getOptionInfo(props.option, props.options);
@@ -20,20 +18,19 @@ function OptionWideHead(props) {
       trade={handleTrade.bind(props)}
       optionInfo={optionInfo}
     />
-    <OptionStats
-      option={props.option}
-    />
-    <Name
-      name={props.option.name}
-      isChangeable={props.option.isChild}
-      change={handleChange.bind(props, props.option)}
-    />
-    <Text
-      text={props.option.text}
-      isChangeable={props.option.isChild}
-      change={props.change}
-    />
-    <OptionFoot option={props.option} />
+    <div className="OptionContent">
+      <Image
+        src={optionInfo.image}
+        cx={optionInfo.imageCx}
+        cy={optionInfo.imageCy}
+      />
+      <OptionBox
+        option={props.option}
+        getStastsFrom={optionInfo.getStastsFrom}
+        change={handleChange}
+        optionInfo={optionInfo}
+      />
+    </div>
   </div>
 }
 

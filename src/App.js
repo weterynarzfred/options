@@ -25,7 +25,6 @@ function getWideHead(option, props) {
 
 function App(props) {
   useEffect(() => {
-
     if (pipe.scroll !== undefined) {
       const scrollOptions = { top: pipe.scroll };
       window.scrollTo(scrollOptions);
