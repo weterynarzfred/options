@@ -339,6 +339,7 @@ optionSlug: {
 - 'rename' button
 - styling
 - image functions
+- random outcomes
+- inline options
 - wide options
 - mark unseen option
-- random outcomes

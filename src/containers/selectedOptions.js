@@ -24,6 +24,7 @@ function getCost(option, count) {
   const result = [];
   for (const currencySlug in option.cost) {
     const currency = option.cost[currencySlug];
+    if (currency.value === 0) continue;
     result.push(<div
       className={classNames(
         'list-option-cost',
@@ -37,6 +38,7 @@ function getCost(option, count) {
       }</div>
     </div>);
   }
+  if (result.length === 0) return null;
   return result;
 }
 
